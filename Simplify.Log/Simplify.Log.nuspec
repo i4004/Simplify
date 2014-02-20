@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+	<metadata>
+		<id>Simplify.Log</id>
+		<version>$version$</version>
+		<title>Simplify.Log</title>
+		<authors>Alexander Krylkov</authors>
+		<owners>Alexander Krylkov</owners>
+		<projectUrl>https://github.com/i4004/Simplify</projectUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Simple file logger</description>
+		<summary>Simple file logger</summary>
+		<copyright>Licensed under LGPL</copyright>
+		<language>en-US</language>
+		<tags>.NET logger</tags>
+	</metadata>
+	<files>
+		<file src="bin\release\Simplify.Log.dll" target="lib\net40" />
+	</files>
+</package>
