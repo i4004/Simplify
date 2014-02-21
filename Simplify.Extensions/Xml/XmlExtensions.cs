@@ -1,0 +1,34 @@
+﻿using System.Xml.Linq;
+
+namespace Simplify.Extensions.Xml
+{
+	/// <summary>
+	/// Provides extensions for System.Xml.Linq classes
+	/// </summary>
+	public static class XmlExtensions
+	{
+		/// <summary>
+		/// Gets the outer XML string of an XElement.
+		/// </summary>
+		/// <param name="element">The outer XML stringt.</param>
+		/// <returns></returns>
+		public static string OuterXml(this XElement element)
+		{
+			var xReader = element.CreateReader();
+			xReader.MoveToContent();
+			return xReader.ReadOuterXml();
+		}
+
+		/// <summary>
+		/// Gets the inner XML string of an XElement.
+		/// </summary>
+		/// <param name="element">The inner XML stringt.</param>
+		/// <returns></returns>
+		public static string InnerXml(this XElement element)
+		{
+			var xReader = element.CreateReader();
+			xReader.MoveToContent();
+			return xReader.ReadInnerXml();
+		}
+	}
+}

@@ -6,14 +6,20 @@
 		<title>Simplify.Log</title>
 		<authors>Alexander Krylkov</authors>
 		<owners>Alexander Krylkov</owners>
-		<projectUrl>https://github.com/i4004/Simplify</projectUrl>
+		<projectUrl>https://github.com/i4004/Simplify/tree/master/Simplify.Log</projectUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>Simple file logger</description>
-		<summary>Simple file logger</summary>
+		<description>Simple file-based logger</description>
+		<summary>Simple file-based logger</summary>
+		<releaseNotes></releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET logger</tags>
 	</metadata>
+	<dependencies>
+		<group targetFramework=".NETFramework4.0">
+			<dependency id="System.IO.Abstractions" version="[1.4.0.74]" />
+		</group>
+	</dependencies>
 	<files>
 		<file src="bin\release\Simplify.Log.dll" target="lib\net40" />
 	</files>
