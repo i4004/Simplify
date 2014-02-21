@@ -6,6 +6,7 @@
 
 //using NUnit.Framework;
 
+// todo refactor
 //namespace ApplicationHelper.Tests.Templates
 //{
 //	[TestFixture]

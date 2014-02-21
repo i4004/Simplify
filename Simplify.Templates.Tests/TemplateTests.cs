@@ -1,5 +1,6 @@
 ﻿//using System.Collections.Generic;
 
+// todo refactor
 //namespace Simplify.Templates.Tests
 //{
 //	[TestFixture]
