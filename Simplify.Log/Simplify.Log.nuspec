@@ -14,12 +14,12 @@
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET logger</tags>
+		<dependencies>
+			<group targetFramework=".NETFramework4.0">
+				<dependency id="System.IO.Abstractions" version="[1.4.0.74]" />
+			</group>
+		</dependencies>
 	</metadata>
-	<dependencies>
-		<group targetFramework=".NETFramework4.0">
-			<dependency id="System.IO.Abstractions" version="[1.4.0.74]" />
-		</group>
-	</dependencies>
 	<files>
 		<file src="bin\release\Simplify.Log.dll" target="lib\net40" />
 	</files>
