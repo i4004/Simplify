@@ -1,26 +1,21 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
-		<id>Simplify.Log</id>
+		<id>Simplify.Core</id>
 		<version>1.0.0.0</version>
-		<title>Simplify.Log</title>
+		<title>Simplify.Core</title>
 		<authors>Alexander Krylkov</authors>
 		<owners>Alexander Krylkov</owners>
 		<projectUrl>https://github.com/i4004/Simplify/tree/master/Simplify.Log</projectUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>Simple file-based logger</description>
-		<summary>Simple file-based logger</summary>
+		<description>Core classes and iternfaces for applications</description>
+		<summary>Core classes and iternfaces for applications</summary>
 		<releaseNotes></releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET logger</tags>
-		<dependencies>
-			<group targetFramework=".NETFramework4.0">
-				<dependency id="System.IO.Abstractions" version="1.4.0.76" />
-			</group>
-		</dependencies>
 	</metadata>
 	<files>
-		<file src="bin\release\Simplify.Log.dll" target="lib\net40" />
+		<file src="bin\release\Simplify.Core.dll" target="lib\net40" />
 	</files>
 </package>
