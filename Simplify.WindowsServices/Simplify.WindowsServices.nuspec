@@ -6,7 +6,7 @@
 		<title>Simplify.WindowsServices</title>
 		<authors>Alexander Krylkov</authors>
 		<owners>Alexander Krylkov</owners>
-		<projectUrl>https://github.com/i4004/Simplify/tree/master/Simplify.Log</projectUrl>
+		<projectUrl>https://github.com/i4004/Simplify/tree/master/Simplify.WindowsServices</projectUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Provides windows services scheduler and installer base classes.</description>
 		<summary>Provides windows services scheduler and installer base classes.</summary>
