@@ -16,7 +16,7 @@
 		<tags>.NET logger</tags>
 		<dependencies>
 			<group targetFramework=".NETFramework4.0">
-				<dependency id="System.IO.Abstractions" version="[1.4.0.74]" />
+				<dependency id="System.IO.Abstractions" version="1.4.0.74" />
 			</group>
 		</dependencies>
 	</metadata>
