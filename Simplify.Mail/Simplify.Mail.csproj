@@ -44,12 +44,19 @@
     <AssemblyOriginatorKeyFile>Simplify.Mail.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="IHideObjectMembers.cs" />
+    <Compile Include="IMailSender.cs" />
+    <Compile Include="MailSender.cs" />
+    <Compile Include="MailSenderException.cs" />
+    <Compile Include="MailSenderSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Simplify.Mail.nuspec" />
     <None Include="Simplify.Mail.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
