@@ -8,7 +8,7 @@ namespace Simplify.Extensions.Xml
 	public static class XmlExtensions
 	{
 		/// <summary>
-		/// Gets the outer XML string of an XElement.
+		/// Gets the outer XML string of an XElement (inner XML and itself).
 		/// </summary>
 		/// <param name="element">The outer XML stringt.</param>
 		/// <returns></returns>
