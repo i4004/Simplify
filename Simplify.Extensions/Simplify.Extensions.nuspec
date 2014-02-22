@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+	<metadata>
+		<id>Simplify.Extensions</id>
+		<version>1.0.0</version>
+		<title>Simplify.Extensions</title>
+		<authors>Alexander Krylkov</authors>
+		<owners>Alexander Krylkov</owners>
+		<projectUrl>https://github.com/i4004/Simplify/tree/master/Simplify.Extensions</projectUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Extensions for system classes.</description>
+		<summary>Extensions for system classes.</summary>
+		<releaseNotes></releaseNotes>
+		<copyright>Licensed under LGPL</copyright>
+		<language>en-US</language>
+		<tags>.NET</tags>
+	</metadata>
+	<files>
+		<file src="bin\release\Simplify.Extensions.dll" target="lib\net40" />
+		<file src="bin\release\Simplify.Extensions.xml" target="lib\net40" />
+	</files>
+</package>

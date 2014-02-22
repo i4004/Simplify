@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+	<metadata>
+		<id>Simplify.Templates</id>
+		<version>1.0.0</version>
+		<title>Simplify.Templates</title>
+		<authors>Alexander Krylkov</authors>
+		<owners>Alexander Krylkov</owners>
+		<projectUrl>https://github.com/i4004/Simplify/tree/master/Simplify.Templates</projectUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Provides windows services scheduler and installer base classes.</description>
+		<summary>Provides windows services scheduler and installer base classes.</summary>
+		<releaseNotes></releaseNotes>
+		<copyright>Licensed under LGPL</copyright>
+		<language>en-US</language>
+		<tags>.NET windows-service</tags>
+		<dependencies>
+			<group targetFramework=".NETFramework4.0">
+				<dependency id="Simplify.Extensions" version="1.0.0" />
+				<dependency id="System.IO.Abstractions" version="1.4.0.76" />
+			</group>
+		</dependencies>
+	</metadata>
+	<files>
+		<file src="bin\release\Simplify.Templates.dll" target="lib\net40" />
+		<file src="bin\release\Simplify.Templates.xml" target="lib\net40" />
+	</files>
+</package>
