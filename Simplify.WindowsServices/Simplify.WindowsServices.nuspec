@@ -19,6 +19,11 @@
 				<dependency id="Simplify.Core" version="1.0.0" />
 			</group>
 		</dependencies>
+		<frameworkAssemblies>
+			<frameworkAssembly assemblyName="System" targetFramework="" />
+			<frameworkAssembly assemblyName="System.ServiceProcess" targetFramework="" />
+			<frameworkAssembly assemblyName="System.Configuration.Install" targetFramework="" />
+		</frameworkAssemblies>
 	</metadata>
 	<files>
 		<file src="bin\release\Simplify.WindowsServices.dll" target="lib\net40" />
