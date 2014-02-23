@@ -44,8 +44,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.FluentNHibernate.E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{21CDC14F-3620-4C15-B4BB-EBE5CBB96579}"
 	ProjectSection(SolutionItems) = preProject
+		Images\Icon.png = Images\Icon.png
 		Images\Logo.xcf = Images\Logo.xcf
-		Images\Logo32x32.png = Images\Logo32x32.png
 	EndProjectSection
 EndProject
 Global
