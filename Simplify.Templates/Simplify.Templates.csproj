@@ -103,9 +103,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Simplify.Extensions\Simplify.Extensions.csproj">
-      <Project>{ac0d763e-2f85-4340-a36a-7b92eb3a73d9}</Project>
-      <Name>Simplify.Extensions</Name>
+    <ProjectReference Include="..\Simplify.Xml\Simplify.Xml.csproj">
+      <Project>{f9158939-08d1-4f10-9250-1437a8ed1799}</Project>
+      <Name>Simplify.Xml</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

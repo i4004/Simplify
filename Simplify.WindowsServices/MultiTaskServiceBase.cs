@@ -18,7 +18,7 @@ namespace Simplify.WindowsServices
 		private Timer _workingPointsTimer;
 
 		/// <summary>
-		/// Event which is called when service should be initialized, subscribe your settings loading function here etc.
+		/// Event which is called when a service should be initialized, subscribe your settings loading function here etc.
 		/// </summary>
 		protected event InitializeEventHandler Initialize;
 

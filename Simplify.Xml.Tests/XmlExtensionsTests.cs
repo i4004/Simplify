@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 using Simplify.Extensions.Xml;
 
-namespace Simplify.Extensions.Tests
+namespace Simplify.Xml.Tests
 {
 	[TestFixture]
 	public class XmlExtensionsTests

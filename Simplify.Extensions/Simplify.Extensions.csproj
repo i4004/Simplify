@@ -44,8 +44,10 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Bytes\BytesExtensions.cs" />
+    <Compile Include="Double\DoubleExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Xml\XmlExtensions.cs" />
+    <Compile Include="String\StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
