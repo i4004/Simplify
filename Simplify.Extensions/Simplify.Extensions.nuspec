@@ -13,7 +13,7 @@
 		<releaseNotes></releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
-		<tags>.NET</tags>
+		<tags>.NET system-extensions</tags>
 	</metadata>
 	<files>
 		<file src="bin\release\Simplify.Extensions.dll" target="lib\net40" />

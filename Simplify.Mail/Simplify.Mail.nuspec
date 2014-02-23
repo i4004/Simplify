@@ -8,8 +8,8 @@
 		<owners>Alexander Krylkov</owners>
 		<projectUrl>https://github.com/i4004/Simplify/tree/master/Simplify.Mail</projectUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>Simple mail sender</description>
-		<summary>Simple mail sender</summary>
+		<description>Simple mail sender.</description>
+		<summary>Simple mail sender.</summary>
 		<releaseNotes></releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>

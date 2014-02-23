@@ -8,8 +8,8 @@
 		<owners>Alexander Krylkov</owners>
 		<projectUrl>https://github.com/i4004/Simplify/tree/master/Simplify.Core</projectUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>Core classes and interfaces for applications</description>
-		<summary>Core classes and interfaces for applications</summary>
+		<description>Core classes and interfaces for applications.</description>
+		<summary>Core classes and interfaces for applications.</summary>
 		<releaseNotes></releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
