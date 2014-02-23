@@ -8,12 +8,12 @@
 		<owners>Alexander Krylkov</owners>
 		<projectUrl>https://github.com/i4004/Simplify/tree/master/Simplify.Templates</projectUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>Provides windows services scheduler and installer base classes.</description>
-		<summary>Provides windows services scheduler and installer base classes.</summary>
+		<description>Text (web) templates engine.</description>
+		<summary>Text (web) templates engine.</summary>
 		<releaseNotes></releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
-		<tags>.NET windows-service</tags>
+		<tags>.NET templates</tags>
 		<dependencies>
 			<group targetFramework=".NETFramework4.0">
 				<dependency id="Simplify.Xml" version="1.0.0" />
