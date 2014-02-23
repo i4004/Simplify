@@ -42,6 +42,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.FluentNHibernate.E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.FluentNHibernate.Examples.Domain", "Examples\Simplify.FluentNHibernate.Examples.Domain\Simplify.FluentNHibernate.Examples.Domain.csproj", "{959DF948-6208-4EA2-BBB8-BA87E6FDCAB7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{21CDC14F-3620-4C15-B4BB-EBE5CBB96579}"
+	ProjectSection(SolutionItems) = preProject
+		Images\Logo.xcf = Images\Logo.xcf
+		Images\Logo32x32.png = Images\Logo32x32.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -7,6 +7,7 @@
 		<authors>Alexander Krylkov</authors>
 		<owners>Alexander Krylkov</owners>
 		<projectUrl>https://github.com/i4004/Simplify/tree/master/Simplify.Core</projectUrl>
+		<iconUrl>Images/Logo32x32.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Core classes and interfaces for applications.</description>
 		<summary>Core classes and interfaces for applications.</summary>
