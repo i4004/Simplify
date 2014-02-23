@@ -32,6 +32,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Xml", "Simplify.Xm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Xml.Tests", "Simplify.Xml.Tests\Simplify.Xml.Tests.csproj", "{37D1D0E6-DBBA-4EAD-99D3-380FB3C97EF0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.FluentNHibernate", "Simplify.FluentNHibernate\Simplify.FluentNHibernate.csproj", "{0F73C429-1B2F-48B7-9D38-20DA17AD350B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.FluentNHibernate.Tests", "Simplify.FluentNHibernate.Tests\Simplify.FluentNHibernate.Tests.csproj", "{731FD050-AE09-4EA6-838C-FE8032DB4219}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{2D057C2A-06BD-48F2-A075-B6EC42D39007}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.FluentNHibernate.Examples.Database", "Examples\Simplify.FluentNHibernate.Examples.Database\Simplify.FluentNHibernate.Examples.Database.csproj", "{5D326E8A-851B-4537-A477-838709FDB965}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.FluentNHibernate.Examples.Domain", "Examples\Simplify.FluentNHibernate.Examples.Domain\Simplify.FluentNHibernate.Examples.Domain.csproj", "{959DF948-6208-4EA2-BBB8-BA87E6FDCAB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,8 +92,28 @@ Global
 		{37D1D0E6-DBBA-4EAD-99D3-380FB3C97EF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37D1D0E6-DBBA-4EAD-99D3-380FB3C97EF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37D1D0E6-DBBA-4EAD-99D3-380FB3C97EF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F73C429-1B2F-48B7-9D38-20DA17AD350B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F73C429-1B2F-48B7-9D38-20DA17AD350B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F73C429-1B2F-48B7-9D38-20DA17AD350B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F73C429-1B2F-48B7-9D38-20DA17AD350B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D326E8A-851B-4537-A477-838709FDB965}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D326E8A-851B-4537-A477-838709FDB965}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D326E8A-851B-4537-A477-838709FDB965}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D326E8A-851B-4537-A477-838709FDB965}.Release|Any CPU.Build.0 = Release|Any CPU
+		{959DF948-6208-4EA2-BBB8-BA87E6FDCAB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{959DF948-6208-4EA2-BBB8-BA87E6FDCAB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{959DF948-6208-4EA2-BBB8-BA87E6FDCAB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{959DF948-6208-4EA2-BBB8-BA87E6FDCAB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5D326E8A-851B-4537-A477-838709FDB965} = {2D057C2A-06BD-48F2-A075-B6EC42D39007}
+		{959DF948-6208-4EA2-BBB8-BA87E6FDCAB7} = {2D057C2A-06BD-48F2-A075-B6EC42D39007}
 	EndGlobalSection
 EndGlobal
