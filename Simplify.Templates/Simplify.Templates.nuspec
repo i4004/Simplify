@@ -16,7 +16,7 @@
 		<tags>.NET windows-service</tags>
 		<dependencies>
 			<group targetFramework=".NETFramework4.0">
-				<dependency id="Simplify.Extensions" version="1.0.0" />
+				<dependency id="Simplify.Xml" version="1.0.0" />
 				<dependency id="System.IO.Abstractions" version="1.4.0.76" />
 			</group>
 		</dependencies>
