@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
-		<id>Simplify.Log</id>
+		<id>Simplify.Windows.Forms</id>
 		<version>1.0.0</version>
 		<title>Simplify.Windows.Forms</title>
 		<authors>Alexander Krylkov</authors>
