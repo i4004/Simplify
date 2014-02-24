@@ -56,6 +56,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.IO", "Simplify.IO\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.IO.Tests", "Simplify.IO.Tests\Simplify.IO.Tests.csproj", "{C089B4F9-1F37-4EED-949B-E22A64A998A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Cryptography", "Simplify.Cryptography\Simplify.Cryptography.csproj", "{B0649DEA-1801-4BC4-97B0-756A796569CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Cryptography.Tests", "Simplify.Cryptography.Tests\Simplify.Cryptography.Tests.csproj", "{B47C5267-B979-444D-9E59-057972465941}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -138,6 +142,14 @@ Global
 		{C089B4F9-1F37-4EED-949B-E22A64A998A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C089B4F9-1F37-4EED-949B-E22A64A998A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C089B4F9-1F37-4EED-949B-E22A64A998A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0649DEA-1801-4BC4-97B0-756A796569CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0649DEA-1801-4BC4-97B0-756A796569CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0649DEA-1801-4BC4-97B0-756A796569CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0649DEA-1801-4BC4-97B0-756A796569CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B47C5267-B979-444D-9E59-057972465941}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B47C5267-B979-444D-9E59-057972465941}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B47C5267-B979-444D-9E59-057972465941}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B47C5267-B979-444D-9E59-057972465941}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
