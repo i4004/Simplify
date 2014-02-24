@@ -23,16 +23,5 @@ namespace Simplify.Resources
 				EntryStringTableInstance = value;
 			}
 		}
-
-		///// <summary>
-		///// Gets the enum associated value from the resource file.
-		///// </summary>
-		///// <typeparam name="T"></typeparam>
-		///// <param name="enumValue">The enum value.</param>
-		///// <returns></returns>
-		//public static string GetAssociatedValue<T>(T enumValue) where T : struct
-		//{
-		//	return EnumStringTableBinder.GetAssociatedValue(enumValue, Entry);
-		//}
 	}
 }
