@@ -52,6 +52,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Resources", "Simpl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Windows.Forms", "Simplify.Windows.Forms\Simplify.Windows.Forms.csproj", "{95BAF8DC-B67D-4C65-82EF-7097199B256A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.IO", "Simplify.IO\Simplify.IO.csproj", "{A0BFE550-8E25-422A-89EC-821EB712392C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.IO.Tests", "Simplify.IO.Tests\Simplify.IO.Tests.csproj", "{C089B4F9-1F37-4EED-949B-E22A64A998A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -126,6 +130,14 @@ Global
 		{95BAF8DC-B67D-4C65-82EF-7097199B256A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95BAF8DC-B67D-4C65-82EF-7097199B256A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95BAF8DC-B67D-4C65-82EF-7097199B256A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0BFE550-8E25-422A-89EC-821EB712392C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0BFE550-8E25-422A-89EC-821EB712392C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0BFE550-8E25-422A-89EC-821EB712392C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0BFE550-8E25-422A-89EC-821EB712392C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C089B4F9-1F37-4EED-949B-E22A64A998A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C089B4F9-1F37-4EED-949B-E22A64A998A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C089B4F9-1F37-4EED-949B-E22A64A998A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C089B4F9-1F37-4EED-949B-E22A64A998A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

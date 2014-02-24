@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+	<metadata>
+		<id>Simplify.IO</id>
+		<version>1.0.0</version>
+		<title>Simplify.IO</title>
+		<authors>Alexander Krylkov</authors>
+		<owners>Alexander Krylkov</owners>
+		<projectUrl>https://github.com/i4004/Simplify/tree/master/Simplify.IO</projectUrl>
+		<iconUrl>https://raw2.github.com/i4004/Simplify/master/Images/Icon.png</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>IO helper functions.</description>
+		<summary>IO helper functions.</summary>
+		<releaseNotes></releaseNotes>
+		<copyright>Licensed under LGPL</copyright>
+		<language>en-US</language>
+		<tags>.NET IO</tags>
+		<dependencies>
+			<group targetFramework=".NETFramework4.0">
+				<dependency id="System.IO.Abstractions" version="1.4.0.76" />
+			</group>
+		</dependencies>
+	</metadata>
+	<files>
+		<file src="bin\release\Simplify.IO.dll" target="lib\net40" />
+		<file src="bin\release\Simplify.IO.xml" target="lib\net40" />
+	</files>
+</package>
