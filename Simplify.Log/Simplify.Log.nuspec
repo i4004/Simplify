@@ -24,6 +24,5 @@
 	<files>
 		<file src="bin\release\Simplify.Log.dll" target="lib\net40" />
 		<file src="bin\release\Simplify.Log.xml" target="lib\net40" />
-		<file src="tools\*" target="tools" />
 	</files>
 </package>
