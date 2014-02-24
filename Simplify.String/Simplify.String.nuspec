@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+	<metadata>
+		<id>Simplify.String</id>
+		<version>1.0.0</version>
+		<title>Simplify.String</title>
+		<authors>Alexander Krylkov</authors>
+		<owners>Alexander Krylkov</owners>
+		<projectUrl>https://github.com/i4004/Simplify/tree/master/Simplify.String</projectUrl>
+		<iconUrl>https://raw2.github.com/i4004/Simplify/master/Images/Icon.png</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>String operations functions.</description>
+		<summary>String operations functions.</summary>
+		<releaseNotes></releaseNotes>
+		<copyright>Licensed under LGPL</copyright>
+		<language>en-US</language>
+		<tags>.NET</tags>
+	</metadata>
+	<files>
+		<file src="bin\release\Simplify.String.dll" target="lib\net40" />
+		<file src="bin\release\Simplify.String.xml" target="lib\net40" />
+	</files>
+</package>

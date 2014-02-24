@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F9158939-08D1-4F10-9250-1437A8ED1799}</ProjectGuid>
+    <ProjectGuid>{43FEB1F0-BEBC-4736-A67B-70A883747449}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Simplify.Xml</RootNamespace>
-    <AssemblyName>Simplify.Xml</AssemblyName>
+    <RootNamespace>Simplify.String</RootNamespace>
+    <AssemblyName>Simplify.String</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,7 +31,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <DocumentationFile>bin\Release\Simplify.Xml.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\Simplify.String.xml</DocumentationFile>
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup>
@@ -41,21 +41,18 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Simplify.Xml.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Simplify.String.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XmlExtensions.cs" />
-    <Compile Include="XmlSerializator.cs" />
+    <Compile Include="StringHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.XML" />
-    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Simplify.Xml.nuspec" />
-    <None Include="Simplify.Xml.snk" />
+    <None Include="Simplify.String.nuspec" />
+    <None Include="Simplify.String.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
