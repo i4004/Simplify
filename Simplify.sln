@@ -48,6 +48,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{21CDC1
 		Images\Logo.xcf = Images\Logo.xcf
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Resources", "Simplify.Resources\Simplify.Resources.csproj", "{C197714E-8EBA-4A27-8370-A6F8D1648762}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -114,6 +116,10 @@ Global
 		{959DF948-6208-4EA2-BBB8-BA87E6FDCAB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{959DF948-6208-4EA2-BBB8-BA87E6FDCAB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{959DF948-6208-4EA2-BBB8-BA87E6FDCAB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C197714E-8EBA-4A27-8370-A6F8D1648762}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C197714E-8EBA-4A27-8370-A6F8D1648762}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C197714E-8EBA-4A27-8370-A6F8D1648762}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C197714E-8EBA-4A27-8370-A6F8D1648762}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
