@@ -59,6 +59,8 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Simplify.Resources.snk" />
+    <None Include="Tools\Uninstall.ps1" />
+    <None Include="Tools\Install.ps1" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
