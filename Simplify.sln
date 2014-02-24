@@ -50,6 +50,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{21CDC1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Resources", "Simplify.Resources\Simplify.Resources.csproj", "{C197714E-8EBA-4A27-8370-A6F8D1648762}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Windows.Forms", "Simplify.Windows.Forms\Simplify.Windows.Forms.csproj", "{95BAF8DC-B67D-4C65-82EF-7097199B256A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -120,6 +122,10 @@ Global
 		{C197714E-8EBA-4A27-8370-A6F8D1648762}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C197714E-8EBA-4A27-8370-A6F8D1648762}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C197714E-8EBA-4A27-8370-A6F8D1648762}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95BAF8DC-B67D-4C65-82EF-7097199B256A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95BAF8DC-B67D-4C65-82EF-7097199B256A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95BAF8DC-B67D-4C65-82EF-7097199B256A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95BAF8DC-B67D-4C65-82EF-7097199B256A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
