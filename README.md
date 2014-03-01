@@ -3,5 +3,6 @@ Simplify
 
 ![Simplify](https://raw.github.com/i4004/Simplify/master/Images/Icon128x128.png)
 
-Various classes for .NET applications
+Simplify is a set of .NET framework libraries which provides daily needs functionality for your apliication.
+
 ### All documentation can be found on the [wiki](https://github.com/i4004/Simplify/wiki) page.
