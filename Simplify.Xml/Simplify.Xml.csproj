@@ -46,7 +46,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XmlExtensions.cs" />
-    <Compile Include="XmlSerializator.cs" />
+    <Compile Include="XmlSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

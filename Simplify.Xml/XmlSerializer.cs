@@ -2,14 +2,13 @@
 using System.IO;
 using System.Text;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace Simplify.Xml
 {
 	/// <summary>
 	/// Objects XML serialization/deserialization extensions
 	/// </summary>
-	public static class XmlSerializator
+	public static class XmlSerializer
 	{
 		/// <summary>
 		/// Serializes the specified items list to a XML string.
@@ -21,7 +20,7 @@ namespace Simplify.Xml
 		{
 			using(var memoryStream = new MemoryStream())
 			{
-				var serializer = new XmlSerializer(typeof(List<T>));
+				var serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<T>));
 				serializer.Serialize(memoryStream, items);
 
 				memoryStream.Position = 0;
@@ -41,7 +40,7 @@ namespace Simplify.Xml
 			{
 				using (TextWriter streamWriter = new StreamWriter(memoryStream))
 				{
-					var xmlSerializer = new XmlSerializer(typeof(T));
+					var xmlSerializer = new System.Xml.Serialization.XmlSerializer(typeof(T));
 					xmlSerializer.Serialize(streamWriter, obj);
 					return XElement.Parse(Encoding.UTF8.GetString(memoryStream.ToArray()));
 				}
@@ -58,7 +57,7 @@ namespace Simplify.Xml
 		{
 			using (var memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(xElement.ToString())))
 			{
-				var xmlSerializer = new XmlSerializer(typeof(T));
+				var xmlSerializer = new System.Xml.Serialization.XmlSerializer(typeof(T));
 				return (T)xmlSerializer.Deserialize(memoryStream);
 			}
 		}
