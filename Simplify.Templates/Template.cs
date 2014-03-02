@@ -8,8 +8,7 @@ using System.Reflection;
 using System.Threading;
 using System.Xml.Linq;
 using System.Xml.XPath;
-
-using Simplify.Extensions.Xml;
+using Simplify.Xml;
 
 namespace Simplify.Templates
 {

@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
 
-namespace Simplify.Extensions.Xml
+namespace Simplify.Xml
 {
 	/// <summary>
 	/// Provides extensions for System.Xml.Linq classes

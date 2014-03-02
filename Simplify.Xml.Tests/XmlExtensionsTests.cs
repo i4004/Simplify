@@ -2,8 +2,6 @@
 
 using NUnit.Framework;
 
-using Simplify.Extensions.Xml;
-
 namespace Simplify.Xml.Tests
 {
 	[TestFixture]
