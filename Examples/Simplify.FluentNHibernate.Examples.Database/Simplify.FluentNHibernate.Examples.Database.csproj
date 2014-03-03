@@ -46,6 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CitiesRepository.cs" />
+    <Compile Include="ExampleFactoryManager.cs" />
     <Compile Include="Mappings\Base\IdNameObjectMap.cs" />
     <Compile Include="Mappings\CityMap.cs" />
     <Compile Include="Mappings\CityNameMap.cs" />

@@ -18,7 +18,7 @@ namespace Simplify.Cryptography
 		}
 
 		/// <summary>
-		/// Get MD5 hash code of input string
+		/// Get MD5 hash code of an input string
 		/// </summary>
 		/// <param name="input">Input string</param>
 		/// <returns>MD5 hash code of input string</returns>

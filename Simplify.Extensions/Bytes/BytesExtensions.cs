@@ -8,7 +8,7 @@ namespace Simplify.Extensions.Bytes
 	public static class BytesExtensions
 	{
 		/// <summary>
-		/// Converts bytes array to the string.
+		/// Converts bytes array to a string.
 		/// </summary>
 		/// <param name="bytes">The bytes array.</param>
 		/// <returns></returns>
