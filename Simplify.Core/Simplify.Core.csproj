@@ -48,7 +48,9 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="Simplify.Core.snk" />
-    <None Include="Simplify.Core.nuspec" />
+    <None Include="Simplify.Core.nuspec">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />

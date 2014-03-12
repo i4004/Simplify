@@ -69,7 +69,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Simplify.Log.nuspec" />
+    <None Include="Simplify.Log.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Simplify.Log.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
