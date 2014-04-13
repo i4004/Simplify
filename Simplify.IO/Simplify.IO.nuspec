@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>Simplify.IO</id>
-		<version>1.0.0</version>
+		<version>1.0.1</version>
 		<title>Simplify.IO</title>
 		<authors>Alexander Krylkov</authors>
 		<owners>Alexander Krylkov</owners>
@@ -17,7 +17,7 @@
 		<tags>.NET IO</tags>
 		<dependencies>
 			<group targetFramework=".NETFramework4.0">
-				<dependency id="System.IO.Abstractions" version="1.4.0.76" />
+				<dependency id="System.IO.Abstractions" version="1.4.0.84" />
 			</group>
 		</dependencies>
 	</metadata>
