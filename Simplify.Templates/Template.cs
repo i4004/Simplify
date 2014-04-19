@@ -17,7 +17,7 @@ namespace Simplify.Templates
 	/// </summary>
 	public class Template : ITemplate
 	{
-		private static Lazy<IFileSystem> FileSystemInstance = new Lazy<IFileSystem>(() => new FileSystem());
+		private static Lazy<IFileSystem> _fileSystem = new Lazy<IFileSystem>(() => new FileSystem());
 
 		/// <summary>
 		/// Gets or sets the file system for Template IO operations.
@@ -29,7 +29,7 @@ namespace Simplify.Templates
 		{
 			get
 			{
-				return FileSystemInstance.Value;
+				return _fileSystem.Value;
 			}
 
 			set
@@ -37,7 +37,7 @@ namespace Simplify.Templates
 				if(value == null)
 					throw new ArgumentNullException("value");
 
-				FileSystemInstance = new Lazy<IFileSystem>(() => value);
+				_fileSystem = new Lazy<IFileSystem>(() => value);
 			}
 		}
 
