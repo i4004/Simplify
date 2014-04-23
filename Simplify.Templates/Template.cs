@@ -17,7 +17,7 @@ namespace Simplify.Templates
 	/// </summary>
 	public class Template : ITemplate
 	{
-		private static Lazy<IFileSystem> FileSystemInstance = new Lazy<IFileSystem>(() => new FileSystem());
+		private static Lazy<IFileSystem> _fileSystemInstance = new Lazy<IFileSystem>(() => new FileSystem());
 
 		/// <summary>
 		/// Gets or sets the file system for Template IO operations.
@@ -29,7 +29,7 @@ namespace Simplify.Templates
 		{
 			get
 			{
-				return FileSystemInstance.Value;
+				return _fileSystemInstance.Value;
 			}
 
 			set
@@ -37,7 +37,7 @@ namespace Simplify.Templates
 				if(value == null)
 					throw new ArgumentNullException("value");
 
-				FileSystemInstance = new Lazy<IFileSystem>(() => value);
+				_fileSystemInstance = new Lazy<IFileSystem>(() => value);
 			}
 		}
 
@@ -46,7 +46,7 @@ namespace Simplify.Templates
 		private IDictionary<string, string> _addValues;
 
 		/// <summary>
-		/// Initialize template class from a text
+		/// Initialize template class from a string
 		/// </summary>
 		/// <param name="text">The template text.</param>
 		/// <param name="fixLineEndingsHtml">If set to <c>true</c> Replace all caret return characters by html <![CDATA[<BR />]]> tag.</param>
@@ -169,6 +169,17 @@ namespace Simplify.Templates
 		/// Template default language
 		/// </summary>
 		public string DefaultLanguage { get; private set; }
+
+
+		/// <summary>
+		/// Initialize template class from a string
+		/// </summary>
+		/// <param name="text">The template text.</param>
+		/// <param name="fixLineEndingsHtml">If set to <c>true</c> Replace all caret return characters by html <![CDATA[<BR />]]> tag.</param>
+		public static ITemplate FromString(string text, bool fixLineEndingsHtml = false)
+		{
+			return new Template(text, fixLineEndingsHtml);
+		}
 
 		/// <summary>
 		/// Load template from a file using calling assemly path prefix in filePath
