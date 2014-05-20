@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Log", "Simplify.Log\Simplify.Log.csproj", "{DA27C4E4-081C-4BF6-B6EF-0D1C093450E4}"
 EndProject
@@ -63,6 +63,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.String", "Simplify.String\Simplify.String.csproj", "{43FEB1F0-BEBC-4736-A67B-70A883747449}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.String.Tests", "Simplify.String.Tests\Simplify.String.Tests.csproj", "{564B187E-5E37-49F8-B8E8-17081D470A36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.AutomatedWindowsServices", "Simplify.AutomatedWindowsServices\Simplify.AutomatedWindowsServices.csproj", "{A7352B62-2D81-4F4A-9098-607A2D22F3EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -162,6 +164,10 @@ Global
 		{564B187E-5E37-49F8-B8E8-17081D470A36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{564B187E-5E37-49F8-B8E8-17081D470A36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{564B187E-5E37-49F8-B8E8-17081D470A36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7352B62-2D81-4F4A-9098-607A2D22F3EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7352B62-2D81-4F4A-9098-607A2D22F3EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7352B62-2D81-4F4A-9098-607A2D22F3EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7352B62-2D81-4F4A-9098-607A2D22F3EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
