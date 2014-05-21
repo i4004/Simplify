@@ -16,5 +16,14 @@ namespace Simplify.Core
 		{
 			return Activator.CreateInstance(type);
 		}
+
+		/// <summary>
+		/// Begins the lifetime scope for the given container.
+		/// </summary>
+		/// <returns></returns>
+		public IDisposable BeginLifetimeScope()
+		{
+			return null;
+		}
 	}
 }

@@ -3,7 +3,7 @@
 namespace Simplify.Core
 {
 	/// <summary>
-	/// Dependency resolver by event class
+	/// Dependency resolver by event to specify custom resolve method and begin lifetime scope method
 	/// </summary>
 	public class EventDependencyResolver : IDependecyResolver
 	{
@@ -12,17 +12,26 @@ namespace Simplify.Core
 		/// </summary>
 		/// <param name="type">The type.</param>
 		/// <returns></returns>
-		public delegate object Resolver(Type type);
-
-		private event Resolver ResolveMethod;
+		public delegate object ResolveHandler(Type type);
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="EventDependencyResolver"/> class.
+		/// Delegate for begin lifetime scoping
 		/// </summary>
-		/// <param name="resolveMethod">The resolve method.</param>
-		public EventDependencyResolver(Resolver resolveMethod)
+		/// <returns></returns>
+		public delegate IDisposable BeginLifetimeScopeHandler();
+
+		private event ResolveHandler ResolveMethod;
+		private event BeginLifetimeScopeHandler BeginLifetimeScopeMethod;
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="EventDependencyResolver" /> class.
+		/// </summary>
+		/// <param name="resolveMethod">The dependency resolve method.</param>
+		/// <param name="beginLifetimeScopeMethod">The begin lifetime scope method.</param>
+		public EventDependencyResolver(ResolveHandler resolveMethod, BeginLifetimeScopeHandler beginLifetimeScopeMethod = null)
 		{
 			ResolveMethod = resolveMethod;
+			BeginLifetimeScopeMethod = beginLifetimeScopeMethod;
 		}
 
 		/// <summary>
@@ -33,6 +42,15 @@ namespace Simplify.Core
 		public object Resolve(Type type)
 		{
 			return ResolveMethod(type);
+		}
+
+		/// <summary>
+		/// Begins the lifetime scope.
+		/// </summary>
+		/// <returns></returns>
+		public IDisposable BeginLifetimeScope()
+		{
+			return BeginLifetimeScopeMethod != null ? BeginLifetimeScopeMethod() : null;
 		}
 	}
 }

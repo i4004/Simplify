@@ -3,14 +3,14 @@
 namespace Simplify.Core
 {
 	/// <summary>
-	/// Dependency resolver
+	/// Dependency resolver, ambient context for applications to resolve objects via DI
 	/// </summary>
 	public class DependencyResolver
 	{
 		private static Lazy<IDependecyResolver> _dependencyResolver = new Lazy<IDependecyResolver>(() => new DefaultDependencyResolver());
 
 		/// <summary>
-		/// Gets or sets the dependency resolver fro container factory.
+		/// Gets or sets the dependency resolver
 		/// </summary>
 		/// <value>
 		/// The dependency resolver.
@@ -26,6 +26,6 @@ namespace Simplify.Core
 
 				_dependencyResolver = new Lazy<IDependecyResolver>(() => value);
 			}
-		}		 
+		}
 	}
 }

@@ -109,11 +109,19 @@ namespace Simplify.AutomatedWindowsServices
 
 		private void Run(object state)
 		{
-			var serviceTask = DependencyResolver.Current.Resolve(typeof(T));
+			try
+			{
+				using (DependencyResolver.Current.BeginLifetimeScope())
+				{
+					var serviceTask = DependencyResolver.Current.Resolve(typeof(T));
 
-			_invokeMethodInfo.Invoke(serviceTask, _isParameterlessMethod ? null : new object[] {_serviceName});
-
-			OnWorkStop();
+					_invokeMethodInfo.Invoke(serviceTask, _isParameterlessMethod ? null : new object[] { _serviceName });				
+				}
+			}
+			finally
+			{
+				OnWorkStop();				
+			}
 		}
 
 		/// <summary>
