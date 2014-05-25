@@ -1,4 +1,3 @@
-[![Stories in Ready](https://badge.waffle.io/i4004/simplify.png?label=ready&title=Ready)](https://waffle.io/i4004/simplify)
 Simplify
 ========
 
