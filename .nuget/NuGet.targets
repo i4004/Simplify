@@ -17,7 +17,7 @@
     </PropertyGroup>
 
 	<ItemGroup Condition=" '$(PackageSources)' == '' ">
-		<PackageSource Include="C:\NugetRepository\" />
+		<PackageSource Include="C:\NugetRepository" />
 		<PackageSource Include="https://www.nuget.org/api/v2/" />
 	</ItemGroup>
 
