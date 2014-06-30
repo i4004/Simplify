@@ -56,7 +56,7 @@ namespace Simplify.Templates.Tests
 		[Test]
 		public void LocalTemplate_LoadAndUse_LoadedCorectly()
 		{
-			Thread.CurrentThread.CurrentCulture = new CultureInfo("en");
+			Thread.CurrentThread.CurrentCulture = new CultureInfo("ru");
 			TestTemplate(new Template("TestData/Local/TemplateTest.tpl"), new Template(File.ReadAllText("TestData/Local/MasterTemplate.tpl"), false),
 				new Template("TestData/Local/TemplateTestResult.tpl"), new Template("TestData/Local/MasterTemplateResult.tpl"));
 		}
