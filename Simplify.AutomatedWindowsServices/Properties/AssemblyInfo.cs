@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Simplify.AutomatedWindowsServices")]
-[assembly: AssemblyDescription("Processing windows services handlers with DI")]
+[assembly: AssemblyDescription("Windows services framework with DI")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Alexander Krylkov")]
 [assembly: AssemblyProduct("Simplify")]
