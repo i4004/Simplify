@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
-		<id>Simplify.WindowsServices</id>
-		<version>1.0.2</version>
-		<title>Simplify.WindowsServices</title>
-		<authors>Alexander Krylkov</authors>
-		<owners>Alexander Krylkov</owners>
+		<id>$id$</id>
+		<version>$version$</version>
+		<title>$id$</title>
+		<authors>$author$</authors>
+		<owners>$author$</owners>
 		<projectUrl>https://github.com/i4004/Simplify/tree/master/Simplify.WindowsServices</projectUrl>
 		<iconUrl>https://raw2.github.com/i4004/Simplify/master/Images/Icon.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Provides windows services scheduler and installer base classes.</description>
-		<summary>Provides windows services scheduler and installer base classes.</summary>
+		<summary>$description$</summary>
 		<releaseNotes></releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
