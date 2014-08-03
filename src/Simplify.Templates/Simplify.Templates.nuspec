@@ -15,10 +15,5 @@
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET templates</tags>
-		<dependencies>
-			<group targetFramework=".NETFramework4.0">
-				<dependency id="System.IO.Abstractions" version="1.4.0.86" />
-			</group>
-		</dependencies>
 	</metadata>
 </package>
