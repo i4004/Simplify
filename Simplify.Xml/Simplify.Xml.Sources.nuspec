@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+	<metadata>
+		<id>Simplify.Xml.Sources</id>
+		<version>$version$</version>
+		<title>Simplify.Xml.Sources</title>
+		<authors>Alexander Krylkov</authors>
+		<owners>Alexander Krylkov</owners>
+		<projectUrl>https://github.com/i4004/Simplify/tree/master/Simplify.Xml</projectUrl>
+		<iconUrl>https://raw2.github.com/i4004/Simplify/master/Images/Icon.png</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>XML extensions.</description>
+		<summary>XML extensions</summary>
+		<releaseNotes></releaseNotes>
+		<copyright>Licensed under LGPL</copyright>
+		<language>en-US</language>
+		<tags>.NET XML</tags>
+	</metadata>
+	<files>
+		<file src="XmlExtensions.cs" target="content/App_Packages/Simplify.Xml.Sources.$version$/XmlExtensions.cs" />
+		<file src="XmlSerializer.cs" target="content/App_Packages/Simplify.Xml.Sources.$version$/XmlSerializer.cs" />
+	</files>
+</package>
