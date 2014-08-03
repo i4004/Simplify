@@ -62,6 +62,8 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="App_Packages\Simplify.Xml.Sources.1.0.1.0\XmlExtensions.cs" />
+    <Compile Include="App_Packages\Simplify.Xml.Sources.1.0.1.0\XmlSerializer.cs" />
     <Compile Include="IHideObjectMembers.cs" />
     <Compile Include="ITemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,10 +71,6 @@
     <Compile Include="TemplateException.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Simplify.Xml, Version=1.0.1.0, Culture=neutral, PublicKeyToken=bc9f823c6827798e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Simplify.Xml.1.0.1\lib\net40\Simplify.Xml.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.IO.Abstractions, Version=1.4.0.86, Culture=neutral, PublicKeyToken=d480b5b72fb413da, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
