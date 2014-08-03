@@ -1,4 +1,4 @@
-using FluentNHibernate.Mapping;
+﻿using FluentNHibernate.Mapping;
 
 using Simplify.FluentNHibernate.Examples.Domain.Entities.Base;
 

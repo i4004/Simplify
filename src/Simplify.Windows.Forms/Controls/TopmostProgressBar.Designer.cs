@@ -1,4 +1,4 @@
-namespace Simplify.Windows.Forms.Controls
+﻿namespace Simplify.Windows.Forms.Controls
 {
 	partial class TopmostProgressBar
 	{

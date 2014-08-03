@@ -1,4 +1,4 @@
-using Simplify.FluentNHibernate.Examples.Database.Mappings.Base;
+﻿using Simplify.FluentNHibernate.Examples.Database.Mappings.Base;
 using Simplify.FluentNHibernate.Examples.Domain.Entities;
 
 namespace Simplify.FluentNHibernate.Examples.Database.Mappings

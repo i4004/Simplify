@@ -1,4 +1,4 @@
-namespace Simplify.Resources
+﻿namespace Simplify.Resources
 {
 	/// <summary>
 	/// Interface for getting assembly resource file string
