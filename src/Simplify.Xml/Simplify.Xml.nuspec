@@ -15,5 +15,9 @@
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET XML</tags>
+		<frameworkAssemblies>
+			<frameworkAssembly assemblyName="System.Xml" />
+			<frameworkAssembly assemblyName="System.Xml.Linq" />
+		</frameworkAssemblies>
 	</metadata>
 </package>

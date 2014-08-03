@@ -15,6 +15,10 @@
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET XML</tags>
+		<frameworkAssemblies>
+			<frameworkAssembly assemblyName="System.Xml" />
+			<frameworkAssembly assemblyName="System.Xml.Linq" />
+		</frameworkAssemblies>
 	</metadata>
 	<files>
 		<file src="XmlExtensions.cs" target="content/App_Packages/Simplify.Xml.Sources.$version$/XmlExtensions.cs" />
