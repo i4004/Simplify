@@ -16,8 +16,4 @@
 		<language>en-US</language>
 		<tags>.NET system-extensions</tags>
 	</metadata>
-	<files>
-		<file src="bin\release\Simplify.Extensions.dll" target="lib\net40" />
-		<file src="bin\release\Simplify.Extensions.xml" target="lib\net40" />
-	</files>
 </package>

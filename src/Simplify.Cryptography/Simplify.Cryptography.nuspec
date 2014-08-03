@@ -16,8 +16,4 @@
 		<language>en-US</language>
 		<tags>.NET cryptography md5</tags>
 	</metadata>
-	<files>
-		<file src="bin\release\Simplify.Cryptography.dll" target="lib\net40" />
-		<file src="bin\release\Simplify.Cryptography.xml" target="lib\net40" />
-	</files>
 </package>

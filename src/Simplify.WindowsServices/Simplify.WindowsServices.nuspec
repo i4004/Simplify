@@ -26,8 +26,4 @@
 			<frameworkAssembly assemblyName="System.Configuration.Install" targetFramework="" />
 		</frameworkAssemblies>
 	</metadata>
-	<files>
-		<file src="bin\release\Simplify.WindowsServices.dll" target="lib\net40" />
-		<file src="bin\release\Simplify.WindowsServices.xml" target="lib\net40" />
-	</files>
 </package>

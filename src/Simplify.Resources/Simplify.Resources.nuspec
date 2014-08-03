@@ -17,8 +17,6 @@
 		<tags>.NET assembly-resources</tags>
 	</metadata>
 	<files>
-		<file src="bin\release\Simplify.Resources.dll" target="lib\net40" />
-		<file src="bin\release\Simplify.Resources.xml" target="lib\net40" />
 		<file src="Tools\*" target="tools" />
 	</files>
 </package>

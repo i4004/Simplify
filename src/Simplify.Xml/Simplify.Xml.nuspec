@@ -16,8 +16,4 @@
 		<language>en-US</language>
 		<tags>.NET XML</tags>
 	</metadata>
-	<files>
-		<file src="bin\release\Simplify.Xml.dll" target="lib\net40" />
-		<file src="bin\release\Simplify.Xml.xml" target="lib\net40" />
-	</files>
 </package>

@@ -16,8 +16,4 @@
 		<language>en-US</language>
 		<tags>.NET mail-sender</tags>
 	</metadata>
-	<files>
-		<file src="bin\release\Simplify.Mail.dll" target="lib\net40" />
-		<file src="bin\release\Simplify.Mail.xml" target="lib\net40" />
-	</files>
 </package>

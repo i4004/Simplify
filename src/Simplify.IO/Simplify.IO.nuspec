@@ -21,8 +21,4 @@
 			</group>
 		</dependencies>
 	</metadata>
-	<files>
-		<file src="bin\release\Simplify.IO.dll" target="lib\net40" />
-		<file src="bin\release\Simplify.IO.xml" target="lib\net40" />
-	</files>
 </package>
