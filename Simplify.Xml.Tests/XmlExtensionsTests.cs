@@ -9,7 +9,7 @@ namespace Simplify.Xml.Tests
 	{
 
 		[Test]
-		public void XElekment_GetOuterXml_GettingCorrectly()
+		public void XElement_GetOuterXml_GettingCorrectly()
 		{
 			
 			var element = XElement.Parse("<test><foo>data</foo></test>");
@@ -18,7 +18,7 @@ namespace Simplify.Xml.Tests
 		}
 
 		[Test]
-		public void XElekment_GetInnerXml_GettingCorrectly()
+		public void XElement_GetInnerXml_GettingCorrectly()
 		{
 			var element = XElement.Parse("<test><foo>data</foo></test>");
 
