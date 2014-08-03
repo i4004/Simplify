@@ -39,10 +39,11 @@
     <StartupObject />
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Simplify.Extensions.Tests.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BytesExtensionsTester.cs" />
@@ -60,7 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Simplify.Extensions.Tests.snk" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Simplify.Extensions\Simplify.Extensions.csproj">

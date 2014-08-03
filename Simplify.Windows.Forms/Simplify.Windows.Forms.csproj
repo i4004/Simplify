@@ -40,10 +40,11 @@
     <StartupObject />
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Simplify.Windows.Forms.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ControlsValidator.cs" />
@@ -74,7 +75,6 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Simplify.Windows.Forms.nuspec" />
-    <None Include="Simplify.Windows.Forms.snk" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controls\TopmostProgressBar.resx">

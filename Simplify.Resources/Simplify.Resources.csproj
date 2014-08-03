@@ -38,10 +38,11 @@
     <StartupObject />
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Simplify.Resources.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CustomComponentResourceManager.cs" />
@@ -58,7 +59,6 @@
     <None Include="Simplify.Resources.nuspec">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Simplify.Resources.snk" />
     <None Include="Tools\Uninstall.ps1" />
     <None Include="Tools\Install.ps1" />
   </ItemGroup>

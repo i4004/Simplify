@@ -55,10 +55,11 @@
     <StartupObject />
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Simplify.FluentNHibernate.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ConfigurationExtensions.cs" />
@@ -87,7 +88,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Simplify.FluentNHibernate.snk" />
     <None Include="Simplify.FluentNHibernate.nuspec" />
   </ItemGroup>
   <ItemGroup>

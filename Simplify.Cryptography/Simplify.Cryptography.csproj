@@ -56,7 +56,8 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Simplify.Cryptography.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="MD5.cs" />
@@ -66,7 +67,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Simplify.Cryptography.snk" />
     <None Include="Simplify.Cryptography.nuspec" />
   </ItemGroup>
   <ItemGroup>

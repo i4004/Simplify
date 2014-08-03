@@ -39,10 +39,11 @@
     <StartupObject />
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Simplify.FluentNHibernate.Examples.Database.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CitiesRepository.cs" />
@@ -71,7 +72,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Simplify.FluentNHibernate.Examples.Database.snk" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Simplify.FluentNHibernate\Simplify.FluentNHibernate.csproj">

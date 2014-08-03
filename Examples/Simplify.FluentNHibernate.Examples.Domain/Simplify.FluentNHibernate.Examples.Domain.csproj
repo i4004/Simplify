@@ -37,14 +37,12 @@
     <StartupObject />
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Simplify.FluentNHibernate.Examples.Domain.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <ItemGroup>
-    <None Include="Simplify.FluentNHibernate.Examples.Domain.snk" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="CitiesService.cs" />
     <Compile Include="Entities\Base\IdNameObject.cs" />
