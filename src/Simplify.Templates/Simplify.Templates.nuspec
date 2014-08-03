@@ -17,7 +17,6 @@
 		<tags>.NET templates</tags>
 		<dependencies>
 			<group targetFramework=".NETFramework4.0">
-				<dependency id="Simplify.Xml" version="1.0.1" />
 				<dependency id="System.IO.Abstractions" version="1.4.0.86" />
 			</group>
 		</dependencies>
