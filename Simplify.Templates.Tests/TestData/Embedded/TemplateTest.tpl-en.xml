@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<items>
-	<item name="Localizable1" value="text1" />
-	<item name="Localizable2">
-		<a href="javascript;">test2</a>
-	</item>
-</items>
