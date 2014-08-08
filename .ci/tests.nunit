@@ -2,7 +2,7 @@
 	<Settings activeconfig="Release"/>
 	<Config name="Release">
 		<assembly path="../src/Simplify.Core.Tests/bin/Release/Simplify.Core.Tests.dll"/>
-		<assembly path="../src/Simplify.Cryptography.Tests/bin/Release/Simplify.Core.Cryptography.dll"/>
+		<assembly path="../src/Simplify.Cryptography.Tests/bin/Release/Simplify.Cryptography.Tests.dll"/>
 		<assembly path="../src/Simplify.Extensions.Tests/bin/Release/Simplify.Extensions.Tests.dll"/>
 		<assembly path="../src/Simplify.FluentNHibernate.Tests/bin/Release/Simplify.FluentNHibernate.Tests.dll"/>
 		<assembly path="../src/Simplify.IO.Tests/bin/Release/Simplify.IO.Tests.dll"/>
