@@ -7,7 +7,7 @@ namespace Simplify.Core
 	/// </summary>
 	public abstract class TimeProvider
 	{
-		private static TimeProvider CurrentInstance;
+		private static TimeProvider _currentInstance;
 
 		/// <summary>
 		/// Gets or sets the current time provider.
@@ -20,14 +20,14 @@ namespace Simplify.Core
 		{
 			get
 			{
-				return CurrentInstance ?? (CurrentInstance = new SystemTimeProvider());
+				return _currentInstance ?? (_currentInstance = new SystemTimeProvider());
 			}
 			set
 			{
 				if (value == null)
 					throw new ArgumentNullException("value");
 
-				CurrentInstance = value;
+				_currentInstance = value;
 			}
 		}
 

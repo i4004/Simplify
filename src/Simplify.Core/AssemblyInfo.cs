@@ -8,7 +8,7 @@ namespace Simplify.Core
 	/// </summary>
 	public class AssemblyInfo : IAssemblyInfo
 	{
-		private static IAssemblyInfo EntryAssemblyInfo;
+		private static IAssemblyInfo _entryAssemblyInfo;
 		private readonly Assembly _infoAssembly;
 
 		/// <summary>
@@ -17,12 +17,12 @@ namespace Simplify.Core
 		/// <exception cref="System.ArgumentNullException">value</exception>
 		public static IAssemblyInfo Entry
 		{
-			get { return EntryAssemblyInfo ?? (EntryAssemblyInfo = new AssemblyInfo(Assembly.GetEntryAssembly())); }
+			get { return _entryAssemblyInfo ?? (_entryAssemblyInfo = new AssemblyInfo(Assembly.GetEntryAssembly())); }
 			set
 			{
 				if (value == null) throw new ArgumentNullException("value");
 
-				EntryAssemblyInfo = value;
+				_entryAssemblyInfo = value;
 			}
 		}
 
