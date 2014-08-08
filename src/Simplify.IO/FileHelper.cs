@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.IO.Abstractions;
+using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace Simplify.IO
 {
@@ -117,9 +120,7 @@ namespace Simplify.IO
 		/// <returns></returns>
 		public static string MakeValidFileName(string name)
 		{
-			var invalidChars = System.Text.RegularExpressions.Regex.Escape(new string(Path.GetInvalidFileNameChars()));
-			var invalidReStr = string.Format(@"([{0}]*\.+$)|([{0}]+)", invalidChars);
-			return System.Text.RegularExpressions.Regex.Replace(name, invalidReStr, "_");
+			return Path.GetInvalidFileNameChars().Aggregate(name, (current, c) => current.Replace(c, '_'));
 		}
 
 		/// <summary>
