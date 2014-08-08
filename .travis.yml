@@ -1,6 +1,7 @@
 branches:
  only:
-  - DowngradeTo4.5
+  - develop
+  - master
 
 git:
  depth: 1
