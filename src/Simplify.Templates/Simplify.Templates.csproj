@@ -65,8 +65,8 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="App_Packages\Simplify.Xml.Sources.1.0.1.0\XmlExtensions.cs" />
-    <Compile Include="App_Packages\Simplify.Xml.Sources.1.0.1.0\XmlSerializer.cs" />
+    <Compile Include="App_Packages\Simplify.Xml.Sources.1.0.2.0\XmlExtensions.cs" />
+    <Compile Include="App_Packages\Simplify.Xml.Sources.1.0.2.0\XmlSerializer.cs" />
     <Compile Include="IHideObjectMembers.cs" />
     <Compile Include="ITemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
