@@ -17,6 +17,7 @@ namespace Simplify.Templates.Tests
 		}
 
 		[Test]
+		[Category("Windows")]
 		public void Load_FromFileSystem_LoadedCorrectly()
 		{
 			var files = new Dictionary<string, MockFileData>();

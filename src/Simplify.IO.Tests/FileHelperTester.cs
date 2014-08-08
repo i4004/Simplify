@@ -27,9 +27,6 @@ namespace Simplify.IO.Tests
 		public void IsFileNameMadeValidCorrectly()
 		{
 			Assert.AreEqual("thisIsValid.txt", FileHelper.MakeValidFileName(@"thisIsValid.txt"));
-
-			Assert.AreEqual("thisIsNotValid_3___3.txt", FileHelper.MakeValidFileName(@"thisIsNotValid\3\\_3.txt"));
-			Assert.AreEqual("thisIsNotValid.t_xt", FileHelper.MakeValidFileName(@"thisIsNotValid.t\xt"));
 			Assert.AreEqual("testfile_ do_.txt", FileHelper.MakeValidFileName(@"testfile: do?.txt"));
 		}
 	}
