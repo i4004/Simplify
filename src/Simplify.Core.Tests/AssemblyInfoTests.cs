@@ -16,7 +16,7 @@ namespace Simplify.Core.Tests
 			Assert.AreEqual("Simplify.Core unit tests", assemblyInfo.Description);
 			Assert.AreEqual("Simplify", assemblyInfo.ProductName);
 			Assert.AreEqual("Simplify.Core.Tests", assemblyInfo.Title);
-			Assert.AreEqual("1.0.0.0", assemblyInfo.Version.ToString());
+			Assert.AreEqual("1.0.1.0", assemblyInfo.Version.ToString());
 		}
 	}
 }
