@@ -64,9 +64,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Simplify.Core, Version=1.2.0.0, Culture=neutral, PublicKeyToken=f9fa937ed2a87692, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Simplify.Core.1.2.0\lib\net40\Simplify.Core.dll</HintPath>
+    <Reference Include="Simplify.Core">
+      <HintPath>..\packages\Simplify.Core.1.2.1.0\lib\net45\Simplify.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
