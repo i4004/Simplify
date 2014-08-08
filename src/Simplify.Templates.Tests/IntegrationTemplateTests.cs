@@ -71,7 +71,7 @@ namespace Simplify.Templates.Tests
 		[Test]
 		public void LoadWithLineEndingsFix_FixedCorrectly()
 		{
-			Assert.AreEqual("data<br />", new Template("data\r\n", true).Get());
+			Assert.AreEqual("data<br />", new Template("data" + Environment.NewLine, true).Get());
 		}
 
 		[Test]
