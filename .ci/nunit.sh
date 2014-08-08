@@ -9,6 +9,6 @@ runTest()
    fi
 }
 
-runTest $1
+runTest $1 -exclude:Integration
 
 exit $?

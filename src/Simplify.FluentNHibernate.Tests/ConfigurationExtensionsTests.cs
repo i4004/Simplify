@@ -5,6 +5,7 @@ using NUnit.Framework;
 namespace Simplify.FluentNHibernate.Tests
 {
 	[TestFixture]
+	[Category("Integration")]
 	public class ConfigurationExtensionsTests
     {
 		[Test]
