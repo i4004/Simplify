@@ -9,7 +9,7 @@ Simplify is a set of .NET framework libraries which provides daily needs functio
 
 Status
 ===
- .NET (4.5) - Mono (3.4.0)
+ .NET (4.5) .... Mono (3.4.0)
 
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/kmm7aa2iqp71dcwi)](https://ci.appveyor.com/project/i4004/simplify) [![Travis build status](https://travis-ci.org/i4004/Simplify.png)](https://ci.appveyor.com/project/i4004/simplify)
 [![Stories in Ready](https://badge.waffle.io/i4004/simplify.png?label=ready&title=Ready)](https://waffle.io/i4004/simplify)
