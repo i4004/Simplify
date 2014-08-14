@@ -1,7 +1,7 @@
 <NUnitProject>
 	<Settings activeconfig="Release"/>
 	<Config name="Release">
-		<assembly path="../src/Simplify.Core.Tests/bin/Release/Simplify.Core.Tests.dll"/>
+		<assembly path="../src/Simplify.System.Tests/bin/Release/Simplify.System.Tests.dll"/>
 		<assembly path="../src/Simplify.Cryptography.Tests/bin/Release/Simplify.Cryptography.Tests.dll"/>
 		<assembly path="../src/Simplify.Extensions.Tests/bin/Release/Simplify.Extensions.Tests.dll"/>
 		<assembly path="../src/Simplify.IO.Tests/bin/Release/Simplify.IO.Tests.dll"/>
