@@ -19,7 +19,7 @@ namespace Simplify.DI
 		}
 
 		/// <summary>
-		/// Registers the specified service type with corresponding implemetation type.
+		/// Registers the specified service type with corresponding implementation type.
 		/// </summary>
 		/// <typeparam name="TService">Service type.</typeparam>
 		/// <param name="provider">The DI provider.</param>
@@ -31,7 +31,7 @@ namespace Simplify.DI
 		}
 
 		/// <summary>
-		/// Registers the specified service type with corresponding implemetation type.
+		/// Registers the specified service type with corresponding implementation type.
 		/// </summary>
 		/// <typeparam name="TService">Service type.</typeparam>
 		/// <typeparam name="TImplementation">Implementation type.</typeparam>

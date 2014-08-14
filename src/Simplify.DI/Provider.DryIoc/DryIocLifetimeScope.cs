@@ -18,10 +18,10 @@
 		}
 
 		/// <summary>
-		/// Gets the DI container provider (shoud be user to resolve types when using scoping).
+		/// Gets the DI container provider (should be user to resolve types when using scoping).
 		/// </summary>
 		/// <value>
-		/// The DI container provider (shoud be user to resolve types when using scoping).
+		/// The DI container provider (should be user to resolve types when using scoping).
 		/// </value>
 		public IDIContainerProvider Container { get; private set; }
 

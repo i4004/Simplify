@@ -15,7 +15,7 @@ namespace Simplify.DI
 		object Resolve(Type type);
 
 		/// <summary>
-		/// Registers the specified service type with corresponding implemetation type.
+		/// Registers the specified service type with corresponding implementation type.
 		/// </summary>
 		/// <param name="serviceType">Service type.</param>
 		/// <param name="implementationType">Implementation type.</param>
@@ -23,7 +23,7 @@ namespace Simplify.DI
 		void Register(Type serviceType, Type implementationType, LifetimeType lifetimeType = LifetimeType.Singleton);
 
 		/// <summary>
-		/// Registers the specified service type for resolve with delegate for service implementaion instance creation.
+		/// Registers the specified service type for resolve with delegate for service implementation instance creation.
 		/// </summary>
 		/// <typeparam name="TService">Service type.</typeparam>
 		/// <param name="instanceCreator">The instance creator.</param>
