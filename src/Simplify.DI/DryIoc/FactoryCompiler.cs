@@ -29,6 +29,8 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Threading;
 
+#pragma warning disable 1591
+
 namespace DryIoc
 {
     public static partial class FactoryCompiler
@@ -111,3 +113,5 @@ namespace DryIoc
         #endregion
     }
 }
+
+#pragma warning restore 1591

@@ -32,6 +32,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 
+#pragma warning disable 1591
+
 namespace DryIoc
 {
     /// <summary>
@@ -2357,3 +2359,5 @@ when resolving {1}.";
         #endregion
     }
 }
+
+#pragma warning restore 1591
