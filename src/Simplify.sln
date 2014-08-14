@@ -66,6 +66,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0ABE7D
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.System", "Simplify.System\Simplify.System.csproj", "{BB69325D-028C-4F20-8F46-B0F4D70598C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.DI", "Simplify.DI\Simplify.DI.csproj", "{F83B9317-345D-4815-AC12-E71C0684CFEA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -220,6 +224,18 @@ Global
 		{A7352B62-2D81-4F4A-9098-607A2D22F3EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7352B62-2D81-4F4A-9098-607A2D22F3EF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A7352B62-2D81-4F4A-9098-607A2D22F3EF}.Release|x64.ActiveCfg = Release|Any CPU
+		{BB69325D-028C-4F20-8F46-B0F4D70598C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB69325D-028C-4F20-8F46-B0F4D70598C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB69325D-028C-4F20-8F46-B0F4D70598C8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BB69325D-028C-4F20-8F46-B0F4D70598C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB69325D-028C-4F20-8F46-B0F4D70598C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB69325D-028C-4F20-8F46-B0F4D70598C8}.Release|x64.ActiveCfg = Release|Any CPU
+		{F83B9317-345D-4815-AC12-E71C0684CFEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F83B9317-345D-4815-AC12-E71C0684CFEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F83B9317-345D-4815-AC12-E71C0684CFEA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F83B9317-345D-4815-AC12-E71C0684CFEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F83B9317-345D-4815-AC12-E71C0684CFEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F83B9317-345D-4815-AC12-E71C0684CFEA}.Release|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
