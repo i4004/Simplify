@@ -6,7 +6,7 @@
 		<title>$id$</title>
 		<authors>$author$</authors>
 		<owners>$author$</owners>
-		<projectUrl>https://github.com/i4004/Simplify/tree/master/Simplify.FluentNHibernate</projectUrl>
+		<projectUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.FluentNHibernate</projectUrl>
 		<iconUrl>https://raw2.github.com/i4004/Simplify/master/Images/Icon.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Simplifies FluentNHibernate connection configuration and allows you to write data-base queries with lambda expressions.</description>

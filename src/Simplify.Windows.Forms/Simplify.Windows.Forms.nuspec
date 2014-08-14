@@ -6,7 +6,7 @@
 		<title>$id$</title>
 		<authors>$author$</authors>
 		<owners>$author$</owners>
-		<projectUrl>https://github.com/i4004/Simplify/tree/master/Simplify.Windows.Forms</projectUrl>
+		<projectUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.Windows.Forms</projectUrl>
 		<iconUrl>https://raw2.github.com/i4004/Simplify/master/Images/Icon.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>System.Windows.Forms additional controls.</description>

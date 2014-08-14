@@ -6,7 +6,7 @@
 		<title>$id$</title>
 		<authors>$author$</authors>
 		<owners>$author$</owners>
-		<projectUrl>https://github.com/i4004/Simplify/tree/master/Simplify.WindowsServices</projectUrl>
+		<projectUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.WindowsServices</projectUrl>
 		<iconUrl>https://raw2.github.com/i4004/Simplify/master/Images/Icon.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Provides windows services scheduler and installer base classes.</description>
