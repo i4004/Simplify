@@ -3,11 +3,11 @@
 namespace Simplify.System
 {
 	/// <summary>
-	/// Provides Time abstraction
+	/// Provides Time ambient context
 	/// </summary>
-	public abstract class TimeProvider
+	public class TimeProvider
 	{
-		private static TimeProvider _currentInstance;
+		private static ITimeProvider _currentInstance;
 
 		/// <summary>
 		/// Gets or sets the current time provider.
@@ -16,7 +16,7 @@ namespace Simplify.System
 		/// The current time provider.
 		/// </value>
 		/// <exception cref="ArgumentNullException">value</exception>
-		public static TimeProvider Current
+		public static ITimeProvider Current
 		{
 			get
 			{
@@ -30,29 +30,5 @@ namespace Simplify.System
 				_currentInstance = value;
 			}
 		}
-
-		/// <summary>
-		/// Gets the current UTC time.
-		/// </summary>
-		/// <value>
-		/// The current UTC time.
-		/// </value>
-		public abstract DateTime UtcNow { get; }
-
-		/// <summary>
-		/// Gets the current time.
-		/// </summary>
-		/// <value>
-		/// The current time.
-		/// </value>
-		public abstract DateTime Now { get; }
-
-		/// <summary>
-		/// Gets the today date without time.
-		/// </summary>
-		/// <value>
-		/// The today date without time.
-		/// </value>
-		public abstract DateTime Today { get; }
 	}
 }

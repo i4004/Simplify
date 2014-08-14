@@ -3,9 +3,9 @@
 namespace Simplify.System
 {
 	/// <summary>
-	/// System time provider, returns the actual DateTime.Now, DateTime.UtcNow, DateTime.Today data
+	/// Represent time provider
 	/// </summary>
-	public sealed class SystemTimeProvider : ITimeProvider
+	public interface ITimeProvider : IHideObjectMembers
 	{
 		/// <summary>
 		/// Gets the current UTC time.
@@ -13,10 +13,7 @@ namespace Simplify.System
 		/// <value>
 		/// The current UTC time.
 		/// </value>
-		public DateTime UtcNow
-		{
-			get { return DateTime.UtcNow; }
-		}
+		DateTime UtcNow { get; }
 
 		/// <summary>
 		/// Gets the current time.
@@ -24,10 +21,7 @@ namespace Simplify.System
 		/// <value>
 		/// The current time.
 		/// </value>
-		public DateTime Now
-		{
-			get { return DateTime.Now; }
-		}
+		DateTime Now { get; }
 
 		/// <summary>
 		/// Gets the today date without time.
@@ -35,9 +29,6 @@ namespace Simplify.System
 		/// <value>
 		/// The today date without time.
 		/// </value>
-		public DateTime Today
-		{
-			get { return DateTime.Today; }
-		}
+		DateTime Today { get; }
 	}
 }

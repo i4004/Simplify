@@ -38,6 +38,7 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="IAssemblyInfo.cs" />
     <Compile Include="IHideObjectMembers.cs" />
+    <Compile Include="ITimeProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemTimeProvider.cs" />
     <Compile Include="TimeProvider.cs" />
