@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Simplify.Core
+namespace Simplify.System
 {
 	/// <summary>
 	/// Provides the assembly information
@@ -14,7 +14,7 @@ namespace Simplify.Core
 		/// <summary>
 		/// Gets or sets the entry assembly information.
 		/// </summary>
-		/// <exception cref="System.ArgumentNullException">value</exception>
+		/// <exception cref="ArgumentNullException">value</exception>
 		public static IAssemblyInfo Entry
 		{
 			get { return _entryAssemblyInfo ?? (_entryAssemblyInfo = new AssemblyInfo(Assembly.GetEntryAssembly())); }
@@ -30,7 +30,7 @@ namespace Simplify.Core
 		/// Initializes a new instance of the <see cref="AssemblyInfo"/> class.
 		/// </summary>
 		/// <param name="infoAssembly">The information assembly.</param>
-		/// <exception cref="System.ArgumentNullException">infoAssembly</exception>
+		/// <exception cref="ArgumentNullException">infoAssembly</exception>
 		public AssemblyInfo(Assembly infoAssembly)
 		{
 			if (infoAssembly == null) throw new ArgumentNullException("infoAssembly");
@@ -64,7 +64,7 @@ namespace Simplify.Core
 					if (titleAttribute.Title.Length > 0) return titleAttribute.Title;
 				}
 
-				return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
+				return global::System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
 			}
 		}
 

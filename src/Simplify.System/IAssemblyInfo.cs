@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Simplify.Core
+namespace Simplify.System
 {
 	/// <summary>
 	/// Assembly information interface

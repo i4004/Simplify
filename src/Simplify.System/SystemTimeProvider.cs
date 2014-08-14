@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Simplify.Core
+namespace Simplify.System
 {
 	/// <summary>
 	/// System time provider, returns the actual DateTime.Now, DateTime.UtcNow, DateTime.Today data
@@ -8,10 +8,10 @@ namespace Simplify.Core
 	public sealed class SystemTimeProvider : TimeProvider
 	{
 		/// <summary>
-		/// Gets the currrent UTC time.
+		/// Gets the current UTC time.
 		/// </summary>
 		/// <value>
-		/// The currrent UTC time.
+		/// The current UTC time.
 		/// </value>
 		public override DateTime UtcNow
 		{

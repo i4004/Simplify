@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Simplify.Core
+namespace Simplify.System
 {
 	/// <summary>
 	/// Provides Time abstraction
@@ -15,7 +15,7 @@ namespace Simplify.Core
 		/// <value>
 		/// The current time provider.
 		/// </value>
-		/// <exception cref="System.ArgumentNullException">value</exception>
+		/// <exception cref="ArgumentNullException">value</exception>
 		public static TimeProvider Current
 		{
 			get

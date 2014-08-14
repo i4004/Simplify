@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using NUnit.Framework;
 
-namespace Simplify.Core.Tests
+namespace Simplify.System.Tests
 {
 	[TestFixture]
 	public class AssemblyInfoTests
@@ -13,10 +13,10 @@ namespace Simplify.Core.Tests
 
 			Assert.AreEqual("Alexander Krylkov", assemblyInfo.CompanyName);
 			Assert.AreEqual("Licensed under LGPL", assemblyInfo.Copyright);
-			Assert.AreEqual("Simplify.Core unit tests", assemblyInfo.Description);
+			Assert.AreEqual("Simplify.System unit tests", assemblyInfo.Description);
 			Assert.AreEqual("Simplify", assemblyInfo.ProductName);
-			Assert.AreEqual("Simplify.Core.Tests", assemblyInfo.Title);
-			Assert.AreEqual("1.0.1.0", assemblyInfo.Version.ToString());
+			Assert.AreEqual("Simplify.System.Tests", assemblyInfo.Title);
+			Assert.AreEqual("0.1.0.0", assemblyInfo.Version.ToString());
 		}
 	}
 }
