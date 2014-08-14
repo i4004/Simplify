@@ -1,7 +1,8 @@
 ﻿using System.Linq;
 using System.Reflection;
 using System.ServiceProcess;
-using Simplify.Core;
+using Simplify.DI;
+using Simplify.System;
 
 namespace Simplify.AutomatedWindowsServices
 {
@@ -45,9 +46,9 @@ namespace Simplify.AutomatedWindowsServices
 
 			var isParameterlessMethod = !invokeMethodInfo.GetParameters().Any();
 
-			using (DependencyResolver.Current.BeginLifetimeScope())
+			using (var scope = DIContainer.Current.BeginLifetimeScope())
 			{
-				var serviceTask = DependencyResolver.Current.Resolve(typeof(T));
+				var serviceTask = scope.Container.Resolve(typeof(T));
 
 				invokeMethodInfo.Invoke(serviceTask, isParameterlessMethod ? null : new object[] { _serviceName });
 			}

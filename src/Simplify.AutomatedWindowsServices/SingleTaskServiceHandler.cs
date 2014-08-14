@@ -3,7 +3,8 @@ using System.Linq;
 using System.Reflection;
 using System.ServiceProcess;
 using System.Threading;
-using Simplify.Core;
+using Simplify.DI;
+using Simplify.System;
 
 namespace Simplify.AutomatedWindowsServices
 {
@@ -40,7 +41,7 @@ namespace Simplify.AutomatedWindowsServices
 		/// <value>
 		/// The settings.
 		/// </value>
-		/// <exception cref="System.ArgumentNullException">value</exception>
+		/// <exception cref="ArgumentNullException">value</exception>
 		public IServiceSettings Settings
 		{
 			get { return _settings ?? (_settings = new ServiceSettings()); }
@@ -111,9 +112,9 @@ namespace Simplify.AutomatedWindowsServices
 		{
 			try
 			{
-				using (DependencyResolver.Current.BeginLifetimeScope())
+				using (var scope = DIContainer.Current.BeginLifetimeScope())
 				{
-					var serviceTask = DependencyResolver.Current.Resolve(typeof(T));
+					var serviceTask = scope.Container.Resolve(typeof(T));
 
 					_invokeMethodInfo.Invoke(serviceTask, _isParameterlessMethod ? null : new object[] { _serviceName });				
 				}
@@ -125,7 +126,7 @@ namespace Simplify.AutomatedWindowsServices
 		}
 
 		/// <summary>
-		/// Indicates to service what Work method is ended his execution, call this method before stopping the service if you are currenly executing your Work method
+		/// Indicates to service what Work method is ended his execution, call this method before stopping the service if you are currently executing your Work method
 		/// </summary>
 		private void OnWorkStop()
 		{

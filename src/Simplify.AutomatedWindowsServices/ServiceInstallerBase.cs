@@ -5,7 +5,7 @@ using System.Reflection;
 using System.ServiceProcess;
 using System.Xml.Linq;
 using System.Xml.XPath;
-using Simplify.Core;
+using Simplify.System;
 
 namespace Simplify.AutomatedWindowsServices
 {
@@ -84,7 +84,7 @@ namespace Simplify.AutomatedWindowsServices
 		/// ProcessingServiceInstaller initialization with information from service assembly
 		/// </summary>
 		/// <param name="serviceAssembly">Assembly from which to get assembly information</param>
-		/// <param name="account">Acount type under which to run this service</param>
+		/// <param name="account">Account type under which to run this service</param>
 		/// <param name="userName">User name under which to run this service</param>
 		/// <param name="password">Password under which to run this service</param>
 		public ServiceInstallerBase(ServiceAccount account, string userName, string password, Assembly serviceAssembly = null)
@@ -101,7 +101,7 @@ namespace Simplify.AutomatedWindowsServices
 		/// <param name="description">Service description</param>
 		/// <param name="displayName">Service display name</param>
 		/// <param name="serviceName">Service name</param>
-		/// <param name="account">Acount type under which to run this service</param>
+		/// <param name="account">Account type under which to run this service</param>
 		/// <param name="userName">User name under which to run this service</param>
 		/// <param name="password">Password under which to run this service</param>
 		public ServiceInstallerBase(string description, string displayName, string serviceName, ServiceAccount account, string userName, string password)
