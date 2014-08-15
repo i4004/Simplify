@@ -5,7 +5,7 @@ using System.Reflection;
 using System.ServiceProcess;
 using System.Xml.Linq;
 using System.Xml.XPath;
-using Simplify.Core;
+using Simplify.System;
 
 namespace Simplify.WindowsServices
 {
