@@ -15,15 +15,5 @@
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET windows-service</tags>
-		<dependencies>
-			<group targetFramework=".NETFramework4.0">
-				<dependency id="Simplify.Core" version="1.2.0" />
-			</group>
-		</dependencies>
-		<frameworkAssemblies>
-			<frameworkAssembly assemblyName="System" targetFramework="" />
-			<frameworkAssembly assemblyName="System.ServiceProcess" targetFramework="" />
-			<frameworkAssembly assemblyName="System.Configuration.Install" targetFramework="" />
-		</frameworkAssemblies>
 	</metadata>
 </package>
