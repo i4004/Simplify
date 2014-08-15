@@ -33,6 +33,8 @@ namespace Simplify.AutomatedWindowsServices
 		{
 			var assemblyInfo = new AssemblyInfo(Assembly.GetCallingAssembly());
 			_serviceName = assemblyInfo.Title;
+
+			DIContainer.Current.Register<T>();
 		}
 
 		/// <summary>
