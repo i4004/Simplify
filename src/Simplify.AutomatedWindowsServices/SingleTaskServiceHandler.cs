@@ -27,14 +27,16 @@ namespace Simplify.AutomatedWindowsServices
 		private IServiceSettings _settings;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="SingleTaskServiceHandler{T}"/> class.
+		/// Initializes a new instance of the <see cref="SingleTaskServiceHandler{T}" /> class.
 		/// </summary>
-		public SingleTaskServiceHandler()
+		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
+		public SingleTaskServiceHandler(bool automaticallyRegisterUserType = false)
 		{
 			var assemblyInfo = new AssemblyInfo(Assembly.GetCallingAssembly());
 			_serviceName = assemblyInfo.Title;
 
-			DIContainer.Current.Register<T>();
+			if (automaticallyRegisterUserType)
+				DIContainer.Current.Register<T>(LifetimeType.Transient);
 		}
 
 		/// <summary>

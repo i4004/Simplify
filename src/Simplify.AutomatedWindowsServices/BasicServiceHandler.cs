@@ -19,12 +19,14 @@ namespace Simplify.AutomatedWindowsServices
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BasicServiceHandler{T}"/> class.
 		/// </summary>
-		public BasicServiceHandler()
+		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
+		public BasicServiceHandler(bool automaticallyRegisterUserType = false)
 		{
 			var assemblyInfo = new AssemblyInfo(Assembly.GetCallingAssembly());
 			_serviceName = assemblyInfo.Title;
 
-			DIContainer.Current.Register<T>();
+			if (automaticallyRegisterUserType)
+				DIContainer.Current.Register<T>(LifetimeType.Transient);
 		}
 
 		/// <summary>
