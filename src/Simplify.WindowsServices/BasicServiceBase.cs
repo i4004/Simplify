@@ -1,10 +1,12 @@
-﻿using System.ServiceProcess;
+﻿using System;
+using System.ServiceProcess;
 
 namespace Simplify.WindowsServices
 {
 	/// <summary>
 	/// Non-timer windows service (for constant async operations, like TCP/IP server) base class
 	/// </summary>
+	[Obsolete]
 	public abstract class BasicServiceBase : ServiceBase
 	{
 		/// <summary>

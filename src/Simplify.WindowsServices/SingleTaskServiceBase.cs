@@ -9,13 +9,14 @@ namespace Simplify.WindowsServices
 	/// <summary>
 	/// Single-task scheduler windows services base class
 	/// </summary>
+	[Obsolete]
 	public abstract class SingleTaskServiceBase : ServiceBase
 	{
 		private Timer _timer;
 		private ManualResetEvent _waitProcessFinishEvent;
 
 		/// <summary>
-		/// Subscrive your service working function here
+		/// Subscribe your service working function here
 		/// </summary>
 		protected event WaitCallback Work;
 
