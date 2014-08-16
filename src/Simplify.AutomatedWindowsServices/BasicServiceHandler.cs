@@ -52,7 +52,7 @@ namespace Simplify.AutomatedWindowsServices
 
 			using (var scope = DIContainer.Current.BeginLifetimeScope())
 			{
-				var serviceTask = scope.Container.Resolve(typeof(T));
+				var serviceTask = scope.Container.Resolve<T>();
 
 				invokeMethodInfo.Invoke(serviceTask, isParameterlessMethod ? null : new object[] { _serviceName });
 			}
