@@ -38,13 +38,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DIContainer.cs" />
+    <Compile Include="DryIoc\InternalsVisibleToDryIocFactoryCompilerDynamicAssembly.cs" />
     <Compile Include="Provider.DryIoc\DryIocDIProvider.cs" />
     <Compile Include="Provider.DryIoc\DryIocLifetimeScope.cs" />
     <Compile Include="DIContainerProviderRegisterExtensions.cs" />
     <Compile Include="DIContainerProviderResolveExtensions.cs" />
     <Compile Include="DryIoc\Container.cs" />
     <Compile Include="DryIoc\FactoryCompiler.cs" />
-    <Compile Include="DryIoc\InternalsVisibleToDryIocFactoryCompilerDynamicAssembly.cs" />
     <Compile Include="IDIContainerProvider.cs" />
     <Compile Include="IHideObjectMembers.cs" />
     <Compile Include="ILifetimeScope.cs" />
