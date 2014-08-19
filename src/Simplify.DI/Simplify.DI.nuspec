@@ -11,7 +11,7 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>$description$</description>
 		<summary>$description$</summary>
-		<releaseNotes></releaseNotes>
+		<releaseNotes>DryIoc Reuse.InCurrentScope bug fixed</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET DI IOC-container</tags>
