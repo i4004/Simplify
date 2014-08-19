@@ -43,8 +43,9 @@
     <Reference Include="SimpleInjector.Extensions.LifetimeScoping">
       <HintPath>..\packages\SimpleInjector.Extensions.LifetimeScoping.2.5.2\lib\net40-client\SimpleInjector.Extensions.LifetimeScoping.dll</HintPath>
     </Reference>
-    <Reference Include="Simplify.DI">
-      <HintPath>..\packages\Simplify.DI.1.0.0.0\lib\net45\Simplify.DI.dll</HintPath>
+    <Reference Include="Simplify.DI, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Simplify.DI.1.0.1.0\lib\net45\Simplify.DI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
