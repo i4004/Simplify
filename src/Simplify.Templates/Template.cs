@@ -78,8 +78,7 @@ namespace Simplify.Templates
 
 			if (string.IsNullOrEmpty(language))
 				language = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
-
-
+			
 			var currentCultureStringTableFileName = string.Format("{0}.{1}.xml", filePath, language);
 			var defaultCultureStringTableFileName = string.Format("{0}.{1}.xml", filePath, defaultLanguage);
 
