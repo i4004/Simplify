@@ -4,7 +4,7 @@ Simplify
 ![Simplify](https://raw.github.com/i4004/Simplify/master/Images/Icon128x128.png)
 
 Simplify is a set of .NET framework libraries which provides daily needs functionality for your apliications.
-DI and Mocking friendly.
+DI and mocking friendly.
 
 ### All documentation can be found at [wiki](https://github.com/i4004/Simplify/wiki) page.
 
