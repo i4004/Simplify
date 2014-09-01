@@ -6,6 +6,7 @@ using System.IO.Abstractions;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using Simplify.Xml;
@@ -194,6 +195,19 @@ namespace Simplify.Templates
 		}
 
 		/// <summary>
+		/// Load template asynchronously from a file using calling assembly path prefix in filePath
+		/// </summary>
+		/// <param name="filePath">Template file path</param>
+		/// <param name="language">Template language (Thread.CurrentThread language will be used by default)</param>
+		/// <param name="defaultLanguage">Template default language</param>
+		/// <param name="fixLineEndingsHtml">If set to <c>true</c> Replace all caret return characters by html <![CDATA[<BR />]]> tag.</param>
+		/// <returns></returns>
+		public static Task<ITemplate> LoadAsync(string filePath, string language = null, string defaultLanguage = "en", bool fixLineEndingsHtml = false)
+		{
+			return Task.Run(() => Load(filePath, language, defaultLanguage, fixLineEndingsHtml));
+		}
+
+		/// <summary>
 		/// Load template from an calling assembly resources
 		/// </summary>
 		/// <param name="filePath">Template file path</param>
@@ -204,6 +218,19 @@ namespace Simplify.Templates
 		public static ITemplate FromManifest(string filePath, string language = null, string defaultLanguage = "en", bool fixLineEndingsHtml = false)
 		{
 			return new Template(Assembly.GetCallingAssembly(), filePath, language, defaultLanguage, fixLineEndingsHtml);
+		}
+
+		/// <summary>
+		/// Load template asynchronously from an calling assembly resources
+		/// </summary>
+		/// <param name="filePath">Template file path</param>
+		/// <param name="language">Template language (Thread.CurrentThread language will be used by default)</param>
+		/// <param name="defaultLanguage">Template default language</param>
+		/// <param name="fixLineEndingsHtml">If set to <c>true</c> Replace all caret return characters by html <![CDATA[<BR />]]> tag.</param>
+		/// <returns></returns>
+		public static Task<ITemplate> FromManifestAsync(string filePath, string language = null, string defaultLanguage = "en", bool fixLineEndingsHtml = false)
+		{
+			return Task.Run(() => FromManifest(filePath, language, defaultLanguage, fixLineEndingsHtml));
 		}
 
 		/// <summary>
