@@ -75,7 +75,7 @@ namespace Simplify.Templates.Tests
 		}
 
 		[Test]
-		public void LoadTemplate_ExcheptionsThrownCorrectly()
+		public void LoadTemplate_ExceptionsThrownCorrectly()
 		{
 			Assert.Throws<ArgumentNullException>(() => new Template(null, false));
 			Assert.Throws<ArgumentNullException>(() => new Template(null));
