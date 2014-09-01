@@ -181,7 +181,7 @@ namespace Simplify.Templates
 		}
 
 		/// <summary>
-		/// Load template from a file using calling assemly path prefix in filePath
+		/// Load template from a file using calling assembly path prefix in filePath
 		/// </summary>
 		/// <param name="filePath">Template file path</param>
 		/// <param name="language">Template language (Thread.CurrentThread language will be used by default)</param>
@@ -215,9 +215,9 @@ namespace Simplify.Templates
 		{
 			variableName = variableName.Trim();
 
-			var replacableVariable = "{" + variableName + "}";
+			var replaceableVariable = "{" + variableName + "}";
 
-			_text = _text.Replace(replacableVariable, value);
+			_text = _text.Replace(replaceableVariable, value);
 
 			return this;
 		}
