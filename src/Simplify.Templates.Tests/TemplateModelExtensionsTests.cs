@@ -7,35 +7,53 @@ namespace Simplify.Templates.Tests
 	[TestFixture]
 	public class TemplateModelExtensionsTests
 	{
+		private ITemplate _template;
+
+		[SetUp]
+		public void Initialize()
+		{
+			_template = Template.FromString("{Model.ID} {Model.Name} {Model.EMail} {Model.CreationTime}");			
+		}
 
 		[Test]
-		public void Set_NullModel()
+		public void Set_NullModel_ReplacesWithNothing()
 		{
 			// Assign
-
-			var tpl = Template.FromString("{Model.Name} {Model.EMail} {Model.CreationTime}");
-			//var model = new TestModel { CreationTime = new DateTime(2014, 10, 5), Name = "Foo", EMail = "Foo@example.com" };
-
-			TestModel a = null;
+			TestModel model = null;
 
 			// Act
-			//tpl.Set(a);
+			// ReSharper disable once ExpressionIsAlwaysNull
+			_template.Set(model).Export();
+
+			// Assert
+			Assert.AreEqual("   ", _template.Get());
 		}
 
 		[Test]
 		public void Set_Model_SetCorrectly()
 		{
 			// Assign
-
-			var tpl = Template.FromString("{Model.Name} {Model.EMail} {Model.CreationTime}");
-			var model = new TestModel { CreationTime = new DateTime(2014, 10, 5), Name = "Foo", EMail = "Foo@example.com" };
+			var model = new TestModel { CreationTime = new DateTime(2014, 10, 5), Name = "Foo", EMail = "Foo@example.com", ID = 5};
 
 			// Act
-			tpl.Set(model).Set(x => x.CreationTime, x => x.CreationTime.ToString("dd.MM.yyyy")).Export();
-			//tpl.Set(model).Export();
+			_template.Set(model).With(x => x.CreationTime, x => x.ToString("dd.MM.yyyy")).Export();
 
 			// Assert
-			Assert.AreEqual("Foo Foo@example.com 05.10.2014", tpl.Get());
-		} 
+			Assert.AreEqual("5 Foo Foo@example.com 05.10.2014", _template.Get());
+		}
+
+		[Test]
+		public void Set_EverythingIsNull_SetCorrectly()
+		{
+			// Assign
+			_template = Template.FromString("{Model.ID} {Model.Name} {Model.EMail}");
+			var model = new TestModel();
+
+			// Act
+			_template.Set(model).Export();
+
+			// Assert
+			Assert.AreEqual("  ", _template.Get());
+		}
 	}
 }

@@ -10,8 +10,9 @@
 		/// <param name="model">The model.</param>
 		/// <returns></returns>
 		public static IModelSetter<T> Set<T>(this ITemplate template, T model)
+			where T : class
 		{
 			return new ModelSetter<T>(template, model);
-		}		 
+		}
 	}
 }

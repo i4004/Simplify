@@ -4,6 +4,8 @@ namespace Simplify.Templates.Tests.Models
 {
 	public class TestModel
 	{
+		public int? ID { get; set; }
+
 		public string Name { get; set; }
 
 		public string EMail { get; set; }
