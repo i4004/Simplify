@@ -12,14 +12,24 @@ namespace Simplify.Mail
 	/// </summary>
 	public class MailSender : IMailSender
 	{
-		private static IMailSender MailSenderInstance;
+		private static IMailSender _defaultInstance;
 
 		/// <summary>
 		/// Default MailSender instance
 		/// </summary>
 		public static IMailSender Default
 		{
-			get { return MailSenderInstance ?? (MailSenderInstance = new MailSender()); }
+			get
+			{
+				return _defaultInstance ?? (_defaultInstance = new MailSender());
+			}
+			set
+			{
+				if (value == null)
+					throw new ArgumentNullException("value");
+
+				_defaultInstance = value;
+			}
 		}
 
 		private readonly object _locker = new object();
@@ -44,7 +54,7 @@ namespace Simplify.Mail
 		public MailSenderSettings Settings { get; private set; }
 
 		/// <summary>
-		/// Get SMTP client with server parameters from config file and current user cridentials
+		/// Get SMTP client with server parameters from config file and current user credentials
 		/// </summary>
 		/// <returns></returns>
 		public SmtpClient SmtpClientCurrentUser
@@ -53,7 +63,7 @@ namespace Simplify.Mail
 		}
 
 		/// <summary>
-		/// Get SMTP client with cridentials and server parameters from config file
+		/// Get SMTP client with credentials and server parameters from config file
 		/// </summary>
 		/// <returns></returns>
 		public SmtpClient SmtpClient
