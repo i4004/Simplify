@@ -10,7 +10,7 @@ namespace Simplify.Mail
 	public static class MailSenderAsyncExtensions
 	{
 		/// <summary>
-		/// Send single e-mail
+		/// Send single e-mail asynchronously
 		/// </summary>
 		/// <param name="mailSender">The mail sender.</param>
 		/// <param name="client">Smtp client</param>
@@ -29,7 +29,7 @@ namespace Simplify.Mail
 		}
 
 		/// <summary>
-		/// Send single e-mail using config SMTP user name and password
+		/// Send single e-mail asynchronously using config SMTP user name and password
 		/// </summary>
 		/// <param name="mailSender">The mail sender.</param>
 		/// <param name="from">From mail address</param>
@@ -44,7 +44,7 @@ namespace Simplify.Mail
 		}
 
 		/// <summary>
-		/// Send e-mail to multiple recipients separately
+		/// Send e-mail asynchronously to multiple recipients separately
 		/// </summary>
 		/// <param name="mailSender">The mail sender.</param>
 		/// <param name="client">Smtp client</param>
@@ -63,7 +63,7 @@ namespace Simplify.Mail
 		}
 
 		/// <summary>
-		/// Send e-mail to multiple recipients separately
+		/// Send e-mail asynchronously to multiple recipients separately
 		/// </summary>
 		/// <param name="mailSender">The mail sender.</param>
 		/// <param name="fromMailAddress">From mail address</param>
@@ -81,7 +81,7 @@ namespace Simplify.Mail
 		}
 
 		/// <summary>
-		/// Send e-mail to multiple recipients in one e-mail
+		/// Send e-mail asynchronously to multiple recipients in one e-mail
 		/// </summary>
 		/// <param name="mailSender">The mail sender.</param>
 		/// <param name="client">Smtp client</param>
@@ -100,7 +100,7 @@ namespace Simplify.Mail
 		}
 
 		/// <summary>
-		/// Send e-mail to multiple recipients in one e-mail
+		/// Send e-mail asynchronously to multiple recipients in one e-mail
 		/// </summary>
 		/// <param name="mailSender">The mail sender.</param>
 		/// <param name="fromMailAddress">From mail address</param>
@@ -118,7 +118,7 @@ namespace Simplify.Mail
 		}
 
 		/// <summary>
-		/// Send e-mail to multiple recipients and carbon copy recipients in one e-mail
+		/// Send e-mail asynchronously to multiple recipients and carbon copy recipients in one e-mail
 		/// </summary>
 		/// <param name="mailSender">The mail sender.</param>
 		/// <param name="client">Smtp client</param>
@@ -138,7 +138,7 @@ namespace Simplify.Mail
 		}
 
 		/// <summary>
-		/// Send e-mail to multiple recipients and carbon copy recipients in one e-mail
+		/// Send e-mail asynchronously to multiple recipients and carbon copy recipients in one e-mail
 		/// </summary>
 		/// <param name="mailSender">The mail sender.</param>
 		/// <param name="fromMailAddress">From mail address</param>
