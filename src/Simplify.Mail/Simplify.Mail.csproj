@@ -51,6 +51,7 @@
     <Compile Include="IHideObjectMembers.cs" />
     <Compile Include="IMailSender.cs" />
     <Compile Include="MailSender.cs" />
+    <Compile Include="MailSenderAsyncExtensions.cs" />
     <Compile Include="MailSenderException.cs" />
     <Compile Include="MailSenderSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
