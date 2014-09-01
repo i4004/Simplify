@@ -1,5 +1,8 @@
 ﻿namespace Simplify.Templates
 {
+	/// <summary>
+	/// Template model extensions
+	/// </summary>
 	public static class TemplateModelExtensions
 	{
 		/// <summary>

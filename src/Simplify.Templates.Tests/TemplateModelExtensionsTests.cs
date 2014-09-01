@@ -23,7 +23,7 @@ namespace Simplify.Templates.Tests
 
 			// Act
 			// ReSharper disable once ExpressionIsAlwaysNull
-			_template.Set(model).Export();
+			_template.Set(model).SetModel();
 
 			// Assert
 			Assert.AreEqual("   ", _template.Get());
@@ -36,7 +36,7 @@ namespace Simplify.Templates.Tests
 			var model = new TestModel { CreationTime = new DateTime(2014, 10, 5), Name = "Foo", EMail = "Foo@example.com", ID = 5};
 
 			// Act
-			_template.Set(model).With(x => x.CreationTime, x => x.ToString("dd.MM.yyyy")).Export();
+			_template.Set(model).With(x => x.CreationTime, x => x.ToString("dd.MM.yyyy")).SetModel();
 
 			// Assert
 			Assert.AreEqual("5 Foo Foo@example.com 05.10.2014", _template.Get());
@@ -50,7 +50,7 @@ namespace Simplify.Templates.Tests
 			var model = new TestModel();
 
 			// Act
-			_template.Set(model).Export();
+			_template.Set(model).SetModel();
 
 			// Assert
 			Assert.AreEqual("  ", _template.Get());
