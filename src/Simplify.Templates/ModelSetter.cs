@@ -54,7 +54,7 @@ namespace Simplify.Templates
 		/// <summary>
 		/// Sets the model.
 		/// </summary>
-		public void SetModel()
+		public ITemplate SetModel()
 		{
 			var type = typeof(T);
 
@@ -65,6 +65,8 @@ namespace Simplify.Templates
 				var value = _model == null ? null : propInfo.GetValue(_model);
 				Template.Set(ModelPrefix + propInfo.Name, value);
 			}
+
+			return Template;
 		}
 	}
 }

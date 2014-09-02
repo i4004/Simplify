@@ -22,6 +22,6 @@ namespace Simplify.Templates
 		/// <summary>
 		/// Sets model data to template.
 		/// </summary>
-		void SetModel();
+		ITemplate SetModel();
 	}
 }
