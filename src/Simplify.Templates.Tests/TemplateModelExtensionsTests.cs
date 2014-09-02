@@ -12,7 +12,7 @@ namespace Simplify.Templates.Tests
 		[SetUp]
 		public void Initialize()
 		{
-			_template = Template.FromString("{Model.ID} {Model.Name} {Model.EMail} {Model.CreationTime}");			
+			_template = Template.FromString("{Model.ID} {Model.Name} {Model.EMail} {Model.CreationTime}");
 		}
 
 		[Test]
@@ -23,7 +23,7 @@ namespace Simplify.Templates.Tests
 
 			// Act
 			// ReSharper disable once ExpressionIsAlwaysNull
-			_template.Set(model).SetModel();
+			_template.Model(model).Set();
 
 			// Assert
 			Assert.AreEqual("   ", _template.Get());
@@ -33,10 +33,10 @@ namespace Simplify.Templates.Tests
 		public void Set_Model_SetCorrectly()
 		{
 			// Assign
-			var model = new TestModel { CreationTime = new DateTime(2014, 10, 5), Name = "Foo", EMail = "Foo@example.com", ID = 5};
+			var model = new TestModel { CreationTime = new DateTime(2014, 10, 5), Name = "Foo", EMail = "Foo@example.com", ID = 5 };
 
 			// Act
-			_template.Set(model).With(x => x.CreationTime, x => x.ToString("dd.MM.yyyy")).SetModel();
+			_template.Model(model).With(x => x.CreationTime, x => x.ToString("dd.MM.yyyy")).Set();
 
 			// Assert
 			Assert.AreEqual("5 Foo Foo@example.com 05.10.2014", _template.Get());
@@ -50,7 +50,7 @@ namespace Simplify.Templates.Tests
 			var model = new TestModel();
 
 			// Act
-			_template.Set(model).SetModel();
+			_template.Model(model).Set();
 
 			// Assert
 			Assert.AreEqual("  ", _template.Get());

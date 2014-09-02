@@ -20,8 +20,8 @@ namespace Simplify.Templates
 		IModelSetter<T> With<TData>(Expression<Func<T, TData>> memberExpression, Func<TData, object> dataExpression);
 
 		/// <summary>
-		/// Sets model data to template.
+		/// Sets the specified object (model) properties into template (replace variables names like Model.MyPropertyName with respective object (model) properties values).
 		/// </summary>
-		ITemplate SetModel();
+		ITemplate Set();
 	}
 }

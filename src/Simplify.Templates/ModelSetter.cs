@@ -52,9 +52,9 @@ namespace Simplify.Templates
 		}
 
 		/// <summary>
-		/// Sets the model.
+		/// Sets the specified object (model) properties into template (replace variables names like Model.MyPropertyName with respective model properties values).
 		/// </summary>
-		public ITemplate SetModel()
+		public ITemplate Set()
 		{
 			var type = typeof(T);
 
