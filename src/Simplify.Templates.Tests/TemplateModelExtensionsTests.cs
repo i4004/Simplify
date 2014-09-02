@@ -18,16 +18,23 @@ namespace Simplify.Templates.Tests
 		[Test]
 		public void Set_NullModel_ReplacesWithNothing()
 		{
-			// Assign
-			TestModel model = null;
-
 			// Act
-			// ReSharper disable once ExpressionIsAlwaysNull
-			_template.Model(model).Set();
+			_template.Model<TestModel>(null).Set();
+
+			// Assert		
+			Assert.AreEqual("   ", _template.Get());
+		}
+
+		[Test]
+		public void Set_NullModelWithWith_ReplacesWithNothing()
+		{
+			// Act
+			_template.Model<TestModel>(null).With(x => x.CreationTime, x => x.ToString("dd.MM.yyyy")).Set();
 
 			// Assert
 			Assert.AreEqual("   ", _template.Get());
 		}
+
 
 		[Test]
 		public void Set_Model_SetCorrectly()

@@ -21,7 +21,8 @@ namespace Simplify.Templates
 		/// </summary>
 		/// <param name="template">The template.</param>
 		/// <param name="model">The model.</param>
-		public ModelSetter(ITemplate template, T model) : base(template)
+		public ModelSetter(ITemplate template, T model)
+			: base(template)
 		{
 			_model = model;
 
@@ -43,10 +44,12 @@ namespace Simplify.Templates
 			if (expression == null)
 				throw new ArgumentException("memberExpression type is not a MemberExpression");
 
+			if (_model == null) return this;
+
 			_skipProperties.Add(expression.Member.Name);
 
 			var propInfo = _modelType.GetProperty(expression.Member.Name);
-			Template.Set(ModelPrefix + propInfo.Name, dataExpression.Invoke((TData)propInfo.GetValue(_model)));
+			Template.Set(ModelPrefix + propInfo.Name, dataExpression.Invoke((TData) propInfo.GetValue(_model)));
 
 			return this;
 		}
