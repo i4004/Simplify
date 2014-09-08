@@ -5,6 +5,7 @@ using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 
 using NHibernate;
+using NHibernate.Driver;
 using NHibernate.SqlCommand;
 
 using Simplify.FluentNHibernate.Drivers;
@@ -17,7 +18,7 @@ namespace Simplify.FluentNHibernate
 	public static class ConfigurationExtensions
 	{
 		/// <summary>
-		/// Initialize Oracle connection using Oracle10 client configuration and using ocacle client to connect to database
+		/// Initialize Oracle connection using Oracle10 client configuration and using oracle client to connect to database
 		/// </summary>
 		/// <param name="configuration">The fluentNHibernate configuration.</param>
 		/// <param name="configSectionName">Configuration section name in App.config or Web.config file</param>
@@ -141,7 +142,7 @@ namespace Simplify.FluentNHibernate
 		/// </summary>
 		/// <param name="configuration">The fluentNHibernate configuration.</param>
 		/// <param name="configSectionName">Configuration section name in App.config or Web.config file</param>
-		public static void InitializeFromConfigPostrgeSql(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
+		public static void InitializeFromConfigPostgreSql(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
 		{
 			if (configuration == null) throw new ArgumentNullException("configuration");
 
