@@ -1,19 +1,22 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
-		<id>$id$</id>
+		<id>Simplify.String.Sources</id>
 		<version>$version$</version>
-		<title>$id$</title>
-		<authors>$author$</authors>
-		<owners>$author$</owners>
+		<title>Simplify.String.Sources</title>
+		<authors>Alexander Krylkov</authors>
+		<owners>Alexander Krylkov</owners>
 		<projectUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.String</projectUrl>
 		<iconUrl>https://raw2.github.com/i4004/Simplify/master/Images/Icon.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>$description$</description>
-		<summary>$description$</summary>
+		<description>String operations/validation functions</description>
+		<summary>String operations/validation functions</summary>
 		<releaseNotes></releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET</tags>
 	</metadata>
+	<files>
+		<file src="StringHelper.cs" target="content/App_Packages/Simplify.String.Sources.$version$/StringHelper.cs" />
+	</files>
 </package>

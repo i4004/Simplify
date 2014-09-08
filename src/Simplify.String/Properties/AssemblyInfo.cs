@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Simplify.String")]
-[assembly: AssemblyDescription("String operations functions")]
+[assembly: AssemblyDescription("String operations/validation functions")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Alexander Krylkov")]
 [assembly: AssemblyProduct("Simplify")]
