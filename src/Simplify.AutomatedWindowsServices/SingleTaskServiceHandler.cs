@@ -40,6 +40,11 @@ namespace Simplify.AutomatedWindowsServices
 		}
 
 		/// <summary>
+		/// Occurs when exception thrown.
+		/// </summary>
+		public event ServiceExceptionEventHandler OnException;
+
+		/// <summary>
 		/// Gets or sets the settings.
 		/// </summary>
 		/// <value>
@@ -120,8 +125,15 @@ namespace Simplify.AutomatedWindowsServices
 				{
 					var serviceTask = scope.Container.Resolve<T>();
 
-					_invokeMethodInfo.Invoke(serviceTask, _isParameterlessMethod ? null : new object[] { _serviceName });				
+					_invokeMethodInfo.Invoke(serviceTask, _isParameterlessMethod ? null : new object[] {_serviceName});
 				}
+			}
+			catch (Exception e)
+			{
+				if (OnException != null)
+					OnException(new ServiceExceptionArgs(ServiceName, e));
+				else
+					throw;
 			}
 			finally
 			{

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Reflection;
 using System.ServiceProcess;
 using Simplify.DI;
@@ -30,6 +31,11 @@ namespace Simplify.AutomatedWindowsServices
 		}
 
 		/// <summary>
+		/// Occurs when exception thrown.
+		/// </summary>
+		public event ServiceExceptionEventHandler OnException;
+
+		/// <summary>
 		/// When implemented in a derived class, executes when a Start command is sent to the service by the Service Control Manager (SCM) or when the operating system starts (for a service that starts automatically). Specifies actions to take when the service starts.
 		/// </summary>
 		/// <param name="args">Data passed by the start command.</param>
@@ -50,12 +56,22 @@ namespace Simplify.AutomatedWindowsServices
 
 			var isParameterlessMethod = !invokeMethodInfo.GetParameters().Any();
 
-			using (var scope = DIContainer.Current.BeginLifetimeScope())
+			try
 			{
-				var serviceTask = scope.Container.Resolve<T>();
+				using (var scope = DIContainer.Current.BeginLifetimeScope())
+				{
+					var serviceTask = scope.Container.Resolve<T>();
 
-				invokeMethodInfo.Invoke(serviceTask, isParameterlessMethod ? null : new object[] { _serviceName });
+					invokeMethodInfo.Invoke(serviceTask, isParameterlessMethod ? null : new object[] { _serviceName });
+				}
 			}
+			catch (Exception e)
+			{
+				if (OnException != null)
+					OnException(new ServiceExceptionArgs(ServiceName, e));
+				else
+					throw;
+			}	
 
 			base.OnStart(args);
 		}
