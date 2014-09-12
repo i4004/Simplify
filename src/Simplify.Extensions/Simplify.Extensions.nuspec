@@ -6,7 +6,7 @@
 		<title>$id$</title>
 		<authors>$author$</authors>
 		<owners>$author$</owners>
-		<projectUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.Extensions</projectUrl>
+		<projectUrl>https://github.com/i4004/Simplify/wiki/Simplify.Extensions</projectUrl>
 		<iconUrl>https://raw2.github.com/i4004/Simplify/master/Images/Icon.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Extensions for system classes.</description>

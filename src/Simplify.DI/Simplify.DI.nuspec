@@ -6,7 +6,7 @@
 		<title>$id$</title>
 		<authors>$author$</authors>
 		<owners>$author$</owners>
-		<projectUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.DI</projectUrl>
+		<projectUrl>https://github.com/i4004/Simplify/wiki/Simplify.DI</projectUrl>
 		<iconUrl>https://raw2.github.com/i4004/Simplify/master/Images/Icon.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>$description$</description>
