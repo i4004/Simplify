@@ -7,20 +7,20 @@ namespace Simplify.Resources
 	/// </summary>
 	public static class StringTable
 	{
-		private static IResourcesStringTable _entryStringTableInstance;
+		private static IResourcesStringTable _entryStringTable;
 
 		/// <summary>
 		/// Entry assembly string table (ProgramResources.resx)
 		/// </summary>
 		public static IResourcesStringTable Entry
 		{
-			get { return _entryStringTableInstance ?? (_entryStringTableInstance = new ResourcesStringTable(false, "ProgramResources")); }
+			get { return _entryStringTable ?? (_entryStringTable = new ResourcesStringTable(false, "ProgramResources")); }
 			set
 			{
 				if(value == null)
 					throw new ArgumentNullException();
 
-				_entryStringTableInstance = value;
+				_entryStringTable = value;
 			}
 		}
 	}
