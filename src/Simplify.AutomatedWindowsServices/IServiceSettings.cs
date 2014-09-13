@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Simplify.AutomatedWindowsServices
+﻿namespace Simplify.AutomatedWindowsServices
 {
 	/// <summary>
 	/// Represent windows-service processing settings
@@ -9,19 +6,19 @@ namespace Simplify.AutomatedWindowsServices
 	public interface IServiceSettings
 	{
 		/// <summary>
+		/// Gets the crontab expression.
+		/// </summary>
+		/// <value>
+		/// The crontab expression.
+		/// </value>
+		string CrontabExpression { get; }
+
+		/// <summary>
 		/// Gets the service processing interval (sec).
 		/// </summary>
 		/// <value>
 		/// The service processing interval (sec).
 		/// </value>
 		int ProcessingInterval { get; }
-
-		/// <summary>
-		/// Gets the service working points.
-		/// </summary>
-		/// <value>
-		/// The service working points.
-		/// </value>
-		IList<DateTime> WorkingPoints { get; }
 	}
 }

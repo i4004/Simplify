@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Simplify.AutomatedWindowsServices")]
-[assembly: AssemblyDescription("Windows services framework with DI")]
+[assembly: AssemblyTitle("Simplify.AutomatedWindowsServices.Example")]
+[assembly: AssemblyDescription("Simplify.AutomatedWindowsServices example windows service")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Alexander Krylkov")]
 [assembly: AssemblyProduct("Simplify")]
-[assembly: AssemblyCopyright("Licensed under LGPL")]
+[assembly: AssemblyCopyright("Licensed underl LGPL")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("76f660a4-bd40-4aff-94a5-3163f9638507")]
+[assembly: Guid("9c683de1-b77e-44a0-b6fa-2e7b17af0d9d")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.4.0.0")]
-[assembly: AssemblyFileVersion("1.4.0.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

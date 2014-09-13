@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
+﻿using System.Collections.Specialized;
 using System.Configuration;
 
 namespace Simplify.AutomatedWindowsServices
@@ -15,26 +13,29 @@ namespace Simplify.AutomatedWindowsServices
 		/// </summary>
 		public ServiceSettings()
 		{
+			ProcessingInterval = 60;
+
 			var config = ConfigurationManager.GetSection("ServiceSettings") as NameValueCollection;
 
-			if (config != null)
-			{
-				var workingPoints = config["WorkingPoints"];
-				var processingInterval = config["ProcessingInterval"];
+			if (config == null) return;
 
-				if (!string.IsNullOrEmpty(workingPoints))
-				{
-					WorkingPoints = new List<DateTime>();
+			CrontabExpression = config["CrontabExpression"];
 
-					foreach (var item in workingPoints.Replace(" ", "").Split(','))
-						WorkingPoints.Add(DateTime.Parse(item));
-				}
-				else if (!string.IsNullOrEmpty(processingInterval))
-					ProcessingInterval = int.Parse(processingInterval);
-			}
-			else
-				ProcessingInterval = 60;
+			if (!string.IsNullOrEmpty(CrontabExpression)) return;
+
+			var processingInterval = config["ProcessingInterval"];
+
+			if(!string.IsNullOrEmpty(processingInterval))
+				ProcessingInterval = int.Parse(processingInterval);
 		}
+
+		/// <summary>
+		/// Gets the crontab expression.
+		/// </summary>
+		/// <value>
+		/// The crontab expression.
+		/// </value>
+		public string CrontabExpression { get; private set; }
 
 		/// <summary>
 		/// Gets the service processing interval (sec).
@@ -43,13 +44,5 @@ namespace Simplify.AutomatedWindowsServices
 		/// The service processing interval (sec).
 		/// </value>
 		public int ProcessingInterval { get; private set; }
-
-		/// <summary>
-		/// Gets the service working points.
-		/// </summary>
-		/// <value>
-		/// The service working points.
-		/// </value>
-		public IList<DateTime> WorkingPoints { get; private set; }
 	}
 }
