@@ -6,7 +6,7 @@
 		<title>Simplify.Xml.Sources</title>
 		<authors>Alexander Krylkov</authors>
 		<owners>Alexander Krylkov</owners>
-		<projectUrl>https://github.com/i4004/Simplify/wiki/Simplify.Xml</projectUrl>
+		<projectUrl>https://github.com/i4004/Simplify/wiki/$id$</projectUrl>
 		<iconUrl>https://raw2.github.com/i4004/Simplify/master/Images/Icon.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>XML extensions.</description>
