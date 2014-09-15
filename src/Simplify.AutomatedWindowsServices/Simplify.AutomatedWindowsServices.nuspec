@@ -11,7 +11,7 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Windows services framework with DI.</description>
 		<summary>$description$</summary>
-		<releaseNotes>Crontab expressions support added to SingleTaskServiceHandler, upgrade to Simplify.DI 1.0.2</releaseNotes>
+		<releaseNotes>SingleTaskServiceHandler crontab timer bug fixed</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET windows-service DI</tags>

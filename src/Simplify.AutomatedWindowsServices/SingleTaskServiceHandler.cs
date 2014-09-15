@@ -119,16 +119,17 @@ namespace Simplify.AutomatedWindowsServices
 
 		private void OnCronTimerTick(object state)
 		{
-			if (_waitProcessFinishEvent != null)
-				return;
-
 			var currentTime = TimeProvider.Current.Now;
 
 			if (_nextOccurrence.Year != currentTime.Year || _nextOccurrence.Month != currentTime.Month ||
-			    _nextOccurrence.Day != currentTime.Day || _nextOccurrence.Hour != currentTime.Hour ||
-			    _nextOccurrence.Minute != currentTime.Minute) return;
+				_nextOccurrence.Day != currentTime.Day || _nextOccurrence.Hour != currentTime.Hour ||
+				_nextOccurrence.Minute != currentTime.Minute) return;
 
 			_nextOccurrence = _schedule.GetNextOccurrence(currentTime);
+
+			if (_waitProcessFinishEvent != null)
+				return;
+
 			OnStartWork(state);
 		}
 
