@@ -17,11 +17,9 @@ namespace Simplify.Templates.Tests
 		}
 
 		[Test]
-		[Category("Windows")]
 		public void Load_FromFileSystem_LoadedCorrectly()
 		{
-			var files = new Dictionary<string, MockFileData>();
-			files.Add("Templates/Foo.en.tpl", "test");
+			var files = new Dictionary<string, MockFileData> {{"Templates/Foo.en.tpl", "test"}};
 
 			var fs = new MockFileSystem(files);
 
