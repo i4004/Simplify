@@ -6,12 +6,12 @@
 		<title>$id$</title>
 		<authors>$author$</authors>
 		<owners>$author$</owners>
-		<projectUrl>https://github.com/i4004/Simplify/wiki/Simplify.DI</projectUrl>
+		<projectUrl>https://github.com/i4004/Simplify/wiki/$id$</projectUrl>
 		<iconUrl>https://raw2.github.com/i4004/Simplify/master/Images/Icon.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>$description$</description>
 		<summary>$description$</summary>
-		<releaseNotes>DryIoc Reuse.InCurrentScope bug fixed</releaseNotes>
+		<releaseNotes>Upgrade to DryIOC 1.4</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET DI IOC-container</tags>

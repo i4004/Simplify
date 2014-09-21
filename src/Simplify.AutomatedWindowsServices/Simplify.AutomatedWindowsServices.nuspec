@@ -6,12 +6,12 @@
 		<title>$id$</title>
 		<authors>$author$</authors>
 		<owners>$author$</owners>
-		<projectUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.AutomatedWindowsServices</projectUrl>
+		<projectUrl>https://github.com/i4004/Simplify/wiki/$id$</projectUrl>
 		<iconUrl>https://raw2.github.com/i4004/Simplify/master/Images/Icon.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Windows services framework with DI.</description>
 		<summary>$description$</summary>
-		<releaseNotes>Exception handling added</releaseNotes>
+		<releaseNotes>SingleTaskServiceHandler crontab timer bug fixed</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET windows-service DI</tags>

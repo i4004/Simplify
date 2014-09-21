@@ -72,6 +72,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.DI.Provider.Castle
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.DI.Provider.SimpleInjector", "Simplify.DI.Provider.SimpleInjector\Simplify.DI.Provider.SimpleInjector.csproj", "{27EAB5AE-F310-4A41-8D2F-59F773654783}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.AutomatedWindowsServices.Example", "Examples\Simplify.AutomatedWindowsServices.Example\Simplify.AutomatedWindowsServices.Example.csproj", "{E18A26A0-ADA6-442C-B01D-12E2EB51AF34}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -244,6 +246,12 @@ Global
 		{27EAB5AE-F310-4A41-8D2F-59F773654783}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27EAB5AE-F310-4A41-8D2F-59F773654783}.Release|Any CPU.Build.0 = Release|Any CPU
 		{27EAB5AE-F310-4A41-8D2F-59F773654783}.Release|x64.ActiveCfg = Release|Any CPU
+		{E18A26A0-ADA6-442C-B01D-12E2EB51AF34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E18A26A0-ADA6-442C-B01D-12E2EB51AF34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E18A26A0-ADA6-442C-B01D-12E2EB51AF34}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E18A26A0-ADA6-442C-B01D-12E2EB51AF34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E18A26A0-ADA6-442C-B01D-12E2EB51AF34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E18A26A0-ADA6-442C-B01D-12E2EB51AF34}.Release|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -251,5 +259,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{5D326E8A-851B-4537-A477-838709FDB965} = {2D057C2A-06BD-48F2-A075-B6EC42D39007}
 		{959DF948-6208-4EA2-BBB8-BA87E6FDCAB7} = {2D057C2A-06BD-48F2-A075-B6EC42D39007}
+		{E18A26A0-ADA6-442C-B01D-12E2EB51AF34} = {2D057C2A-06BD-48F2-A075-B6EC42D39007}
 	EndGlobalSection
 EndGlobal

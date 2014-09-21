@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.ServiceProcess;
 using System.Threading;
+using NCrontab;
 using Simplify.DI;
 using Simplify.System;
 
@@ -25,6 +26,9 @@ namespace Simplify.AutomatedWindowsServices
 		private bool _isParameterlessMethod;
 
 		private IServiceSettings _settings;
+
+		private CrontabSchedule _schedule;
+		private DateTime _nextOccurrence;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="SingleTaskServiceHandler{T}" /> class.
@@ -71,10 +75,6 @@ namespace Simplify.AutomatedWindowsServices
 		/// <param name="args">Data passed by the start command.</param>
 		protected override void OnStart(string[] args)
 		{
-			_timer = Settings.WorkingPoints != null
-			 ? new Timer(OnTimerTick, null, 1000, 60000)
-			 : new Timer(OnTimerTick, null, 1000, Settings.ProcessingInterval * 1000);
-
 			var taskClassType = typeof (T);
 
 			_invokeMethodInfo = taskClassType.GetMethod(InvokeMethodName);
@@ -83,6 +83,20 @@ namespace Simplify.AutomatedWindowsServices
 				throw new ServiceInitializationException(string.Format("Method {0} not found in class {1}", InvokeMethodName, taskClassType.Name));
 
 			_isParameterlessMethod = !_invokeMethodInfo.GetParameters().Any();
+
+			if (!string.IsNullOrEmpty(Settings.CrontabExpression))
+			{
+				_schedule = CrontabSchedule.TryParse(Settings.CrontabExpression);
+
+				if (_schedule == null)
+					throw new ServiceInitializationException(string.Format("Crontab expression parsing failed, expression: '{0}'", Settings.CrontabExpression));
+
+				_nextOccurrence = _schedule.GetNextOccurrence(TimeProvider.Current.Now);
+
+				_timer = new Timer(OnCronTimerTick, null, 1000, 60000);
+			}
+			else
+				_timer = new Timer(OnStartWork, null, 1000, Settings.ProcessingInterval * 1000);
 
 			base.OnStart(args);
 		}
@@ -103,18 +117,30 @@ namespace Simplify.AutomatedWindowsServices
 
 		#endregion
 
-		private void OnTimerTick(object state)
+		private void OnCronTimerTick(object state)
+		{
+			var currentTime = TimeProvider.Current.Now;
+
+			if (_nextOccurrence.Year != currentTime.Year || _nextOccurrence.Month != currentTime.Month ||
+				_nextOccurrence.Day != currentTime.Day || _nextOccurrence.Hour != currentTime.Hour ||
+				_nextOccurrence.Minute != currentTime.Minute) return;
+
+			_nextOccurrence = _schedule.GetNextOccurrence(currentTime);
+
+			if (_waitProcessFinishEvent != null)
+				return;
+
+			OnStartWork(state);
+		}
+
+		private void OnStartWork(object state)
 		{
 			if (_waitProcessFinishEvent != null)
 				return;
 
-			if (Settings.WorkingPoints != null &&
-				!Settings.WorkingPoints.Any(item => item.Hour == DateTime.Now.Hour && item.Minute == DateTime.Now.Minute))
-				return;
-
 			_waitProcessFinishEvent = new ManualResetEvent(false);
 
-			ThreadPool.QueueUserWorkItem(Run);
+			ThreadPool.QueueUserWorkItem(Run);			
 		}
 
 		private void Run(object state)
