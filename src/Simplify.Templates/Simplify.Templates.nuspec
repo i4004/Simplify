@@ -11,7 +11,7 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Text templates engine.</description>
 		<summary>$description$</summary>
-		<releaseNotes>Model set to template added, async load methods added</releaseNotes>
+		<releaseNotes>Upgrade to System.IO.Abstractions 1.4.0.87</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET templates</tags>
