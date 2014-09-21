@@ -24,6 +24,7 @@ namespace Simplify.IO.Tests
 		}
 
 		[Test]
+		[Category("Windows")]
 		public void IsFileNameMadeValidCorrectly()
 		{
 			Assert.AreEqual("thisIsValid.txt", FileHelper.MakeValidFileName(@"thisIsValid.txt"));
