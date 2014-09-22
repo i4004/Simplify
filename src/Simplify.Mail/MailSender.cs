@@ -59,7 +59,14 @@ namespace Simplify.Mail
 		/// <returns></returns>
 		public SmtpClient SmtpClientCurrentUser
 		{
-			get { return _smtpClientInstance ?? (_smtpClientInstance = new SmtpClient(Settings.SmtpServerAddress, Settings.SmtpServerPortNumber)); }
+			get
+			{
+				return _smtpClientInstance ??
+				       (_smtpClientInstance = new SmtpClient(Settings.SmtpServerAddress, Settings.SmtpServerPortNumber)
+				       {
+					       EnableSsl = Settings.EnableSsl
+				       });
+			}
 		}
 
 		/// <summary>
@@ -79,7 +86,8 @@ namespace Simplify.Mail
 						_fullSmtpClientInstance = new SmtpClient(Settings.SmtpServerAddress, Settings.SmtpServerPortNumber)
 						{
 							UseDefaultCredentials = false,
-							Credentials = basicCredential
+							Credentials = basicCredential,
+							EnableSsl = Settings.EnableSsl
 						};
 					}
 				}

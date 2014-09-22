@@ -9,35 +9,6 @@ namespace Simplify.Mail
 	public sealed class MailSenderSettings
 	{
 		/// <summary>
-		/// The SMTP server address
-		/// </summary>
-		public readonly string SmtpServerAddress;
-		/// <summary>
-		/// The SMTP server port number
-		/// </summary>
-		public readonly int SmtpServerPortNumber = 25;
-
-		/// <summary>
-		/// The mail sender SMTP user name
-		/// </summary>
-		public readonly string SmtpUserName;
-
-		/// <summary>
-		/// The mail sender SMTP user password
-		/// </summary>
-		public readonly string SmtpUserPassword;
-
-		/// <summary>
-		/// Anti-spam pool message life time (min.)
-		/// </summary>
-		public readonly int AntiSpamPoolMessageLifeTime = 120;
-
-		/// <summary>
-		/// Anit-spam messages pool on
-		/// </summary>
-		public readonly bool AntiSpamMessagesPoolOn = true;
-
-		/// <summary>
 		/// Initializes a new instance of the <see cref="MailSenderSettings"/> class.
 		/// </summary>
 		/// <param name="configSectionName">Name of the configuration section in the configuration file.</param>
@@ -52,40 +23,96 @@ namespace Simplify.Mail
 		/// </exception>
 		public MailSenderSettings(string configSectionName = "MailSenderSettings")
 		{
+			SmtpServerPortNumber = 25;
+			AntiSpamPoolMessageLifeTime = 125;
+			AntiSpamMessagesPoolOn = true;
+
 			var configSection = (NameValueCollection)ConfigurationManager.GetSection(configSectionName);
 
 			if (configSection == null)
-				throw new MailSenderException("No MailSenderSettings '" +  configSectionName + "' section in config file.");
+				throw new MailSenderException("No MailSenderSettings '" + configSectionName + "' section in config file.");
 
-			SmtpServerAddress = configSection["SmtpServerAddress"];
+			LoadGeneralSettings(configSection);
+			LoadExtraSettings(configSection);
+		}
+
+		/// <summary>
+		/// The SMTP server address
+		/// </summary>
+		public string SmtpServerAddress { get; private set; }
+
+		/// <summary>
+		/// The SMTP server port number
+		/// </summary>
+		public int SmtpServerPortNumber { get; private set; }
+
+		/// <summary>
+		/// The mail sender SMTP user name
+		/// </summary>
+		public string SmtpUserName { get; private set; }
+
+		/// <summary>
+		/// The mail sender SMTP user password
+		/// </summary>
+		public string SmtpUserPassword { get; private set; }
+
+		/// <summary>
+		/// Anti-spam pool message life time (min.)
+		/// </summary>
+		public int AntiSpamPoolMessageLifeTime { get; private set; }
+
+		/// <summary>
+		/// Anit-spam messages pool on
+		/// </summary>
+		public bool AntiSpamMessagesPoolOn { get; private set; }
+
+		/// <summary>
+		/// Gets a value indicating whether SSL is enabled for connection.
+		/// </summary>
+		/// <value>
+		/// <c>true</c> if SSL is enabled for connection; otherwise, <c>false</c>.
+		/// </value>
+		public bool EnableSsl { get; private set; }
+
+		private void LoadGeneralSettings(NameValueCollection config)
+		{
+			SmtpServerAddress = config["SmtpServerAddress"];
 
 			if (string.IsNullOrEmpty(SmtpServerAddress))
 				throw new MailSenderException("MailSenderSettings SmtpServerAddress is empty or missing from config file.");
 
-			var smtpServerPortNumberString = configSection["SmtpServerPortNumber"];
+			var smtpServerPortNumberString = config["SmtpServerPortNumber"];
 
 			if (!string.IsNullOrEmpty(smtpServerPortNumberString))
 				SmtpServerPortNumber = int.Parse(smtpServerPortNumberString);
 
-			SmtpUserName = configSection["SmtpUserName"];
+			SmtpUserName = config["SmtpUserName"];
 
 			if (string.IsNullOrEmpty(SmtpUserName))
 				throw new MailSenderException("MailSenderSettings SmtpUserName is empty or missing from config file.");
-			
-			SmtpUserPassword = configSection["SmtpUserPassword"];
+
+			SmtpUserPassword = config["SmtpUserPassword"];
 
 			if (string.IsNullOrEmpty(SmtpUserPassword))
 				throw new MailSenderException("MailSenderSettings SmtpUserPassword is empty or missing from config file.");
-
-			var antiSpamPoolMessageLifeTimeString = configSection["AntiSpamPoolMessageLifeTime"];
+		}
+		
+		private void LoadExtraSettings(NameValueCollection config)
+		{
+			var antiSpamPoolMessageLifeTimeString = config["AntiSpamPoolMessageLifeTime"];
 
 			if (!string.IsNullOrEmpty(antiSpamPoolMessageLifeTimeString))
 				AntiSpamPoolMessageLifeTime = int.Parse(antiSpamPoolMessageLifeTimeString);
 
-			var antiSpamMessagesPoolOnString = configSection["AntiSpamMessagesPoolOn"];
+			var antiSpamMessagesPoolOnString = config["AntiSpamMessagesPoolOn"];
 
 			if (!string.IsNullOrEmpty(antiSpamMessagesPoolOnString))
 				AntiSpamMessagesPoolOn = bool.Parse(antiSpamMessagesPoolOnString);
+
+			var enableSsl = config["EnableSsl"];
+
+			if (!string.IsNullOrEmpty(enableSsl))
+				EnableSsl = bool.Parse(enableSsl);
 		}
 	}
 }
