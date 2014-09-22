@@ -11,7 +11,7 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Simple mail sender.</description>
 		<summary>$description$</summary>
-		<releaseNotes>Async methods added, ambient context added</releaseNotes>
+		<releaseNotes>EnableSsl settings added</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET mail-sender</tags>
