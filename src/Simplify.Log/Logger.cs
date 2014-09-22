@@ -14,8 +14,8 @@ namespace Simplify.Log
 	/// </summary>
 	public class Logger : ILogger
 	{
-		private static Lazy<IFileSystem> FileSystemInstance = new Lazy<IFileSystem>(() => new FileSystem());
-		private static Lazy<ILogger> DefaultLoggerInstance = new Lazy<ILogger>(() => new Logger());
+		private static Lazy<IFileSystem> _fileSystem = new Lazy<IFileSystem>(() => new FileSystem());
+		private static Lazy<ILogger> _defaultLogger = new Lazy<ILogger>(() => new Logger());
 
 		private readonly object _locker = new object();
 		private string _currentLogFileName;
@@ -41,7 +41,7 @@ namespace Simplify.Log
 		{
 			get
 			{
-				return FileSystemInstance.Value;
+				return _fileSystem.Value;
 			}
 
 			set
@@ -49,7 +49,7 @@ namespace Simplify.Log
 				if (value == null)
 					throw new ArgumentNullException("value");
 
-				FileSystemInstance = new Lazy<IFileSystem>(() => value);
+				_fileSystem = new Lazy<IFileSystem>(() => value);
 			}
 		}
 
@@ -62,13 +62,13 @@ namespace Simplify.Log
 		/// <exception cref="System.ArgumentNullException">value</exception>
 		public static ILogger Default
 		{
-			get { return DefaultLoggerInstance.Value; }
+			get { return _defaultLogger.Value; }
 			set
 			{
 				if (value == null)
 					throw new ArgumentNullException("value");
 
-				DefaultLoggerInstance = new Lazy<ILogger>(() => value);
+				_defaultLogger = new Lazy<ILogger>(() => value);
 			}
 		}
 
@@ -133,7 +133,7 @@ namespace Simplify.Log
 		}
 
 		/// <summary>
-		/// Write data of an exception to log file and returs written data formatted with HTML line breaks
+		/// Write data of an exception to log file and returns written data formatted with HTML line breaks
 		/// </summary>
 		/// <param name="e">Exception to get data from</param>
 		/// <returns>Text written to log file (contain time information etc.) formatted with HTML line breaks</returns>

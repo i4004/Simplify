@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Globalization;
 using System.IO;
 using System.IO.Abstractions;
 using System.Linq;
 using System.Reflection;
-using System.Text.RegularExpressions;
 
 namespace Simplify.IO
 {
@@ -13,7 +11,7 @@ namespace Simplify.IO
 	/// </summary>
 	public static class FileHelper
 	{
-		private static Lazy<IFileSystem> FileSystemInstance = new Lazy<IFileSystem>(() => new FileSystem());
+		private static Lazy<IFileSystem> _fileSystem = new Lazy<IFileSystem>(() => new FileSystem());
 
 		/// <summary>
 		/// Gets or sets the file system for Template IO operations.
@@ -25,7 +23,7 @@ namespace Simplify.IO
 		{
 			get
 			{
-				return FileSystemInstance.Value;
+				return _fileSystem.Value;
 			}
 
 			set
@@ -33,7 +31,7 @@ namespace Simplify.IO
 				if (value == null)
 					throw new ArgumentNullException("value");
 
-				FileSystemInstance = new Lazy<IFileSystem>(() => value);
+				_fileSystem = new Lazy<IFileSystem>(() => value);
 			}
 		}
 
