@@ -5,7 +5,7 @@ namespace Simplify.System
 	/// <summary>
 	/// Provides Time ambient context
 	/// </summary>
-	public class TimeProvider
+	public static class TimeProvider
 	{
 		private static ITimeProvider _currentInstance;
 
