@@ -6,7 +6,7 @@
 		<title>Simplify.String.Sources</title>
 		<authors>Alexander Krylkov</authors>
 		<owners>Alexander Krylkov</owners>
-		<projectUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.Xml.Sources</projectUrl>
+		<projectUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.String.Sources</projectUrl>
 		<iconUrl>https://raw2.github.com/i4004/Simplify/master/Images/Icon.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>String operations/validation functions</description>
