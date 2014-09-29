@@ -5,6 +5,9 @@ foreach ($file in $files)
 {
 (Get-Content $file.PSPath) |
 Foreach-Object {$_ -replace "public static class", "internal static class"} |
+Foreach-Object {$_ -replace "public sealed class", "internal sealed class"} |
+Foreach-Object {$_ -replace "public class", "internal class"} |
+Foreach-Object {$_ -replace "public interface", "internal interface"} |
 Set-Content -Encoding UTF8 $file.PSPath
 }
 
