@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+	<metadata>
+		<id>Simplify.System.Sources</id>
+		<version>$version$</version>
+		<title>Simplify.System.Sources</title>
+		<authors>Alexander Krylkov</authors>
+		<owners>Alexander Krylkov</owners>
+		<projectUrl>https://github.com/i4004/Simplify/wiki/Simplify.System</projectUrl>
+		<iconUrl>https://raw2.github.com/i4004/Simplify/master/Images/Icon.png</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>XML extensions.</description>
+		<summary>XML extensions</summary>
+		<releaseNotes></releaseNotes>
+		<copyright>Licensed under LGPL</copyright>
+		<language>en-US</language>
+		<tags>.NET XML</tags>
+	</metadata>
+	<files>
+		<file src="AssemblyInfo.cs" target="content/App_Packages/Simplify.System.Sources.$version$/AssemblyInfo.cs" />
+		<file src="IAssemblyInfo.cs" target="content/App_Packages/Simplify.System.Sources.$version$/IAssemblyInfo.cs" />
+		<file src="IHideObjectMembers.cs" target="content/App_Packages/Simplify.System.Sources.$version$/IHideObjectMembers.cs" />
+		<file src="ITimeProvider.cs" target="content/App_Packages/Simplify.System.Sources.$version$/ITimeProvider.cs" />
+		<file src="SystemTimeProvider.cs" target="content/App_Packages/Simplify.System.Sources.$version$/SystemTimeProvider.cs" />
+		<file src="TimeProvider.cs" target="content/App_Packages/Simplify.System.Sources.$version$/TimeProvider.cs" />
+	</files>
+</package>
