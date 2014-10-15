@@ -85,14 +85,21 @@
     <Compile Include="BasicServiceHandler.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="IServiceSettings.cs" />
+    <Compile Include="IServiceJob.cs" />
+    <Compile Include="IServiceJobFactory.cs" />
+    <Compile Include="IServiceJobSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceExceptionArgs.cs" />
     <Compile Include="ServiceInitializationException.cs" />
     <Compile Include="ServiceInstallerBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ServiceSettings.cs" />
+    <Compile Include="ServiceJob.cs" />
+    <Compile Include="ServiceJobFactory.cs" />
+    <Compile Include="ServiceJobSettings.cs" />
+    <Compile Include="MultitaskTaskServiceHandler.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="SingleTaskServiceHandler.cs">
       <SubType>Component</SubType>
     </Compile>

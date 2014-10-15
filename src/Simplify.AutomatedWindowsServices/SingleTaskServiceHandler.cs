@@ -25,7 +25,7 @@ namespace Simplify.AutomatedWindowsServices
 		private MethodInfo _invokeMethodInfo;
 		private bool _isParameterlessMethod;
 
-		private IServiceSettings _settings;
+		private IServiceJobSettings _settings;
 
 		private CrontabSchedule _schedule;
 		private DateTime _nextOccurrence;
@@ -55,9 +55,9 @@ namespace Simplify.AutomatedWindowsServices
 		/// The settings.
 		/// </value>
 		/// <exception cref="ArgumentNullException">value</exception>
-		public IServiceSettings Settings
+		public IServiceJobSettings Settings
 		{
-			get { return _settings ?? (_settings = new ServiceSettings()); }
+			get { return _settings ?? (_settings = new ServiceJobSettings()); }
 			set
 			{
 				if (value == null)

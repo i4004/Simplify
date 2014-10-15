@@ -1,9 +1,9 @@
 ﻿namespace Simplify.AutomatedWindowsServices
 {
 	/// <summary>
-	/// Represent windows-service processing settings
+	/// Represent windows-service job settings
 	/// </summary>
-	public interface IServiceSettings
+	public interface IServiceJobSettings
 	{
 		/// <summary>
 		/// Gets the crontab expression.

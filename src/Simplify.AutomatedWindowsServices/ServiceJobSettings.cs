@@ -4,18 +4,18 @@ using System.Configuration;
 namespace Simplify.AutomatedWindowsServices
 {
 	/// <summary>
-	/// Provides windows-service processing settings
+	/// Provides windows-service job settings
 	/// </summary>
-	public class ServiceSettings : IServiceSettings
+	public class ServiceJobSettings : IServiceJobSettings
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="ServiceSettings"/> class.
+		/// Initializes a new instance of the <see cref="ServiceJobSettings"/> class.
 		/// </summary>
-		public ServiceSettings()
+		public ServiceJobSettings(string configSectionName = "ServiceSettings")
 		{
 			ProcessingInterval = 60;
 
-			var config = ConfigurationManager.GetSection("ServiceSettings") as NameValueCollection;
+			var config = ConfigurationManager.GetSection(configSectionName) as NameValueCollection;
 
 			if (config == null) return;
 
