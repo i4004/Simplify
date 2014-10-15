@@ -74,6 +74,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.DI.Provider.Simple
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.AutomatedWindowsServices.Example", "Examples\Simplify.AutomatedWindowsServices.Example\Simplify.AutomatedWindowsServices.Example.csproj", "{E18A26A0-ADA6-442C-B01D-12E2EB51AF34}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.AutomatedWindowsServices.MultitaskExample", "Examples\Simplify.AutomatedWindowsServices.MultitaskExample\Simplify.AutomatedWindowsServices.MultitaskExample.csproj", "{5CA3660E-F7C0-4382-8121-23F8F551C88E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -252,6 +254,12 @@ Global
 		{E18A26A0-ADA6-442C-B01D-12E2EB51AF34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E18A26A0-ADA6-442C-B01D-12E2EB51AF34}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E18A26A0-ADA6-442C-B01D-12E2EB51AF34}.Release|x64.ActiveCfg = Release|Any CPU
+		{5CA3660E-F7C0-4382-8121-23F8F551C88E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CA3660E-F7C0-4382-8121-23F8F551C88E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CA3660E-F7C0-4382-8121-23F8F551C88E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5CA3660E-F7C0-4382-8121-23F8F551C88E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CA3660E-F7C0-4382-8121-23F8F551C88E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CA3660E-F7C0-4382-8121-23F8F551C88E}.Release|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -260,5 +268,6 @@ Global
 		{5D326E8A-851B-4537-A477-838709FDB965} = {2D057C2A-06BD-48F2-A075-B6EC42D39007}
 		{959DF948-6208-4EA2-BBB8-BA87E6FDCAB7} = {2D057C2A-06BD-48F2-A075-B6EC42D39007}
 		{E18A26A0-ADA6-442C-B01D-12E2EB51AF34} = {2D057C2A-06BD-48F2-A075-B6EC42D39007}
+		{5CA3660E-F7C0-4382-8121-23F8F551C88E} = {2D057C2A-06BD-48F2-A075-B6EC42D39007}
 	EndGlobalSection
 EndGlobal
