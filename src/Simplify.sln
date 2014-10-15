@@ -53,8 +53,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.String", "Simplify
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.String.Tests", "Simplify.String.Tests\Simplify.String.Tests.csproj", "{564B187E-5E37-49F8-B8E8-17081D470A36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.AutomatedWindowsServices", "Simplify.AutomatedWindowsServices\Simplify.AutomatedWindowsServices.csproj", "{A7352B62-2D81-4F4A-9098-607A2D22F3EF}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0ABE7D0F-F93A-4A75-915A-510CBEBA0800}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -72,9 +70,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.DI.Provider.Castle
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.DI.Provider.SimpleInjector", "Simplify.DI.Provider.SimpleInjector\Simplify.DI.Provider.SimpleInjector.csproj", "{27EAB5AE-F310-4A41-8D2F-59F773654783}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.AutomatedWindowsServices.Example", "Examples\Simplify.AutomatedWindowsServices.Example\Simplify.AutomatedWindowsServices.Example.csproj", "{E18A26A0-ADA6-442C-B01D-12E2EB51AF34}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.WindowsServices.SingleTaskExample", "Examples\Simplify.WindowsServices.SingleTaskExample\Simplify.WindowsServices.SingleTaskExample.csproj", "{E18A26A0-ADA6-442C-B01D-12E2EB51AF34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.AutomatedWindowsServices.MultitaskExample", "Examples\Simplify.AutomatedWindowsServices.MultitaskExample\Simplify.AutomatedWindowsServices.MultitaskExample.csproj", "{5CA3660E-F7C0-4382-8121-23F8F551C88E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.WindowsServices.MultitaskExample", "Examples\Simplify.WindowsServices.MultitaskExample\Simplify.WindowsServices.MultitaskExample.csproj", "{5CA3660E-F7C0-4382-8121-23F8F551C88E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -212,12 +210,6 @@ Global
 		{564B187E-5E37-49F8-B8E8-17081D470A36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{564B187E-5E37-49F8-B8E8-17081D470A36}.Release|Any CPU.Build.0 = Release|Any CPU
 		{564B187E-5E37-49F8-B8E8-17081D470A36}.Release|x64.ActiveCfg = Release|Any CPU
-		{A7352B62-2D81-4F4A-9098-607A2D22F3EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A7352B62-2D81-4F4A-9098-607A2D22F3EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A7352B62-2D81-4F4A-9098-607A2D22F3EF}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{A7352B62-2D81-4F4A-9098-607A2D22F3EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A7352B62-2D81-4F4A-9098-607A2D22F3EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A7352B62-2D81-4F4A-9098-607A2D22F3EF}.Release|x64.ActiveCfg = Release|Any CPU
 		{BB69325D-028C-4F20-8F46-B0F4D70598C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BB69325D-028C-4F20-8F46-B0F4D70598C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB69325D-028C-4F20-8F46-B0F4D70598C8}.Debug|x64.ActiveCfg = Debug|Any CPU

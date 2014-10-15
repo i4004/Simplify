@@ -1,83 +1,145 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Threading;
+using NCrontab;
+using Simplify.System;
 
 namespace Simplify.WindowsServices
 {
 	/// <summary>
-	/// MultiTaskServiceBase service job
+	/// Provides service job
 	/// </summary>
-	public class ServiceJob
+	/// <typeparam name="T"></typeparam>
+	public class ServiceJob<T> : IServiceJob
 	{
-		internal int TimerDueTime = -1;
-		internal int TimerPeriod = -1;
+		private Timer _timer;
 
-		internal event WaitCallback Execute;
-		
-		internal virtual void OnExecute(object state)
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ServiceJob{T}"/> class.
+		/// </summary>
+		/// <param name="settings">The settings.</param>
+		/// <param name="invokeMethodName">Name of the invoke method.</param>
+		/// <exception cref="ArgumentNullException">
+		/// settings
+		/// or
+		/// invokeMethodName
+		/// </exception>
+		/// <exception cref="ServiceInitializationException"></exception>
+		public ServiceJob(IServiceJobSettings settings, string invokeMethodName = "Run")
 		{
-			var handler = Execute;
-			if (handler != null) handler(state);
+			if (settings == null) throw new ArgumentNullException("settings");
+			if (invokeMethodName == null) throw new ArgumentNullException("invokeMethodName");
+
+			Settings = settings;
+
+			JobClassType = typeof(T);
+			InvokeMethodInfo = JobClassType.GetMethod(invokeMethodName);
+
+			if (InvokeMethodInfo == null)
+				throw new ServiceInitializationException(string.Format("Method {0} not found in class {1}", invokeMethodName, JobClassType.Name));
+
+			IsParameterlessMethod = !InvokeMethodInfo.GetParameters().Any();
+
 		}
 
 		/// <summary>
-		/// Timer initialization
-		/// </summary>
-		/// <param name="workFunction">Job working function</param>
-		/// <param name="timerDueTime">Timer start delay</param>
-		/// <param name="timerPeriod">Timer working interval</param>
-		public ServiceJob(WaitCallback workFunction, int timerDueTime, int timerPeriod)
-		{
-			Execute = workFunction;
-
-			TimerDueTime = timerDueTime;
-			TimerPeriod = timerPeriod;
-		}
-
-		/// <summary>
-		/// Timer initialization
-		/// </summary>
-		/// <param name="workFunction">Job working function</param>
-		/// <param name="workingPoints">Working time points</param>
-		public ServiceJob(WaitCallback workFunction, IList<DateTime> workingPoints)
-		{
-			if (workingPoints == null) throw new ArgumentNullException("workingPoints");
-
-			Execute = workFunction;
-			WorkingPoints = workingPoints;
-		}
-
-		/// <summary>
-		/// Timer initialization
-		/// </summary>
-		/// <param name="workFunction">Job working function</param>
-		/// <param name="workingPoints">Working time points comma separated, for example: 12:00, 15:00, 16:25</param>
-		public ServiceJob(WaitCallback workFunction, string workingPoints)
-		{
-			if (workingPoints == null) throw new ArgumentNullException("workingPoints");
-
-			Execute = workFunction;
-
-			WorkingPoints = new List<DateTime>();
-
-			if(string.IsNullOrEmpty(workingPoints))
-				return;
-
-			foreach (var item in workingPoints.Replace(" ", "").Split(','))
-				WorkingPoints.Add(DateTime.Parse(item));
-		}
-
-		/// <summary>
-		/// The job working points
-		/// </summary>
-		public readonly IList<DateTime> WorkingPoints;
-
-		/// <summary>
-		/// Gets the current executing working point time.
+		/// Gets the type of the job class.
 		/// </summary>
 		/// <value>
-		/// The current executing working point time.
+		/// The type of the job class.
 		/// </value>
-		public DateTime CurrentWorkingPointTime { get; internal set; }
+		public Type JobClassType { get; private set; }
+
+		/// <summary>
+		/// Gets the settings.
+		/// </summary>
+		/// <value>
+		/// The settings.
+		/// </value>
+		public IServiceJobSettings Settings { get; private set; }
+
+		/// <summary>
+		/// Gets the invoke method information.
+		/// </summary>
+		/// <value>
+		/// The invoke method information.
+		/// </value>
+		public MethodInfo InvokeMethodInfo { get; private set; }
+
+		/// <summary>
+		/// Gets a value indicating whether invoke method instance is parameterless method.
+		/// </summary>
+		/// <value>
+		/// <c>true</c> if invoke method is parameterless method; otherwise, <c>false</c>.
+		/// </value>
+		public bool IsParameterlessMethod { get; private set; }
+
+		/// <summary>
+		/// Gets the schedule.
+		/// </summary>
+		/// <value>
+		/// The schedule.
+		/// </value>
+		public CrontabSchedule Schedule { get; private set; }
+
+		/// <summary>
+		/// Gets or sets the next occurrence.
+		/// </summary>
+		/// <value>
+		/// The next occurrence.
+		/// </value>
+		public DateTime NextOccurrence { get; set; }
+
+		/// <summary>
+		/// Occurs on cron timer tick.
+		/// </summary>
+		public event TimerCallback OnCronTimerTick;
+
+		/// <summary>
+		/// Occurs on interval timer tick.
+		/// </summary>
+		public event TimerCallback OnStartWork;
+
+		/// <summary>
+		/// Starts this job timer.
+		/// </summary>
+		/// <exception cref="ServiceInitializationException"></exception>
+		public void Start()
+		{
+			if (!string.IsNullOrEmpty(Settings.CrontabExpression))
+			{
+				Schedule = CrontabSchedule.TryParse(Settings.CrontabExpression);
+
+				if (Schedule == null)
+					throw new ServiceInitializationException(string.Format("Crontab expression parsing failed, expression: '{0}'",
+						Settings.CrontabExpression));
+
+				NextOccurrence = Schedule.GetNextOccurrence(TimeProvider.Current.Now);
+
+				_timer = new Timer(OnCronTimerTick, this, 1000, 60000);
+			}
+			else
+				_timer = new Timer(OnStartWork, this, 1000, Settings.ProcessingInterval * 1000);
+		}
+
+		/// <summary>
+		/// Stops and disposes job timer.
+		/// </summary>
+		public void Stop()
+		{
+			Dispose();
+		}
+
+		/// <summary>
+		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+		/// </summary>
+		public void Dispose()
+		{
+			if (_timer == null) return;
+
+			_timer.Dispose();
+			_timer = null;
+		}
 	}
 }

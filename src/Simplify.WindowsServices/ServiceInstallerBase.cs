@@ -38,7 +38,7 @@ namespace Simplify.WindowsServices
 		/// <param name="installRunAsUserFromConfig"></param>
 		public ServiceInstallerBase(Assembly serviceAssembly, bool installRunAsUserFromConfig)
 		{
-			if(serviceAssembly == null)
+			if (serviceAssembly == null)
 				throw new ServiceInitializationException("Installation failed, serviceAssembly is null");
 
 			IAssemblyInfo assemblyInfo = new AssemblyInfo(serviceAssembly);
@@ -84,7 +84,7 @@ namespace Simplify.WindowsServices
 		/// ProcessingServiceInstaller initialization with information from service assembly
 		/// </summary>
 		/// <param name="serviceAssembly">Assembly from which to get assembly information</param>
-		/// <param name="account">Acount type under which to run this service</param>
+		/// <param name="account">Account type under which to run this service</param>
 		/// <param name="userName">User name under which to run this service</param>
 		/// <param name="password">Password under which to run this service</param>
 		public ServiceInstallerBase(ServiceAccount account, string userName, string password, Assembly serviceAssembly = null)
@@ -101,7 +101,7 @@ namespace Simplify.WindowsServices
 		/// <param name="description">Service description</param>
 		/// <param name="displayName">Service display name</param>
 		/// <param name="serviceName">Service name</param>
-		/// <param name="account">Acount type under which to run this service</param>
+		/// <param name="account">Account type under which to run this service</param>
 		/// <param name="userName">User name under which to run this service</param>
 		/// <param name="password">Password under which to run this service</param>
 		public ServiceInstallerBase(string description, string displayName, string serviceName, ServiceAccount account, string userName, string password)
@@ -110,7 +110,7 @@ namespace Simplify.WindowsServices
 		}
 
 		private void Initialize(string description, string displayName, string serviceName, ServiceAccount account,
-		                        string userName, string password)
+								string userName, string password)
 		{
 			_serviceInstaller.Description = description;
 			_serviceInstaller.DisplayName = displayName;
