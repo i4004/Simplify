@@ -11,7 +11,7 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Windows services framework with DI.</description>
 		<summary>$description$</summary>
-		<releaseNotes></releaseNotes>
+		<releaseNotes>MultitaskServiceHandler implemented</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET windows-service DI</tags>
