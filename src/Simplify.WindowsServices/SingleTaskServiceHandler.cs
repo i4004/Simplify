@@ -18,8 +18,6 @@ namespace Simplify.WindowsServices
 	{
 		private const string InvokeMethodName = "Run";
 
-		private readonly string _serviceName;
-
 		private Timer _timer;
 		private ManualResetEvent _waitProcessFinishEvent;
 		private MethodInfo _invokeMethodInfo;
@@ -36,11 +34,11 @@ namespace Simplify.WindowsServices
 		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
 		public SingleTaskServiceHandler(bool automaticallyRegisterUserType = false)
 		{
-			var assemblyInfo = new AssemblyInfo(Assembly.GetCallingAssembly());
-			_serviceName = assemblyInfo.Title;
-
 			if (automaticallyRegisterUserType)
 				DIContainer.Current.Register<T>(LifetimeType.Transient);
+
+			var assemblyInfo = new AssemblyInfo(Assembly.GetCallingAssembly());
+			ServiceName = assemblyInfo.Title;
 		}
 
 		/// <summary>
@@ -151,7 +149,7 @@ namespace Simplify.WindowsServices
 				{
 					var serviceTask = scope.Container.Resolve<T>();
 
-					_invokeMethodInfo.Invoke(serviceTask, _isParameterlessMethod ? null : new object[] {_serviceName});
+					_invokeMethodInfo.Invoke(serviceTask, _isParameterlessMethod ? null : new object[] { ServiceName });
 				}
 			}
 			catch (Exception e)

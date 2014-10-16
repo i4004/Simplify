@@ -1,7 +1,6 @@
 ﻿using System.ServiceProcess;
-using Simplify.WindowsServices;
 
-namespace Simplify.AutomatedWindowsServices.Example
+namespace Simplify.WindowsServices.SingleTaskExample
 {
 	class Program
 	{

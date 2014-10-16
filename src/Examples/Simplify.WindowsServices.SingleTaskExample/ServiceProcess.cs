@@ -1,4 +1,4 @@
-﻿namespace Simplify.AutomatedWindowsServices.Example
+﻿namespace Simplify.WindowsServices.SingleTaskExample
 {
 	public class ServiceProcess
 	{

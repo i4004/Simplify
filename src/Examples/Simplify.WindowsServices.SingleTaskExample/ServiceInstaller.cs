@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Reflection;
-using Simplify.WindowsServices;
 
-namespace Simplify.AutomatedWindowsServices.Example
+namespace Simplify.WindowsServices.SingleTaskExample
 {
 	[RunInstaller(true)]
 	public class ServiceInstaller : ServiceInstallerBase

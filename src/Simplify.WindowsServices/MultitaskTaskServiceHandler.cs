@@ -19,15 +19,13 @@ namespace Simplify.WindowsServices
 
 		private IServiceJobFactory _serviceJobFactory;
 
-		private readonly string _serviceName;
-
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MultitaskTaskServiceHandler" /> class.
 		/// </summary>
 		public MultitaskTaskServiceHandler()
 		{
 			var assemblyInfo = new AssemblyInfo(Assembly.GetCallingAssembly());
-			_serviceName = assemblyInfo.Title;
+			ServiceName = assemblyInfo.Title;
 		}
 
 		/// <summary>
@@ -123,7 +121,7 @@ namespace Simplify.WindowsServices
 				{
 					var serviceTask = scope.Container.Resolve(job.JobClassType);
 
-					job.InvokeMethodInfo.Invoke(serviceTask, job.IsParameterlessMethod ? null : new object[] { _serviceName });
+					job.InvokeMethodInfo.Invoke(serviceTask, job.IsParameterlessMethod ? null : new object[] { ServiceName });
 				}
 			}
 			catch (Exception e)
