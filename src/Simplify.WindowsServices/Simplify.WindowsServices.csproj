@@ -79,7 +79,7 @@
     <Compile Include="IServiceJob.cs" />
     <Compile Include="IServiceJobFactory.cs" />
     <Compile Include="IServiceJobSettings.cs" />
-    <Compile Include="MultitaskTaskServiceHandler.cs">
+    <Compile Include="MultitaskServiceHandler.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

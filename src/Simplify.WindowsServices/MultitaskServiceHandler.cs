@@ -12,7 +12,7 @@ namespace Simplify.WindowsServices
 	/// <summary>
 	/// Provides class which runs as a windows service and periodically creates a class instances specified in added jobs and launches them in separated thread
 	/// </summary>
-	public class MultitaskTaskServiceHandler : ServiceBase
+	public class MultitaskServiceHandler : ServiceBase
 	{
 		private readonly IList<IServiceJob> _jobsList = new List<IServiceJob>();
 		private readonly IDictionary<IServiceJob, Task> _jobsInWork = new Dictionary<IServiceJob, Task>();
@@ -20,9 +20,9 @@ namespace Simplify.WindowsServices
 		private IServiceJobFactory _serviceJobFactory;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="MultitaskTaskServiceHandler" /> class.
+		/// Initializes a new instance of the <see cref="MultitaskServiceHandler" /> class.
 		/// </summary>
-		public MultitaskTaskServiceHandler()
+		public MultitaskServiceHandler()
 		{
 			var assemblyInfo = new AssemblyInfo(Assembly.GetCallingAssembly());
 			ServiceName = assemblyInfo.Title;

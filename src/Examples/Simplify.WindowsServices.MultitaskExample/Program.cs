@@ -12,7 +12,7 @@ namespace Simplify.WindowsServices.MultitaskExample
 			System.Diagnostics.Debugger.Launch();
 #endif
 
-			var handler = new MultitaskTaskServiceHandler();
+			var handler = new MultitaskServiceHandler();
 
 			handler.AddJob<TaskProcessor1>(true);
 			handler.AddJob<TaskProcessor1>("TaskProcessor1SecondTaskSettings", "RunTask2");
