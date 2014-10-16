@@ -1,4 +1,5 @@
 ﻿using System.ServiceProcess;
+using Simplify.DI;
 
 namespace Simplify.WindowsServices.MultitaskExample
 {
@@ -15,7 +16,9 @@ namespace Simplify.WindowsServices.MultitaskExample
 
 			handler.AddJob<TaskProcessor1>(true);
 			handler.AddJob<TaskProcessor1>("TaskProcessor1SecondTaskSettings", "RunTask2");
-			handler.AddJob<TaskProcessor2>(true);
+
+			DIContainer.Current.Register<TaskProcessor2>();
+			handler.AddJob<TaskProcessor2>();
 
 			ServiceBase.Run(handler);
 		}

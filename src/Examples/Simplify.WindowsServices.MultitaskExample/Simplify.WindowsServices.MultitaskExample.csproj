@@ -56,6 +56,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Simplify.DI\Simplify.DI.csproj">
+      <Project>{f83b9317-345d-4815-ac12-e71c0684cfea}</Project>
+      <Name>Simplify.DI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Simplify.WindowsServices\Simplify.WindowsServices.csproj">
       <Project>{7f2a1de8-b41e-4ec5-b4e2-248ff692e06a}</Project>
       <Name>Simplify.WindowsServices</Name>

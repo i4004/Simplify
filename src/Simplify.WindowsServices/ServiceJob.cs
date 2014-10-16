@@ -40,7 +40,6 @@ namespace Simplify.WindowsServices
 				throw new ServiceInitializationException(string.Format("Method {0} not found in class {1}", invokeMethodName, JobClassType.Name));
 
 			IsParameterlessMethod = !InvokeMethodInfo.GetParameters().Any();
-
 		}
 
 		/// <summary>
