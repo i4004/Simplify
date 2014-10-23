@@ -11,7 +11,7 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>IO helper functions.</description>
 		<summary>$description$</summary>
-		<releaseNotes>Upgrade to System.IO.Abstractions 1.4.0.87</releaseNotes>
+		<releaseNotes>Upgrade to System.IO.Abstractions 1.4.0.92</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET IO</tags>
