@@ -100,7 +100,7 @@ namespace Simplify.String
 				{
 					var tempStringB = stringB.Substring(posStrB, length);
 
-					if((System.String.CompareOrdinal(tempStringA, tempStringB) != 0))
+					if((string.CompareOrdinal(tempStringA, tempStringB) != 0))
 						continue;
 
 					tempRet.CountLike = (tempRet.CountLike + 1);

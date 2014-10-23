@@ -11,7 +11,7 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>String operations/validation functions</description>
 		<summary>String operations/validation functions</summary>
-		<releaseNotes></releaseNotes>
+		<releaseNotes>Namespace conflict with Simplify.System resolved</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET</tags>
