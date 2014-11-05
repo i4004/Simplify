@@ -84,13 +84,11 @@ namespace Simplify.WindowsServices
 		private void OnCronTimerTick(object state)
 		{
 			var job = (IServiceJob)state;
-			var currentTime = TimeProvider.Current.Now;
 
-			if (job.NextOccurrence.Year != currentTime.Year || job.NextOccurrence.Month != currentTime.Month ||
-				job.NextOccurrence.Day != currentTime.Day || job.NextOccurrence.Hour != currentTime.Hour ||
-				job.NextOccurrence.Minute != currentTime.Minute) return;
+			if(!job.CrontabProcessor.IsMatching())
+				return;
 
-			job.NextOccurrence = job.Schedule.GetNextOccurrence(currentTime);
+			job.CrontabProcessor.CalculateNextOccurrences();
 
 			if (_jobsInWork.ContainsKey(job))
 				return;

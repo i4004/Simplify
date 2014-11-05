@@ -2,8 +2,6 @@
 using System.Linq;
 using System.Reflection;
 using System.Threading;
-using NCrontab;
-using Simplify.System;
 
 namespace Simplify.WindowsServices
 {
@@ -14,11 +12,13 @@ namespace Simplify.WindowsServices
 	public class ServiceJob<T> : IServiceJob
 	{
 		private Timer _timer;
+		private readonly ICrontabProcessorFactory _crontabProcessorFactory;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="ServiceJob{T}"/> class.
+		/// Initializes a new instance of the <see cref="ServiceJob{T}" /> class.
 		/// </summary>
 		/// <param name="settings">The settings.</param>
+		/// <param name="crontabProcessorFactory">The crontab processor factory.</param>
 		/// <param name="invokeMethodName">Name of the invoke method.</param>
 		/// <exception cref="ArgumentNullException">
 		/// settings
@@ -26,12 +26,17 @@ namespace Simplify.WindowsServices
 		/// invokeMethodName
 		/// </exception>
 		/// <exception cref="ServiceInitializationException"></exception>
-		public ServiceJob(IServiceJobSettings settings, string invokeMethodName = "Run")
+		/// <exception cref="ArgumentNullException">settings
+		/// or
+		/// invokeMethodName</exception>
+		public ServiceJob(IServiceJobSettings settings, ICrontabProcessorFactory crontabProcessorFactory, string invokeMethodName = "Run")
 		{
 			if (settings == null) throw new ArgumentNullException("settings");
+			if (crontabProcessorFactory == null) throw new ArgumentNullException("crontabProcessorFactory");
 			if (invokeMethodName == null) throw new ArgumentNullException("invokeMethodName");
 
 			Settings = settings;
+			_crontabProcessorFactory = crontabProcessorFactory;
 
 			JobClassType = typeof(T);
 			InvokeMethodInfo = JobClassType.GetMethod(invokeMethodName);
@@ -59,6 +64,14 @@ namespace Simplify.WindowsServices
 		public IServiceJobSettings Settings { get; private set; }
 
 		/// <summary>
+		/// Gets the crontab processor.
+		/// </summary>
+		/// <value>
+		/// The crontab processor.
+		/// </value>
+		public ICrontabProcessor CrontabProcessor { get; private set; }
+
+		/// <summary>
 		/// Gets the invoke method information.
 		/// </summary>
 		/// <value>
@@ -73,22 +86,6 @@ namespace Simplify.WindowsServices
 		/// <c>true</c> if invoke method is parameterless method; otherwise, <c>false</c>.
 		/// </value>
 		public bool IsParameterlessMethod { get; private set; }
-
-		/// <summary>
-		/// Gets the schedule.
-		/// </summary>
-		/// <value>
-		/// The schedule.
-		/// </value>
-		public CrontabSchedule Schedule { get; private set; }
-
-		/// <summary>
-		/// Gets or sets the next occurrence.
-		/// </summary>
-		/// <value>
-		/// The next occurrence.
-		/// </value>
-		public DateTime NextOccurrence { get; set; }
 
 		/// <summary>
 		/// Occurs on cron timer tick.
@@ -108,13 +105,8 @@ namespace Simplify.WindowsServices
 		{
 			if (!string.IsNullOrEmpty(Settings.CrontabExpression))
 			{
-				Schedule = CrontabSchedule.TryParse(Settings.CrontabExpression);
-
-				if (Schedule == null)
-					throw new ServiceInitializationException(string.Format("Crontab expression parsing failed, expression: '{0}'",
-						Settings.CrontabExpression));
-
-				NextOccurrence = Schedule.GetNextOccurrence(TimeProvider.Current.Now);
+				CrontabProcessor = _crontabProcessorFactory.Create(Settings.CrontabExpression);
+				CrontabProcessor.CalculateNextOccurrences();
 
 				_timer = new Timer(OnCronTimerTick, this, 1000, 60000);
 			}

@@ -3,7 +3,6 @@ using System.Linq;
 using System.Reflection;
 using System.ServiceProcess;
 using System.Threading;
-using NCrontab;
 using Simplify.DI;
 using Simplify.System;
 
@@ -24,9 +23,7 @@ namespace Simplify.WindowsServices
 		private bool _isParameterlessMethod;
 
 		private IServiceJobSettings _settings;
-
-		private CrontabSchedule _schedule;
-		private DateTime _nextOccurrence;
+		private ICrontabProcessor _crontabProcessor;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="SingleTaskServiceHandler{T}" /> class.
@@ -65,6 +62,25 @@ namespace Simplify.WindowsServices
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the crontab processor.
+		/// </summary>
+		/// <value>
+		/// The crontab processor.
+		/// </value>
+		/// <exception cref="ArgumentNullException">value</exception>
+		public ICrontabProcessor CrontabProcessor
+		{
+			get { return _crontabProcessor ?? (_crontabProcessor = new CrontabProcessor(Settings.CrontabExpression)); }
+			set
+			{
+				if (value == null)
+					throw new ArgumentNullException("value");
+
+				_crontabProcessor = value;
+			}
+		}
+
 		#region Service process control
 
 		/// <summary>
@@ -84,12 +100,7 @@ namespace Simplify.WindowsServices
 
 			if (!string.IsNullOrEmpty(Settings.CrontabExpression))
 			{
-				_schedule = CrontabSchedule.TryParse(Settings.CrontabExpression);
-
-				if (_schedule == null)
-					throw new ServiceInitializationException(string.Format("Crontab expression parsing failed, expression: '{0}'", Settings.CrontabExpression));
-
-				_nextOccurrence = _schedule.GetNextOccurrence(TimeProvider.Current.Now);
+				CrontabProcessor.CalculateNextOccurrences();
 
 				_timer = new Timer(OnCronTimerTick, null, 1000, 60000);
 			}
@@ -117,13 +128,9 @@ namespace Simplify.WindowsServices
 
 		private void OnCronTimerTick(object state)
 		{
-			var currentTime = TimeProvider.Current.Now;
+			if (!CrontabProcessor.IsMatching()) return;
 
-			if (_nextOccurrence.Year != currentTime.Year || _nextOccurrence.Month != currentTime.Month ||
-				_nextOccurrence.Day != currentTime.Day || _nextOccurrence.Hour != currentTime.Hour ||
-				_nextOccurrence.Minute != currentTime.Minute) return;
-
-			_nextOccurrence = _schedule.GetNextOccurrence(currentTime);
+			CrontabProcessor.CalculateNextOccurrences();
 
 			if (_waitProcessFinishEvent != null)
 				return;

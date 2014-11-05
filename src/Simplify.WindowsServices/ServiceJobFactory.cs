@@ -16,11 +16,11 @@
 		{
 			if (configurationSectionName == null)
 			{
-				var type = typeof (T);
+				var type = typeof(T);
 				configurationSectionName = type.Name + "Settings";
 			}
 
-			return new ServiceJob<T>(new ServiceJobSettings(configurationSectionName), invokeMethodName);
+			return new ServiceJob<T>(new ServiceJobSettings(configurationSectionName), new CrontabProcessorFactory(), invokeMethodName);
 		}
 	}
 }
