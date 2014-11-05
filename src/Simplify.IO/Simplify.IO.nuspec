@@ -7,7 +7,7 @@
 		<authors>$author$</authors>
 		<owners>$author$</owners>
 		<projectUrl>https://github.com/i4004/Simplify/tree/master/src/$id$</projectUrl>
-		<iconUrl>https://raw2.github.com/i4004/Simplify/master/Images/Icon.png</iconUrl>
+		<iconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>IO helper functions.</description>
 		<summary>$description$</summary>
