@@ -11,9 +11,7 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Windows services framework with DI.</description>
 		<summary>$description$</summary>
-		<releaseNotes>*Multiple crontab expressions functionality
-* Upgrade to Simplify.DI 1.0.3
-		</releaseNotes>
+		<releaseNotes>SingleTask service handler converted to use multitask with single job (fixing bug from version 2.1.0)</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET windows-service DI</tags>
