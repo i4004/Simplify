@@ -1,4 +1,7 @@
-﻿namespace Simplify.WindowsServices
+﻿using System.Reflection;
+using Simplify.System;
+
+namespace Simplify.WindowsServices
 {
 	/// <summary>
 	/// Provides class which runs as a windows service and periodically creates a class instance of specified type and launches it in separated thread
@@ -13,6 +16,9 @@
 		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
 		public SingleTaskServiceHandler(bool automaticallyRegisterUserType = false)
 		{
+			var assemblyInfo = new AssemblyInfo(Assembly.GetCallingAssembly());
+			ServiceName = assemblyInfo.Title;
+
 			AddJob<T>("ServiceSettings", "Run", automaticallyRegisterUserType);
 		}
 	}
