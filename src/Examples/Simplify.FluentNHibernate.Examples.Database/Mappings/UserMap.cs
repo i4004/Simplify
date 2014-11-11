@@ -15,7 +15,7 @@ namespace Simplify.FluentNHibernate.Examples.Database.Mappings
 			Map(x => x.Name);
 			Map(x => x.Password);
 			Map(x => x.EMail);
-			References(x => x.City, "CityID");
+			References(x => x.City);
 			Map(x => x.LastActivityTime);
 		}
 	}

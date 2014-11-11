@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
-
+using FluentNHibernate.Conventions;
 using NHibernate;
 using NHibernate.Driver;
 using NHibernate.SqlCommand;
@@ -22,7 +22,7 @@ namespace Simplify.FluentNHibernate
 		/// </summary>
 		/// <param name="configuration">The fluentNHibernate configuration.</param>
 		/// <param name="configSectionName">Configuration section name in App.config or Web.config file</param>
-		public static void InitializeFromConfigOracleClient(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
+		public static FluentConfiguration InitializeFromConfigOracleClient(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
 		{
 			if (configuration == null) throw new ArgumentNullException("configuration");
 
@@ -39,6 +39,8 @@ namespace Simplify.FluentNHibernate
 
 			if(settings.ShowSql)
 				configuration.ExposeConfiguration(x => x.SetInterceptor(new SqlStatementInterceptor()));
+
+			return configuration;
 		}
 
 		/// <summary>
@@ -46,7 +48,7 @@ namespace Simplify.FluentNHibernate
 		/// </summary>
 		/// <param name="configuration">The fluentNHibernate configuration.</param>
 		/// <param name="configSectionName">Configuration section name in App.config or Web.config file</param>
-		public static void InitializeFromConfigOracleOdpNetNative(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
+		public static FluentConfiguration InitializeFromConfigOracleOdpNetNative(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
 		{
 			if (configuration == null) throw new ArgumentNullException("configuration");
 
@@ -64,6 +66,8 @@ namespace Simplify.FluentNHibernate
 
 			if (settings.ShowSql)
 				configuration.ExposeConfiguration(x => x.SetInterceptor(new SqlStatementInterceptor()));
+
+			return configuration;
 		}
 
 		/// <summary>
@@ -71,7 +75,7 @@ namespace Simplify.FluentNHibernate
 		/// </summary>
 		/// <param name="configuration">The fluentNHibernate configuration.</param>
 		/// <param name="configSectionName">Configuration section name in App.config or Web.config file</param>
-		public static void InitializeFromConfigOracleOdpNet(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
+		public static FluentConfiguration InitializeFromConfigOracleOdpNet(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
 		{
 			if (configuration == null) throw new ArgumentNullException("configuration");
 			
@@ -89,6 +93,8 @@ namespace Simplify.FluentNHibernate
 
 			if (settings.ShowSql)
 				configuration.ExposeConfiguration(x => x.SetInterceptor(new SqlStatementInterceptor()));
+
+			return configuration;
 		}
 
 		/// <summary>
@@ -96,7 +102,7 @@ namespace Simplify.FluentNHibernate
 		/// </summary>
 		/// <param name="configuration">The fluentNHibernate configuration.</param>
 		/// <param name="configSectionName">Configuration section name in App.config or Web.config file</param>
-		public static void InitializeFromConfigMySql(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
+		public static FluentConfiguration InitializeFromConfigMySql(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
 		{
 			if (configuration == null) throw new ArgumentNullException("configuration");
 			
@@ -112,6 +118,8 @@ namespace Simplify.FluentNHibernate
 
 			if (settings.ShowSql)
 				configuration.ExposeConfiguration(x => x.SetInterceptor(new SqlStatementInterceptor()));
+
+			return configuration;
 		}
 
 		/// <summary>
@@ -119,7 +127,7 @@ namespace Simplify.FluentNHibernate
 		/// </summary>
 		/// <param name="configuration">The fluentNHibernate configuration.</param>
 		/// <param name="configSectionName">Configuration section name in App.config or Web.config file</param>
-		public static void InitializeFromConfigMsSql(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
+		public static FluentConfiguration InitializeFromConfigMsSql(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
 		{
 			if (configuration == null) throw new ArgumentNullException("configuration");
 			
@@ -135,6 +143,8 @@ namespace Simplify.FluentNHibernate
 
 			if (settings.ShowSql)
 				configuration.ExposeConfiguration(x => x.SetInterceptor(new SqlStatementInterceptor()));
+
+			return configuration;
 		}
 
 		/// <summary>
@@ -142,7 +152,7 @@ namespace Simplify.FluentNHibernate
 		/// </summary>
 		/// <param name="configuration">The fluentNHibernate configuration.</param>
 		/// <param name="configSectionName">Configuration section name in App.config or Web.config file</param>
-		public static void InitializeFromConfigPostgreSql(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
+		public static FluentConfiguration InitializeFromConfigPostgreSql(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
 		{
 			if (configuration == null) throw new ArgumentNullException("configuration");
 
@@ -158,6 +168,8 @@ namespace Simplify.FluentNHibernate
 
 			if (settings.ShowSql)
 				configuration.ExposeConfiguration(x => x.SetInterceptor(new SqlStatementInterceptor()));
+
+			return configuration;
 		}
 
 		/// <summary>
@@ -166,7 +178,7 @@ namespace Simplify.FluentNHibernate
 		/// <param name="configuration">The fluentNHibernate configuration.</param>
 		/// <param name="fileName">Name of the SqLite database file.</param>
 		/// <param name="showSql">if set to <c>true</c> then all executed SQL queries will be shown in trace window.</param>
-		public static void InitializeFromConfigSqLite(this FluentConfiguration configuration, string fileName, bool showSql = false)
+		public static FluentConfiguration InitializeFromConfigSqLite(this FluentConfiguration configuration, string fileName, bool showSql = false)
 		{
 			if (configuration == null) throw new ArgumentNullException("configuration");
 
@@ -176,6 +188,8 @@ namespace Simplify.FluentNHibernate
 
 			if (showSql)
 				configuration.ExposeConfiguration(x => x.SetInterceptor(new SqlStatementInterceptor()));
+
+			return configuration;
 		}
 
 		/// <summary>
@@ -183,7 +197,7 @@ namespace Simplify.FluentNHibernate
 		/// </summary>
 		/// <param name="configuration">The fluentNHibernate configuration.</param>
 		/// <param name="showSql">if set to <c>true</c> then all executed SQL queries will be shown in trace window.</param>
-		public static void InitializeFromConfigSqLiteInMemory(this FluentConfiguration configuration, bool showSql = false)
+		public static FluentConfiguration InitializeFromConfigSqLiteInMemory(this FluentConfiguration configuration, bool showSql = false)
 		{
 			if (configuration == null) throw new ArgumentNullException("configuration");
 
@@ -193,6 +207,8 @@ namespace Simplify.FluentNHibernate
 
 			if (showSql)
 				configuration.ExposeConfiguration(x => x.SetInterceptor(new SqlStatementInterceptor()));
+
+			return configuration;
 		}
 
 		/// <summary>
@@ -200,13 +216,18 @@ namespace Simplify.FluentNHibernate
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="configuration">The fluentNHibernate configuration.</param>
-		public static void AddMappingsFromAssemblyOf<T>(this FluentConfiguration configuration)
+		/// <param name="conventions">The conventions.</param>
+		/// <returns></returns>
+		/// <exception cref="System.ArgumentNullException">configuration</exception>
+		public static FluentConfiguration AddMappingsFromAssemblyOf<T>(this FluentConfiguration configuration, params IConvention[] conventions)
 		{
 			if (configuration == null) throw new ArgumentNullException("configuration");
 
 			configuration.Mappings(m => m.FluentMappings
 				.AddFromAssemblyOf<T>()
-				.Conventions.Add());
+				.Conventions.Add(conventions));
+
+			return configuration;
 		}
 
 		/// <summary>

@@ -1,5 +1,5 @@
 ﻿using FluentNHibernate.Cfg;
-
+using FluentNHibernate.Conventions.Helpers;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 
@@ -12,13 +12,14 @@ namespace Simplify.FluentNHibernate.Tests
 {
 	[TestFixture]
 	public class SessionExtensionsTests
-    {
+	{
 		[Test]
 		public void SessionExtensions_Usage_WorkingIsCorrect()
 		{
-			var configuration = Fluently.Configure();
-			configuration.InitializeFromConfigSqLiteInMemory(true);
-			configuration.AddMappingsFromAssemblyOf<UserMap>();
+			var configuration =
+				Fluently.Configure()
+				.InitializeFromConfigSqLiteInMemory(true)
+				.AddMappingsFromAssemblyOf<UserMap>(PrimaryKey.Name.Is(x => "ID"));
 
 			Configuration config = null;
 			configuration.ExposeConfiguration(c => config = c);
