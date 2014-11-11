@@ -11,7 +11,7 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>$description$</description>
 		<summary>$description$</summary>
-		<releaseNotes>Upgrade to DryIOC 1.4.1</releaseNotes>
+		<releaseNotes>Default lifetimeType for registrations is set to PerLifetimeScope</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET DI IOC-container</tags>

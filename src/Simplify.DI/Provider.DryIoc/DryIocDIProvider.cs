@@ -44,7 +44,7 @@ namespace Simplify.DI.Provider.DryIoc
 		/// <param name="serviceType">Service type.</param>
 		/// <param name="implementationType">Implementation type.</param>
 		/// <param name="lifetimeType">Lifetime type of the registering services type.</param>
-		public void Register(Type serviceType, Type implementationType, LifetimeType lifetimeType = LifetimeType.Singleton)
+		public void Register(Type serviceType, Type implementationType, LifetimeType lifetimeType = LifetimeType.PerLifetimeScope)
 		{
 			switch (lifetimeType)
 			{
@@ -69,7 +69,7 @@ namespace Simplify.DI.Provider.DryIoc
 		/// <param name="instanceCreator">The instance creator.</param>
 		/// <param name="lifetimeType">Lifetime type of the registering concrete type.</param>
 		public void Register<TService>(Func<IDIContainerProvider, TService> instanceCreator,
-			LifetimeType lifetimeType = LifetimeType.Singleton)
+			LifetimeType lifetimeType = LifetimeType.PerLifetimeScope)
 			where TService : class 
 		{
 			switch (lifetimeType)
