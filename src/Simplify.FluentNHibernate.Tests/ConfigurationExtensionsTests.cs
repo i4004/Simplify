@@ -6,7 +6,7 @@ namespace Simplify.FluentNHibernate.Tests
 {
 	[TestFixture]
 	public class ConfigurationExtensionsTests
-    {
+	{
 		[Test]
 		public void ConfigurationExtensions_InitializeFromConfig_InitializedCorrectly()
 		{

@@ -11,7 +11,7 @@ namespace Simplify.FluentNHibernate.Examples.Database.Mappings
 			Table("Cities");
 
 			Id(x => x.ID);
-			
+
 			HasMany(x => x.CityNames)
 				.KeyColumn("CityID")
 				.Inverse()
