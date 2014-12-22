@@ -13,17 +13,32 @@ namespace Simplify.FluentNHibernate
 	/// </summary>
 	public static class SessionExtensions
 	{
-		#region Native objects operations
+		#region Single objects operations
 
 		/// <summary>
 		/// Get object from single item table
 		/// </summary>
 		/// <typeparam name="T">Object type to get</typeparam>
+		/// <param name="session">The session.</param>
 		/// <returns></returns>
 		public static T GetSingleObject<T>(this ISession session)
 			where T : class
 		{
+			return GetSingleObject<T>(session, LockMode.None);
+		}
+
+		/// <summary>
+		/// Get object from single item table
+		/// </summary>
+		/// <typeparam name="T">Object type to get</typeparam>
+		/// <param name="session">The session.</param>
+		/// <param name="lockMode">The lock mode.</param>
+		/// <returns></returns>
+		public static T GetSingleObject<T>(this ISession session, LockMode lockMode)
+			where T : class
+		{
 			return session.CreateCriteria<T>()
+				.SetLockMode(lockMode)
 				.UniqueResult<T>();
 		}
 
