@@ -12,9 +12,9 @@
 		<description>$description$</description>
 		<summary>$description$</summary>
 		<releaseNotes>
-			* AddMappingsFromAssemblyOf convensions parameter added
-			* InitializeFromConfig* functions now return FluentConfiguration to use as fluent interfaces
-			* Upgrade to NHibernate.3.3.4.4000, Iesi.Collections.3.3.4.4000
+			* Upgrade to FluentNHibernate 2.0.1, NHibernate 4.0.2.4000, Iesi.Collections 4.0.1.4000
+			* Lock mode parameter added to GetSingleObject
+			* Switched to nhibernate OracleManagedDataClientDriver class in InitializeFromConfigOracleOdpNet
 		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
