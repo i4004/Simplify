@@ -91,8 +91,9 @@ namespace Simplify.WindowsServices
 
 			job.CrontabProcessor.CalculateNextOccurrences();
 
-			if (_jobsInWork.ContainsKey(job))
-				return;
+			lock (_jobsInWork)
+				if (_jobsInWork.ContainsKey(job))
+					return;
 
 			OnStartWork(state);
 		}
