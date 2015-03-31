@@ -27,6 +27,11 @@ namespace Simplify.WindowsServices.Jobs
 
 			if(!string.IsNullOrEmpty(processingInterval))
 				ProcessingInterval = int.Parse(processingInterval);
+
+			var cleanupOnTaskFinish = config["CleanupOnTaskFinish"];
+
+			if (!string.IsNullOrEmpty(cleanupOnTaskFinish))
+				CleanupOnTaskFinish = bool.Parse(cleanupOnTaskFinish);
 		}
 
 		/// <summary>
@@ -44,5 +49,10 @@ namespace Simplify.WindowsServices.Jobs
 		/// The service processing interval (sec).
 		/// </value>
 		public int ProcessingInterval { get; private set; }
+
+		/// <summary>
+		/// Gets a value indicating whether GC.Collect will be executed on on task finish.
+		/// </summary>
+		public bool CleanupOnTaskFinish { get; private set; }
 	}
 }

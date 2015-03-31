@@ -133,6 +133,9 @@ namespace Simplify.WindowsServices
 			}
 			finally
 			{
+				if(job.Settings.CleanupOnTaskFinish)
+					GC.Collect();
+
 				lock (_jobsInWork)
 					_jobsInWork.Remove(job);
 			}

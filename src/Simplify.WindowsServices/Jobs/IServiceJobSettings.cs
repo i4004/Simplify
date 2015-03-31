@@ -20,5 +20,10 @@
 		/// The service processing interval (sec).
 		/// </value>
 		int ProcessingInterval { get; }
+
+		/// <summary>
+		/// Gets a value indicating whether GC.Collect will be executed on on task finish.
+		/// </summary>
+		bool CleanupOnTaskFinish { get; }
 	}
 }
