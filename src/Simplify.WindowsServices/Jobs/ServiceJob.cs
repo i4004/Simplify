@@ -2,8 +2,9 @@
 using System.Linq;
 using System.Reflection;
 using System.Threading;
+using Simplify.WindowsServices.Jobs.Crontab;
 
-namespace Simplify.WindowsServices
+namespace Simplify.WindowsServices.Jobs
 {
 	/// <summary>
 	/// Provides service job

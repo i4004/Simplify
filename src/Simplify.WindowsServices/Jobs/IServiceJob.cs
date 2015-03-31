@@ -1,8 +1,9 @@
 using System;
 using System.Reflection;
 using System.Threading;
+using Simplify.WindowsServices.Jobs.Crontab;
 
-namespace Simplify.WindowsServices
+namespace Simplify.WindowsServices.Jobs
 {
 	/// <summary>
 	/// Represent service job

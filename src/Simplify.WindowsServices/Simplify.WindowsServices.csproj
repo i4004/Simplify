@@ -76,13 +76,13 @@
     <Compile Include="BasicServiceHandler.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrontabProcessor.cs" />
-    <Compile Include="CrontabProcessorFactory.cs" />
-    <Compile Include="ICrontabProcessor.cs" />
-    <Compile Include="ICrontabProcessorFactory.cs" />
-    <Compile Include="IServiceJob.cs" />
-    <Compile Include="IServiceJobFactory.cs" />
-    <Compile Include="IServiceJobSettings.cs" />
+    <Compile Include="Jobs\Crontab\CrontabProcessor.cs" />
+    <Compile Include="Jobs\Crontab\CrontabProcessorFactory.cs" />
+    <Compile Include="Jobs\Crontab\ICrontabProcessor.cs" />
+    <Compile Include="Jobs\Crontab\ICrontabProcessorFactory.cs" />
+    <Compile Include="Jobs\IServiceJob.cs" />
+    <Compile Include="Jobs\IServiceJobFactory.cs" />
+    <Compile Include="Jobs\IServiceJobSettings.cs" />
     <Compile Include="MultitaskServiceHandler.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -92,9 +92,9 @@
     <Compile Include="ServiceInstallerBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ServiceJob.cs" />
-    <Compile Include="ServiceJobFactory.cs" />
-    <Compile Include="ServiceJobSettings.cs" />
+    <Compile Include="Jobs\ServiceJob.cs" />
+    <Compile Include="Jobs\ServiceJobFactory.cs" />
+    <Compile Include="Jobs\ServiceJobSettings.cs" />
     <Compile Include="SingleTaskServiceHandler.cs">
       <SubType>Component</SubType>
     </Compile>

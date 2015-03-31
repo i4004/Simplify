@@ -6,6 +6,7 @@ using System.ServiceProcess;
 using System.Threading.Tasks;
 using Simplify.DI;
 using Simplify.System;
+using Simplify.WindowsServices.Jobs;
 
 namespace Simplify.WindowsServices
 {

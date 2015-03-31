@@ -1,4 +1,4 @@
-﻿namespace Simplify.WindowsServices
+﻿namespace Simplify.WindowsServices.Jobs
 {
 	/// <summary>
 	/// Represent service job factory

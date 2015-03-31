@@ -4,7 +4,7 @@ using System.Linq;
 using NCrontab;
 using Simplify.System;
 
-namespace Simplify.WindowsServices
+namespace Simplify.WindowsServices.Jobs.Crontab
 {
 	/// <summary>
 	/// Providers multiple crontab schedules processor

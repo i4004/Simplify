@@ -1,4 +1,6 @@
-﻿namespace Simplify.WindowsServices
+﻿using Simplify.WindowsServices.Jobs.Crontab;
+
+namespace Simplify.WindowsServices.Jobs
 {
 	/// <summary>
 	/// Provides service job factory

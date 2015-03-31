@@ -1,4 +1,4 @@
-﻿namespace Simplify.WindowsServices
+﻿namespace Simplify.WindowsServices.Jobs
 {
 	/// <summary>
 	/// Represent windows-service job settings

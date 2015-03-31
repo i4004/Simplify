@@ -1,4 +1,4 @@
-﻿namespace Simplify.WindowsServices
+﻿namespace Simplify.WindowsServices.Jobs.Crontab
 {
 	/// <summary>
 	/// Represent crontab processor factory
