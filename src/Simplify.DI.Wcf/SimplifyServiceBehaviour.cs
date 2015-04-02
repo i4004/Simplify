@@ -41,11 +41,10 @@ namespace Simplify.DI.Wcf
 		/// <param name="serviceHostBase">The host that is currently being built.</param>
 		public void ApplyDispatchBehavior(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase)
 		{
-			var instanceProvider = new SimplifyInstanceProvider(serviceDescription.ServiceType);
 			var endpointDispatchers = GetEndpointDispatchersForImplementedContracts(serviceDescription, serviceHostBase);
 
 			foreach (var endpointDispatcher in endpointDispatchers)
-				endpointDispatcher.DispatchRuntime.InstanceProvider = instanceProvider;
+				endpointDispatcher.DispatchRuntime.InstanceProvider = new SimplifyInstanceProvider(serviceDescription.ServiceType);
 		}
 
 		private static IEnumerable<EndpointDispatcher> GetEndpointDispatchersForImplementedContracts(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase)
