@@ -103,9 +103,9 @@
     <Reference Include="NCrontab">
       <HintPath>..\packages\ncrontab.2.0.0\lib\net20\NCrontab.dll</HintPath>
     </Reference>
-    <Reference Include="Simplify.DI, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Simplify.DI, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Simplify.DI.1.0.3.0\lib\net45\Simplify.DI.dll</HintPath>
+      <HintPath>..\packages\Simplify.DI.1.0.4.0\lib\net45\Simplify.DI.dll</HintPath>
     </Reference>
     <Reference Include="Simplify.System">
       <HintPath>..\packages\Simplify.System.1.0.0.0\lib\net45\Simplify.System.dll</HintPath>
