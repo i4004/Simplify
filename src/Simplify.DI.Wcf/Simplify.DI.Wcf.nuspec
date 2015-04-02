@@ -16,4 +16,7 @@
 		<language>en-US</language>
 		<tags>.NET DI IOC-container</tags>
 	</metadata>
+	<files>
+		<file src="readme.txt" />
+	</files>
 </package>
