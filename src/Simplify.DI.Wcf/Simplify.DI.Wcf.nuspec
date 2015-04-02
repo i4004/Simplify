@@ -17,6 +17,6 @@
 		<tags>.NET DI IOC-container</tags>
 	</metadata>
 	<files>
-		<file src="Readme.txt" target="Readme.txt" />
+		<file src="Readme.txt" target="" />
 	</files>
 </package>
