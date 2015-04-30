@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DIContainer.cs" />
+    <Compile Include="DryIoc\AsyncExecutionFlowScopeContext.cs" />
     <Compile Include="DryIoc\InternalsVisibleToDryIocFactoryCompilerDynamicAssembly.cs" />
     <Compile Include="Provider.DryIoc\DryIocDIProvider.cs" />
     <Compile Include="Provider.DryIoc\DryIocLifetimeScope.cs" />

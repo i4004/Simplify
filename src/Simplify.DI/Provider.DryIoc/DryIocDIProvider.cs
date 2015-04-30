@@ -8,12 +8,12 @@ namespace Simplify.DI.Provider.DryIoc
 	/// </summary>
 	public class DryIocDIProvider : IDIContainerProvider
 	{
-		private Container _container;
+		private IContainer _container;
 
 		/// <summary>
 		/// The IOC container
 		/// </summary>
-		public Container Container
+		public IContainer Container
 		{
 			get
 			{
