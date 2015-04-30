@@ -97,6 +97,33 @@ namespace Simplify.Mail
 		}
 
 		/// <summary>
+		/// Send single e-mail.
+		/// </summary>
+		/// <param name="client">Smtp client.</param>
+		/// <param name="mailMessage">The mail message.</param>
+		/// <param name="bodyForAntiSpam">Part of an e-mail body just for anti-spam checking</param>
+		public void Send(SmtpClient client, MailMessage mailMessage, string bodyForAntiSpam = null)
+		{
+			lock (_locker)
+			{
+				if (CheckAntiSpamPool(bodyForAntiSpam ?? mailMessage.Body))
+					return;
+
+				client.Send(mailMessage);
+			}
+		}
+
+		/// <summary>
+		/// Send single e-mail
+		/// </summary>
+		/// <param name="mailMessage">The mail message.</param>
+		/// <param name="bodyForAntiSpam">Part of an e-mail body just for anti-spam checking</param>
+		public void Send(MailMessage mailMessage, string bodyForAntiSpam = null)
+		{
+			Send(SmtpClient, mailMessage, bodyForAntiSpam);
+		}
+
+		/// <summary>
 		/// Send single e-mail
 		/// </summary>
 		/// <param name="client">Smtp client</param>
@@ -132,7 +159,7 @@ namespace Simplify.Mail
 		}
 
 		/// <summary>
-		/// Send single e-mail using config SMTP user name and password
+		/// Send single e-mail
 		/// </summary>
 		/// <param name="from">From mail address</param>
 		/// <param name="to">Recipient e-mail address</param>

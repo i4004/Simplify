@@ -26,6 +26,21 @@ namespace Simplify.Mail
 		SmtpClient SmtpClient { get; }
 
 		/// <summary>
+		/// Send single e-mail.
+		/// </summary>
+		/// <param name="client">Smtp client.</param>
+		/// <param name="mailMessage">The mail message.</param>
+		/// <param name="bodyForAntiSpam">Part of an e-mail body just for anti-spam checking</param>
+		void Send(SmtpClient client, MailMessage mailMessage, string bodyForAntiSpam = null);
+
+		/// <summary>
+		/// Send single e-mail
+		/// </summary>
+		/// <param name="mailMessage">The mail message.</param>
+		/// <param name="bodyForAntiSpam">Part of an e-mail body just for anti-spam checking</param>
+		void Send(MailMessage mailMessage, string bodyForAntiSpam = null);
+
+		/// <summary>
 		/// Send single e-mail
 		/// </summary>
 		/// <param name="client">Smtp client</param>
