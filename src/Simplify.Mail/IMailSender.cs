@@ -14,13 +14,7 @@ namespace Simplify.Mail
 		MailSenderSettings Settings { get; }
 
 		/// <summary>
-		/// Get SMTP client with server parameters from config file and current user credentials
-		/// </summary>
-		/// <returns></returns>
-		SmtpClient SmtpClientCurrentUser { get; }
-
-		/// <summary>
-		/// Get SMTP client with credentials and server parameters from config file
+		/// Get current SMTP client
 		/// </summary>
 		/// <returns></returns>
 		SmtpClient SmtpClient { get; }

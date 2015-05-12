@@ -87,14 +87,7 @@ namespace Simplify.Mail
 				SmtpServerPortNumber = int.Parse(smtpServerPortNumberString);
 
 			SmtpUserName = config["SmtpUserName"];
-
-			if (string.IsNullOrEmpty(SmtpUserName))
-				throw new MailSenderException("MailSenderSettings SmtpUserName is empty or missing from config file.");
-
 			SmtpUserPassword = config["SmtpUserPassword"];
-
-			if (string.IsNullOrEmpty(SmtpUserPassword))
-				throw new MailSenderException("MailSenderSettings SmtpUserPassword is empty or missing from config file.");
 		}
 		
 		private void LoadExtraSettings(NameValueCollection config)

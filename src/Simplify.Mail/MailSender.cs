@@ -34,8 +34,7 @@ namespace Simplify.Mail
 
 		private readonly object _locker = new object();
 
-		private SmtpClient _smtpClientInstance;
-		private SmtpClient _fullSmtpClientInstance;
+		private SmtpClient _smtpClient;
 
 		private readonly Dictionary<string, DateTime> _antiSpamPool = new Dictionary<string, DateTime>();
 
@@ -54,23 +53,7 @@ namespace Simplify.Mail
 		public MailSenderSettings Settings { get; private set; }
 
 		/// <summary>
-		/// Get SMTP client with server parameters from config file and current user credentials
-		/// </summary>
-		/// <returns></returns>
-		public SmtpClient SmtpClientCurrentUser
-		{
-			get
-			{
-				return _smtpClientInstance ??
-				       (_smtpClientInstance = new SmtpClient(Settings.SmtpServerAddress, Settings.SmtpServerPortNumber)
-				       {
-					       EnableSsl = Settings.EnableSsl
-				       });
-			}
-		}
-
-		/// <summary>
-		/// Get SMTP client with credentials and server parameters from config file
+		/// Get current SMTP client
 		/// </summary>
 		/// <returns></returns>
 		public SmtpClient SmtpClient
@@ -79,20 +62,22 @@ namespace Simplify.Mail
 			{
 				lock (_locker)
 				{
-					if (_fullSmtpClientInstance == null)
-					{
-						var basicCredential = new NetworkCredential(Settings.SmtpUserName, Settings.SmtpUserPassword);
+					if (_smtpClient != null)
+						return _smtpClient;
 
-						_fullSmtpClientInstance = new SmtpClient(Settings.SmtpServerAddress, Settings.SmtpServerPortNumber)
-						{
-							UseDefaultCredentials = false,
-							Credentials = basicCredential,
-							EnableSsl = Settings.EnableSsl
-						};
-					}
+					_smtpClient = new SmtpClient(Settings.SmtpServerAddress, Settings.SmtpServerPortNumber)
+					{
+						EnableSsl = Settings.EnableSsl
+					};
+
+					if (string.IsNullOrEmpty(Settings.SmtpUserName))
+						return _smtpClient;
+
+					_smtpClient.UseDefaultCredentials = false;
+					_smtpClient.Credentials = new NetworkCredential(Settings.SmtpUserName, Settings.SmtpUserPassword);
 				}
 
-				return _fullSmtpClientInstance;
+				return _smtpClient;
 			}
 		}
 
