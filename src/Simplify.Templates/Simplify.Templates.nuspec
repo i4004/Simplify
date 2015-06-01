@@ -11,7 +11,11 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Text templates engine.</description>
 		<summary>$description$</summary>
-		<releaseNotes>Upgrade to System.IO.Abstractions 1.4.0.92</releaseNotes>
+		<releaseNotes>
+			+ IModelSetter and ModelSetter Add() method
+			* Upgrade to System.IO.Abstractions 2.0.0.115
+			* Internal upgrade to Simplify.Xml.Sources.1.0.3
+		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET templates</tags>
