@@ -30,7 +30,7 @@ Packages status
 
 [![NuGet Status](http://nugetstatus.com/Simplify.FluentNHibernate.png)](http://nugetstatus.com/packages/Simplify.FluentNHibernate) [![Nuget version](http://img.shields.io/badge/Simplify.FluentNHibernate-v1.2-blue.png)](https://www.nuget.org/packages/Simplify.FluentNHibernate/)
 
-[![NuGet Status](http://nugetstatus.com/Simplify.Mail.png)](http://nugetstatus.com/packages/Simplify.Mail) [![Nuget version](http://img.shields.io/badge/Simplify.Mail-v1.2-blue.png)](https://www.nuget.org/packages/Simplify.Mail/)
+[![NuGet Status](http://nugetstatus.com/Simplify.Mail.png)](http://nugetstatus.com/packages/Simplify.Mail) [![Nuget version](http://img.shields.io/badge/Simplify.Mail-v1.3-blue.png)](https://www.nuget.org/packages/Simplify.Mail/)
 
 [![NuGet Status](http://nugetstatus.com/Simplify.Log.png)](http://nugetstatus.com/packages/Simplify.Log) [![Nuget version](http://img.shields.io/badge/Simplify.Log-v1.0.4-blue.png)](https://www.nuget.org/packages/Simplify.Log/)
 
@@ -38,7 +38,7 @@ Packages status
 
 [![NuGet Status](http://nugetstatus.com/Simplify.System.Sources.png)](http://nugetstatus.com/packages/Simplify.System.Sources) [![Nuget version](http://img.shields.io/badge/Simplify.System.Sources-v1-blue.png)](https://www.nuget.org/packages/Simplify.System.Sources/)
 
-[![NuGet Status](http://nugetstatus.com/Simplify.Templates.png)](http://nugetstatus.com/packages/Simplify.Templates) [![Nuget version](http://img.shields.io/badge/Simplify.Templates-v1.1.2-blue.png)](https://www.nuget.org/packages/Simplify.Templates/)
+[![NuGet Status](http://nugetstatus.com/Simplify.Templates.png)](http://nugetstatus.com/packages/Simplify.Templates) [![Nuget version](http://img.shields.io/badge/Simplify.Templates-v1.2-blue.png)](https://www.nuget.org/packages/Simplify.Templates/)
 
 [![NuGet Status](http://nugetstatus.com/Simplify.WindowsServices.png)](http://nugetstatus.com/packages/Simplify.WindowsServices) [![Nuget version](http://img.shields.io/badge/Simplify.WindowsServices-v2.1.2-blue.png)](https://www.nuget.org/packages/Simplify.WindowsServices/)
 
