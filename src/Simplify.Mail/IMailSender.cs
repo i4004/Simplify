@@ -11,7 +11,7 @@ namespace Simplify.Mail
 		/// <summary>
 		/// MailSender settings
 		/// </summary>
-		MailSenderSettings Settings { get; }
+		IMailSenderSettings Settings { get; }
 
 		/// <summary>
 		/// Get current SMTP client

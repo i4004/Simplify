@@ -50,7 +50,7 @@ namespace Simplify.Mail
 		/// <summary>
 		/// MailSender settings
 		/// </summary>
-		public MailSenderSettings Settings { get; private set; }
+		public IMailSenderSettings Settings { get; private set; }
 
 		/// <summary>
 		/// Get current SMTP client

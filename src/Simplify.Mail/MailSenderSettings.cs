@@ -6,7 +6,7 @@ namespace Simplify.Mail
 	/// <summary>
 	/// Represents MailSender settings
 	/// </summary>
-	public sealed class MailSenderSettings
+	public sealed class MailSenderSettings : IMailSenderSettings
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MailSenderSettings"/> class.
