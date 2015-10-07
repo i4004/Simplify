@@ -12,9 +12,7 @@
 		<description>$description$</description>
 		<summary>$description$</summary>
 		<releaseNotes>
-			* Upgrade to FluentNHibernate 2.0.1, NHibernate 4.0.2.4000, Iesi.Collections 4.0.1.4000
-			* Lock mode parameter added to GetSingleObject
-			* Switched to nhibernate OracleManagedDataClientDriver class in InitializeFromConfigOracleOdpNet
+			* Upgrade to FluentNHibernate 2.0.3, NHibernate 4.0.4.4000
 		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
