@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Log", "Simplify.Log\Simplify.Log.csproj", "{DA27C4E4-081C-4BF6-B6EF-0D1C093450E4}"
 EndProject
@@ -79,6 +79,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.DI.Tests", "Simplify.DI.Tests\Simplify.DI.Tests.csproj", "{E9625FD9-A982-4C83-9835-25E99BBB724C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Simplify.DI Projects", "Simplify.DI Projects", "{2D619A98-03A6-434F-B8CA-4473D4F8C52A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.DI.Provider.SimpleInjector.Tests", "Simplify.DI.Provider.SimpleInjector.Tests\Simplify.DI.Provider.SimpleInjector.Tests.csproj", "{402D19B5-578C-4C05-A77C-FDCB4417C54D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.DI.Provider.CastleWindsor.Tests", "Simplify.DI.Provider.CastleWindsor.Tests\Simplify.DI.Provider.CastleWindsor.Tests.csproj", "{4622E1B8-F5FF-4B20-BA40-ECCEFA6E568D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -270,6 +274,22 @@ Global
 		{E9625FD9-A982-4C83-9835-25E99BBB724C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9625FD9-A982-4C83-9835-25E99BBB724C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E9625FD9-A982-4C83-9835-25E99BBB724C}.Release|x64.ActiveCfg = Release|Any CPU
+		{402D19B5-578C-4C05-A77C-FDCB4417C54D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{402D19B5-578C-4C05-A77C-FDCB4417C54D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{402D19B5-578C-4C05-A77C-FDCB4417C54D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{402D19B5-578C-4C05-A77C-FDCB4417C54D}.Debug|x64.Build.0 = Debug|Any CPU
+		{402D19B5-578C-4C05-A77C-FDCB4417C54D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{402D19B5-578C-4C05-A77C-FDCB4417C54D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{402D19B5-578C-4C05-A77C-FDCB4417C54D}.Release|x64.ActiveCfg = Release|Any CPU
+		{402D19B5-578C-4C05-A77C-FDCB4417C54D}.Release|x64.Build.0 = Release|Any CPU
+		{4622E1B8-F5FF-4B20-BA40-ECCEFA6E568D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4622E1B8-F5FF-4B20-BA40-ECCEFA6E568D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4622E1B8-F5FF-4B20-BA40-ECCEFA6E568D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4622E1B8-F5FF-4B20-BA40-ECCEFA6E568D}.Debug|x64.Build.0 = Debug|Any CPU
+		{4622E1B8-F5FF-4B20-BA40-ECCEFA6E568D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4622E1B8-F5FF-4B20-BA40-ECCEFA6E568D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4622E1B8-F5FF-4B20-BA40-ECCEFA6E568D}.Release|x64.ActiveCfg = Release|Any CPU
+		{4622E1B8-F5FF-4B20-BA40-ECCEFA6E568D}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -284,5 +304,7 @@ Global
 		{5CA3660E-F7C0-4382-8121-23F8F551C88E} = {2D057C2A-06BD-48F2-A075-B6EC42D39007}
 		{E62E8148-E29B-4933-A336-5D3740FEB8CB} = {2D619A98-03A6-434F-B8CA-4473D4F8C52A}
 		{E9625FD9-A982-4C83-9835-25E99BBB724C} = {2D619A98-03A6-434F-B8CA-4473D4F8C52A}
+		{402D19B5-578C-4C05-A77C-FDCB4417C54D} = {2D619A98-03A6-434F-B8CA-4473D4F8C52A}
+		{4622E1B8-F5FF-4B20-BA40-ECCEFA6E568D} = {2D619A98-03A6-434F-B8CA-4473D4F8C52A}
 	EndGlobalSection
 EndGlobal
