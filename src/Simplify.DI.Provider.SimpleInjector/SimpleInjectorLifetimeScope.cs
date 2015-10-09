@@ -1,5 +1,4 @@
 ﻿using SimpleInjector;
-using SimpleInjector.Extensions.LifetimeScoping;
 
 namespace Simplify.DI.Provider.SimpleInjector
 {
@@ -8,7 +7,7 @@ namespace Simplify.DI.Provider.SimpleInjector
 	/// </summary>
 	public class SimpleInjectorLifetimeScope : ILifetimeScope
 	{
-		private readonly LifetimeScope _scope;
+		private readonly Scope _scope;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="SimpleInjectorLifetimeScope"/> class.

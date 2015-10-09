@@ -18,7 +18,8 @@ namespace Simplify.DI.Provider.SimpleInjector
 		{
 			get
 			{
-				return _container ?? (_container = new Container());
+				return _container ??
+				       (_container = new Container {Options = {DefaultScopedLifestyle = new LifetimeScopeLifestyle()}});
 			}
 			set
 			{
@@ -58,7 +59,7 @@ namespace Simplify.DI.Provider.SimpleInjector
 					break;
 
 				case LifetimeType.PerLifetimeScope:
-					Container.Register(serviceType, implementationType, new LifetimeScopeLifestyle());
+					Container.Register(serviceType, implementationType, Lifestyle.Scoped);
 					break;
 			}
 		}
@@ -83,7 +84,7 @@ namespace Simplify.DI.Provider.SimpleInjector
 					break;
 
 				case LifetimeType.PerLifetimeScope:
-					Container.Register(() => instanceCreator(this), new LifetimeScopeLifestyle());
+					Container.Register(() => instanceCreator(this), Lifestyle.Scoped);
 					break;
 			}
 		}
