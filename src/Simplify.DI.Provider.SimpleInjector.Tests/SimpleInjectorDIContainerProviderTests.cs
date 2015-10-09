@@ -122,7 +122,7 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 
 			_provider.Register<Foo>();
 			_provider.Register<Bar1>(LifetimeType.Singleton);
-			_provider.Register<Bar2>(LifetimeType.Transient);
+			_provider.Register<Bar2>();
 
 			// Act
 
