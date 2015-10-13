@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Simplify.Repository.FluentNHibernate.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Simplify.Repository\Simplify.Repository.csproj">
