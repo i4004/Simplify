@@ -1,7 +1,4 @@
-﻿using System;
-using System.Data;
-
-namespace Simplify.Repository
+﻿namespace Simplify.Repository
 {
 	/// <summary>
 	/// Represent unit of work with auto-open transaction
