@@ -29,11 +29,19 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Simplify.Repository.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ITransactUnitOfWork.cs" />
+    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="IHideObjectMembers.cs" />
+    <Compile Include="IBeginTransactUnitOfWork.cs" />
+    <Compile Include="Model\IIdentityObject.cs" />
+    <Compile Include="Model\INamedObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
