@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Log", "Simplify.Log\Simplify.Log.csproj", "{DA27C4E4-081C-4BF6-B6EF-0D1C093450E4}"
 EndProject
@@ -75,6 +75,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.WindowsServices.MultitaskExample", "Examples\Simplify.WindowsServices.MultitaskExample\Simplify.WindowsServices.MultitaskExample.csproj", "{5CA3660E-F7C0-4382-8121-23F8F551C88E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.DI.Wcf", "Simplify.DI.Wcf\Simplify.DI.Wcf.csproj", "{E62E8148-E29B-4933-A336-5D3740FEB8CB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", "{BA0E0EBA-AA0B-4B25-A19C-B062B45B276C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Repository", "Simplify.Repository\Simplify.Repository.csproj", "{9EB05935-EAD1-4B3C-B758-0AF26338C474}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -260,6 +264,14 @@ Global
 		{E62E8148-E29B-4933-A336-5D3740FEB8CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E62E8148-E29B-4933-A336-5D3740FEB8CB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E62E8148-E29B-4933-A336-5D3740FEB8CB}.Release|x64.ActiveCfg = Release|Any CPU
+		{9EB05935-EAD1-4B3C-B758-0AF26338C474}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EB05935-EAD1-4B3C-B758-0AF26338C474}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EB05935-EAD1-4B3C-B758-0AF26338C474}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9EB05935-EAD1-4B3C-B758-0AF26338C474}.Debug|x64.Build.0 = Debug|Any CPU
+		{9EB05935-EAD1-4B3C-B758-0AF26338C474}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EB05935-EAD1-4B3C-B758-0AF26338C474}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EB05935-EAD1-4B3C-B758-0AF26338C474}.Release|x64.ActiveCfg = Release|Any CPU
+		{9EB05935-EAD1-4B3C-B758-0AF26338C474}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -269,5 +281,6 @@ Global
 		{959DF948-6208-4EA2-BBB8-BA87E6FDCAB7} = {2D057C2A-06BD-48F2-A075-B6EC42D39007}
 		{E18A26A0-ADA6-442C-B01D-12E2EB51AF34} = {2D057C2A-06BD-48F2-A075-B6EC42D39007}
 		{5CA3660E-F7C0-4382-8121-23F8F551C88E} = {2D057C2A-06BD-48F2-A075-B6EC42D39007}
+		{9EB05935-EAD1-4B3C-B758-0AF26338C474} = {BA0E0EBA-AA0B-4B25-A19C-B062B45B276C}
 	EndGlobalSection
 EndGlobal
