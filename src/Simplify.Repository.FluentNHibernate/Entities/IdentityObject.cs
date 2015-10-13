@@ -13,6 +13,6 @@ namespace Simplify.Repository.FluentNHibernate.Entities
 		/// <value>
 		/// The identifier.
 		/// </value>
-		public virtual int ID { get; protected set; }
+		public virtual int ID { get; set; }
 	}
 }
