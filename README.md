@@ -15,10 +15,10 @@ Simplify is a set of .NET framework libraries which provides daily needs functio
 
 ## Build status
 
-| Platform | Status of last build |
-| :------ | :------: |
-| **.NET (4.5)** | [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/kmm7aa2iqp71dcwi/branch/master?svg=true)](https://ci.appveyor.com/project/i4004/simplify) |
-| **Mono (4.2.1)** | [![Travis build status](https://travis-ci.org/i4004/Simplify.png?branch=master)](https://travis-ci.org/i4004/Simplify) |
+| | **.NET (4.5)** | **Mono (4.2.1)** |
+| :------ | :------ | :------: |
+| **master** | [![Build status](https://ci.appveyor.com/api/projects/status/kmm7aa2iqp71dcwi?svg=true)](https://ci.appveyor.com/project/i4004/simplify) | [![Build Status](https://travis-ci.org/i4004/Simplify.svg?branch=master)](https://travis-ci.org/i4004/Simplify) |
+| **develop** | [![Build status](https://ci.appveyor.com/api/projects/status/7m4ts96j155bt5bb?svg=true)](https://ci.appveyor.com/project/i4004/simplify-287) | [![Build Status](https://travis-ci.org/i4004/Simplify.svg?branch=develop)](https://travis-ci.org/i4004/Simplify) |
 
 Packages status
 ===
