@@ -63,18 +63,16 @@
       <HintPath>..\packages\Simplify.FluentNHibernate.1.2.1.0\lib\net45\Simplify.FluentNHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Simplify.Repository, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Simplify.Repository.0.2.0.0\lib\net45\Simplify.Repository.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Simplify.Repository.FluentNHibernate.nuspec" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Simplify.Repository\Simplify.Repository.csproj">
-      <Project>{9eb05935-ead1-4b3c-b758-0af26338c474}</Project>
-      <Name>Simplify.Repository</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

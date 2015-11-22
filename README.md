@@ -15,10 +15,10 @@ Simplify is a set of .NET framework libraries which provides daily needs functio
 
 ## Build status
 
-| Platform | Status of last build |
-| :------ | :------: |
-| **.NET (4.5)** | [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/kmm7aa2iqp71dcwi/branch/master?svg=true)](https://ci.appveyor.com/project/i4004/simplify) |
-| **Mono (3.8.0)** | [![Travis build status](https://travis-ci.org/i4004/Simplify.png?branch=master)](https://travis-ci.org/i4004/Simplify) |
+| | **.NET (4.5)** | **Mono (4.2.1)** |
+| :------ | :------ | :------: |
+| **master** | [![Build status](https://ci.appveyor.com/api/projects/status/kmm7aa2iqp71dcwi?svg=true)](https://ci.appveyor.com/project/i4004/simplify) | [![Build Status](https://travis-ci.org/i4004/Simplify.svg?branch=master)](https://travis-ci.org/i4004/Simplify) |
+| **develop** | [![Build status](https://ci.appveyor.com/api/projects/status/7m4ts96j155bt5bb?svg=true)](https://ci.appveyor.com/project/i4004/simplify-287) | [![Build Status](https://travis-ci.org/i4004/Simplify.svg?branch=develop)](https://travis-ci.org/i4004/Simplify) |
 
 Packages status
 ===
@@ -49,6 +49,8 @@ Packages status
 | [![Nuget version](http://img.shields.io/badge/Simplify.Cryptography-v1-blue.png)](https://www.nuget.org/packages/Simplify.Cryptography/) | [![NuGet Status](http://nugetstatus.com/Simplify.Cryptography.png)](http://nugetstatus.com/packages/Simplify.Cryptography) |
 | [![Nuget version](http://img.shields.io/badge/Simplify.IO-v1.0.4-blue.png)](https://www.nuget.org/packages/Simplify.IO/) | [![NuGet Status](http://nugetstatus.com/Simplify.IO.png)](http://nugetstatus.com/packages/Simplify.IO) |
 | [![Nuget version](http://img.shields.io/badge/Simplify.Resources-v1-blue.png)](https://www.nuget.org/packages/Simplify.Resources/) | [![NuGet Status](http://nugetstatus.com/Simplify.Resources.png)](http://nugetstatus.com/packages/Simplify.Resource) |
+| [![Nuget version](http://img.shields.io/badge/Simplify.Repository-v0.2-blue.png)](https://www.nuget.org/packages/Simplify.Repository/) | [![NuGet Status](http://nugetstatus.com/Simplify.Repository.png)](http://nugetstatus.com/packages/Simplify.Repository) |
+| [![Nuget version](http://img.shields.io/badge/Simplify.Repository.FluentNHibernate-v0.2-blue.png)](https://www.nuget.org/packages/Simplify.Repository.FluentNHibernate/) | [![NuGet Status](http://nugetstatus.com/Simplify.Repository.FluentNHibernate.png)](http://nugetstatus.com/packages/Simplify.Repository.FluentNHibernate) |
 | [![Nuget version](http://img.shields.io/badge/Simplify.String-v1.0.1-blue.png)](https://www.nuget.org/packages/Simplify.String/) | [![NuGet Status](http://nugetstatus.com/Simplify.String.png)](http://nugetstatus.com/packages/Simplify.String) |
 | [![Nuget version](http://img.shields.io/badge/Simplify.String.Sources-v1.0.1-blue.png)](https://www.nuget.org/packages/Simplify.String.Sources/) | [![NuGet Status](http://nugetstatus.com/Simplify.String.Sources.png)](http://nugetstatus.com/packages/Simplify.String.Sources) |
 | [![Nuget version](http://img.shields.io/badge/Simplify.Windows.Forms-v1-blue.png)](https://www.nuget.org/packages/Simplify.Windows.Forms/) | [![NuGet Status](http://nugetstatus.com/Simplify.Windows.Forms.png)](http://nugetstatus.com/packages/Simplify.Windows.Forms) |
