@@ -11,7 +11,12 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Simple mail sender.</description>
 		<summary>$description$</summary>
-		<releaseNotes>EnableSsl settings added</releaseNotes>
+		<releaseNotes>
+			+ MailSender constructor with IMailSenderSettings
+			+ MailSender constructor with parameters instead of config file
+			+ Send method with MailMessage parameter
+			* Optional config user name and password parameters (if no user name specified, then default credentials will be used)
+		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET mail-sender</tags>

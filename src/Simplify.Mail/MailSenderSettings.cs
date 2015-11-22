@@ -6,7 +6,7 @@ namespace Simplify.Mail
 	/// <summary>
 	/// Represents MailSender settings
 	/// </summary>
-	public sealed class MailSenderSettings
+	public sealed class MailSenderSettings : IMailSenderSettings
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MailSenderSettings"/> class.
@@ -34,6 +34,28 @@ namespace Simplify.Mail
 
 			LoadGeneralSettings(configSection);
 			LoadExtraSettings(configSection);
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MailSenderSettings"/> class.
+		/// </summary>
+		/// <param name="smtpServerAddress">The SMTP server address.</param>
+		/// <param name="smtpServerPortNumber">The SMTP server port number.</param>
+		/// <param name="smtpUserName">Name of the SMTP user.</param>
+		/// <param name="smtpUserPassword">The SMTP user password.</param>
+		/// <param name="enableSsl">Enables SSL connection.</param>
+		/// <param name="antiSpamMessagesPoolOn">Enables anti-spam messages pool.</param>
+		/// <param name="antiSpamPoolMessageLifeTime">The anti-spam pool message life time.</param>
+		public MailSenderSettings(string smtpServerAddress, int smtpServerPortNumber, string smtpUserName, string smtpUserPassword,
+			bool enableSsl = false, bool antiSpamMessagesPoolOn = true, int antiSpamPoolMessageLifeTime = 125)
+		{
+			SmtpServerAddress = smtpServerAddress;
+			SmtpServerPortNumber = smtpServerPortNumber;
+			SmtpUserName = smtpUserName;
+			SmtpUserPassword = smtpUserPassword;
+			EnableSsl = enableSsl;
+			AntiSpamMessagesPoolOn = antiSpamMessagesPoolOn;
+			AntiSpamPoolMessageLifeTime = antiSpamPoolMessageLifeTime;
 		}
 
 		/// <summary>
@@ -87,16 +109,9 @@ namespace Simplify.Mail
 				SmtpServerPortNumber = int.Parse(smtpServerPortNumberString);
 
 			SmtpUserName = config["SmtpUserName"];
-
-			if (string.IsNullOrEmpty(SmtpUserName))
-				throw new MailSenderException("MailSenderSettings SmtpUserName is empty or missing from config file.");
-
 			SmtpUserPassword = config["SmtpUserPassword"];
-
-			if (string.IsNullOrEmpty(SmtpUserPassword))
-				throw new MailSenderException("MailSenderSettings SmtpUserPassword is empty or missing from config file.");
 		}
-		
+
 		private void LoadExtraSettings(NameValueCollection config)
 		{
 			var antiSpamPoolMessageLifeTimeString = config["AntiSpamPoolMessageLifeTime"];

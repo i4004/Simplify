@@ -71,5 +71,23 @@ namespace Simplify.Templates
 
 			return Template;
 		}
+
+		/// <summary>
+		/// Adds specified object (model) properties into template (adds to variables names like Model.MyPropertyName with respective object (model) properties values), values will be replaced on template Get or GetAndRoll methods call.
+		/// </summary>
+		public ITemplate Add()
+		{
+			var type = typeof(T);
+
+			foreach (var propInfo in type.GetProperties())
+			{
+				if (_skipProperties.Contains(propInfo.Name)) continue;
+
+				var value = _model == null ? null : propInfo.GetValue(_model);
+				Template.Add(ModelPrefix + propInfo.Name, value);
+			}
+
+			return Template;
+		}
 	}
 }

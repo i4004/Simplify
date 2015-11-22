@@ -47,7 +47,7 @@ namespace Simplify.Log
 				if (!string.IsNullOrEmpty(config["FileName"]))
 					FileName = config["FileName"];
 
-				if (!string.IsNullOrEmpty(config["DisableAcspInternalExtensions"]))
+				if (!string.IsNullOrEmpty(config["MaxFileSize"]))
 				{
 					int buffer;
 

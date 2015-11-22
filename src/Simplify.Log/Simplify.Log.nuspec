@@ -11,7 +11,10 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Simple file-based logger.</description>
 		<summary>$description$</summary>
-		<releaseNotes>Upgrade to System.IO.Abstractions 1.4.0.92</releaseNotes>
+		<releaseNotes>
+			* MaxFileSize setting from config fixed
+			* Upgrade to System.IO.Abstractions 2.0.0.115
+		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET logger</tags>
