@@ -11,19 +11,28 @@ namespace Simplify.Mail
 		/// <summary>
 		/// MailSender settings
 		/// </summary>
-		MailSenderSettings Settings { get; }
+		IMailSenderSettings Settings { get; }
 
 		/// <summary>
-		/// Get SMTP client with server parameters from config file and current user credentials
-		/// </summary>
-		/// <returns></returns>
-		SmtpClient SmtpClientCurrentUser { get; }
-
-		/// <summary>
-		/// Get SMTP client with credentials and server parameters from config file
+		/// Get current SMTP client
 		/// </summary>
 		/// <returns></returns>
 		SmtpClient SmtpClient { get; }
+
+		/// <summary>
+		/// Send single e-mail.
+		/// </summary>
+		/// <param name="client">Smtp client.</param>
+		/// <param name="mailMessage">The mail message.</param>
+		/// <param name="bodyForAntiSpam">Part of an e-mail body just for anti-spam checking</param>
+		void Send(SmtpClient client, MailMessage mailMessage, string bodyForAntiSpam = null);
+
+		/// <summary>
+		/// Send single e-mail
+		/// </summary>
+		/// <param name="mailMessage">The mail message.</param>
+		/// <param name="bodyForAntiSpam">Part of an e-mail body just for anti-spam checking</param>
+		void Send(MailMessage mailMessage, string bodyForAntiSpam = null);
 
 		/// <summary>
 		/// Send single e-mail

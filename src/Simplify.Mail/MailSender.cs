@@ -34,8 +34,7 @@ namespace Simplify.Mail
 
 		private readonly object _locker = new object();
 
-		private SmtpClient _smtpClientInstance;
-		private SmtpClient _fullSmtpClientInstance;
+		private SmtpClient _smtpClient;
 
 		private readonly Dictionary<string, DateTime> _antiSpamPool = new Dictionary<string, DateTime>();
 
@@ -45,32 +44,49 @@ namespace Simplify.Mail
 		/// <param name="configurationSectionName">Name of the configuration section in the configuration file.</param>
 		public MailSender(string configurationSectionName = "MailSenderSettings")
 		{
+			if(string.IsNullOrEmpty(configurationSectionName)) throw new ArgumentNullException("configurationSectionName");
+
 			Settings = new MailSenderSettings(configurationSectionName);
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MailSender"/> class.
+		/// </summary>
+		/// <param name="smtpServerAddress">The SMTP server address.</param>
+		/// <param name="smtpServerPortNumber">The SMTP server port number.</param>
+		/// <param name="smtpUserName">Name of the SMTP user.</param>
+		/// <param name="smtpUserPassword">The SMTP user password.</param>
+		/// <param name="enableSsl">Enables SSL connection.</param>
+		/// <param name="antiSpamMessagesPoolOn">Enables anti-spam messages pool.</param>
+		/// <param name="antiSpamPoolMessageLifeTime">The anti-spam pool message life time.</param>
+		public MailSender(string smtpServerAddress, int smtpServerPortNumber, string smtpUserName, string smtpUserPassword,
+			bool enableSsl = false, bool antiSpamMessagesPoolOn = true, int antiSpamPoolMessageLifeTime = 125)
+		{
+			if (string.IsNullOrEmpty(smtpServerAddress)) throw new ArgumentNullException("smtpServerAddress");
+
+			Settings = new MailSenderSettings(smtpServerAddress, smtpServerPortNumber, smtpUserName, smtpUserPassword, enableSsl,
+				antiSpamMessagesPoolOn, antiSpamPoolMessageLifeTime);
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MailSender"/> class.
+		/// </summary>
+		/// <param name="settings">The settings.</param>
+		/// <exception cref="System.ArgumentNullException">settings</exception>
+		public MailSender(IMailSenderSettings settings)
+		{
+			if (settings == null) throw new ArgumentNullException("settings");
+
+			Settings = settings;
 		}
 
 		/// <summary>
 		/// MailSender settings
 		/// </summary>
-		public MailSenderSettings Settings { get; private set; }
+		public IMailSenderSettings Settings { get; private set; }
 
 		/// <summary>
-		/// Get SMTP client with server parameters from config file and current user credentials
-		/// </summary>
-		/// <returns></returns>
-		public SmtpClient SmtpClientCurrentUser
-		{
-			get
-			{
-				return _smtpClientInstance ??
-				       (_smtpClientInstance = new SmtpClient(Settings.SmtpServerAddress, Settings.SmtpServerPortNumber)
-				       {
-					       EnableSsl = Settings.EnableSsl
-				       });
-			}
-		}
-
-		/// <summary>
-		/// Get SMTP client with credentials and server parameters from config file
+		/// Get current SMTP client
 		/// </summary>
 		/// <returns></returns>
 		public SmtpClient SmtpClient
@@ -79,21 +95,50 @@ namespace Simplify.Mail
 			{
 				lock (_locker)
 				{
-					if (_fullSmtpClientInstance == null)
-					{
-						var basicCredential = new NetworkCredential(Settings.SmtpUserName, Settings.SmtpUserPassword);
+					if (_smtpClient != null)
+						return _smtpClient;
 
-						_fullSmtpClientInstance = new SmtpClient(Settings.SmtpServerAddress, Settings.SmtpServerPortNumber)
-						{
-							UseDefaultCredentials = false,
-							Credentials = basicCredential,
-							EnableSsl = Settings.EnableSsl
-						};
-					}
+					_smtpClient = new SmtpClient(Settings.SmtpServerAddress, Settings.SmtpServerPortNumber)
+					{
+						EnableSsl = Settings.EnableSsl
+					};
+
+					if (string.IsNullOrEmpty(Settings.SmtpUserName))
+						return _smtpClient;
+
+					_smtpClient.UseDefaultCredentials = false;
+					_smtpClient.Credentials = new NetworkCredential(Settings.SmtpUserName, Settings.SmtpUserPassword);
 				}
 
-				return _fullSmtpClientInstance;
+				return _smtpClient;
 			}
+		}
+
+		/// <summary>
+		/// Send single e-mail.
+		/// </summary>
+		/// <param name="client">Smtp client.</param>
+		/// <param name="mailMessage">The mail message.</param>
+		/// <param name="bodyForAntiSpam">Part of an e-mail body just for anti-spam checking</param>
+		public void Send(SmtpClient client, MailMessage mailMessage, string bodyForAntiSpam = null)
+		{
+			lock (_locker)
+			{
+				if (CheckAntiSpamPool(bodyForAntiSpam ?? mailMessage.Body))
+					return;
+
+				client.Send(mailMessage);
+			}
+		}
+
+		/// <summary>
+		/// Send single e-mail
+		/// </summary>
+		/// <param name="mailMessage">The mail message.</param>
+		/// <param name="bodyForAntiSpam">Part of an e-mail body just for anti-spam checking</param>
+		public void Send(MailMessage mailMessage, string bodyForAntiSpam = null)
+		{
+			Send(SmtpClient, mailMessage, bodyForAntiSpam);
 		}
 
 		/// <summary>
@@ -132,7 +177,7 @@ namespace Simplify.Mail
 		}
 
 		/// <summary>
-		/// Send single e-mail using config SMTP user name and password
+		/// Send single e-mail
 		/// </summary>
 		/// <param name="from">From mail address</param>
 		/// <param name="to">Recipient e-mail address</param>

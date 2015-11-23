@@ -53,6 +53,7 @@ namespace Simplify.Templates.Tests
 		public void Set_EverythingIsNull_SetCorrectly()
 		{
 			// Assign
+
 			_template = Template.FromString("{Model.ID} {Model.Name} {Model.EMail}");
 			var model = new TestModel();
 
@@ -61,6 +62,24 @@ namespace Simplify.Templates.Tests
 
 			// Assert
 			Assert.AreEqual("  ", _template.Get());
+		}
+
+		[Test]
+		public void Add_TwoModels_DataCombined()
+		{
+			// Assign
+
+			_template = Template.FromString("{Model.Name} {Model.EMail}");
+			var model = new TestModel { Name = "Test", EMail = "test@test.com" };
+			var model2 = new TestModel { Name = "Foo", EMail = "foomail@test.com" };
+
+			// Act
+
+			_template.Model(model).Add();
+			_template.Model(model2).Add();
+
+			// Assert
+			Assert.AreEqual("TestFoo test@test.comfoomail@test.com", _template.Get());
 		}
 	}
 }

@@ -23,5 +23,10 @@ namespace Simplify.Templates
 		/// Sets the specified object (model) properties into template (replace variables names like Model.MyPropertyName with respective object (model) properties values).
 		/// </summary>
 		ITemplate Set();
+
+		/// <summary>
+		/// Adds specified object (model) properties into template (adds to variables names like Model.MyPropertyName with respective object (model) properties values), values will be replaced on template Get or GetAndRoll methods call.
+		/// </summary>
+		ITemplate Add();
 	}
 }
