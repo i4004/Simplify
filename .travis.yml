@@ -17,6 +17,6 @@ before_script:
  - chmod +x src/.nuget/NuGet.exe
 
 script:
- - src/.nuget/NuGet.exe restore src/Simplify.sln
+ - ./src/.nuget/NuGet.exe restore ./src/Simplify.sln
  - xbuild /p:Platform="Any CPU" /p:Configuration=Release src/Simplify.sln
  - .ci/nunit.sh .ci/tests.nunit
