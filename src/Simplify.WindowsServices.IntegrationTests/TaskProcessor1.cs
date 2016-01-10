@@ -15,7 +15,7 @@ namespace Simplify.WindowsServices.IntegrationTests
 			_isRunning = true;
 
 			Trace.WriteLine("TaskProcessor1 launched");
-			
+
 			Thread.Sleep(5120);
 
 			_isRunning = false;
