@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 
 namespace Simplify.WindowsServices.IntegrationTests
 {
@@ -12,6 +13,8 @@ namespace Simplify.WindowsServices.IntegrationTests
 				throw new SimplifyWindowsServicesException("TaskProcessor2 is running a duplicate!");
 
 			_isRunning = true;
+
+			Console.WriteLine("TaskProcessor2 launched");
 
 			Thread.Sleep(3670);
 
