@@ -37,6 +37,7 @@
     <Compile Include="ServiceInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="TaskProcessor3.cs" />
     <Compile Include="TaskProcessor2.cs" />
     <Compile Include="TaskProcessor1.cs" />
     <Compile Include="Program.cs" />

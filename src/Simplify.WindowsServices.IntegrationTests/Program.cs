@@ -17,11 +17,9 @@ namespace Simplify.WindowsServices.IntegrationTests
 
 			var handler = new MultitaskServiceHandler();
 
-			//handler.AddJob<TaskProcessor1>();
-			//handler.AddJob<TaskProcessor2>();
-
 			handler.AddJob<TaskProcessor1>("TaskProcessor1Settings", "Run", true);
 			handler.AddJob<TaskProcessor2>("TaskProcessor2Settings", "Run", true);
+			handler.AddJob<TaskProcessor3>("TaskProcessor3Settings", "Run", true);
 
 			ServiceBase.Run(handler);
 		}
