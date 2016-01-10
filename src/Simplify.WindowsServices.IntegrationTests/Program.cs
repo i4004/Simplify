@@ -8,6 +8,11 @@ namespace Simplify.WindowsServices.IntegrationTests
 	{
 		static void Main()
 		{
+#if DEBUG
+			// Run debugger
+			System.Diagnostics.Debugger.Launch();
+#endif
+
 			DIContainer.Current = new SimpleInjectorDIProvider();
 
 			var handler = new MultitaskServiceHandler();
