@@ -81,5 +81,20 @@ namespace Simplify.Templates.Tests
 			// Assert
 			Assert.AreEqual("TestFoo test@test.comfoomail@test.com", _template.Get());
 		}
+
+		[Test]
+		public void Set_ModelWithBaseClass_BaseClassFieldsAlsoSet()
+		{
+			// Assign
+
+			_template = Template.FromString("{Model.ID} {Model.Name}");
+			var model = new ChildTestModel { ID = 3, Name = "Hello!" };
+
+			// Act
+			_template.Model(model).Set();
+
+			// Assert
+			Assert.AreEqual("3 Hello!", _template.Get());
+		}
 	}
 }
