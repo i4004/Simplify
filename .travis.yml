@@ -9,6 +9,9 @@ git:
 language: csharp
 solution: src/Simplify.sln
 
+before_script:
+ - chmod +x .ci/nunit.sh
+
 script:
  - xbuild /p:Platform="Any CPU" /p:Configuration=Release src/Simplify.sln /tv:12.0
  - .ci/nunit.sh .ci/tests.nunit
