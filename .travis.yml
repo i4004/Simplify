@@ -18,5 +18,5 @@ before_script:
 
 script:
  - mono --runtime=v4.0 src/.nuget/NuGet.exe restore src/Simplify.sln
-     - xbuild /p:Platform="Any CPU" /p:Configuration=Release src/Simplify.sln /tv:14.0
+ - xbuild /p:Platform="Any CPU" /p:Configuration=Release src/Simplify.sln /tv:14.0
  - .ci/nunit.sh .ci/tests.nunit
