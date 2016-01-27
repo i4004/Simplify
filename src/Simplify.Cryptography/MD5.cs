@@ -4,18 +4,12 @@ using System.Text;
 namespace Simplify.Cryptography
 {
 	/// <summary>
-	/// MD5 hash algorithm implementaion class
+	/// MD5 hash algorithm implementation class
 	/// </summary>
 	public static class MD5
 	{
 		private static System.Security.Cryptography.MD5 MD5HashInstance;
-		private static System.Security.Cryptography.MD5 MD5Hash
-		{
-			get
-			{
-				return MD5HashInstance ?? (MD5HashInstance = System.Security.Cryptography.MD5.Create());
-			}
-		}
+		private static System.Security.Cryptography.MD5 MD5Hash => MD5HashInstance ?? (MD5HashInstance = System.Security.Cryptography.MD5.Create());
 
 		/// <summary>
 		/// Get MD5 hash code of an input string
