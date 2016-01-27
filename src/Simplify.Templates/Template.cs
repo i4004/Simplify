@@ -36,7 +36,7 @@ namespace Simplify.Templates
 			set
 			{
 				if(value == null)
-					throw new ArgumentNullException("value");
+					throw new ArgumentNullException(nameof(value));
 
 				_fileSystemInstance = new Lazy<IFileSystem>(() => value);
 			}
@@ -69,7 +69,7 @@ namespace Simplify.Templates
 		public Template(string filePath, string language = null, string defaultLanguage = "en", bool fixLineEndingsHtml = false)
 		{
 			if (string.IsNullOrEmpty(filePath))
-				throw new ArgumentNullException("filePath");
+				throw new ArgumentNullException(nameof(filePath));
 
 			if (!FileSystem.File.Exists(filePath))
 				throw new TemplateException("Template: file not found: " + filePath);
@@ -80,8 +80,8 @@ namespace Simplify.Templates
 			if (string.IsNullOrEmpty(language))
 				language = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
 			
-			var currentCultureStringTableFileName = string.Format("{0}.{1}.xml", filePath, language);
-			var defaultCultureStringTableFileName = string.Format("{0}.{1}.xml", filePath, defaultLanguage);
+			var currentCultureStringTableFileName = $"{filePath}.{language}.xml";
+			var defaultCultureStringTableFileName = $"{filePath}.{defaultLanguage}.xml";
 
 			LoadWithLocalization(text,
 				FileSystem.File.Exists(currentCultureStringTableFileName) ? FileSystem.File.ReadAllText(currentCultureStringTableFileName) : "",
@@ -106,12 +106,12 @@ namespace Simplify.Templates
 		public Template(Assembly workingAssembly, string filePath, string language = null, string defaultLanguage = "en", bool fixLineEndingsHtml = false)
 		{
 			if (workingAssembly == null)
-				throw new ArgumentNullException("workingAssembly");
+				throw new ArgumentNullException(nameof(workingAssembly));
 
 			if (filePath == null)
-				throw new ArgumentNullException("filePath");
+				throw new ArgumentNullException(nameof(filePath));
 
-			FilePath = string.Format("{0}.{1}", workingAssembly.GetName().Name, filePath);
+			FilePath = $"{workingAssembly.GetName().Name}.{filePath}";
 
 			if (string.IsNullOrEmpty(language))
 				language = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
@@ -125,8 +125,8 @@ namespace Simplify.Templates
 					using (var sr = new StreamReader(fileStream))
 						text = sr.ReadToEnd();
 
-					var currentCultureStringTableFileName = string.Format("{0}-{1}.xml", FilePath, language);
-					var defaultCultureStringTableFileName = string.Format("{0}-{1}.xml", FilePath, defaultLanguage);
+					var currentCultureStringTableFileName = $"{FilePath}-{language}.xml";
+					var defaultCultureStringTableFileName = $"{FilePath}-{defaultLanguage}.xml";
 
 					using (var currentCultureStStream = workingAssembly.GetManifestResourceStream(currentCultureStringTableFileName))
 					using (var defaultCultureStStream = workingAssembly.GetManifestResourceStream(defaultCultureStringTableFileName))
@@ -147,8 +147,8 @@ namespace Simplify.Templates
 					}
 				}
 				else
-					throw new TemplateException(string.Format("Template: error loading file from resources in assembly '{0}': {1}",
-						workingAssembly.FullName, FilePath));
+					throw new TemplateException(
+						$"Template: error loading file from resources in assembly '{workingAssembly.FullName}': {FilePath}");
 			}
 		}
 
@@ -158,7 +158,7 @@ namespace Simplify.Templates
 		/// <value>
 		/// The file path of the template file.
 		/// </value>
-		public string FilePath { get; private set; }
+		public string FilePath { get; }
 
 		/// <summary>
 		/// Template current language
@@ -191,7 +191,7 @@ namespace Simplify.Templates
 		/// <returns></returns>
 		public static ITemplate Load(string filePath, string language = null, string defaultLanguage = "en", bool fixLineEndingsHtml = false)
 		{
-			return new Template(string.Format("{0}/{1}", Path.GetDirectoryName(Assembly.GetCallingAssembly().Location), filePath), language, defaultLanguage, fixLineEndingsHtml);
+			return new Template($"{Path.GetDirectoryName(Assembly.GetCallingAssembly().Location)}/{filePath}", language, defaultLanguage, fixLineEndingsHtml);
 		}
 
 		/// <summary>
@@ -266,7 +266,7 @@ namespace Simplify.Templates
 		/// <param name="value">Value to set</param>
 		public ITemplate Set(string variableName, object value)
 		{
-			return Set(variableName, value != null ? value.ToString() : "");
+			return Set(variableName, value?.ToString());
 		}
 
 		/// <summary>
@@ -346,7 +346,7 @@ namespace Simplify.Templates
 		/// <param name="value">Value to set</param>
 		public ITemplate Add(string variableName, object value)
 		{
-			return Add(variableName, value != null ? value.ToString() : "");
+			return Add(variableName, value?.ToString());
 		}
 
 		/// <summary>
@@ -433,7 +433,7 @@ namespace Simplify.Templates
 		private void InitializeText(string text, bool fixLineEndingsHtml = false)
 		{
 			if (text == null)
-				throw new ArgumentNullException("text");
+				throw new ArgumentNullException(nameof(text));
 
 			_text = text;
 
