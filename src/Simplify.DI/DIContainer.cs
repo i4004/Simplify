@@ -4,7 +4,7 @@ using Simplify.DI.Provider.DryIoc;
 namespace Simplify.DI
 {
 	/// <summary>
-	/// AcspNet IOC ambient context container to register/resolve objects for DI
+	/// IOC ambient context container to register/resolve objects for DI
 	/// </summary>
 	public class DIContainer
 	{
