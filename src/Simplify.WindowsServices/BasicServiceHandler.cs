@@ -7,6 +7,8 @@ using Simplify.System;
 
 namespace Simplify.WindowsServices
 {
+	// ReSharper disable once CommentTypo
+
 	/// <summary>
 	/// Provides class which runs as non-timer windows service (for constant async operations, like TCP/IP server) and launches specified type instance once
 	/// </summary>
@@ -16,6 +18,9 @@ namespace Simplify.WindowsServices
 		private const string InvokeMethodName = "Run";
 
 		private readonly string _serviceName;
+
+		private ILifetimeScope _scope;
+		private T _serviceTask;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BasicServiceHandler{T}"/> class.
@@ -28,6 +33,14 @@ namespace Simplify.WindowsServices
 
 			if (automaticallyRegisterUserType)
 				DIContainer.Current.Register<T>(LifetimeType.Transient);
+		}
+
+		/// <summary>
+		/// Finalizes an instance of the <see cref="BasicServiceHandler{T}"/> class.
+		/// </summary>
+		~BasicServiceHandler()
+		{
+			Dispose(false);
 		}
 
 		/// <summary>
@@ -51,19 +64,17 @@ namespace Simplify.WindowsServices
 			var invokeMethodInfo = taskClassType.GetMethod(InvokeMethodName);
 
 			if (invokeMethodInfo == null)
-				throw new ServiceInitializationException(string.Format("Method {0} not found in class {1}", InvokeMethodName,
-					taskClassType.Name));
+				throw new ServiceInitializationException($"Method {InvokeMethodName} not found in class {taskClassType.Name}");
 
 			var isParameterlessMethod = !invokeMethodInfo.GetParameters().Any();
 
 			try
 			{
-				using (var scope = DIContainer.Current.BeginLifetimeScope())
-				{
-					var serviceTask = scope.Container.Resolve<T>();
+				_scope = DIContainer.Current.BeginLifetimeScope();
 
-					invokeMethodInfo.Invoke(serviceTask, isParameterlessMethod ? null : new object[] { _serviceName });
-				}
+				_serviceTask = _scope.Container.Resolve<T>();
+
+				invokeMethodInfo.Invoke(_serviceTask, isParameterlessMethod ? null : new object[] { _serviceName });
 			}
 			catch (Exception e)
 			{
@@ -71,9 +82,24 @@ namespace Simplify.WindowsServices
 					OnException(new ServiceExceptionArgs(ServiceName, e));
 				else
 					throw;
-			}	
+			}
 
 			base.OnStart(args);
+		}
+
+		/// <summary>
+		/// Disposes of the resources (other than memory) used by the <see cref="T:System.ServiceProcess.ServiceBase" />.
+		/// </summary>
+		/// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+		protected override void Dispose(bool disposing)
+		{
+			var serviceTask = _serviceTask as IDisposable;
+
+			serviceTask?.Dispose();
+
+			_scope?.Dispose();
+
+			base.Dispose(disposing);
 		}
 	}
 }
