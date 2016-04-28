@@ -16,7 +16,7 @@ namespace Simplify.WindowsServices
 	public class MultitaskServiceHandler : ServiceBase
 	{
 		private readonly IList<IServiceJob> _jobsList = new List<IServiceJob>();
-		private readonly IDictionary<IServiceJob, Task> _jobsInWork = new Dictionary<IServiceJob, Task>();
+		private readonly IDictionary<ICrontabServiceJob, Task> _jobsInWork = new Dictionary<ICrontabServiceJob, Task>();
 
 		private IServiceJobFactory _serviceJobFactory;
 
@@ -45,7 +45,7 @@ namespace Simplify.WindowsServices
 			set
 			{
 				if (value == null)
-					throw new ArgumentNullException("value");
+					throw new ArgumentNullException(nameof(value));
 
 				_serviceJobFactory = value;
 			}
@@ -80,13 +80,13 @@ namespace Simplify.WindowsServices
 			base.OnStop();
 		}
 
-		#endregion
+		#endregion Service process control
 
 		private void OnCronTimerTick(object state)
 		{
-			var job = (IServiceJob)state;
+			var job = (ICrontabServiceJob)state;
 
-			if(!job.CrontabProcessor.IsMatching())
+			if (!job.CrontabProcessor.IsMatching())
 				return;
 
 			job.CrontabProcessor.CalculateNextOccurrences();
@@ -100,7 +100,7 @@ namespace Simplify.WindowsServices
 
 		private void OnStartWork(object state)
 		{
-			var job = (IServiceJob)state;
+			var job = (ICrontabServiceJob)state;
 
 			lock (_jobsInWork)
 			{
@@ -113,7 +113,7 @@ namespace Simplify.WindowsServices
 
 		private void Run(object state)
 		{
-			var job = (IServiceJob)state;
+			var job = (ICrontabServiceJob)state;
 
 			try
 			{
@@ -133,7 +133,7 @@ namespace Simplify.WindowsServices
 			}
 			finally
 			{
-				if(job.Settings.CleanupOnTaskFinish)
+				if (job.Settings.CleanupOnTaskFinish)
 					GC.Collect();
 
 				lock (_jobsInWork)
@@ -154,7 +154,7 @@ namespace Simplify.WindowsServices
 			if (automaticallyRegisterUserType)
 				DIContainer.Current.Register<T>(LifetimeType.Transient);
 
-			var job = ServiceJobFactory.CreateServiceJob<T>(configurationSectionName, invokeMethodName);
+			var job = ServiceJobFactory.CreateCrontabServiceJob<T>(configurationSectionName, invokeMethodName);
 
 			job.OnCronTimerTick += OnCronTimerTick;
 			job.OnStartWork += OnStartWork;
@@ -163,7 +163,7 @@ namespace Simplify.WindowsServices
 		}
 
 		/// <summary>
-		/// Adds the job.
+		/// Adds the service job.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
@@ -171,6 +171,23 @@ namespace Simplify.WindowsServices
 			where T : class
 		{
 			AddJob<T>(null, "Run", automaticallyRegisterUserType);
+		}
+
+		/// <summary>
+		/// Adds the basic service job.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
+		/// <param name="invokeMethodName">Name of the invoke method.</param>
+		public void AddBasicJob<T>(bool automaticallyRegisterUserType = false, string invokeMethodName = "Run")
+			where T : class
+		{
+			if (automaticallyRegisterUserType)
+				DIContainer.Current.Register<T>(LifetimeType.Transient);
+
+			var job = ServiceJobFactory.CreateServiceJob<T>(invokeMethodName);
+
+			_jobsList.Add(job);
 		}
 	}
 }

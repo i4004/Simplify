@@ -1,14 +1,12 @@
 using System;
 using System.Reflection;
-using System.Threading;
-using Simplify.WindowsServices.Jobs.Crontab;
 
 namespace Simplify.WindowsServices.Jobs
 {
 	/// <summary>
 	/// Represent service job
 	/// </summary>
-	public interface IServiceJob : IDisposable
+	public interface IServiceJob
 	{
 		/// <summary>
 		/// Gets the type of the job class.
@@ -17,22 +15,6 @@ namespace Simplify.WindowsServices.Jobs
 		/// The type of the job class.
 		/// </value>
 		Type JobClassType { get; }
-
-		/// <summary>
-		/// Gets the settings.
-		/// </summary>
-		/// <value>
-		/// The settings.
-		/// </value>
-		IServiceJobSettings Settings { get; }
-
-		/// <summary>
-		/// Gets the crontab processor.
-		/// </summary>
-		/// <value>
-		/// The crontab processor.
-		/// </value>
-		ICrontabProcessor CrontabProcessor { get; }
 
 		/// <summary>
 		/// Gets the invoke method information.
@@ -49,16 +31,6 @@ namespace Simplify.WindowsServices.Jobs
 		/// <c>true</c> if invoke method is parameterless method; otherwise, <c>false</c>.
 		/// </value>
 		bool IsParameterlessMethod { get; }
-
-		/// <summary>
-		/// Occurs on cron timer tick.
-		/// </summary>
-		event TimerCallback OnCronTimerTick;
-
-		/// <summary>
-		/// Occurs on interval timer tick.
-		/// </summary>
-		event TimerCallback OnStartWork;
 
 		/// <summary>
 		/// Starts this job timer.

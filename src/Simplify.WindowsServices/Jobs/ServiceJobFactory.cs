@@ -8,13 +8,24 @@ namespace Simplify.WindowsServices.Jobs
 	public class ServiceJobFactory : IServiceJobFactory
 	{
 		/// <summary>
+		/// Creates the basic service job.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="invokeMethodName">Name of the invoke method.</param>
+		/// <returns></returns>
+		public IServiceJob CreateServiceJob<T>(string invokeMethodName = "Run")
+		{
+			return new ServiceJob<T>(invokeMethodName);
+		}
+
+		/// <summary>
 		/// Creates the service job.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="configurationSectionName">Name of the configuration section.</param>
 		/// <param name="invokeMethodName">Name of the invoke method.</param>
 		/// <returns></returns>
-		public IServiceJob CreateServiceJob<T>(string configurationSectionName = null, string invokeMethodName = "Run")
+		public ICrontabServiceJob CreateCrontabServiceJob<T>(string configurationSectionName = null, string invokeMethodName = "Run")
 		{
 			if (configurationSectionName == null)
 			{
@@ -22,7 +33,7 @@ namespace Simplify.WindowsServices.Jobs
 				configurationSectionName = type.Name + "Settings";
 			}
 
-			return new ServiceJob<T>(new ServiceJobSettings(configurationSectionName), new CrontabProcessorFactory(), invokeMethodName);
+			return new CrontabServiceJob<T>(new ServiceJobSettings(configurationSectionName), new CrontabProcessorFactory(), invokeMethodName);
 		}
 	}
 }

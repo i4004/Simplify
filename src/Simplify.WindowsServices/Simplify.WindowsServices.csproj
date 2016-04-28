@@ -80,8 +80,10 @@
     <Compile Include="Jobs\Crontab\ICrontabProcessor.cs" />
     <Compile Include="Jobs\Crontab\ICrontabProcessorFactory.cs" />
     <Compile Include="Jobs\IServiceJob.cs" />
+    <Compile Include="Jobs\ICrontabServiceJob.cs" />
     <Compile Include="Jobs\IServiceJobFactory.cs" />
     <Compile Include="Jobs\IServiceJobSettings.cs" />
+    <Compile Include="Jobs\ServiceJob.cs" />
     <Compile Include="MultitaskServiceHandler.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -91,7 +93,7 @@
     <Compile Include="ServiceInstallerBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Jobs\ServiceJob.cs" />
+    <Compile Include="Jobs\CrontabServiceJob.cs" />
     <Compile Include="Jobs\ServiceJobFactory.cs" />
     <Compile Include="Jobs\ServiceJobSettings.cs" />
     <Compile Include="SingleTaskServiceHandler.cs">
