@@ -4,9 +4,9 @@ using Simplify.DI.Provider.SimpleInjector;
 
 namespace Simplify.WindowsServices.IntegrationTests
 {
-	class Program
+	internal class Program
 	{
-		static void Main()
+		private static void Main()
 		{
 #if DEBUG
 			// Run debugger
@@ -20,6 +20,7 @@ namespace Simplify.WindowsServices.IntegrationTests
 			handler.AddJob<TaskProcessor1>("TaskProcessor1Settings", "Run", true);
 			handler.AddJob<TaskProcessor2>("TaskProcessor2Settings", "Run", true);
 			handler.AddJob<TaskProcessor3>("TaskProcessor3Settings", "Run", true);
+			handler.AddBasicJob<BasicTaskProcessor>();
 
 			ServiceBase.Run(handler);
 		}
