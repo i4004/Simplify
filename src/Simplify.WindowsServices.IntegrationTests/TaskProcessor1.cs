@@ -1,9 +1,10 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Threading;
 
 namespace Simplify.WindowsServices.IntegrationTests
 {
-	public class TaskProcessor1
+	public class TaskProcessor1 : IDisposable
 	{
 		private static bool _isRunning;
 
@@ -19,6 +20,11 @@ namespace Simplify.WindowsServices.IntegrationTests
 			Thread.Sleep(5120);
 
 			_isRunning = false;
+		}
+
+		public void Dispose()
+		{
+			Trace.WriteLine("TaskProcessor1 disposed");
 		}
 	}
 }

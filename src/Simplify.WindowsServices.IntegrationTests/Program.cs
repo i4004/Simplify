@@ -17,10 +17,12 @@ namespace Simplify.WindowsServices.IntegrationTests
 
 			var handler = new MultitaskServiceHandler();
 
-			handler.AddJob<TaskProcessor1>("TaskProcessor1Settings", "Run", true);
+			handler.AddJob<TaskProcessor1>("TaskProcessor1Settings");
 			handler.AddJob<TaskProcessor2>("TaskProcessor2Settings", "Run", true);
 			handler.AddJob<TaskProcessor3>("TaskProcessor3Settings", "Run", true);
-			handler.AddBasicJob<BasicTaskProcessor>();
+			handler.AddBasicJob<BasicTaskProcessor>(true);
+
+			DIContainer.Current.Register<TaskProcessor1>();
 
 			ServiceBase.Run(handler);
 		}
