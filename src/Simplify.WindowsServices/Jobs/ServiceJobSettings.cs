@@ -40,7 +40,7 @@ namespace Simplify.WindowsServices.Jobs
 		/// <value>
 		/// The crontab expression.
 		/// </value>
-		public string CrontabExpression { get; private set; }
+		public string CrontabExpression { get; }
 
 		/// <summary>
 		/// Gets the service processing interval (sec).
@@ -48,11 +48,11 @@ namespace Simplify.WindowsServices.Jobs
 		/// <value>
 		/// The service processing interval (sec).
 		/// </value>
-		public int ProcessingInterval { get; private set; }
+		public int ProcessingInterval { get; }
 
 		/// <summary>
 		/// Gets a value indicating whether GC.Collect will be executed on on task finish.
 		/// </summary>
-		public bool CleanupOnTaskFinish { get; private set; }
+		public bool CleanupOnTaskFinish { get; }
 	}
 }
