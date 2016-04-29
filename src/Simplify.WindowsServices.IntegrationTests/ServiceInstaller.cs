@@ -6,8 +6,8 @@ namespace Simplify.WindowsServices.IntegrationTests
 	[RunInstaller(true)]
 	public class ServiceInstaller : ServiceInstallerBase
 	{
-		public ServiceInstaller(): base(Assembly.GetExecutingAssembly())
-		{			
+		public ServiceInstaller() : base(Assembly.GetExecutingAssembly())
+		{
 		}
 	}
 }
