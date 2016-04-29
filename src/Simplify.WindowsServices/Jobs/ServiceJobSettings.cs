@@ -4,7 +4,7 @@ using System.Configuration;
 namespace Simplify.WindowsServices.Jobs
 {
 	/// <summary>
-	/// Provides windows-service job settings
+	/// Provides service job settings
 	/// </summary>
 	public class ServiceJobSettings : IServiceJobSettings
 	{
@@ -25,7 +25,7 @@ namespace Simplify.WindowsServices.Jobs
 
 			var processingInterval = config["ProcessingInterval"];
 
-			if(!string.IsNullOrEmpty(processingInterval))
+			if (!string.IsNullOrEmpty(processingInterval))
 				ProcessingInterval = int.Parse(processingInterval);
 
 			var cleanupOnTaskFinish = config["CleanupOnTaskFinish"];

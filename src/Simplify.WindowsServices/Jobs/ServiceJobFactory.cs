@@ -3,7 +3,7 @@
 namespace Simplify.WindowsServices.Jobs
 {
 	/// <summary>
-	/// Provides service job factory
+	/// Provides service jobs factory
 	/// </summary>
 	public class ServiceJobFactory : IServiceJobFactory
 	{

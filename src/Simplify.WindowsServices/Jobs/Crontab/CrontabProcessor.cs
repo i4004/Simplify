@@ -32,8 +32,8 @@ namespace Simplify.WindowsServices.Jobs.Crontab
 				var schedule = CrontabSchedule.TryParse(expression);
 
 				if (schedule == null)
-					throw new ServiceInitializationException(string.Format("Crontab expression parsing failed, expression: '{0}', full: '{1}'",
-						expression, crontabExpression));
+					throw new ServiceInitializationException(
+						$"Crontab expression parsing failed, expression: '{expression}', full: '{crontabExpression}'");
 
 				Schedules.Add(schedule);
 			}
@@ -45,7 +45,7 @@ namespace Simplify.WindowsServices.Jobs.Crontab
 		/// <value>
 		/// The schedules.
 		/// </value>
-		public IList<CrontabSchedule> Schedules { get; private set; }
+		public IList<CrontabSchedule> Schedules { get; }
 
 		/// <summary>
 		/// Gets the next occurrences.
@@ -53,7 +53,7 @@ namespace Simplify.WindowsServices.Jobs.Crontab
 		/// <value>
 		/// The next occurrences.
 		/// </value>
-		public IList<DateTime> NextOccurrences { get; private set; }
+		public IList<DateTime> NextOccurrences { get; }
 
 		/// <summary>
 		/// Calculates the next occurrences.

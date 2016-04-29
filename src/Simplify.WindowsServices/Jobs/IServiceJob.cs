@@ -4,7 +4,7 @@ using System.Reflection;
 namespace Simplify.WindowsServices.Jobs
 {
 	/// <summary>
-	/// Represent service job
+	/// Represent basic service job
 	/// </summary>
 	public interface IServiceJob
 	{

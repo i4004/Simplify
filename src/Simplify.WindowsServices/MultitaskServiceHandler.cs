@@ -115,9 +115,9 @@ namespace Simplify.WindowsServices
 		{
 			foreach (var item in _basicJobsInWork)
 			{
-				var serviceTask = item.Key as IDisposable;
+				var jobObject = item.Key as IDisposable;
 
-				serviceTask?.Dispose();
+				jobObject?.Dispose();
 
 				item.Value?.Dispose();
 			}
@@ -195,9 +195,9 @@ namespace Simplify.WindowsServices
 			{
 				using (var scope = DIContainer.Current.BeginLifetimeScope())
 				{
-					var serviceTask = scope.Container.Resolve(job.JobClassType);
+					var jobObject = scope.Container.Resolve(job.JobClassType);
 
-					job.InvokeMethodInfo.Invoke(serviceTask, job.IsParameterlessMethod ? null : new object[] { ServiceName });
+					job.InvokeMethodInfo.Invoke(jobObject, job.IsParameterlessMethod ? null : new object[] { ServiceName });
 				}
 			}
 			catch (Exception e)
@@ -225,11 +225,11 @@ namespace Simplify.WindowsServices
 			{
 				var scope = DIContainer.Current.BeginLifetimeScope();
 
-				var serviceTask = scope.Container.Resolve(job.JobClassType);
+				var jobObject = scope.Container.Resolve(job.JobClassType);
 
-				job.InvokeMethodInfo.Invoke(serviceTask, job.IsParameterlessMethod ? null : new object[] { ServiceName });
+				job.InvokeMethodInfo.Invoke(jobObject, job.IsParameterlessMethod ? null : new object[] { ServiceName });
 
-				_basicJobsInWork.Add(serviceTask, scope);
+				_basicJobsInWork.Add(jobObject, scope);
 			}
 			catch (Exception e)
 			{

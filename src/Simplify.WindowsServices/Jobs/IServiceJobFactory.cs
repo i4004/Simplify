@@ -1,7 +1,7 @@
 ﻿namespace Simplify.WindowsServices.Jobs
 {
 	/// <summary>
-	/// Represent service job factory
+	/// Represent service jobs factory
 	/// </summary>
 	public interface IServiceJobFactory
 	{

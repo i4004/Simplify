@@ -1,7 +1,7 @@
 ﻿namespace Simplify.WindowsServices.Jobs
 {
 	/// <summary>
-	/// Represent windows-service job settings
+	/// Represent service job settings
 	/// </summary>
 	public interface IServiceJobSettings
 	{

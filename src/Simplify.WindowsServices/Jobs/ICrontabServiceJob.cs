@@ -5,7 +5,7 @@ using Simplify.WindowsServices.Jobs.Crontab;
 namespace Simplify.WindowsServices.Jobs
 {
 	/// <summary>
-	/// Represent service job
+	/// Represent crontab service job
 	/// </summary>
 	public interface ICrontabServiceJob : IServiceJob, IDisposable
 	{
