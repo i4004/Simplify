@@ -119,7 +119,7 @@ namespace Simplify.WindowsServices
 
 				jobObject?.Dispose();
 
-				item.Value?.Dispose();
+				//item.Value?.Dispose();
 			}
 
 			base.Dispose(disposing);
@@ -138,7 +138,7 @@ namespace Simplify.WindowsServices
 				job.Start();
 
 				if (!(job is ICrontabServiceJob))
-					RunBasicTask(job);
+					RunBasicJob(job);
 			}
 
 			base.OnStart(args);
@@ -219,7 +219,7 @@ namespace Simplify.WindowsServices
 
 		#endregion Crontab jobs operations
 
-		private void RunBasicTask(IServiceJob job)
+		private void RunBasicJob(IServiceJob job)
 		{
 			try
 			{
