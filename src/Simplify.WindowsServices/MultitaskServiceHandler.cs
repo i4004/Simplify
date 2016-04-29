@@ -17,6 +17,7 @@ namespace Simplify.WindowsServices
 	{
 		private readonly IList<IServiceJob> _jobsList = new List<IServiceJob>();
 		private readonly IDictionary<ICrontabServiceJob, Task> _jobsInWork = new Dictionary<ICrontabServiceJob, Task>();
+		private readonly IDictionary<object, ILifetimeScope> _basicJobsInWork = new Dictionary<object, ILifetimeScope>();
 
 		private IServiceJobFactory _serviceJobFactory;
 
@@ -56,6 +57,74 @@ namespace Simplify.WindowsServices
 		/// </summary>
 		public event ServiceExceptionEventHandler OnException;
 
+		#region Jobs creation
+
+		/// <summary>
+		/// Adds the job.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="configurationSectionName">Name of the configuration section.</param>
+		/// <param name="invokeMethodName">Name of the invoke method.</param>
+		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
+		public void AddJob<T>(string configurationSectionName = null, string invokeMethodName = "Run",
+			bool automaticallyRegisterUserType = false)
+			where T : class
+		{
+			if (automaticallyRegisterUserType)
+				DIContainer.Current.Register<T>(LifetimeType.Transient);
+
+			var job = ServiceJobFactory.CreateCrontabServiceJob<T>(configurationSectionName, invokeMethodName);
+
+			job.OnCronTimerTick += OnCronTimerTick;
+			job.OnStartWork += OnStartWork;
+
+			_jobsList.Add(job);
+		}
+
+		/// <summary>
+		/// Adds the service job.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
+		public void AddJob<T>(bool automaticallyRegisterUserType)
+			where T : class
+		{
+			AddJob<T>(null, "Run", automaticallyRegisterUserType);
+		}
+
+		/// <summary>
+		/// Adds the basic service job.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
+		/// <param name="invokeMethodName">Name of the invoke method.</param>
+		public void AddBasicJob<T>(bool automaticallyRegisterUserType = false, string invokeMethodName = "Run")
+			where T : class
+		{
+			if (automaticallyRegisterUserType)
+				DIContainer.Current.Register<T>(LifetimeType.Transient);
+
+			var job = ServiceJobFactory.CreateServiceJob<T>(invokeMethodName);
+
+			_jobsList.Add(job);
+		}
+
+		#endregion Jobs creation
+
+		protected override void Dispose(bool disposing)
+		{
+			foreach (var item in _basicJobsInWork)
+			{
+				var serviceTask = item.Key as IDisposable;
+
+				serviceTask?.Dispose();
+
+				item.Value?.Dispose();
+			}
+
+			base.Dispose(disposing);
+		}
+
 		#region Service process control
 
 		/// <summary>
@@ -65,7 +134,12 @@ namespace Simplify.WindowsServices
 		protected override void OnStart(string[] args)
 		{
 			foreach (var job in _jobsList)
+			{
 				job.Start();
+
+				if (!(job is ICrontabServiceJob))
+					RunBasicTask(job);
+			}
 
 			base.OnStart(args);
 		}
@@ -81,6 +155,8 @@ namespace Simplify.WindowsServices
 		}
 
 		#endregion Service process control
+
+		#region Crontab jobs operations
 
 		private void OnCronTimerTick(object state)
 		{
@@ -141,53 +217,27 @@ namespace Simplify.WindowsServices
 			}
 		}
 
-		/// <summary>
-		/// Adds the job.
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="configurationSectionName">Name of the configuration section.</param>
-		/// <param name="invokeMethodName">Name of the invoke method.</param>
-		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
-		public void AddJob<T>(string configurationSectionName = null, string invokeMethodName = "Run", bool automaticallyRegisterUserType = false)
-			where T : class
+		#endregion Crontab jobs operations
+
+		private void RunBasicTask(IServiceJob job)
 		{
-			if (automaticallyRegisterUserType)
-				DIContainer.Current.Register<T>(LifetimeType.Transient);
+			try
+			{
+				var scope = DIContainer.Current.BeginLifetimeScope();
 
-			var job = ServiceJobFactory.CreateCrontabServiceJob<T>(configurationSectionName, invokeMethodName);
+				var serviceTask = scope.Container.Resolve(job.JobClassType);
 
-			job.OnCronTimerTick += OnCronTimerTick;
-			job.OnStartWork += OnStartWork;
+				job.InvokeMethodInfo.Invoke(serviceTask, job.IsParameterlessMethod ? null : new object[] { ServiceName });
 
-			_jobsList.Add(job);
-		}
-
-		/// <summary>
-		/// Adds the service job.
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
-		public void AddJob<T>(bool automaticallyRegisterUserType)
-			where T : class
-		{
-			AddJob<T>(null, "Run", automaticallyRegisterUserType);
-		}
-
-		/// <summary>
-		/// Adds the basic service job.
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
-		/// <param name="invokeMethodName">Name of the invoke method.</param>
-		public void AddBasicJob<T>(bool automaticallyRegisterUserType = false, string invokeMethodName = "Run")
-			where T : class
-		{
-			if (automaticallyRegisterUserType)
-				DIContainer.Current.Register<T>(LifetimeType.Transient);
-
-			var job = ServiceJobFactory.CreateServiceJob<T>(invokeMethodName);
-
-			_jobsList.Add(job);
+				_basicJobsInWork.Add(serviceTask, scope);
+			}
+			catch (Exception e)
+			{
+				if (OnException != null)
+					OnException(new ServiceExceptionArgs(ServiceName, e));
+				else
+					throw;
+			}
 		}
 	}
 }
