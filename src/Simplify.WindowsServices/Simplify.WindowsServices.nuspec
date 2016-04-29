@@ -11,7 +11,7 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Windows services framework with DI.</description>
 		<summary>$description$</summary>
-		<releaseNotes>Upgrade to ncrontab 3.1, Simplify.DI 1.1.1</releaseNotes>
+		<releaseNotes>+ Basic jobs support in MultitaskServiceHandler</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET windows-service DI</tags>

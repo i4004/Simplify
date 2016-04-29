@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.ServiceProcess;
-using System.Threading;
 using System.Threading.Tasks;
 using Simplify.DI;
 using Simplify.System;
