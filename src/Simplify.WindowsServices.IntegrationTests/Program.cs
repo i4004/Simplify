@@ -22,6 +22,7 @@ namespace Simplify.WindowsServices.IntegrationTests
 			handler.AddJob<TaskProcessor3>("TaskProcessor3Settings", "Run", true);
 			handler.AddBasicJob<BasicTaskProcessor>(true);
 
+			DIContainer.Current.Register<Dependency1>();
 			DIContainer.Current.Register<TaskProcessor1>();
 
 			ServiceBase.Run(handler);

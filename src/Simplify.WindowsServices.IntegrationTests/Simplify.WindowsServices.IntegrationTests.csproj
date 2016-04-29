@@ -34,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Dependency1.cs" />
     <Compile Include="ServiceInstaller.cs">
       <SubType>Component</SubType>
     </Compile>

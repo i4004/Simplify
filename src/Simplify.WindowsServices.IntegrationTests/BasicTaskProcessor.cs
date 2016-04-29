@@ -7,6 +7,13 @@ namespace Simplify.WindowsServices.IntegrationTests
 	{
 		private static bool _isRunning;
 
+		private readonly Dependency1 _dependency1;
+
+		public BasicTaskProcessor(Dependency1 dependency1)
+		{
+			_dependency1 = dependency1;
+		}
+
 		public void Run()
 		{
 			if (_isRunning)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.ServiceProcess;
+using System.Threading;
 using System.Threading.Tasks;
 using Simplify.DI;
 using Simplify.System;
@@ -113,13 +114,10 @@ namespace Simplify.WindowsServices
 
 		protected override void Dispose(bool disposing)
 		{
-			foreach (var item in _basicJobsInWork)
+			if (disposing)
 			{
-				var jobObject = item.Key as IDisposable;
-
-				jobObject?.Dispose();
-
-				//item.Value?.Dispose();
+				foreach (var jobObject in _basicJobsInWork.Select(item => item.Key as IDisposable))
+					jobObject?.Dispose();
 			}
 
 			base.Dispose(disposing);
