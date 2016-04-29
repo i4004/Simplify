@@ -112,6 +112,10 @@ namespace Simplify.WindowsServices
 
 		#endregion Jobs creation
 
+		/// <summary>
+		/// Disposes of the resources (other than memory) used by the <see cref="T:System.ServiceProcess.ServiceBase" />.
+		/// </summary>
+		/// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing)
