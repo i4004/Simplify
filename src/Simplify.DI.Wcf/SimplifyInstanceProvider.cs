@@ -11,7 +11,6 @@ namespace Simplify.DI.Wcf
 	public class SimplifyInstanceProvider : IInstanceProvider
 	{
 		private readonly Type _serviceType;
-		private ILifetimeScope _currentScope;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="SimplifyInstanceProvider"/> class.
@@ -31,15 +30,15 @@ namespace Simplify.DI.Wcf
 		/// </returns>
 		public object GetInstance(InstanceContext instanceContext)
 		{
-			_currentScope = DIContainer.Current.BeginLifetimeScope();
+			var scope = instanceContext.BeginScope();
 
 			try
 			{
-				return _currentScope.Container.Resolve(_serviceType);
+				return scope.Container.Resolve(_serviceType);
 			}
 			catch
 			{
-				_currentScope.Dispose();
+				scope.Dispose();
 
 				throw;
 			}
@@ -65,8 +64,7 @@ namespace Simplify.DI.Wcf
 		/// <param name="instance">The service object to be recycled.</param>
 		public void ReleaseInstance(InstanceContext instanceContext, object instance)
 		{
-			if (_currentScope != null)
-				_currentScope.Dispose();
+			instanceContext.GetScope()?.Dispose();
 		}
 	}
 }
