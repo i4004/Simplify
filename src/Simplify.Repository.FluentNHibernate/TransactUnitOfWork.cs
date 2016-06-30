@@ -32,7 +32,7 @@ namespace Simplify.Repository.FluentNHibernate
 		/// Commits transaction.
 		/// </summary>
 		/// <exception cref="InvalidOperationException">Oops! We don't have an active transaction</exception>
-		public void Commit()
+		public virtual void Commit()
 		{
 			if (!_transaction.IsActive)
 				throw new InvalidOperationException("Oops! We don't have an active transaction");
@@ -43,7 +43,7 @@ namespace Simplify.Repository.FluentNHibernate
 		/// <summary>
 		/// Rollbacks transaction.
 		/// </summary>
-		public void Rollback()
+		public virtual void Rollback()
 		{
 			if (_transaction.IsActive)
 				_transaction.Rollback();
