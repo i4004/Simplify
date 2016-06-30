@@ -29,8 +29,7 @@ namespace Simplify.Repository.FluentNHibernate
 		/// </summary>
 		public void Dispose()
 		{
-			if (Session.IsOpen)
-				Session.Close();
+			Session?.Dispose();
 		}
 	}
 }
