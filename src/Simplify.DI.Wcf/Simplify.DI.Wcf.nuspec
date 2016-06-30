@@ -11,7 +11,10 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>$description$</description>
 		<summary>$description$</summary>
-		<releaseNotes>Upgrade to Simplify.DI 1.1</releaseNotes>
+		<releaseNotes>
+			* Scope moved to instance context extension to keep per instance context scopes
+			* Spelling fix
+		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET DI IOC-container</tags>
