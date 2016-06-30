@@ -16,7 +16,7 @@ namespace Simplify.Repository.FluentNHibernate
 		/// <value>
 		/// The session.
 		/// </value>
-		public ISession Session { get; private set; }
+		public ISession Session { get; }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="TransactUnitOfWork"/> class.

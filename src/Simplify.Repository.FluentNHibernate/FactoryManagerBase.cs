@@ -21,8 +21,7 @@ namespace Simplify.Repository.FluentNHibernate
 		/// </summary>
 		public void Dispose()
 		{
-			if (Instance != null)
-				Instance.Dispose();
+			Instance?.Dispose();
 		}
 	}
 }
