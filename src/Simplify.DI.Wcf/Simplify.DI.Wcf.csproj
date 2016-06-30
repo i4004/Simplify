@@ -37,7 +37,7 @@
     <Compile Include="SimplifyInstanceContextExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimplifyInstanceProvider.cs" />
-    <Compile Include="SimplifyServiceBehaviour.cs" />
+    <Compile Include="SimplifyServiceBehavior.cs" />
     <Compile Include="SimplifyServiceHost.cs" />
     <Compile Include="SimplifyServiceHostFactory.cs" />
   </ItemGroup>

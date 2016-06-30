@@ -30,7 +30,7 @@ namespace Simplify.DI.Wcf
 		/// </summary>
 		protected override void OnOpening()
 		{
-			Description.Behaviors.Add(new SimplifyServiceBehaviour());
+			Description.Behaviors.Add(new SimplifyServiceBehavior());
 
 			base.OnOpening();
 		}

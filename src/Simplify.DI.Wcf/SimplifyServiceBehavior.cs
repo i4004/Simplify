@@ -9,9 +9,9 @@ using System.ServiceModel.Dispatcher;
 namespace Simplify.DI.Wcf
 {
 	/// <summary>
-	/// Provides Simplify.DI WCF service behaviour
+	/// Provides Simplify.DI WCF service behavior
 	/// </summary>
-	public class SimplifyServiceBehaviour : IServiceBehavior
+	public class SimplifyServiceBehavior : IServiceBehavior
 	{
 		/// <summary>
 		/// Provides the ability to inspect the service host and the service description to confirm that the service can run successfully.
