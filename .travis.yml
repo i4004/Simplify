@@ -6,6 +6,9 @@ branches:
 git:
  depth: 1
 
+install:
+ - mono src/.nuget/NuGet.exe restore src/Simplify.sln
+
 language: csharp
 solution: src/Simplify.sln
 
