@@ -17,5 +17,4 @@ before_script:
 
 script:
  - xbuild /p:Platform="Any CPU" /p:Configuration=Release src/Simplify.sln /tv:12.0
- - mono src/.nuget/NuGet.exe install NUnit.ConsoleRunner -Version 3.4.1 -o packages
- - mono packages/NUnit.ConsoleRunner.3.4.1/tools/nunit3-console.exe ./src/Simplify.Cryptography.Tests/bin/Release/Simplify.Cryptography.Tests.dll
+ - .ci/nunit.sh .ci/tests.nunit
