@@ -12,8 +12,7 @@
 		<description>Simple file-based logger.</description>
 		<summary>$description$</summary>
 		<releaseNotes>
-			* MaxFileSize setting from config fixed
-			* Upgrade to System.IO.Abstractions 2.0.0.115
+			* Upgrade to System.IO.Abstractions 2.0.0.124
 		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
