@@ -29,7 +29,7 @@ namespace Simplify.IO
 			set
 			{
 				if (value == null)
-					throw new ArgumentNullException("value");
+					throw new ArgumentNullException(nameof(value));
 
 				_fileSystem = new Lazy<IFileSystem>(() => value);
 			}
@@ -43,7 +43,7 @@ namespace Simplify.IO
 		public static bool IsFileLockedForRead(string filePath)
 		{
 			if (string.IsNullOrEmpty(filePath))
-				throw new ArgumentNullException("filePath");
+				throw new ArgumentNullException(nameof(filePath));
 
 			if (!FileSystem.File.Exists(filePath))
 				throw new FileNotFoundException("File not found: " + filePath);
@@ -65,8 +65,7 @@ namespace Simplify.IO
 			}
 			finally
 			{
-				if (stream != null)
-					stream.Close();
+				stream?.Close();
 			}
 
 			//file is not locked
@@ -81,7 +80,7 @@ namespace Simplify.IO
 		public static string GetLastLineOfFile(string filePath)
 		{
 			if (string.IsNullOrEmpty(filePath))
-				throw new ArgumentNullException("filePath");
+				throw new ArgumentNullException(nameof(filePath));
 
 			if (!FileSystem.File.Exists(filePath))
 				throw new FileNotFoundException("File not found: " + filePath);
@@ -128,7 +127,7 @@ namespace Simplify.IO
 		/// <returns></returns>
 		public static string GenerateFullName(string fileName)
 		{
-			return string.Format("{0}/{1}", Path.GetDirectoryName(Assembly.GetCallingAssembly().Location), fileName);
+			return $"{Path.GetDirectoryName(Assembly.GetCallingAssembly().Location)}/{fileName}";
 		}
 	}
 }
