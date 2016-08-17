@@ -1,10 +1,10 @@
-mono --runtime=v4.0 src/.nuget/NuGet.exe install NUnit.Runners -Version 2.6.3 -o packages
+mono --runtime=v4.0 src/.nuget/NuGet.exe install NUnit.ConsoleRunner -Version 3.4.1 -o packages
 
 runTest()
 {
-    mono --runtime=v4.0 packages/NUnit.Runners.2.6.3/tools/nunit-console.exe -noxml -nodots -labels $@
+    mono --runtime=v4.0 packages/NUnit.ConsoleRunner.3.4.1/tools/nunit3-console.exe -noxml -nodots -labels $@
    if [ $? -ne 0 ]
-   then   
+   then
      exit 1
    fi
 }
