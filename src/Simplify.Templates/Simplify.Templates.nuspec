@@ -12,9 +12,7 @@
 		<description>Text templates engine.</description>
 		<summary>$description$</summary>
 		<releaseNotes>
-			+ IModelSetter and ModelSetter Add() method
-			* Upgrade to System.IO.Abstractions 2.0.0.115
-			* Internal upgrade to Simplify.Xml.Sources.1.0.3
+			* Upgrade to System.IO.Abstractions 2.0.0.124
 		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
