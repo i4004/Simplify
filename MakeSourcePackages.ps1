@@ -23,7 +23,7 @@ $extensionsVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo("$PSSc
 src\.nuget\NuGet.exe pack src/Simplify.Xml/Simplify.Xml.Sources.nuspec -Version $xmlVersion
 src\.nuget\NuGet.exe pack src/Simplify.String/Simplify.String.Sources.nuspec -Version $stringVersion
 src\.nuget\NuGet.exe pack src/Simplify.System/Simplify.System.Sources.nuspec -Version $systemVersion
-src\.nuget\NuGet.exe pack src/Simplify.System/Simplify.Extensions.Sources.nuspec -Version $extensionsVersion
+src\.nuget\NuGet.exe pack src/Simplify.Extensions/Simplify.Extensions.Sources.nuspec -Version $extensionsVersion
 
 # Publishing to Appveyor artifacts
 
