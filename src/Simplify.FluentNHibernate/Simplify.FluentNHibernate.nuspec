@@ -12,7 +12,9 @@
 		<description>$description$</description>
 		<summary>$description$</summary>
 		<releaseNotes>
-			* Default null parameters for session extensions
+			* Possibility to set port number from config
+			* SqlStatementInterceptor class made public
+			+ Additional client configuration parameter in InitializeFromConfig* methods
 		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
