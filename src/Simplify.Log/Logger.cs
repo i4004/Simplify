@@ -47,7 +47,7 @@ namespace Simplify.Log
 			set
 			{
 				if (value == null)
-					throw new ArgumentNullException("value");
+					throw new ArgumentNullException(nameof(value));
 
 				_fileSystem = new Lazy<IFileSystem>(() => value);
 			}
@@ -66,7 +66,7 @@ namespace Simplify.Log
 			set
 			{
 				if (value == null)
-					throw new ArgumentNullException("value");
+					throw new ArgumentNullException(nameof(value));
 
 				_defaultLogger = new Lazy<ILogger>(() => value);
 			}
@@ -78,18 +78,18 @@ namespace Simplify.Log
 		/// <value>
 		/// The logger settings.
 		/// </value>
-		public LoggerSettings Settings { get; private set; }
+		public LoggerSettings Settings { get; }
 
 		private void Initialize()
 		{
 			if (Settings.PathType == LoggerPathType.FullPath)
 				_currentLogFileName = Settings.FileName;
 			else if (HttpContext.Current != null)
-				_currentLogFileName = string.Format("{0}{1}", HttpContext.Current.Request.PhysicalApplicationPath, Settings.FileName);
+				_currentLogFileName = $"{HttpContext.Current.Request.PhysicalApplicationPath}{Settings.FileName}";
 			else if (OperationContext.Current != null)
-				_currentLogFileName = string.Format("{0}{1}", System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath, Settings.FileName);
+				_currentLogFileName = $"{System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath}{Settings.FileName}";
 			else
-				_currentLogFileName = string.Format("{0}/{1}", Path.GetDirectoryName(Assembly.GetCallingAssembly().Location), Settings.FileName);
+				_currentLogFileName = $"{Path.GetDirectoryName(Assembly.GetCallingAssembly().Location)}/{Settings.FileName}";
 		}
 
 		/// <summary>
@@ -102,7 +102,7 @@ namespace Simplify.Log
 			var stack = new StackTrace();
 			var functionName = stack.GetFrame(1).GetMethod().Name;
 
-			WriteToFile(string.Format(" {0} : {1}", functionName, message));
+			WriteToFile($" {functionName} : {message}");
 
 			return message;
 		}
@@ -122,10 +122,10 @@ namespace Simplify.Log
 			var fileLineNumber = trace.GetFrame(0).GetFileLineNumber();
 			var fileColumnNumber = trace.GetFrame(0).GetFileColumnNumber();
 
-			var positionPrefix = fileLineNumber == 0 && fileColumnNumber == 0 ? "" : String.Format("[{0}:{1}]", fileLineNumber, fileColumnNumber);
+			var positionPrefix = fileLineNumber == 0 && fileColumnNumber == 0 ? "" : $"[{fileLineNumber}:{fileColumnNumber}]";
 
-			var message = String.Format("{0} {1} : {2}{3}{4}{5}", positionPrefix, e.GetType(),
-				e.Message, Environment.NewLine, trace, GetInnerExceptionData(1, e.InnerException));
+			var message =
+				$"{positionPrefix} {e.GetType()} : {e.Message}{Environment.NewLine}{trace}{GetInnerExceptionData(1, e.InnerException)}";
 
 			WriteToFile(message);
 
@@ -154,13 +154,11 @@ namespace Simplify.Log
 
 			var fileLineNumber = trace.GetFrame(0).GetFileLineNumber();
 			var fileColumnNumber = trace.GetFrame(0).GetFileColumnNumber();
-			var positionPrefix = fileLineNumber == 0 && fileColumnNumber == 0 ? "" : String.Format("[{0}:{1}]", fileLineNumber, fileColumnNumber);
+			var positionPrefix = fileLineNumber == 0 && fileColumnNumber == 0 ? "" : $"[{fileLineNumber}:{fileColumnNumber}]";
 			var levelText = currentLevel > 1 ? " " + currentLevel.ToString(CultureInfo.InvariantCulture) : "";
 
-			return String.Format("[Inner Exception{0}]{1} {2} : {3}{4}{5}{6}",
-				levelText, positionPrefix, e.GetType(),
-				e.Message, Environment.NewLine, trace,
-				GetInnerExceptionData(currentLevel + 1, e.InnerException));
+			return
+				$"[Inner Exception{levelText}]{positionPrefix} {e.GetType()} : {e.Message}{Environment.NewLine}{trace}{GetInnerExceptionData(currentLevel + 1, e.InnerException)}";
 		}
 
 		private void WriteToFile(string message)
@@ -181,7 +179,8 @@ namespace Simplify.Log
 					}
 				}
 
-				var writeMessage = string.Format("[{0}]{1}{2}", DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss:fff", CultureInfo.InvariantCulture), message, Environment.NewLine);
+				var writeMessage =
+					$"[{DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss:fff", CultureInfo.InvariantCulture)}]{message}{Environment.NewLine}";
 
 				FileSystem.File.AppendAllText(_currentLogFileName, writeMessage);
 			}
