@@ -12,8 +12,7 @@
 		<description>$description$</description>
 		<summary>$description$</summary>
 		<releaseNotes>
-			* Scope moved to instance context extension to keep per instance context scopes
-			* Spelling fix
+			* Upgrade to Simplify.DI 1.1.2
 		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
