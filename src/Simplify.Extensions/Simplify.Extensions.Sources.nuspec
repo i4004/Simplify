@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<title>$id$</title>
+		<authors>$author$</authors>
+		<owners>$author$</owners>
+		<projectUrl>https://github.com/i4004/Simplify/wiki/Simplify.Extensions</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Extensions for system classes.</description>
+		<summary>$description$</summary>
+		<releaseNotes>+ DateTime.TrimMilliseconds extension added</releaseNotes>
+		<copyright>Licensed under LGPL</copyright>
+		<language>en-US</language>
+		<tags>.NET system-extensions</tags>
+	</metadata>
+	<files>
+		<file src="BytesExtensions.cs" target="content/App_Packages/Simplify.Extensions.Sources.$version$/BytesExtensions.cs" />
+		<file src="DateTimeExtensions.cs" target="content/App_Packages/Simplify.Extensions.Sources.$version$/DateTimeExtensions.cs" />
+		<file src="DoubleExtensions.cs" target="content/App_Packages/Simplify.Extensions.Sources.$version$/DoubleExtensions.cs" />
+		<file src="StringExtensions.cs" target="content/App_Packages/Simplify.Extensions.Sources.$version$/StringExtensions.cs" />
+	</files>
+</package>
