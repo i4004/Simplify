@@ -15,7 +15,7 @@ namespace Simplify.Log
 	public class Logger : ILogger
 	{
 		private static Lazy<IFileSystem> _fileSystem = new Lazy<IFileSystem>(() => new FileSystem());
-		private static Lazy<ILogger> _defaultLogger = new Lazy<ILogger>(() => new Logger());
+		private static Lazy<ILogger> _defaultLogger = new Lazy<ILogger>(() => new Logger(LoggerSettings.DefaultConfigSectionName));
 
 		private readonly object _locker = new object();
 		private string _currentLogFileName;
@@ -24,11 +24,24 @@ namespace Simplify.Log
 		/// Initializes a new instance of the <see cref="Logger"/> class.
 		/// </summary>
 		/// <param name="configSectionName">Name of the configuration section in the configuration file.</param>
-		public Logger(string configSectionName = "Logger")
+		public Logger(string configSectionName = LoggerSettings.DefaultConfigSectionName)
 		{
 			Settings = new LoggerSettings(configSectionName);
 
 			Initialize();
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Logger"/> class.
+		/// </summary>
+		/// <param name="maxFileSize">Maximum size of the file.</param>
+		/// <param name="fileName">Name of the file.</param>
+		/// <param name="pathType">Type of the path.</param>
+		/// <param name="showTraceOutput">if set to <c>true</c> [show trace output].</param>
+		public Logger(int maxFileSize = LoggerSettings.DefaultMaxFileSize, string fileName = LoggerSettings.DefaultFileName,
+			LoggerPathType pathType = LoggerSettings.DefaultPathType, bool showTraceOutput = false)
+		{
+			Settings = new LoggerSettings(maxFileSize, fileName, pathType, showTraceOutput);
 		}
 
 		/// <summary>
