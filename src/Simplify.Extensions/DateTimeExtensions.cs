@@ -8,7 +8,7 @@ namespace Simplify.Extensions
 	public static class DateTimeExtensions
 	{
 		/// <summary>
-		/// Removes milliseconds from DataTime
+		/// Removes milliseconds from DateTime
 		/// </summary>
 		/// <param name="dt">Date and time.</param>
 		/// <returns></returns>
