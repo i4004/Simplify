@@ -11,7 +11,11 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>$description$</description>
 		<summary>$description$</summary>
-		<releaseNotes>Upgrade to Simplify.DI 1.1.1, SimpleInjector 3.1.2</releaseNotes>
+		<releaseNotes>
+			* Upgrade to Simplify.DI 1.1.2
+			* Upgrade to SimpleInjector 3.2
+			* Switched to ExecutionContextScoping 3.2 from LifetimeScoping
+		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET DI IOC-container-provider</tags>

@@ -1,4 +1,5 @@
 ﻿using SimpleInjector;
+using SimpleInjector.Extensions.ExecutionContextScoping;
 
 namespace Simplify.DI.Provider.SimpleInjector
 {
@@ -17,7 +18,7 @@ namespace Simplify.DI.Provider.SimpleInjector
 		{
 			Container = provider;
 
-			_scope = provider.Container.BeginLifetimeScope();
+			_scope = provider.Container.BeginExecutionContextScope();
 		}
 
 		/// <summary>
