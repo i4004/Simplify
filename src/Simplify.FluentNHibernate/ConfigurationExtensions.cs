@@ -26,7 +26,7 @@ namespace Simplify.FluentNHibernate
 
 			configuration.Database(OracleClientConfiguration.Oracle10.ConnectionString(c => c
 				.Server(settings.ServerName)
-				.Port(1521)
+				.Port(settings.Port ?? 1521)
 				.Instance(settings.DataBaseName)
 				.Username(settings.UserName)
 				.Password(settings.UserPassword)));
@@ -52,7 +52,7 @@ namespace Simplify.FluentNHibernate
 
 			configuration.Database(OracleDataClientConfiguration.Oracle10.ConnectionString(c => c
 				.Server(settings.ServerName)
-				.Port(1521)
+				.Port(settings.Port ?? 1521)
 				.Instance(settings.DataBaseName)
 				.Username(settings.UserName)
 				.Password(settings.UserPassword))
@@ -79,7 +79,7 @@ namespace Simplify.FluentNHibernate
 
 			configuration.Database(OracleClientConfiguration.Oracle10.ConnectionString(c => c
 				.Server(settings.ServerName)
-				.Port(1521)
+				.Port(settings.Port ?? 1521)
 				.Instance(settings.DataBaseName)
 				.Username(settings.UserName)
 				.Password(settings.UserPassword))
@@ -156,6 +156,7 @@ namespace Simplify.FluentNHibernate
 
 			configuration.Database(PostgreSQLConfiguration.PostgreSQL82.ConnectionString(c => c
 				.Host(settings.ServerName)
+				.Port(settings.Port ?? 5432)
 				.Database(settings.DataBaseName)
 				.Username(settings.UserName)
 				.Password(settings.UserPassword)));
