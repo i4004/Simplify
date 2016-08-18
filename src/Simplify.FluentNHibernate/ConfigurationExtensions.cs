@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Diagnostics;
-
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using FluentNHibernate.Conventions;
-using NHibernate;
 using NHibernate.Driver;
-using NHibernate.SqlCommand;
 
 using Simplify.FluentNHibernate.Drivers;
 
@@ -24,7 +20,7 @@ namespace Simplify.FluentNHibernate
 		/// <param name="configSectionName">Configuration section name in App.config or Web.config file</param>
 		public static FluentConfiguration InitializeFromConfigOracleClient(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
 		{
-			if (configuration == null) throw new ArgumentNullException("configuration");
+			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
 			var settings = new DbConnectionSettings(configSectionName);
 
@@ -37,7 +33,7 @@ namespace Simplify.FluentNHibernate
 
 			configuration.ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none"));
 
-			if(settings.ShowSql)
+			if (settings.ShowSql)
 				configuration.ExposeConfiguration(x => x.SetInterceptor(new SqlStatementInterceptor()));
 
 			return configuration;
@@ -50,7 +46,7 @@ namespace Simplify.FluentNHibernate
 		/// <param name="configSectionName">Configuration section name in App.config or Web.config file</param>
 		public static FluentConfiguration InitializeFromConfigOracleOdpNetNative(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
 		{
-			if (configuration == null) throw new ArgumentNullException("configuration");
+			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
 			var settings = new DbConnectionSettings(configSectionName);
 
@@ -77,8 +73,8 @@ namespace Simplify.FluentNHibernate
 		/// <param name="configSectionName">Configuration section name in App.config or Web.config file</param>
 		public static FluentConfiguration InitializeFromConfigOracleOdpNet(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
 		{
-			if (configuration == null) throw new ArgumentNullException("configuration");
-			
+			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
+
 			var settings = new DbConnectionSettings(configSectionName);
 
 			configuration.Database(OracleClientConfiguration.Oracle10.ConnectionString(c => c
@@ -104,8 +100,8 @@ namespace Simplify.FluentNHibernate
 		/// <param name="configSectionName">Configuration section name in App.config or Web.config file</param>
 		public static FluentConfiguration InitializeFromConfigMySql(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
 		{
-			if (configuration == null) throw new ArgumentNullException("configuration");
-			
+			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
+
 			var settings = new DbConnectionSettings(configSectionName);
 
 			configuration.Database(MySQLConfiguration.Standard.ConnectionString(c => c
@@ -129,8 +125,8 @@ namespace Simplify.FluentNHibernate
 		/// <param name="configSectionName">Configuration section name in App.config or Web.config file</param>
 		public static FluentConfiguration InitializeFromConfigMsSql(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
 		{
-			if (configuration == null) throw new ArgumentNullException("configuration");
-			
+			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
+
 			var settings = new DbConnectionSettings(configSectionName);
 
 			configuration.Database(MsSqlConfiguration.MsSql2008.ConnectionString(c => c
@@ -154,7 +150,7 @@ namespace Simplify.FluentNHibernate
 		/// <param name="configSectionName">Configuration section name in App.config or Web.config file</param>
 		public static FluentConfiguration InitializeFromConfigPostgreSql(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
 		{
-			if (configuration == null) throw new ArgumentNullException("configuration");
+			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
 			var settings = new DbConnectionSettings(configSectionName);
 
@@ -180,7 +176,7 @@ namespace Simplify.FluentNHibernate
 		/// <param name="showSql">if set to <c>true</c> then all executed SQL queries will be shown in trace window.</param>
 		public static FluentConfiguration InitializeFromConfigSqLite(this FluentConfiguration configuration, string fileName, bool showSql = false)
 		{
-			if (configuration == null) throw new ArgumentNullException("configuration");
+			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
 			configuration.Database(SQLiteConfiguration.Standard.UsingFile(fileName));
 
@@ -199,7 +195,7 @@ namespace Simplify.FluentNHibernate
 		/// <param name="showSql">if set to <c>true</c> then all executed SQL queries will be shown in trace window.</param>
 		public static FluentConfiguration InitializeFromConfigSqLiteInMemory(this FluentConfiguration configuration, bool showSql = false)
 		{
-			if (configuration == null) throw new ArgumentNullException("configuration");
+			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
 			configuration.Database(SQLiteConfiguration.Standard.InMemory());
 
@@ -221,25 +217,13 @@ namespace Simplify.FluentNHibernate
 		/// <exception cref="System.ArgumentNullException">configuration</exception>
 		public static FluentConfiguration AddMappingsFromAssemblyOf<T>(this FluentConfiguration configuration, params IConvention[] conventions)
 		{
-			if (configuration == null) throw new ArgumentNullException("configuration");
+			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
 			configuration.Mappings(m => m.FluentMappings
 				.AddFromAssemblyOf<T>()
 				.Conventions.Add(conventions));
 
 			return configuration;
-		}
-
-		/// <summary>
-		/// Executed SQL code tracer
-		/// </summary>
-		private class SqlStatementInterceptor : EmptyInterceptor
-		{
-			public override SqlString OnPrepareStatement(SqlString sql)
-			{
-				Trace.WriteLine(string.Format("SQL executed: '{0}'", sql));
-				return sql;
-			}
 		}
 	}
 }
