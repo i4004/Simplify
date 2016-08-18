@@ -12,6 +12,7 @@
 		<description>Simple file-based logger.</description>
 		<summary>$description$</summary>
 		<releaseNotes>
+			+ Configuration via constructor
 			* Upgrade to System.IO.Abstractions 2.0.0.124
 		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
