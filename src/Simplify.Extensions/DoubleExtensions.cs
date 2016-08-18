@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Simplify.Extensions.Double
+namespace Simplify.Extensions
 {
 	/// <summary>
 	/// Provides extensions for the double class

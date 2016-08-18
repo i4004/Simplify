@@ -11,7 +11,7 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Extensions for system classes.</description>
 		<summary>$description$</summary>
-		<releaseNotes></releaseNotes>
+		<releaseNotes>+ DateTime.TrimMilliseconds extension added</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET system-extensions</tags>

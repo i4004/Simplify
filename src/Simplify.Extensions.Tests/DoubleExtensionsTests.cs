@@ -1,11 +1,9 @@
 ﻿using NUnit.Framework;
 
-using Simplify.Extensions.Double;
-
 namespace Simplify.Extensions.Tests
 {
 	[TestFixture]
-	public class DoubleExtensionsTester
+	public class DoubleExtensionsTests
 	{
 		[Test]
 		public void Double_CompareTwoDoubles_ComparedCorrectly()

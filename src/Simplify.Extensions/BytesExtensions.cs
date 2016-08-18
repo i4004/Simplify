@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Simplify.Extensions.Bytes
+namespace Simplify.Extensions
 {
 	/// <summary>
 	/// Provides extensions fo the bytes[] arrays

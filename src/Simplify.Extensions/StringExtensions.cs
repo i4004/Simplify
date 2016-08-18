@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace Simplify.Extensions.String
+namespace Simplify.Extensions
 {
 	/// <summary>
 	/// Provides extensions for the string class
@@ -31,6 +31,6 @@ namespace Simplify.Extensions.String
 			DateTime date;
 
 			return DateTime.TryParseExact(s, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date) ? date : (DateTime?)null;
-		}	
+		}
 	}
 }
