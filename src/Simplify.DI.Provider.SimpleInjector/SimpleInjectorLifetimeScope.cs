@@ -27,7 +27,7 @@ namespace Simplify.DI.Provider.SimpleInjector
 		/// <value>
 		/// The DI container provider (should be user to resolve types when using scoping).
 		/// </value>
-		public IDIContainerProvider Container { get; private set; }
+		public IDIContainerProvider Container { get; }
 
 		/// <summary>
 		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
