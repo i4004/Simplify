@@ -18,19 +18,27 @@ namespace Simplify.FluentNHibernate
 		/// </summary>
 		/// <param name="configuration">The fluentNHibernate configuration.</param>
 		/// <param name="configSectionName">Configuration section name in App.config or Web.config file</param>
-		public static FluentConfiguration InitializeFromConfigOracleClient(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
+		/// <param name="additionalClientConfiguration">The additional client configuration.</param>
+		/// <returns></returns>
+		/// <exception cref="ArgumentNullException"></exception>
+		public static FluentConfiguration InitializeFromConfigOracleClient(this FluentConfiguration configuration,
+			string configSectionName = "DatabaseConnectionSettings",
+			Action<OracleClientConfiguration> additionalClientConfiguration = null)
 		{
 			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
 			var settings = new DbConnectionSettings(configSectionName);
 
-			configuration.Database(OracleClientConfiguration.Oracle10.ConnectionString(c => c
-				.Server(settings.ServerName)
-				.Port(settings.Port ?? 1521)
-				.Instance(settings.DataBaseName)
-				.Username(settings.UserName)
-				.Password(settings.UserPassword)));
+			var clientConfiguration = OracleClientConfiguration.Oracle10.ConnectionString(c =>
+				c.Server(settings.ServerName)
+					.Port(settings.Port ?? 1521)
+					.Instance(settings.DataBaseName)
+					.Username(settings.UserName)
+					.Password(settings.UserPassword));
 
+			additionalClientConfiguration?.Invoke(clientConfiguration);
+
+			configuration.Database(clientConfiguration);
 			configuration.ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none"));
 
 			if (settings.ShowSql)
@@ -44,20 +52,28 @@ namespace Simplify.FluentNHibernate
 		/// </summary>
 		/// <param name="configuration">The fluentNHibernate configuration.</param>
 		/// <param name="configSectionName">Configuration section name in App.config or Web.config file</param>
-		public static FluentConfiguration InitializeFromConfigOracleOdpNetNative(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
+		/// <param name="additionalClientConfiguration">The additional client configuration.</param>
+		/// <returns></returns>
+		/// <exception cref="ArgumentNullException"></exception>
+		public static FluentConfiguration InitializeFromConfigOracleOdpNetNative(this FluentConfiguration configuration,
+			string configSectionName = "DatabaseConnectionSettings",
+			Action<OracleDataClientConfiguration> additionalClientConfiguration = null)
 		{
 			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
 			var settings = new DbConnectionSettings(configSectionName);
 
-			configuration.Database(OracleDataClientConfiguration.Oracle10.ConnectionString(c => c
+			var clientConfiguration = OracleDataClientConfiguration.Oracle10.ConnectionString(c => c
 				.Server(settings.ServerName)
 				.Port(settings.Port ?? 1521)
 				.Instance(settings.DataBaseName)
 				.Username(settings.UserName)
 				.Password(settings.UserPassword))
-				.Driver<OracleDataClientDriverFix>);
+				.Driver<OracleDataClientDriverFix>();
 
+			additionalClientConfiguration?.Invoke(clientConfiguration);
+
+			configuration.Database(clientConfiguration);
 			configuration.ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none"));
 
 			if (settings.ShowSql)
@@ -71,20 +87,28 @@ namespace Simplify.FluentNHibernate
 		/// </summary>
 		/// <param name="configuration">The fluentNHibernate configuration.</param>
 		/// <param name="configSectionName">Configuration section name in App.config or Web.config file</param>
-		public static FluentConfiguration InitializeFromConfigOracleOdpNet(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
+		/// <param name="additionalClientConfiguration">The additional client configuration.</param>
+		/// <returns></returns>
+		/// <exception cref="ArgumentNullException"></exception>
+		public static FluentConfiguration InitializeFromConfigOracleOdpNet(this FluentConfiguration configuration,
+			string configSectionName = "DatabaseConnectionSettings",
+			Action<OracleClientConfiguration> additionalClientConfiguration = null)
 		{
 			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
 			var settings = new DbConnectionSettings(configSectionName);
 
-			configuration.Database(OracleClientConfiguration.Oracle10.ConnectionString(c => c
+			var clientConfiguration = OracleClientConfiguration.Oracle10.ConnectionString(c => c
 				.Server(settings.ServerName)
 				.Port(settings.Port ?? 1521)
 				.Instance(settings.DataBaseName)
 				.Username(settings.UserName)
 				.Password(settings.UserPassword))
-				.Driver<OracleManagedDataClientDriver>());
+				.Driver<OracleManagedDataClientDriver>();
 
+			additionalClientConfiguration?.Invoke(clientConfiguration);
+
+			configuration.Database(clientConfiguration);
 			configuration.ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none"));
 
 			if (settings.ShowSql)
@@ -98,18 +122,26 @@ namespace Simplify.FluentNHibernate
 		/// </summary>
 		/// <param name="configuration">The fluentNHibernate configuration.</param>
 		/// <param name="configSectionName">Configuration section name in App.config or Web.config file</param>
-		public static FluentConfiguration InitializeFromConfigMySql(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
+		/// <param name="additionalClientConfiguration">The additional client configuration.</param>
+		/// <returns></returns>
+		/// <exception cref="ArgumentNullException"></exception>
+		public static FluentConfiguration InitializeFromConfigMySql(this FluentConfiguration configuration,
+			string configSectionName = "DatabaseConnectionSettings",
+			Action<MySQLConfiguration> additionalClientConfiguration = null)
 		{
 			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
 			var settings = new DbConnectionSettings(configSectionName);
 
-			configuration.Database(MySQLConfiguration.Standard.ConnectionString(c => c
+			var clientConfiguration = MySQLConfiguration.Standard.ConnectionString(c => c
 				.Server(settings.ServerName)
 				.Database(settings.DataBaseName)
 				.Username(settings.UserName)
-				.Password(settings.UserPassword)));
+				.Password(settings.UserPassword));
 
+			additionalClientConfiguration?.Invoke(clientConfiguration);
+
+			configuration.Database(clientConfiguration);
 			configuration.ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none"));
 
 			if (settings.ShowSql)
@@ -123,18 +155,26 @@ namespace Simplify.FluentNHibernate
 		/// </summary>
 		/// <param name="configuration">The fluentNHibernate configuration.</param>
 		/// <param name="configSectionName">Configuration section name in App.config or Web.config file</param>
-		public static FluentConfiguration InitializeFromConfigMsSql(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
+		/// <param name="additionalClientConfiguration">The additional client configuration.</param>
+		/// <returns></returns>
+		/// <exception cref="ArgumentNullException"></exception>
+		public static FluentConfiguration InitializeFromConfigMsSql(this FluentConfiguration configuration,
+			string configSectionName = "DatabaseConnectionSettings",
+			Action<MsSqlConfiguration> additionalClientConfiguration = null)
 		{
 			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
 			var settings = new DbConnectionSettings(configSectionName);
 
-			configuration.Database(MsSqlConfiguration.MsSql2008.ConnectionString(c => c
+			var clientConfiguration = MsSqlConfiguration.MsSql2008.ConnectionString(c => c
 				.Server(settings.ServerName)
 				.Database(settings.DataBaseName)
 				.Username(settings.UserName)
-				.Password(settings.UserPassword)));
+				.Password(settings.UserPassword));
 
+			additionalClientConfiguration?.Invoke(clientConfiguration);
+
+			configuration.Database(clientConfiguration);
 			configuration.ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none"));
 
 			if (settings.ShowSql)
@@ -148,19 +188,27 @@ namespace Simplify.FluentNHibernate
 		/// </summary>
 		/// <param name="configuration">The fluentNHibernate configuration.</param>
 		/// <param name="configSectionName">Configuration section name in App.config or Web.config file</param>
-		public static FluentConfiguration InitializeFromConfigPostgreSql(this FluentConfiguration configuration, string configSectionName = "DatabaseConnectionSettings")
+		/// <param name="additionalClientConfiguration">The additional client configuration.</param>
+		/// <returns></returns>
+		/// <exception cref="ArgumentNullException"></exception>
+		public static FluentConfiguration InitializeFromConfigPostgreSql(this FluentConfiguration configuration,
+			string configSectionName = "DatabaseConnectionSettings",
+			Action<PostgreSQLConfiguration> additionalClientConfiguration = null)
 		{
 			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
 			var settings = new DbConnectionSettings(configSectionName);
 
-			configuration.Database(PostgreSQLConfiguration.PostgreSQL82.ConnectionString(c => c
+			var clientConfiguration = PostgreSQLConfiguration.PostgreSQL82.ConnectionString(c => c
 				.Host(settings.ServerName)
 				.Port(settings.Port ?? 5432)
 				.Database(settings.DataBaseName)
 				.Username(settings.UserName)
-				.Password(settings.UserPassword)));
+				.Password(settings.UserPassword));
 
+			additionalClientConfiguration?.Invoke(clientConfiguration);
+
+			configuration.Database(clientConfiguration);
 			configuration.ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none"));
 
 			if (settings.ShowSql)
@@ -175,12 +223,20 @@ namespace Simplify.FluentNHibernate
 		/// <param name="configuration">The fluentNHibernate configuration.</param>
 		/// <param name="fileName">Name of the SqLite database file.</param>
 		/// <param name="showSql">if set to <c>true</c> then all executed SQL queries will be shown in trace window.</param>
-		public static FluentConfiguration InitializeFromConfigSqLite(this FluentConfiguration configuration, string fileName, bool showSql = false)
+		/// <param name="additionalClientConfiguration">The additional client configuration.</param>
+		/// <returns></returns>
+		/// <exception cref="ArgumentNullException"></exception>
+		public static FluentConfiguration InitializeFromConfigSqLite(this FluentConfiguration configuration,
+			string fileName, bool showSql = false,
+			Action<SQLiteConfiguration> additionalClientConfiguration = null)
 		{
 			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-			configuration.Database(SQLiteConfiguration.Standard.UsingFile(fileName));
+			var clientConfiguration = SQLiteConfiguration.Standard.UsingFile(fileName);
 
+			additionalClientConfiguration?.Invoke(clientConfiguration);
+
+			configuration.Database(clientConfiguration);
 			configuration.ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none"));
 
 			if (showSql)
@@ -194,12 +250,20 @@ namespace Simplify.FluentNHibernate
 		/// </summary>
 		/// <param name="configuration">The fluentNHibernate configuration.</param>
 		/// <param name="showSql">if set to <c>true</c> then all executed SQL queries will be shown in trace window.</param>
-		public static FluentConfiguration InitializeFromConfigSqLiteInMemory(this FluentConfiguration configuration, bool showSql = false)
+		/// <param name="additionalClientConfiguration">The additional client configuration.</param>
+		/// <returns></returns>
+		/// <exception cref="ArgumentNullException"></exception>
+		public static FluentConfiguration InitializeFromConfigSqLiteInMemory(this FluentConfiguration configuration,
+			bool showSql = false,
+			Action<SQLiteConfiguration> additionalClientConfiguration = null)
 		{
 			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-			configuration.Database(SQLiteConfiguration.Standard.InMemory());
+			var clientConfiguration = SQLiteConfiguration.Standard.InMemory();
 
+			additionalClientConfiguration?.Invoke(clientConfiguration);
+
+			configuration.Database(clientConfiguration);
 			configuration.ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none"));
 
 			if (showSql)
