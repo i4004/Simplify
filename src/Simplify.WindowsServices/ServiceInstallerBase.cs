@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Configuration;
 using System.Configuration.Install;
+using System.Linq;
 using System.Reflection;
 using System.ServiceProcess;
 using System.Xml.Linq;
@@ -14,89 +15,62 @@ namespace Simplify.WindowsServices
 	/// </summary>
 	public class ServiceInstallerBase : Installer
 	{
+		public const string ServiceInstallerSettingsSectionName = "ServiceInstallerSettings";
+		public const string RunAsUserNameFieldName = "RunAsUserName";
+		public const string RunAsUserPasswordFieldName = "RunAsUserPassword";
+		public const string ServiceAccountFieldName = "ServiceAccount";
+
 		private readonly ServiceProcessInstaller _serviceProcessInstaller = new ServiceProcessInstaller();
 		private readonly ServiceInstaller _serviceInstaller = new ServiceInstaller();
 
-		private readonly string _userName;
-		private readonly string _password;
+		private string _userName;
+		private string _password;
+		private ServiceAccount _serviceAccount = ServiceAccount.LocalService;
 
 		/// <summary>
-		/// ProcessingServiceInstaller initialization with information from service assembly
+		/// ProcessingServiceInstaller initialization with custom service description assembly
 		/// </summary>
-		/// <param name="serviceAssembly">Assembly from which to get assembly information</param>
-		public ServiceInstallerBase(Assembly serviceAssembly = null)
+		/// <param name="serviceDescriptionAssembly">Assembly from which to get service information</param>
+		public ServiceInstallerBase(Assembly serviceDescriptionAssembly = null)
 		{
-			var assemblyInfo = serviceAssembly != null ? new AssemblyInfo(serviceAssembly) : AssemblyInfo.Entry;
+			var assemblyInfo = serviceDescriptionAssembly != null ? new AssemblyInfo(serviceDescriptionAssembly) : AssemblyInfo.Entry;
 
-			Initialize(assemblyInfo.Description, assemblyInfo.Description, assemblyInfo.Title, ServiceAccount.LocalService, null, null);
+			TryToLoadRunAsUserSettings(serviceDescriptionAssembly);
+
+			Initialize(assemblyInfo.Description, assemblyInfo.Description, assemblyInfo.Title,
+				_serviceAccount, _userName, _password);
 		}
 
 		/// <summary>
-		/// ProcessingServiceInstaller initialization with information from service assembly and RunAs user name, password from config file
-		/// </summary>
-		/// <param name="serviceAssembly"></param>
-		/// <param name="installRunAsUserFromConfig"></param>
-		public ServiceInstallerBase(Assembly serviceAssembly, bool installRunAsUserFromConfig)
-		{
-			if (serviceAssembly == null)
-				throw new ServiceInitializationException("Installation failed, serviceAssembly is null");
-
-			IAssemblyInfo assemblyInfo = new AssemblyInfo(serviceAssembly);
-
-			if (installRunAsUserFromConfig)
-			{
-				var config = ConfigurationManager.OpenExeConfiguration(serviceAssembly.Location);
-				var configSection = config.GetSection("ServiceInstallerSettings");
-
-				if (configSection != null)
-				{
-					var configSectionElement = XElement.Parse(configSection.SectionInformation.GetRawXml());
-
-					foreach (var item in configSectionElement.XPathSelectElements("add"))
-					{
-						if (item.Attribute(XName.Get("key")) == null)
-							continue;
-
-						if (item.Attribute(XName.Get("key")).Value == "RunAsUserName")
-							_userName = item.Attribute(XName.Get("value")).Value;
-
-						if (item.Attribute(XName.Get("key")).Value == "RunAsUserPassword")
-							_password = item.Attribute(XName.Get("value")).Value;
-					}
-				}
-			}
-
-			Initialize(assemblyInfo.Description, assemblyInfo.Description, assemblyInfo.Title, ServiceAccount.User, _userName, _password);
-		}
-
-		/// <summary>
-		/// ProcessingServiceInstaller initialization
+		/// ProcessingServiceInstaller initialization with custom service description
 		/// </summary>
 		/// <param name="description">Service description</param>
 		/// <param name="displayName">Service display name</param>
 		/// <param name="serviceName">Service name</param>
 		public ServiceInstallerBase(string description, string displayName, string serviceName)
 		{
-			Initialize(description, displayName, serviceName, ServiceAccount.LocalService, null, null);
+			TryToLoadRunAsUserSettings();
+
+			Initialize(description, displayName, serviceName, _serviceAccount, null, null);
 		}
 
 		/// <summary>
-		/// ProcessingServiceInstaller initialization with information from service assembly
+		/// ProcessingServiceInstaller initialization with custom run as user and service description from specified assembly
 		/// </summary>
-		/// <param name="serviceAssembly">Assembly from which to get assembly information</param>
+		/// <param name="serviceDescriptionAssembly">Assembly from which to get service information</param>
 		/// <param name="account">Account type under which to run this service</param>
 		/// <param name="userName">User name under which to run this service</param>
 		/// <param name="password">Password under which to run this service</param>
-		public ServiceInstallerBase(ServiceAccount account, string userName, string password, Assembly serviceAssembly = null)
+		public ServiceInstallerBase(ServiceAccount account, string userName = null, string password = null, Assembly serviceDescriptionAssembly = null)
 		{
-			var assemblyInfo = serviceAssembly != null ? new AssemblyInfo(serviceAssembly) : AssemblyInfo.Entry;
+			var assemblyInfo = serviceDescriptionAssembly != null ? new AssemblyInfo(serviceDescriptionAssembly) : AssemblyInfo.Entry;
 
 			Initialize(assemblyInfo.Description, assemblyInfo.Description, assemblyInfo.Title, account, userName,
 					   password);
 		}
 
 		/// <summary>
-		/// ProcessingServiceInstaller initialization
+		/// ProcessingServiceInstaller initialization with all custom settings
 		/// </summary>
 		/// <param name="description">Service description</param>
 		/// <param name="displayName">Service display name</param>
@@ -133,13 +107,64 @@ namespace Simplify.WindowsServices
 		/// <param name="stateSaver"></param>
 		public override void Install(IDictionary stateSaver)
 		{
-			if (!string.IsNullOrEmpty(_userName) && !string.IsNullOrEmpty(_password))
+			if (IsRunAsUserSet())
 			{
 				Context.Parameters["USERNAME"] = _userName;
 				Context.Parameters["PASSWORD"] = _password;
 			}
 
 			base.Install(stateSaver);
+		}
+
+		private void TryToLoadRunAsUserSettings(Assembly serviceAssembly = null)
+		{
+			var config = ConfigurationManager.OpenExeConfiguration(serviceAssembly?.Location ?? Assembly.GetEntryAssembly().Location);
+
+			var configSection = config.GetSection(ServiceInstallerSettingsSectionName);
+
+			if (configSection == null)
+				return;
+
+			string serviceAccount = null;
+
+			var configSectionElement = XElement.Parse(configSection.SectionInformation.GetRawXml());
+
+			foreach (var item in configSectionElement.XPathSelectElements("add").Where(item => item.Attribute(XName.Get("key")) != null))
+			{
+				if (item.Attribute(XName.Get("key")).Value == RunAsUserNameFieldName)
+					_userName = item.Attribute(XName.Get("value")).Value;
+
+				if (item.Attribute(XName.Get("key")).Value == RunAsUserPasswordFieldName)
+					_password = item.Attribute(XName.Get("value")).Value;
+
+				if (item.Attribute(XName.Get("key")).Value == ServiceAccountFieldName)
+					serviceAccount = item.Attribute(XName.Get("value")).Value;
+			}
+
+			_serviceAccount = !IsRunAsUserSet() ? TryParseServiceAccountFieldData(serviceAccount) : ServiceAccount.User;
+		}
+
+		private static ServiceAccount TryParseServiceAccountFieldData(string data)
+		{
+			switch (data)
+			{
+				case "NetworkService":
+					return ServiceAccount.NetworkService;
+
+				case "LocalSystem":
+					return ServiceAccount.LocalSystem;
+
+				case "User":
+					return ServiceAccount.User;
+
+				default:
+					return ServiceAccount.LocalService;
+			}
+		}
+
+		private bool IsRunAsUserSet()
+		{
+			return !string.IsNullOrEmpty(_userName) && !string.IsNullOrEmpty(_password);
 		}
 	}
 }
