@@ -2,6 +2,8 @@
 {
 	public enum ProcessCommandLineResult
 	{
-		NoArguments
+		NoArguments,
+		UndefinedParameters,
+		CommandLineActionExecuted
 	}
 }

@@ -75,7 +75,10 @@
     <Compile Include="BasicServiceHandler.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CommandLine\CommandLineAction.cs" />
     <Compile Include="CommandLine\ICommandLineProcessor.cs" />
+    <Compile Include="CommandLine\IInstallationController.cs" />
+    <Compile Include="CommandLine\InstallationController.cs" />
     <Compile Include="CommandLine\ProcessCommandLineResult.cs" />
     <Compile Include="Jobs\Crontab\CrontabProcessor.cs" />
     <Compile Include="Jobs\Crontab\CrontabProcessorFactory.cs" />
