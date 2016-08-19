@@ -2,8 +2,8 @@
 {
 	public interface IInstallationController
 	{
-		bool InstallService();
+		void InstallService();
 
-		bool UninstallService();
+		void UninstallService();
 	}
 }

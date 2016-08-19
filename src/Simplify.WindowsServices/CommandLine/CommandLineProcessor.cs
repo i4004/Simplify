@@ -21,7 +21,7 @@ namespace Simplify.WindowsServices.CommandLine
 			}
 		}
 
-		public ProcessCommandLineResult ProcessCommandLineArguments(string[] args)
+		public virtual ProcessCommandLineResult ProcessCommandLineArguments(string[] args)
 		{
 			if (args == null || args.Length == 0)
 				return ProcessCommandLineResult.NoArguments;
@@ -42,7 +42,7 @@ namespace Simplify.WindowsServices.CommandLine
 			return ProcessCommandLineResult.UndefinedParameters;
 		}
 
-		public CommandLineAction ParseCommandLineArguments(string[] args)
+		public virtual CommandLineAction ParseCommandLineArguments(string[] args)
 		{
 			if (args[0] == "install")
 				return CommandLineAction.InstallService;

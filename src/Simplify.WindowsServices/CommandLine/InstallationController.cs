@@ -1,17 +1,23 @@
-﻿using System;
+﻿using System.Configuration.Install;
+using System.Reflection;
 
 namespace Simplify.WindowsServices.CommandLine
 {
 	public class InstallationController : IInstallationController
 	{
-		public bool InstallService()
+		public virtual void InstallService()
 		{
-			throw new NotImplementedException();
+			ManagedInstallerClass.InstallHelper(new[] { "/LogFile=", "/LogToConsole=true", GetEntryAssemblyLocation() });
 		}
 
-		public bool UninstallService()
+		public virtual void UninstallService()
 		{
-			throw new NotImplementedException();
+			ManagedInstallerClass.InstallHelper(new[] { "/u", "/LogFile=", "/LogToConsole=true", GetEntryAssemblyLocation() });
+		}
+
+		protected string GetEntryAssemblyLocation()
+		{
+			return Assembly.GetEntryAssembly().Location;
 		}
 	}
 }
