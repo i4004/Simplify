@@ -15,9 +15,24 @@ namespace Simplify.WindowsServices
 	/// </summary>
 	public class ServiceInstallerBase : Installer
 	{
+		/// <summary>
+		/// The service installer settings section name
+		/// </summary>
 		public const string ServiceInstallerSettingsSectionName = "ServiceInstallerSettings";
+
+		/// <summary>
+		/// The RunAs user name field name
+		/// </summary>
 		public const string RunAsUserNameFieldName = "RunAsUserName";
+
+		/// <summary>
+		/// The RunAs user password field name
+		/// </summary>
 		public const string RunAsUserPasswordFieldName = "RunAsUserPassword";
+
+		/// <summary>
+		/// The service account field name
+		/// </summary>
 		public const string ServiceAccountFieldName = "ServiceAccount";
 
 		private readonly ServiceProcessInstaller _serviceProcessInstaller = new ServiceProcessInstaller();

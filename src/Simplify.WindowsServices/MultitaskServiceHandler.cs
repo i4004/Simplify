@@ -54,6 +54,10 @@ namespace Simplify.WindowsServices
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the current command line processor.
+		/// </summary>
+		/// <exception cref="ArgumentNullException"></exception>
 		public ICommandLineProcessor CommandLineProcessor
 		{
 			get
@@ -237,6 +241,10 @@ namespace Simplify.WindowsServices
 
 		#endregion Crontab jobs operations
 
+		/// <summary>
+		/// Starts the windows-service.
+		/// </summary>
+		/// <param name="args">The arguments.</param>
 		public void Start(string[] args = null)
 		{
 			var commandLineProcessResult = CommandLineProcessor.ProcessCommandLineArguments(args);

@@ -2,10 +2,18 @@
 
 namespace Simplify.WindowsServices.CommandLine
 {
+	/// <summary>
+	/// Providles windows-service command line processor
+	/// </summary>
+	/// <seealso cref="Simplify.WindowsServices.CommandLine.ICommandLineProcessor" />
 	public class CommandLineProcessor : ICommandLineProcessor
 	{
 		private IInstallationController _installationController;
 
+		/// <summary>
+		/// Gets or sets the current installation controller.
+		/// </summary>
+		/// <exception cref="ArgumentNullException"></exception>
 		public IInstallationController InstallationController
 		{
 			get
@@ -21,6 +29,11 @@ namespace Simplify.WindowsServices.CommandLine
 			}
 		}
 
+		/// <summary>
+		/// Processes the command line arguments.
+		/// </summary>
+		/// <param name="args">The arguments.</param>
+		/// <returns></returns>
 		public virtual ProcessCommandLineResult ProcessCommandLineArguments(string[] args)
 		{
 			if (args == null || args.Length == 0)
@@ -46,6 +59,11 @@ namespace Simplify.WindowsServices.CommandLine
 			return ProcessCommandLineResult.UndefinedParameters;
 		}
 
+		/// <summary>
+		/// Parses the command line arguments.
+		/// </summary>
+		/// <param name="args">The arguments.</param>
+		/// <returns></returns>
 		public virtual CommandLineAction ParseCommandLineArguments(string[] args)
 		{
 			if (args[0] == "install")
