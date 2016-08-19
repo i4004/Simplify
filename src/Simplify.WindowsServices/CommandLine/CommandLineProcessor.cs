@@ -39,6 +39,10 @@ namespace Simplify.WindowsServices.CommandLine
 					return ProcessCommandLineResult.CommandLineActionExecuted;
 			}
 
+			Console.WriteLine($"Undefined service parameters: '{string.Concat(args)}'");
+			Console.WriteLine("To install service use 'install' command");
+			Console.WriteLine("To unistall service use 'uninstall' command");
+
 			return ProcessCommandLineResult.UndefinedParameters;
 		}
 
