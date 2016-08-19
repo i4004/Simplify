@@ -1,12 +1,11 @@
-﻿using System.ServiceProcess;
-using Simplify.DI;
+﻿using Simplify.DI;
 using Simplify.DI.Provider.SimpleInjector;
 
 namespace Simplify.WindowsServices.IntegrationTests
 {
 	internal class Program
 	{
-		private static void Main()
+		private static void Main(string[] args)
 		{
 #if DEBUG
 			// Run debugger
@@ -25,7 +24,7 @@ namespace Simplify.WindowsServices.IntegrationTests
 			DIContainer.Current.Register<Dependency1>();
 			DIContainer.Current.Register<TaskProcessor1>();
 
-			ServiceBase.Run(handler);
+			handler.Start(args);
 		}
 	}
 }

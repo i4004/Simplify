@@ -75,6 +75,8 @@
     <Compile Include="BasicServiceHandler.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CommandLine\ICommandLineProcessor.cs" />
+    <Compile Include="CommandLine\ProcessCommandLineResult.cs" />
     <Compile Include="Jobs\Crontab\CrontabProcessor.cs" />
     <Compile Include="Jobs\Crontab\CrontabProcessorFactory.cs" />
     <Compile Include="Jobs\Crontab\ICrontabProcessor.cs" />
@@ -88,6 +90,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CommandLine\CommandLineProcessor.cs" />
     <Compile Include="ServiceExceptionArgs.cs" />
     <Compile Include="ServiceInitializationException.cs" />
     <Compile Include="ServiceInstallerBase.cs">

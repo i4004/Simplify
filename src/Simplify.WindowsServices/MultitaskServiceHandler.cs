@@ -6,6 +6,7 @@ using System.ServiceProcess;
 using System.Threading.Tasks;
 using Simplify.DI;
 using Simplify.System;
+using Simplify.WindowsServices.CommandLine;
 using Simplify.WindowsServices.Jobs;
 
 namespace Simplify.WindowsServices
@@ -20,6 +21,7 @@ namespace Simplify.WindowsServices
 		private readonly IDictionary<object, ILifetimeScope> _basicJobsInWork = new Dictionary<object, ILifetimeScope>();
 
 		private IServiceJobFactory _serviceJobFactory;
+		private ICommandLineProcessor _commandLineProcessor;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MultitaskServiceHandler" /> class.
@@ -49,6 +51,21 @@ namespace Simplify.WindowsServices
 					throw new ArgumentNullException(nameof(value));
 
 				_serviceJobFactory = value;
+			}
+		}
+
+		public ICommandLineProcessor CommandLineProcessor
+		{
+			get
+			{
+				return _commandLineProcessor ?? (_commandLineProcessor = new CommandLineProcessor());
+			}
+			set
+			{
+				if (value == null)
+					throw new ArgumentNullException(nameof(value));
+
+				_commandLineProcessor = value;
 			}
 		}
 
@@ -219,6 +236,14 @@ namespace Simplify.WindowsServices
 		}
 
 		#endregion Crontab jobs operations
+
+		public void Start(string[] args = null)
+		{
+			var commandLineProcessResult = CommandLineProcessor.ProcessCommandLineArguments(args);
+
+			if (commandLineProcessResult == ProcessCommandLineResult.NoArguments)
+				ServiceBase.Run(this);
+		}
 
 		private void RunBasicJob(IServiceJob job)
 		{
