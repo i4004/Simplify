@@ -11,7 +11,13 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Windows services framework with DI.</description>
 		<summary>$description$</summary>
-		<releaseNotes>+ Basic jobs support in MultitaskServiceHandler</releaseNotes>
+		<releaseNotes>
+			+ Windows service installattion/deinstallation by service commands line parameters install/uninstall
+			+ ServiceAccount can be specified in ServiceInstallerSettings
+			* ServiceInstallerBase simplify (run as user name and password can be used without changing ServiceInstallerBase implementor)
+			* CleanupOnTaskFinish enabled by default
+			* Upgrade to Simplify.DI 1.1.2
+		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET windows-service DI</tags>
