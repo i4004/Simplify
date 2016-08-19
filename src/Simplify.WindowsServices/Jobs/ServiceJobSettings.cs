@@ -14,6 +14,7 @@ namespace Simplify.WindowsServices.Jobs
 		public ServiceJobSettings(string configSectionName = "ServiceSettings")
 		{
 			ProcessingInterval = 60;
+			CleanupOnTaskFinish = true;
 
 			var config = ConfigurationManager.GetSection(configSectionName) as NameValueCollection;
 
