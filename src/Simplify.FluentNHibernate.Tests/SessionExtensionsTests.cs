@@ -1,5 +1,7 @@
-﻿using FluentNHibernate.Cfg;
+﻿using System;
+using FluentNHibernate.Cfg;
 using FluentNHibernate.Conventions.Helpers;
+using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 
@@ -13,40 +15,74 @@ namespace Simplify.FluentNHibernate.Tests
 	[TestFixture]
 	public class SessionExtensionsTests
 	{
-		[Test]
-		public void SessionExtensions_Usage_WorkingIsCorrect()
+		private ISession _session;
+
+		[SetUp]
+		public void Initialize()
 		{
 			var configuration =
-				Fluently.Configure()
-				.InitializeFromConfigSqLiteInMemory(true)
-				.AddMappingsFromAssemblyOf<UserMap>(PrimaryKey.Name.Is(x => "ID"));
+			Fluently.Configure()
+			.InitializeFromConfigSqLiteInMemory(true)
+			.AddMappingsFromAssemblyOf<UserMap>(PrimaryKey.Name.Is(x => "ID"));
 
 			Configuration config = null;
 			configuration.ExposeConfiguration(c => config = c);
 			var factory = configuration.BuildSessionFactory();
-			var session = factory.OpenSession();
+			_session = factory.OpenSession();
 
 			var export = new SchemaExport(config);
-			export.Execute(false, true, false, session.Connection, null);
+			export.Execute(false, true, false, _session.Connection, null);
+		}
 
-			Assert.IsNull(session.GetObject<User>(x => x.Name == "test"));
+		[Test]
+		public void GetObject_Tests()
+		{
+			Assert.IsNull(_session.GetObject<User>(x => x.Name == "test"));
 
-			session.Save(new User { Name = "test" });
-			session.Flush();
+			_session.Save(new User { Name = "test" });
+			_session.Flush();
 
-			var user = session.GetObject<User>(x => x.Name == "test");
+			var user = _session.GetObject<User>(x => x.Name == "test");
 			Assert.IsNotNull(user);
 
 			user.Name = "foo";
-			session.Update(user);
-			session.Flush();
+			_session.Update(user);
+			_session.Flush();
 
-			user = session.GetObject<User>(x => x.Name == "foo");
+			user = _session.GetObject<User>(x => x.Name == "foo");
 			Assert.IsNotNull(user);
 
-			session.Delete(user);
-			session.Flush();
-			Assert.IsNull(session.GetObject<User>(x => x.Name == "foo"));
+			_session.Delete(user);
+			_session.Flush();
+			Assert.IsNull(_session.GetObject<User>(x => x.Name == "foo"));
+		}
+
+		[Test]
+		public void GetListPaged_Tests()
+		{
+			// Act
+
+			_session.Save(new User { Name = "test0", LastActivityTime = new DateTime(2015, 2, 3, 14, 15, 0) });
+			_session.Save(new User { Name = "test1", LastActivityTime = new DateTime(2015, 2, 3, 14, 19, 0) });
+			_session.Save(new User { Name = "foo2", LastActivityTime = new DateTime(2015, 2, 3, 14, 17, 0) });
+			_session.Save(new User { Name = "test3", LastActivityTime = new DateTime(2015, 2, 3, 14, 18, 0) });
+			_session.Save(new User { Name = "test4", LastActivityTime = new DateTime(2015, 2, 3, 14, 14, 0) });
+			_session.Save(new User { Name = "test5", LastActivityTime = new DateTime(2015, 2, 3, 14, 16, 0) });
+			_session.Save(new User { Name = "foo1", LastActivityTime = new DateTime(2015, 2, 3, 14, 16, 0) });
+
+			_session.Flush();
+
+			var items = _session.GetListPaged<User, DateTime>(1, 2, x => x.Name.Contains("test"), order => order.LastActivityTime,
+				true);
+
+			var itemsCount = _session.GetCount<User>(x => x.Name.Contains("test"));
+
+			// Assert
+
+			Assert.AreEqual(2, items.Count);
+			Assert.AreEqual(5, itemsCount);
+			Assert.AreEqual("test5", items[0].Name);
+			Assert.AreEqual("test0", items[1].Name);
 		}
 	}
 }

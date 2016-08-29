@@ -98,7 +98,7 @@ namespace Simplify.FluentNHibernate
 			return queryable.Select(x => x).SingleOrDefault();
 		}
 
-		#endregion
+		#endregion Single objects operations
 
 		#region List operations
 
@@ -183,6 +183,57 @@ namespace Simplify.FluentNHibernate
 			return queryable.Select(x => x).ToList();
 		}
 
-		#endregion
+		/// <summary>
+		/// Gets the list of objects paged.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <typeparam name="TOrder">Order comparing value type.</typeparam>
+		/// <param name="session">The session.</param>
+		/// <param name="pageIndex">Index of the page.</param>
+		/// <param name="itemsPerPage">The items per page.</param>
+		/// <param name="query">The query.</param>
+		/// <param name="orderExpression">The order expression.</param>
+		/// <param name="orderDescending">Descending sorting.</param>
+		/// <returns></returns>
+		public static IList<T> GetListPaged<T, TOrder>(this ISession session, int pageIndex, int itemsPerPage,
+			Expression<Func<T, bool>> query = null, Expression<Func<T, TOrder>> orderExpression = null,
+			bool orderDescending = false)
+			where T : class
+		{
+			var queryable = session.Query<T>();
+
+			if (query != null)
+				queryable = queryable.Where(query);
+
+			if (orderExpression != null)
+				queryable = orderDescending ? queryable.OrderByDescending(orderExpression) : queryable.OrderBy(orderExpression);
+
+			return queryable.Skip(pageIndex * itemsPerPage)
+				.Take(itemsPerPage).ToList();
+		}
+
+		#endregion List operations
+
+		#region Count operations
+
+		/// <summary>
+		/// Gets the number of elements.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="session">The session.</param>
+		/// <param name="query">The query.</param>
+		/// <returns></returns>
+		public static int GetCount<T>(this ISession session, Expression<Func<T, bool>> query = null)
+			where T : class
+		{
+			var queryable = session.Query<T>();
+
+			if (query != null)
+				queryable = queryable.Where(query);
+
+			return queryable.Count();
+		}
+
+		#endregion Count operations
 	}
 }

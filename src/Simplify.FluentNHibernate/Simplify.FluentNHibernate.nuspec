@@ -12,9 +12,9 @@
 		<description>$description$</description>
 		<summary>$description$</summary>
 		<releaseNotes>
-			* Possibility to set port number from config
-			* SqlStatementInterceptor class made public
-			+ Additional client configuration parameter in InitializeFromConfig* methods
+			* Upgrade to .net framework 4.5.2
+			+ Session GetCount extension method
+			+ Session GetListPaged extension method
 		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
