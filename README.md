@@ -44,8 +44,8 @@ Packages status
 
 ### Extra
 
-| Package | Dependencies |
-| :------ | :------: |
+| Package | Dependencies | .Net version |
+| :------ | :------: | :------: |
 | [![Nuget version](http://img.shields.io/badge/Simplify.Cryptography-v1-blue.png)](https://www.nuget.org/packages/Simplify.Cryptography/) | [![NuGet Status](http://nugetstatus.com/Simplify.Cryptography.png)](http://nugetstatus.com/packages/Simplify.Cryptography) | 4.5 |
 | [![Nuget version](http://img.shields.io/badge/Simplify.IO-v1.0.5-blue.png)](https://www.nuget.org/packages/Simplify.IO/) | [![NuGet Status](http://nugetstatus.com/Simplify.IO.png)](http://nugetstatus.com/packages/Simplify.IO) | 4.5 |
 | [![Nuget version](http://img.shields.io/badge/Simplify.Resources-v1-blue.png)](https://www.nuget.org/packages/Simplify.Resources/) | [![NuGet Status](http://nugetstatus.com/Simplify.Resources.png)](http://nugetstatus.com/packages/Simplify.Resource) | 4.5 |
