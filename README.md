@@ -15,7 +15,7 @@ Simplify is a set of .NET framework libraries which provides daily needs functio
 
 ## Build status
 
-| | **.NET (4.5)** | **Mono (Latest)** |
+| | **.NET (4.5, 4.5.2)** | **Mono (Latest)** |
 | :------ | :------ | :------: |
 | **master** | [![Build status](https://ci.appveyor.com/api/projects/status/kmm7aa2iqp71dcwi/branch/master?svg=true)](https://ci.appveyor.com/project/i4004/simplify) | [![Build Status](https://travis-ci.org/i4004/Simplify.svg?branch=master)](https://travis-ci.org/i4004/Simplify) |
 | **develop** | [![Build status](https://ci.appveyor.com/api/projects/status/kmm7aa2iqp71dcwi/branch/develop?svg=true)](https://ci.appveyor.com/project/i4004/simplify) | [![Build Status](https://travis-ci.org/i4004/Simplify.svg?branch=develop)](https://travis-ci.org/i4004/Simplify) |
