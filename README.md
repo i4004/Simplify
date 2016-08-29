@@ -25,7 +25,7 @@ Packages status
 
 ### Main
 
-| Package | Dependencies | .Net version |
+| Package | Dependencies | .NET version |
 | :------ | :------: | :------: |
 | [![Nuget version](http://img.shields.io/badge/Simplify.DI-v1.1.2-blue.png)](https://www.nuget.org/packages/Simplify.DI/) | [![NuGet Status](http://nugetstatus.com/Simplify.DI.png)](http://nugetstatus.com/packages/Simplify.DI) | 4.5 |
 | [![Nuget version](http://img.shields.io/badge/Simplify.DI.Provider.CastleWindsor-v1.1.1-blue.png)](https://www.nuget.org/packages/Simplify.DI.Provider.CastleWindsor/) | [![NuGet Status](http://nugetstatus.com/Simplify.DI.Provider.CastleWindsor.png)](http://nugetstatus.com/packages/Simplify.DI.Provider.CastleWindsor) | 4.5 |
@@ -44,7 +44,7 @@ Packages status
 
 ### Extra
 
-| Package | Dependencies | .Net version |
+| Package | Dependencies | .NET version |
 | :------ | :------: | :------: |
 | [![Nuget version](http://img.shields.io/badge/Simplify.Cryptography-v1-blue.png)](https://www.nuget.org/packages/Simplify.Cryptography/) | [![NuGet Status](http://nugetstatus.com/Simplify.Cryptography.png)](http://nugetstatus.com/packages/Simplify.Cryptography) | 4.5 |
 | [![Nuget version](http://img.shields.io/badge/Simplify.IO-v1.0.5-blue.png)](https://www.nuget.org/packages/Simplify.IO/) | [![NuGet Status](http://nugetstatus.com/Simplify.IO.png)](http://nugetstatus.com/packages/Simplify.IO) | 4.5 |
