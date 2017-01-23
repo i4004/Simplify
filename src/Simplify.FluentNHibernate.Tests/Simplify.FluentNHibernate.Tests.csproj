@@ -49,10 +49,6 @@
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
-	<!-- Ignore the CS1701 errors when building on something else than Windows (no way to specify "not msbuild" or mono)-->
-	<PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
-		<TreatWarningsAsErrors>False</TreatWarningsAsErrors>
-	</PropertyGroup>	
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x64\Debug\</OutputPath>
@@ -95,6 +91,10 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+	<!-- Ignore the CS1701 errors when building on something else than Windows (no way to specify "not msbuild" or mono)-->
+	<PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
+		<TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+	</PropertyGroup>
   <ItemGroup>
     <Compile Include="ConfigurationExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
