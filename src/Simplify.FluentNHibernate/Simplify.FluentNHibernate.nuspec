@@ -12,9 +12,7 @@
 		<description>$description$</description>
 		<summary>$description$</summary>
 		<releaseNotes>
-			* Upgrade to .net framework 4.5.2
-			+ Session GetCount extension method
-			+ Session GetListPaged extension method
+			* Upgrade to NHibernate 4.1.0.4000
 		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
