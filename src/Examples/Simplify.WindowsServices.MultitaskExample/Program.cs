@@ -1,11 +1,10 @@
-﻿using System.ServiceProcess;
-using Simplify.DI;
+﻿using Simplify.DI;
 
 namespace Simplify.WindowsServices.MultitaskExample
 {
-	class Program
+	internal class Program
 	{
-		static void Main()
+		private static void Main(string[] args)
 		{
 #if DEBUG
 			// Run debugger
@@ -20,7 +19,7 @@ namespace Simplify.WindowsServices.MultitaskExample
 			DIContainer.Current.Register<TaskProcessor2>();
 			handler.AddJob<TaskProcessor2>();
 
-			ServiceBase.Run(handler);
+			handler.Start(args);
 		}
 	}
 }

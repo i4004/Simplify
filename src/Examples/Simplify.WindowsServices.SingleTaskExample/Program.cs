@@ -1,17 +1,15 @@
-﻿using System.ServiceProcess;
-
-namespace Simplify.WindowsServices.SingleTaskExample
+﻿namespace Simplify.WindowsServices.SingleTaskExample
 {
-	class Program
+	internal class Program
 	{
-		static void Main()
+		private static void Main(string[] args)
 		{
 #if DEBUG
 			// Run debugger
 			System.Diagnostics.Debugger.Launch();
 #endif
 
-			ServiceBase.Run(new SingleTaskServiceHandler<ServiceProcess>(true));
+			new SingleTaskServiceHandler<ServiceProcess>(true).Start(args);
 		}
 	}
 }
