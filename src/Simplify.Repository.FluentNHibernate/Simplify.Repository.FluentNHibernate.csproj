@@ -33,6 +33,10 @@
     <DocumentationFile>bin\Release\Simplify.Repository.FluentNHibernate.xml</DocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
+	<!-- Ignore the CS1701 errors when building on something else than Windows (no way to specify "not msbuild" or mono)-->
+	<PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
+		<TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+	</PropertyGroup>
   <ItemGroup>
     <Compile Include="Entities\IdentityObject.cs" />
     <Compile Include="Entities\NamedObject.cs" />
