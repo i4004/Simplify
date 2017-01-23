@@ -43,6 +43,7 @@
     <Compile Include="Model\IIdentityObject.cs" />
     <Compile Include="Model\INamedObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IGenericRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Simplify.Repository.nuspec" />
