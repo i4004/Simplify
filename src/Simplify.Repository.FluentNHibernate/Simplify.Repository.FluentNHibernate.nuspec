@@ -12,8 +12,10 @@
 		<description>$description$</description>
 		<summary>$description$</summary>
 		<releaseNotes>
-			* Session dispose improved
-			* Units of work methods as virtual
+			* Upgrade to .NET framework 4.5.2
+			* Generic repository convert to standalone generic repository
+			* Upgrade Simplify.Repository 0.3
+			* Upgrade to Simplify.FluentNHibernate 1.5.1
 		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>

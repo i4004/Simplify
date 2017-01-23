@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using NHibernate;
 using Simplify.FluentNHibernate;
+using Simplify.Repository.Repositories;
 
 namespace Simplify.Repository.FluentNHibernate.Repositories
 {
@@ -10,7 +11,7 @@ namespace Simplify.Repository.FluentNHibernate.Repositories
 	/// Provides generic repository pattern for easy NHibernate repositories implementation
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
-	public abstract class GenericRepository<T>
+	public class GenericRepository<T> : IGenericRepository<T>
 		where T : class
 	{
 		/// <summary>
@@ -22,7 +23,7 @@ namespace Simplify.Repository.FluentNHibernate.Repositories
 		/// Initializes a new instance of the <see cref="GenericRepository{T}"/> class.
 		/// </summary>
 		/// <param name="session">The session.</param>
-		protected GenericRepository(ISession session)
+		public GenericRepository(ISession session)
 		{
 			Session = session;
 		}
@@ -32,17 +33,17 @@ namespace Simplify.Repository.FluentNHibernate.Repositories
 		/// </summary>
 		/// <param name="id">The identifier.</param>
 		/// <returns></returns>
-		protected T GetSingleByID(object id)
+		public T GetSingleByID(object id)
 		{
 			return Session.Get<T>(id);
 		}
 
 		/// <summary>
-		/// Gets the single by object identifier exclusively.
+		/// Gets the single object by identifier exclusively.
 		/// </summary>
 		/// <param name="id">The identifier.</param>
 		/// <returns></returns>
-		protected T GetSingleByIDExclusive(object id)
+		public T GetSingleByIDExclusive(object id)
 		{
 			return Session.Get<T>(id, LockMode.Upgrade);
 		}
@@ -52,7 +53,7 @@ namespace Simplify.Repository.FluentNHibernate.Repositories
 		/// </summary>
 		/// <param name="query">The query.</param>
 		/// <returns></returns>
-		protected T GetSingleByQuery(Expression<Func<T, bool>> query)
+		public T GetSingleByQuery(Expression<Func<T, bool>> query)
 		{
 			return Session.GetObject(query);
 		}
@@ -62,7 +63,7 @@ namespace Simplify.Repository.FluentNHibernate.Repositories
 		/// </summary>
 		/// <param name="query">The query.</param>
 		/// <returns></returns>
-		protected T GetFirstByQuery(Expression<Func<T, bool>> query)
+		public T GetFirstByQuery(Expression<Func<T, bool>> query)
 		{
 			return Session.GetFirstObject(query);
 		}
@@ -72,7 +73,7 @@ namespace Simplify.Repository.FluentNHibernate.Repositories
 		/// </summary>
 		/// <param name="query">The query.</param>
 		/// <returns></returns>
-		protected IList<T> GetMultipleByQuery(Expression<Func<T, bool>> query)
+		public IList<T> GetMultipleByQuery(Expression<Func<T, bool>> query)
 		{
 			return Session.GetList(query);
 		}
@@ -82,19 +83,47 @@ namespace Simplify.Repository.FluentNHibernate.Repositories
 		/// </summary>
 		/// <typeparam name="TOrder">The type of the order.</typeparam>
 		/// <param name="query">The query.</param>
-		/// <param name="orderFunc">The ordering function.</param>
+		/// <param name="orderExpression">The ordering expression.</param>
 		/// <param name="orderDescending">if set to <c>true</c> then will be sorted descending.</param>
 		/// <returns></returns>
-		protected IList<T> GetMultipleByQueryOrderedList<TOrder>(Expression<Func<T, bool>> query, Expression<Func<T, TOrder>> orderFunc, bool orderDescending = false)
+		public IList<T> GetMultipleByQueryOrdered<TOrder>(Expression<Func<T, bool>> query, Expression<Func<T, TOrder>> orderExpression, bool orderDescending = false)
 		{
-			return Session.GetList(query, orderFunc, orderDescending);
+			return Session.GetList(query, orderExpression, orderDescending);
+		}
+
+		/// <summary>
+		/// Gets the multiple paged elements list.
+		/// </summary>
+		/// <typeparam name="TOrder">The type of the order.</typeparam>
+		/// <param name="pageIndex">Index of the page.</param>
+		/// <param name="itemsPerPage">The items per page number.</param>
+		/// <param name="query">The query.</param>
+		/// <param name="orderExpression">The ordering expression.</param>
+		/// <param name="orderDescending">if set to <c>true</c> then will be sorted descending.</param>
+		/// <returns></returns>
+		public IList<T> GetPaged<TOrder>(int pageIndex, int itemsPerPage,
+			Expression<Func<T, bool>> query = null,
+			Expression<Func<T, TOrder>> orderExpression = null,
+			bool orderDescending = false)
+		{
+			return Session.GetListPaged(pageIndex, itemsPerPage, query, orderExpression, orderDescending);
+		}
+
+		/// <summary>
+		/// Gets the number of elements.
+		/// </summary>
+		/// <param name="query">The query.</param>
+		/// <returns></returns>
+		public int GetCount(Expression<Func<T, bool>> query = null)
+		{
+			return Session.GetCount(query);
 		}
 
 		/// <summary>
 		/// Adds the object.
 		/// </summary>
 		/// <param name="entity">The entity.</param>
-		protected object Add(T entity)
+		public object Add(T entity)
 		{
 			return Session.Save(entity);
 		}
@@ -103,7 +132,7 @@ namespace Simplify.Repository.FluentNHibernate.Repositories
 		/// Adds or update the object.
 		/// </summary>
 		/// <param name="entity">The entity.</param>
-		protected void AddOrUpdate(T entity)
+		public void AddOrUpdate(T entity)
 		{
 			Session.SaveOrUpdate(entity);
 		}
@@ -112,7 +141,7 @@ namespace Simplify.Repository.FluentNHibernate.Repositories
 		/// Deletes the object.
 		/// </summary>
 		/// <param name="entity">The entity.</param>
-		protected void Delete(T entity)
+		public void Delete(T entity)
 		{
 			Session.Delete(entity);
 		}
@@ -121,7 +150,7 @@ namespace Simplify.Repository.FluentNHibernate.Repositories
 		/// Updates the object.
 		/// </summary>
 		/// <param name="entity">The entity.</param>
-		protected void Update(T entity)
+		public void Update(T entity)
 		{
 			Session.Update(entity);
 		}
