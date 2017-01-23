@@ -11,7 +11,10 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>$description$</description>
 		<summary>$description$</summary>
-		<releaseNotes>Upgrade to DryIoc 2.6.4</releaseNotes>
+		<releaseNotes>
+			* Upgrade to .NET framework 4.5.2
+			* Upgrade to DryIoc 2.9.7
+		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET DI IOC-container</tags>
