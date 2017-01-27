@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Log", "Simplify.Log\Simplify.Log.csproj", "{DA27C4E4-081C-4BF6-B6EF-0D1C093450E4}"
 EndProject
@@ -108,6 +108,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "System", "System", "{E7A1A493-C270-4F3C-BB4F-FC8BA8A14409}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{5327AB70-43E9-4465-AB60-93192CA98C29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Pipelines", "Simplify.Pipelines\Simplify.Pipelines.csproj", "{B8C5D2EA-6129-4F79-9753-2AA4DB98BA66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -481,6 +483,18 @@ Global
 		{FDE80D70-B1C1-43ED-9037-3533479B7C81}.Release|x64.Build.0 = Release|Any CPU
 		{FDE80D70-B1C1-43ED-9037-3533479B7C81}.Release|x86.ActiveCfg = Release|Any CPU
 		{FDE80D70-B1C1-43ED-9037-3533479B7C81}.Release|x86.Build.0 = Release|Any CPU
+		{B8C5D2EA-6129-4F79-9753-2AA4DB98BA66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8C5D2EA-6129-4F79-9753-2AA4DB98BA66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8C5D2EA-6129-4F79-9753-2AA4DB98BA66}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B8C5D2EA-6129-4F79-9753-2AA4DB98BA66}.Debug|x64.Build.0 = Debug|Any CPU
+		{B8C5D2EA-6129-4F79-9753-2AA4DB98BA66}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B8C5D2EA-6129-4F79-9753-2AA4DB98BA66}.Debug|x86.Build.0 = Debug|Any CPU
+		{B8C5D2EA-6129-4F79-9753-2AA4DB98BA66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8C5D2EA-6129-4F79-9753-2AA4DB98BA66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8C5D2EA-6129-4F79-9753-2AA4DB98BA66}.Release|x64.ActiveCfg = Release|Any CPU
+		{B8C5D2EA-6129-4F79-9753-2AA4DB98BA66}.Release|x64.Build.0 = Release|Any CPU
+		{B8C5D2EA-6129-4F79-9753-2AA4DB98BA66}.Release|x86.ActiveCfg = Release|Any CPU
+		{B8C5D2EA-6129-4F79-9753-2AA4DB98BA66}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
