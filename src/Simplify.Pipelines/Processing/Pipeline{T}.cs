@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Simplify.Pipelines
+namespace Simplify.Pipelines.Processing
 {
 	public class Pipeline<T> : IPipeline<T>
 	{

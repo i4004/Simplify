@@ -1,4 +1,4 @@
-namespace Simplify.Pipelines
+namespace Simplify.Pipelines.Processing
 {
 	public interface IPipelineProcessor
 	{

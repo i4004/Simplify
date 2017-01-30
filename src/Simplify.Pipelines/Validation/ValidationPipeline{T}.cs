@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Simplify.Pipelines
+namespace Simplify.Pipelines.Validation
 {
 	public class ValidationPipeline<T, TResult> : IValidationPipeline<T, TResult>
 	{
@@ -14,7 +14,7 @@ namespace Simplify.Pipelines
 
 		public virtual IList<TResult> Check(T item)
 		{
-			return _rules.Where(x => !x.IsValid(item)).Select(x => x.InvalidValidationResult).ToList();
+			return _rules.Where(x => !x.Check(item)).Select(x => x.InvalidValidationResult).ToList();
 		}
 	}
 }

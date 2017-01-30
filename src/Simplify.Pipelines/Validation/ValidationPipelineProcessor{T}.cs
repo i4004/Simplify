@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Simplify.Pipelines
+namespace Simplify.Pipelines.Validation
 {
 	public class ValidationPipelineProcessor<T, TResult> : IValidationPipelineProcessor<T, TResult>
 	{

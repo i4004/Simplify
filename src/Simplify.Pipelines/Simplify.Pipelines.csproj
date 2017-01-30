@@ -42,16 +42,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IPipelineProcessor.cs" />
-    <Compile Include="IPipelineStage{T}.cs" />
-    <Compile Include="IPipeline{T}.cs" />
-    <Compile Include="PipelineProcessor{T}.cs" />
-    <Compile Include="Pipeline{T}.cs" />
-    <Compile Include="ValidationPipelineProcessor{T}.cs" />
-    <Compile Include="ValidationPipeline{T}.cs" />
-    <Compile Include="IValidationPipelineProcessor{T}.cs" />
-    <Compile Include="IRule{T}.cs" />
-    <Compile Include="IValidationPipeline{T}.cs" />
+    <Compile Include="Validation\DataRule.cs" />
+    <Compile Include="Validation\IDataRule{T}.cs" />
+    <Compile Include="Processing\IPipelineProcessor.cs" />
+    <Compile Include="Processing\IPipelineStage{T}.cs" />
+    <Compile Include="Processing\IPipeline{T}.cs" />
+    <Compile Include="Processing\PipelineProcessor{T}.cs" />
+    <Compile Include="Processing\Pipeline{T}.cs" />
+    <Compile Include="Validation\Rule.cs" />
+    <Compile Include="Validation\ValidationPipelineProcessor{T}.cs" />
+    <Compile Include="Validation\ValidationPipeline{T}.cs" />
+    <Compile Include="Validation\IValidationPipelineProcessor{T}.cs" />
+    <Compile Include="Validation\IRule{T}.cs" />
+    <Compile Include="Validation\IValidationPipeline{T}.cs" />
     <Compile Include="IDataPreparer{T}.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
