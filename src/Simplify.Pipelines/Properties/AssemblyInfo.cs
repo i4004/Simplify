@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Simplify.Pipelines")]
-[assembly: AssemblyDescription("Pipelines, rules checkers")]
+[assembly: AssemblyDescription("Pipelines processing, validation patterns")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Alexander Krylkov")]
 [assembly: AssemblyProduct("Simplify")]
