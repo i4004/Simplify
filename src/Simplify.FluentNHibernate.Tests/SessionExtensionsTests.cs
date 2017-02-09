@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Conventions.Helpers;
 using NHibernate;
@@ -72,8 +73,7 @@ namespace Simplify.FluentNHibernate.Tests
 
 			_session.Flush();
 
-			var items = _session.GetListPaged<User, DateTime>(1, 2, x => x.Name.Contains("test"), order => order.LastActivityTime,
-				true);
+			var items = _session.GetListPaged<User>(1, 2, x => x.Name.Contains("test"), x => x.OrderByDescending(o => o.LastActivityTime));
 
 			var itemsCount = _session.GetCount<User>(x => x.Name.Contains("test"));
 
