@@ -12,7 +12,8 @@
 		<description>$description$</description>
 		<summary>$description$</summary>
 		<releaseNotes>
-			* Upgrade to NHibernate 4.1.0.4000
+			- GetList methods with sorting marked as obsolete
+			+ customProcessing parameter added for GetList methods (replacing sorting)
 		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>

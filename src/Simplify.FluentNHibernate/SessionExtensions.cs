@@ -111,6 +111,7 @@ namespace Simplify.FluentNHibernate
 		/// <param name="orderExpression">Ordering expression</param>
 		/// <param name="orderDescending">Descending sorting</param>
 		/// <returns>List of objects</returns>
+		[Obsolete]
 		public static IList<T> GetSortedList<T, TOrder>(this ISession session, Expression<Func<T, TOrder>> orderExpression = null, bool orderDescending = false)
 		{
 			var queryable = session.Query<T>();
@@ -127,14 +128,22 @@ namespace Simplify.FluentNHibernate
 		/// <typeparam name="T">The type of elements</typeparam>
 		/// <param name="session">The NHibernate session.</param>
 		/// <param name="query">Query</param>
-		/// <returns>List of objects</returns>
-		public static IList<T> GetList<T>(this ISession session, Expression<Func<T, bool>> query = null)
+		/// <param name="customProcessing">The custom processing.</param>
+		/// <returns>
+		/// List of objects
+		/// </returns>
+		public static IList<T> GetList<T>(this ISession session,
+			Expression<Func<T, bool>> query = null,
+			Func<IQueryable<T>, IQueryable<T>> customProcessing = null)
 			where T : class
 		{
 			var queryable = session.Query<T>();
 
 			if (query != null)
 				queryable = queryable.Where(query);
+
+			if (customProcessing != null)
+				queryable = customProcessing(queryable);
 
 			return queryable.Select(x => x).ToList();
 		}
@@ -149,6 +158,7 @@ namespace Simplify.FluentNHibernate
 		/// <param name="orderExpression">Filtering expression</param>
 		/// <param name="orderDescending">Descending sorting</param>
 		/// <returns>List of objects</returns>
+		[Obsolete]
 		public static IList<T> GetList<T, TOrder>(this ISession session, Expression<Func<T, bool>> query = null, Expression<Func<T, TOrder>> orderExpression = null, bool orderDescending = false)
 			where T : class
 		{
@@ -172,6 +182,7 @@ namespace Simplify.FluentNHibernate
 		/// <param name="orderExpression">Ordering function</param>
 		/// <param name="orderDescending">Descending sorting</param>
 		/// <returns>Sorted list of objects</returns>
+		[Obsolete]
 		public static IList<T> GetListSorted<T, TOrder>(this ISession session, Expression<Func<T, TOrder>> orderExpression = null, bool orderDescending = false)
 			where T : class
 		{
@@ -195,6 +206,7 @@ namespace Simplify.FluentNHibernate
 		/// <param name="orderExpression">The order expression.</param>
 		/// <param name="orderDescending">Descending sorting.</param>
 		/// <returns></returns>
+		[Obsolete]
 		public static IList<T> GetListPaged<T, TOrder>(this ISession session, int pageIndex, int itemsPerPage,
 			Expression<Func<T, bool>> query = null, Expression<Func<T, TOrder>> orderExpression = null,
 			bool orderDescending = false)
@@ -207,6 +219,33 @@ namespace Simplify.FluentNHibernate
 
 			if (orderExpression != null)
 				queryable = orderDescending ? queryable.OrderByDescending(orderExpression) : queryable.OrderBy(orderExpression);
+
+			return queryable.Skip(pageIndex * itemsPerPage)
+				.Take(itemsPerPage).ToList();
+		}
+
+		/// <summary>
+		/// Gets the list of objects paged.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="session">The session.</param>
+		/// <param name="pageIndex">Index of the page.</param>
+		/// <param name="itemsPerPage">The items per page.</param>
+		/// <param name="query">The query.</param>
+		/// <param name="customProcessing">The custom processing.</param>
+		/// <returns></returns>
+		public static IList<T> GetListPaged<T>(this ISession session, int pageIndex, int itemsPerPage,
+			Expression<Func<T, bool>> query = null,
+			Func<IQueryable<T>, IQueryable<T>> customProcessing = null)
+			where T : class
+		{
+			var queryable = session.Query<T>();
+
+			if (query != null)
+				queryable = queryable.Where(query);
+
+			if (customProcessing != null)
+				queryable = customProcessing(queryable);
 
 			return queryable.Skip(pageIndex * itemsPerPage)
 				.Take(itemsPerPage).ToList();
