@@ -11,7 +11,10 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>$description$</description>
 		<summary>$description$</summary>
-		<releaseNotes>IGenericRepository added</releaseNotes>
+		<releaseNotes>
+			* Custom processing args added
+			* Upgrade to .net framework 4.5.2
+		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET Repository UoW Model</tags>
