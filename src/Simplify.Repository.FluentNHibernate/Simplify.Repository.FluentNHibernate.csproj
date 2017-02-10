@@ -33,10 +33,10 @@
     <DocumentationFile>bin\Release\Simplify.Repository.FluentNHibernate.xml</DocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
-	<!-- Ignore the CS1701 errors when building on something else than Windows (no way to specify "not msbuild" or mono)-->
-	<PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
-		<TreatWarningsAsErrors>False</TreatWarningsAsErrors>
-	</PropertyGroup>
+  <!-- Ignore the CS1701 errors when building on something else than Windows (no way to specify "not msbuild" or mono)-->
+  <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Entities\IdentityObject.cs" />
     <Compile Include="Entities\NamedObject.cs" />
@@ -62,12 +62,12 @@
       <HintPath>..\packages\NHibernate.4.1.0.4000\lib\net40\NHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Simplify.FluentNHibernate, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Simplify.FluentNHibernate.1.5.1\lib\net452\Simplify.FluentNHibernate.dll</HintPath>
+    <Reference Include="Simplify.FluentNHibernate, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Simplify.FluentNHibernate.1.6.0\lib\net452\Simplify.FluentNHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Simplify.Repository, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Simplify.Repository.0.3.0\lib\net45\Simplify.Repository.dll</HintPath>
+    <Reference Include="Simplify.Repository, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Simplify.Repository.0.4.0\lib\net452\Simplify.Repository.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
