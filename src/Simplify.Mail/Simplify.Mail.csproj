@@ -36,6 +36,7 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <Prefer32Bit>false</Prefer32Bit>
+    <NoWarn>CS0618</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
