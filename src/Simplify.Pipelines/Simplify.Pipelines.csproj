@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChainHandler{T}.cs" />
     <Compile Include="Validation\DataRule.cs" />
     <Compile Include="Validation\IDataRule{T}.cs" />
     <Compile Include="Processing\IPipelineProcessor.cs" />
