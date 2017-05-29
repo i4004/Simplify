@@ -44,6 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChainHandler{T}.cs" />
+    <Compile Include="Processing\IResultingPipelineStage{T}.cs" />
+    <Compile Include="Processing\IResultingPipeline{T}.cs" />
+    <Compile Include="Processing\ResultingPipeline{T}.cs" />
     <Compile Include="Validation\DataRule.cs" />
     <Compile Include="Validation\IDataRule{T}.cs" />
     <Compile Include="Processing\IPipelineProcessor.cs" />
