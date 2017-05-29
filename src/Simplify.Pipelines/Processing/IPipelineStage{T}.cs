@@ -7,7 +7,7 @@
 	public interface IPipelineStage<in T>
 	{
 		/// <summary>
-		/// Process the specified item.
+		/// Executes the stage.
 		/// </summary>
 		/// <param name="args">The arguments.</param>
 		/// <returns></returns>

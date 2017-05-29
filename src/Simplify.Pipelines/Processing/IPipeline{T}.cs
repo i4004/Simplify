@@ -7,7 +7,7 @@ namespace Simplify.Pipelines.Processing
 	public interface IPipeline<in T>
 	{
 		/// <summary>
-		/// Process item through pipeline.
+		/// Process args through pipeline.
 		/// </summary>
 		/// <param name="args">The arguments.</param>
 		/// <returns></returns>

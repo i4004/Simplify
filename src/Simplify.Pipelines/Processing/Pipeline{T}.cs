@@ -21,7 +21,7 @@ namespace Simplify.Pipelines.Processing
 		}
 
 		/// <summary>
-		/// Process item through pipeline.
+		/// Process pipeline stages.
 		/// </summary>
 		/// <param name="args">The arguments.</param>
 		/// <returns></returns>
