@@ -12,8 +12,9 @@
 		<description>$description$</description>
 		<summary>$description$</summary>
 		<releaseNotes>
-			+ Rules validation pipeline patterns
-			+ Pipeline processing patterns
+			* Default pipeline execution result added
+			+ Chain handler added
+			+ Pipeline with error result added
 		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
