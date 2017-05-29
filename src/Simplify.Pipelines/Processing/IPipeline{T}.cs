@@ -9,7 +9,8 @@ namespace Simplify.Pipelines.Processing
 		/// <summary>
 		/// Process item through pipeline.
 		/// </summary>
-		/// <param name="item">The item.</param>
-		void Execute(T item);
+		/// <param name="args">The arguments.</param>
+		/// <returns></returns>
+		bool Execute(T args);
 	}
 }

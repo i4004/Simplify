@@ -23,13 +23,17 @@ namespace Simplify.Pipelines.Processing
 		/// <summary>
 		/// Process item through pipeline.
 		/// </summary>
-		/// <param name="item">The item.</param>
-		public virtual void Execute(T item)
+		/// <param name="args">The arguments.</param>
+		/// <returns></returns>
+
+		public virtual bool Execute(T args)
 		{
 			// ReSharper disable once LoopCanBeConvertedToQuery
 			foreach (var stage in _stages)
-				if (!stage.Execute(item))
-					return;
+				if (!stage.Execute(args))
+					return false;
+
+			return true;
 		}
 	}
 }

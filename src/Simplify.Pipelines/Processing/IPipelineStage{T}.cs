@@ -9,8 +9,8 @@
 		/// <summary>
 		/// Process the specified item.
 		/// </summary>
-		/// <param name="item">The item.</param>
+		/// <param name="args">The arguments.</param>
 		/// <returns></returns>
-		bool Execute(T item);
+		bool Execute(T args);
 	}
 }
