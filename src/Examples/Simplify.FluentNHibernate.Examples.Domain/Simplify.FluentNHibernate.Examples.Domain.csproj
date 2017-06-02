@@ -47,11 +47,11 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Cities\CitiesService.cs" />
+    <Compile Include="Location\CitiesService.cs" />
     <Compile Include="Model\Accounts\IUser.cs" />
     <Compile Include="Model\Location\ICityName.cs" />
     <Compile Include="Model\Location\ICity.cs" />
-    <Compile Include="Cities\ICItiesService.cs" />
+    <Compile Include="Location\ICItiesService.cs" />
     <Compile Include="Accounts\IUsersService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Accounts\UsersService.cs" />

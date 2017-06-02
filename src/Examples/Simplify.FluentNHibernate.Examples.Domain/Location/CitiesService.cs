@@ -3,7 +3,7 @@ using System.Linq;
 using Simplify.FluentNHibernate.Examples.Domain.Model.Location;
 using Simplify.Repository.Repositories;
 
-namespace Simplify.FluentNHibernate.Examples.Domain.Cities
+namespace Simplify.FluentNHibernate.Examples.Domain.Location
 {
 	public class CitiesService : ICitiesService
 	{
