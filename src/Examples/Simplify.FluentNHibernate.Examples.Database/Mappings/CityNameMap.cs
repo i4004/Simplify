@@ -1,15 +1,15 @@
-﻿using Simplify.FluentNHibernate.Examples.Database.Mappings.Base;
-using Simplify.FluentNHibernate.Examples.Domain.Entities;
+﻿using Simplify.FluentNHibernate.Examples.Database.Entities.Location;
+using Simplify.Repository.FluentNHibernate.Mappings;
 
 namespace Simplify.FluentNHibernate.Examples.Database.Mappings
 {
-	public class CityNameMap : IdNameObjectMap<CityName>
+	public class CityNameMap : NamedObjectMap<CityName>
 	{
 		public CityNameMap()
 		{
 			Table("CitiesNames");
 
-			References(x => x.City, "CityID");
+			References<City>(x => x.City, "CityID");
 			Map(x => x.Language);
 		}
 	}

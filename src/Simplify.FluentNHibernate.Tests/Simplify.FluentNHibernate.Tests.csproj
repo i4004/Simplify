@@ -91,10 +91,10 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-	<!-- Ignore the CS1701 errors when building on something else than Windows (no way to specify "not msbuild" or mono)-->
-	<PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
-		<TreatWarningsAsErrors>False</TreatWarningsAsErrors>
-	</PropertyGroup>
+  <!-- Ignore the CS1701 errors when building on something else than Windows (no way to specify "not msbuild" or mono)-->
+  <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="ConfigurationExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -159,6 +159,14 @@
     <ProjectReference Include="..\Simplify.FluentNHibernate\Simplify.FluentNHibernate.csproj">
       <Project>{0f73c429-1b2f-48b7-9d38-20da17ad350b}</Project>
       <Name>Simplify.FluentNHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Simplify.Repository.FluentNHibernate\Simplify.Repository.FluentNHibernate.csproj">
+      <Project>{fb81ef87-c5c4-4d03-b229-2cc7df3cf970}</Project>
+      <Name>Simplify.Repository.FluentNHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Simplify.Repository\Simplify.Repository.csproj">
+      <Project>{9eb05935-ead1-4b3c-b758-0af26338c474}</Project>
+      <Name>Simplify.Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

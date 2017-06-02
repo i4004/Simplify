@@ -1,20 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Simplify.FluentNHibernate.Examples.Domain.Model.Location;
+using Simplify.Repository.FluentNHibernate.Entities;
 
-namespace Simplify.FluentNHibernate.Examples.Domain.Entities
+namespace Simplify.FluentNHibernate.Examples.Database.Entities.Location
 {
-	public class City
+	public class City : IdentityObject, ICity
 	{
-		private IList<CityName> _cityNames = new List<CityName>();
-
-		public virtual int ID { get; set; }
-
-		public virtual IList<CityName> CityNames
-		{
-			get { return _cityNames; }
-			set { _cityNames = value; }
-		}
+		public virtual IList<ICityName> CityNames { get; set; } = new List<ICityName>();
 
 		public virtual string LocalizableName
 		{

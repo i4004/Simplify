@@ -47,22 +47,25 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CitiesService.cs" />
-    <Compile Include="Entities\Base\IdNameObject.cs" />
-    <Compile Include="Entities\City.cs" />
-    <Compile Include="Entities\CityName.cs" />
-    <Compile Include="Entities\User.cs" />
-    <Compile Include="ICitiesRepository.cs" />
-    <Compile Include="ICItiesService.cs" />
-    <Compile Include="IUnitOfWork.cs" />
-    <Compile Include="IUsersRepository.cs" />
-    <Compile Include="IUsersService.cs" />
+    <Compile Include="Cities\CitiesService.cs" />
+    <Compile Include="Model\Accounts\IUser.cs" />
+    <Compile Include="Model\Location\ICityName.cs" />
+    <Compile Include="Model\Location\ICity.cs" />
+    <Compile Include="Cities\ICItiesService.cs" />
+    <Compile Include="Accounts\IUsersService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UsersService.cs" />
+    <Compile Include="Accounts\UsersService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Simplify.Repository\Simplify.Repository.csproj">
+      <Project>{9eb05935-ead1-4b3c-b758-0af26338c474}</Project>
+      <Name>Simplify.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

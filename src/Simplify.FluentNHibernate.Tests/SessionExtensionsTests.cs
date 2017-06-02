@@ -7,9 +7,8 @@ using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 
 using NUnit.Framework;
-
+using Simplify.FluentNHibernate.Examples.Database.Entities.Accounts;
 using Simplify.FluentNHibernate.Examples.Database.Mappings;
-using Simplify.FluentNHibernate.Examples.Domain.Entities;
 
 namespace Simplify.FluentNHibernate.Tests
 {

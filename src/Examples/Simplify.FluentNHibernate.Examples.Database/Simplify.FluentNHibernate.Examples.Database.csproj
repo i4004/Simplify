@@ -47,20 +47,19 @@
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
-	<!-- Ignore the CS1701 errors when building on something else than Windows (no way to specify "not msbuild" or mono)-->
-	<PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
-		<TreatWarningsAsErrors>False</TreatWarningsAsErrors>
-	</PropertyGroup>
+  <!-- Ignore the CS1701 errors when building on something else than Windows (no way to specify "not msbuild" or mono)-->
+  <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+  </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CitiesRepository.cs" />
+    <Compile Include="Entities\Location\City.cs" />
+    <Compile Include="Entities\Location\CityName.cs" />
+    <Compile Include="Entities\Accounts\User.cs" />
     <Compile Include="ExampleFactoryManager.cs" />
-    <Compile Include="Mappings\Base\IdNameObjectMap.cs" />
     <Compile Include="Mappings\CityMap.cs" />
     <Compile Include="Mappings\CityNameMap.cs" />
     <Compile Include="Mappings\UserMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitOfWork.cs" />
-    <Compile Include="UsersRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FluentNHibernate, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
@@ -83,6 +82,14 @@
       <Project>{0f73c429-1b2f-48b7-9d38-20da17ad350b}</Project>
       <Name>Simplify.FluentNHibernate</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Simplify.Repository.FluentNHibernate\Simplify.Repository.FluentNHibernate.csproj">
+      <Project>{fb81ef87-c5c4-4d03-b229-2cc7df3cf970}</Project>
+      <Name>Simplify.Repository.FluentNHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Simplify.Repository\Simplify.Repository.csproj">
+      <Project>{9eb05935-ead1-4b3c-b758-0af26338c474}</Project>
+      <Name>Simplify.Repository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Simplify.FluentNHibernate.Examples.Domain\Simplify.FluentNHibernate.Examples.Domain.csproj">
       <Project>{959df948-6208-4ea2-bbb8-ba87e6fdcab7}</Project>
       <Name>Simplify.FluentNHibernate.Examples.Domain</Name>
@@ -92,6 +99,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

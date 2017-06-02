@@ -1,21 +1,21 @@
-﻿using FluentNHibernate.Mapping;
-
-using Simplify.FluentNHibernate.Examples.Domain.Entities;
+﻿using Simplify.FluentNHibernate.Examples.Database.Entities.Accounts;
+using Simplify.FluentNHibernate.Examples.Database.Entities.Location;
+using Simplify.Repository.FluentNHibernate.Mappings;
 
 namespace Simplify.FluentNHibernate.Examples.Database.Mappings
 {
-	public class UserMap : ClassMap<User>
+	public class UserMap : NamedObjectMap<User>
 	{
 		public UserMap()
 		{
 			Table("Users");
 
-			Id(x => x.ID);
-
-			Map(x => x.Name);
 			Map(x => x.Password);
+
 			Map(x => x.EMail);
-			References(x => x.City);
+
+			References<City>(x => x.City);
+
 			Map(x => x.LastActivityTime);
 		}
 	}
