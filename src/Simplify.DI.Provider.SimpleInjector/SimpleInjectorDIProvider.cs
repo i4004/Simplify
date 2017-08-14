@@ -1,6 +1,6 @@
 ﻿using System;
 using SimpleInjector;
-using SimpleInjector.Extensions.ExecutionContextScoping;
+using SimpleInjector.Lifestyles;
 
 namespace Simplify.DI.Provider.SimpleInjector
 {
@@ -19,7 +19,7 @@ namespace Simplify.DI.Provider.SimpleInjector
 			get
 			{
 				return _container ??
-					   (_container = new Container { Options = { DefaultScopedLifestyle = new ExecutionContextScopeLifestyle() } });
+					   (_container = new Container { Options = { DefaultScopedLifestyle = new AsyncScopedLifestyle() } });
 			}
 			set
 			{

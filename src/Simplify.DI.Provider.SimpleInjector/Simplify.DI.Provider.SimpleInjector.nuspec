@@ -12,8 +12,8 @@
 		<description>$description$</description>
 		<summary>$description$</summary>
 		<releaseNotes>
-			* Upgrade to Simplify.DI 1.2
-			* Upgrade to SimpleInjector 3.3.2
+			* Upgrade to Simplify.DI 1.2.1
+			* Upgrade to SimpleInjector 4.0.8 (SimpleInjector.Extensions.ExecutionContextScoping not need anymore)
 		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
