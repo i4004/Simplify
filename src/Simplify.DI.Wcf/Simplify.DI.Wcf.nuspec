@@ -12,7 +12,8 @@
 		<description>$description$</description>
 		<summary>$description$</summary>
 		<releaseNotes>
-			* Upgrade to Simplify.DI 1.1.2
+			* Upgrade to .NET Framework 4.5.2
+			* Upgrade to Simplify.DI 1.2.1
 		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
