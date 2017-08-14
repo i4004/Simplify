@@ -40,7 +40,7 @@
     <Compile Include="DIContainer.cs" />
     <Compile Include="DryIoc\AsyncExecutionFlowScopeContext.cs" />
     <Compile Include="DryIoc\Container.cs" />
-    <Compile Include="DryIoc\FactoryCompiler.cs" />
+    <Compile Include="DryIoc\FastExpressionCompiler.cs" />
     <Compile Include="DryIoc\ImTools.cs" />
     <Compile Include="Provider.DryIoc\DryIocDIProvider.cs" />
     <Compile Include="Provider.DryIoc\DryIocLifetimeScope.cs" />

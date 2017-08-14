@@ -27,7 +27,7 @@ Packages status
 
 | Package | Dependencies | .NET version |
 | :------ | :------: | :------: |
-| [![Nuget version](http://img.shields.io/badge/Simplify.DI-v1.2-blue.png)](https://www.nuget.org/packages/Simplify.DI/) | [![NuGet Status](http://nugetstatus.com/Simplify.DI.png)](http://nugetstatus.com/packages/Simplify.DI) | 4.5.2 |
+| [![Nuget version](http://img.shields.io/badge/Simplify.DI-v1.2.1-blue.png)](https://www.nuget.org/packages/Simplify.DI/) | [![NuGet Status](http://nugetstatus.com/Simplify.DI.png)](http://nugetstatus.com/packages/Simplify.DI) | 4.5.2 |
 | [![Nuget version](http://img.shields.io/badge/Simplify.DI.Provider.CastleWindsor-v1.1.1-blue.png)](https://www.nuget.org/packages/Simplify.DI.Provider.CastleWindsor/) | [![NuGet Status](http://nugetstatus.com/Simplify.DI.Provider.CastleWindsor.png)](http://nugetstatus.com/packages/Simplify.DI.Provider.CastleWindsor) | 4.5 |
 | [![Nuget version](http://img.shields.io/badge/Simplify.DI.Provider.SimpleInjector-v1.2.1-blue.png)](https://www.nuget.org/packages/Simplify.DI.Provider.SimpleInjector/) | [![NuGet Status](http://nugetstatus.com/Simplify.DI.Provider.SimpleInjector.png)](http://nugetstatus.com/packages/Simplify.DI.Provider.SimpleInjector) | 4.5.2 |
 | [![Nuget version](http://img.shields.io/badge/Simplify.DI.Wcf-v1.1.3-blue.png)](https://www.nuget.org/packages/Simplify.DI.Wcf/) | [![NuGet Status](http://nugetstatus.com/Simplify.DI.Wcf.png)](http://nugetstatus.com/packages/Simplify.DI.Wcf)  | 4.5 |

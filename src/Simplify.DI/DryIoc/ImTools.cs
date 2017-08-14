@@ -22,14 +22,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-namespace DryIoc
+namespace ImTools
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading;
-    using System.Runtime.CompilerServices; // for aggressive inlining hints
 
     /// <summary>Methods to work with immutable arrays, and general array sugar.</summary>
     public static class ArrayTools
@@ -45,7 +44,7 @@ namespace DryIoc
         /// <param name="source">Source array.</param> <returns>Empty array or source.</returns>
         public static T[] EmptyIfNull<T>(this T[] source)
         {
-            return source ?? Empty<T>();
+            return source != null ? source : Empty<T>();
         }
 
         /// <summary>Returns source enumerable if it is array, otherwise converts source to array.</summary>
@@ -54,7 +53,10 @@ namespace DryIoc
         /// <returns>Source enumerable or its array copy.</returns>
         public static T[] ToArrayOrSelf<T>(this IEnumerable<T> source)
         {
-            return source is T[] ? (T[])source : source.ToArray();
+            if (source == null)
+                return Empty<T>();
+            var self = source as T[];
+            return self == null ? source.ToArray() : self;
         }
 
         /// <summary>Returns new array consisting from all items from source array then all items from added array.
@@ -70,13 +72,30 @@ namespace DryIoc
                 return source;
             if (source == null || source.Length == 0)
                 return added;
-            var result = new T[source.Length + added.Length];
-            Array.Copy(source, 0, result, 0, source.Length);
-            if (added.Length == 1)
-                result[source.Length] = added[0];
+
+            var sourceCount = source.Length;
+            var addedCount = added.Length;
+
+            var result = new T[sourceCount + addedCount];
+            Array.Copy(source, 0, result, 0, sourceCount);
+            if (addedCount == 1)
+                result[sourceCount] = added[0];
             else
-                Array.Copy(added, 0, result, source.Length, added.Length);
+                Array.Copy(added, 0, result, sourceCount, addedCount);
             return result;
+        }
+
+        /// <summary>Performant concat of enumerables in case they are arrays. 
+        /// But performance will degrade if you use Concat().Where().</summary>
+        /// <typeparam name="T">Type of item.</typeparam>
+        /// <param name="source">goes first.</param>
+        /// <param name="other">appended to source.</param>
+        /// <returns>empty array or concat of source and other.</returns>
+        public static T[] Append<T>(this IEnumerable<T> source, IEnumerable<T> other)
+        {
+            var sourceArr = source.ToArrayOrSelf();
+            var otherArr = other.ToArrayOrSelf();
+            return sourceArr.Append(otherArr);
         }
 
         /// <summary>Returns new array with <paramref name="value"/> appended, 
@@ -91,10 +110,10 @@ namespace DryIoc
         {
             if (source == null || source.Length == 0)
                 return new[] { value };
-            var sourceLength = source.Length;
-            index = index < 0 ? sourceLength : index;
-            var result = new T[index < sourceLength ? sourceLength : sourceLength + 1];
-            Array.Copy(source, result, sourceLength);
+            var sourceCount = source.Length;
+            index = index < 0 ? sourceCount : index;
+            var result = new T[index < sourceCount ? sourceCount : sourceCount + 1];
+            Array.Copy(source, result, sourceCount);
             result[index] = value;
             return result;
         }
@@ -125,10 +144,273 @@ namespace DryIoc
                 for (var i = 0; i < source.Length; ++i)
                 {
                     var item = source[i];
-                    if (ReferenceEquals(item, value) || Equals(item, value))
+                    if (Equals(item, value))
                         return i;
                 }
             return -1;
+        }
+
+        /// <summary>Returns first item matching the <paramref name="predicate"/>, or default item value.</summary>
+        /// <typeparam name="T">item type</typeparam>
+        /// <param name="source">items collection to search</param>
+        /// <param name="predicate">condition to evaluate for each item.</param>
+        /// <returns>First item matching condition or default value.</returns>
+        public static T FindFirst<T>(this T[] source, Func<T, bool> predicate)
+        {
+            if (source != null && source.Length != 0)
+                for (var i = 0; i < source.Length; ++i)
+                {
+                    var item = source[i];
+                    if (predicate(item))
+                        return item;
+                }
+            return default(T);
+        }
+
+        private static T[] AppendTo<T>(T[] source, int sourcePos, int count, T[] results = null)
+        {
+            if (results == null)
+            {
+                var newResults = new T[count];
+                if (count == 1)
+                    newResults[0] = source[sourcePos];
+                else
+                    for (int i = 0, j = sourcePos; i < count; ++i, ++j)
+                        newResults[i] = source[j];
+                return newResults;
+            }
+
+            var matchCount = results.Length;
+            var appendedResults = new T[matchCount + count];
+            if (matchCount == 1)
+                appendedResults[0] = results[0];
+            else
+                Array.Copy(results, 0, appendedResults, 0, matchCount);
+
+            if (count == 1)
+                appendedResults[matchCount] = source[sourcePos];
+            else
+                Array.Copy(source, sourcePos, appendedResults, matchCount, count);
+
+            return appendedResults;
+        }
+
+        private static R[] AppendTo<T, R>(T[] source, int sourcePos, int count, Func<T, R> map, R[] results = null)
+        {
+            if (results == null || results.Length == 0)
+            {
+                var newResults = new R[count];
+                if (count == 1)
+                    newResults[0] = map(source[sourcePos]);
+                else
+                    for (int i = 0, j = sourcePos; i < count; ++i, ++j)
+                        newResults[i] = map(source[j]);
+                return newResults;
+            }
+
+            var oldResultsCount = results.Length;
+            var appendedResults = new R[oldResultsCount + count];
+            if (oldResultsCount == 1)
+                appendedResults[0] = results[0];
+            else
+                Array.Copy(results, 0, appendedResults, 0, oldResultsCount);
+
+            if (count == 1)
+                appendedResults[oldResultsCount] = map(source[sourcePos]);
+            else
+                Array.Copy(source, sourcePos, appendedResults, oldResultsCount, count);
+
+            return appendedResults;
+        }
+
+        /// <summary>Where method similar to Enumerable.Where but more performant and non necessary allocating.
+        /// It returns source array and does Not create new one if all items match the condition.</summary>
+        /// <typeparam name="T">Type of source items.</typeparam>
+        /// <param name="source">If null, the null will be returned.</param>
+        /// <param name="condition">Condition to keep items.</param>
+        /// <returns>New array if some items are filter out. Empty array if all items are filtered out. Original array otherwise.</returns>
+        public static T[] Match<T>(this T[] source, Func<T, bool> condition)
+        {
+            if (source == null || source.Length == 0)
+                return source;
+
+            if (source.Length == 1)
+                return condition(source[0]) ? source : Empty<T>();
+
+            if (source.Length == 2)
+            {
+                var condition0 = condition(source[0]);
+                var condition1 = condition(source[1]);
+                return condition0 && condition1 ? new[] { source[0], source[1] }
+                    : condition0 ? new[] { source[0] }
+                    : condition1 ? new[] { source[1] }
+                    : Empty<T>();
+            }
+
+            var matchStart = 0;
+            T[] matches = null;
+            var matchFound = false;
+
+            var i = 0;
+            while (i < source.Length)
+            {
+                matchFound = condition(source[i]);
+                if (!matchFound)
+                {
+                    // for accumulated matched items
+                    if (i != 0 && i > matchStart)
+                        matches = AppendTo(source, matchStart, i - matchStart, matches);
+                    matchStart = i + 1; // guess the next match start will be after the non-matched item
+                }
+                ++i;
+            }
+
+            // when last match was found but not all items are matched (hence matchStart != 0)
+            if (matchFound && matchStart != 0)
+                return AppendTo(source, matchStart, i - matchStart, matches);
+
+            if (matches != null)
+                return matches;
+
+            if (matchStart != 0) // no matches
+                return Empty<T>();
+
+            return source;
+        }
+
+        /// <summary>Where method similar to Enumerable.Where but more performant and non necessary allocating.
+        /// It returns source array and does Not create new one if all items match the condition.</summary>
+        /// <typeparam name="T">Type of source items.</typeparam> <typeparam name="R">Type of result items.</typeparam>
+        /// <param name="source">If null, the null will be returned.</param>
+        /// <param name="condition">Condition to keep items.</param> <param name="map">Converter from source to result item.</param>
+        /// <returns>New array of result items.</returns>
+        public static R[] Match<T, R>(this T[] source, Func<T, bool> condition, Func<T, R> map)
+        {
+            if (source == null)
+                return null;
+
+            if (source.Length == 0)
+                return Empty<R>();
+
+            if (source.Length == 1)
+            {
+                var item = source[0];
+                return condition(item) ? new[] { map(item) } : Empty<R>();
+            }
+
+            if (source.Length == 2)
+            {
+                var condition0 = condition(source[0]);
+                var condition1 = condition(source[1]);
+                return condition0 && condition1 ? new[] { map(source[0]), map(source[1]) } 
+                    : condition0 ? new[] { map(source[0]) }
+                    : condition1 ? new[] { map(source[1]) }
+                    : Empty<R>();
+            }
+
+            var matchStart = 0;
+            R[] matches = null;
+            var matchFound = false;
+
+            var i = 0;
+            while (i < source.Length)
+            {
+                matchFound = condition(source[i]);
+                if (!matchFound)
+                {
+                    // for accumulated matched items
+                    if (i != 0 && i > matchStart)
+                        matches = AppendTo(source, matchStart, i - matchStart, map, matches);
+                    matchStart = i + 1; // guess the next match start will be after the non-matched item
+                }
+                ++i;
+            }
+
+            // when last match was found but not all items are matched (hence matchStart != 0)
+            if (matchFound && matchStart != 0)
+                return AppendTo(source, matchStart, i - matchStart, map, matches);
+
+            if (matches != null)
+                return matches;
+
+            if (matchStart != 0) // no matches
+                return Empty<R>();
+
+            return AppendTo(source, 0, source.Length, map);
+        }
+
+        /// <summary>Maps all items from source to result array.</summary>
+        /// <typeparam name="T">Source item type</typeparam> <typeparam name="R">Result item type</typeparam>
+        /// <param name="source">Source items</param> <param name="map">Function to convert item from source to result.</param>
+        /// <returns>Converted items</returns>
+        public static R[] Map<T, R>(this T[] source, Func<T, R> map)
+        {
+            if (source == null)
+                return null;
+
+            var sourceCount = source.Length;
+            if (sourceCount == 0)
+                return Empty<R>();
+
+            if (sourceCount == 1)
+                return new[] {map(source[0])};
+
+            if (sourceCount == 2)
+                return new[] { map(source[0]), map(source[1]) };
+
+            if (sourceCount == 3)
+                return new[] { map(source[0]), map(source[1]), map(source[2]) };
+
+            var results = new R[sourceCount];
+            for (var i = 0; i < source.Length; i++)
+                results[i] = map(source[i]);
+            return results;
+        }
+
+        /// <summary>Maps all items from source to result collection. 
+        /// If possible uses fast array Map otherwise Enumerable.Select.</summary>
+        /// <typeparam name="T">Source item type</typeparam> <typeparam name="R">Result item type</typeparam>
+        /// <param name="source">Source items</param> <param name="map">Function to convert item from source to result.</param>
+        /// <returns>Converted items</returns>
+        public static IEnumerable<R> Map<T, R>(this IEnumerable<T> source, Func<T, R> map)
+        {
+            if (source == null)
+                return null;
+            var arr = source as T[];
+            if (arr != null)
+                return arr.Map(map);
+            return source.Select(map);
+        }
+
+        /// <summary>If <paramref name="source"/> is array uses more effective Match for array, otherwise just calls Where</summary>
+        /// <typeparam name="T">Type of source items.</typeparam>
+        /// <param name="source">If null, the null will be returned.</param>
+        /// <param name="condition">Condition to keep items.</param>
+        /// <returns>Result items, may be an array.</returns>
+        public static IEnumerable<T> Match<T>(this IEnumerable<T> source, Func<T, bool> condition)
+        {
+            if (source == null)
+                return null;
+            var arr = source as T[];
+            if (arr != null)
+                return arr.Match(condition);
+            return source.Where(condition);
+        }
+
+        /// <summary>If <paramref name="source"/> is array uses more effective Match for array,
+        /// otherwise just calls Where, Select</summary>
+        /// <typeparam name="T">Type of source items.</typeparam> <typeparam name="R">Type of result items.</typeparam>
+        /// <param name="source">If null, the null will be returned.</param>
+        /// <param name="condition">Condition to keep items.</param>  <param name="map">Converter from source to result item.</param>
+        /// <returns>Result items, may be an array.</returns>
+        public static IEnumerable<R> Match<T, R>(this IEnumerable<T> source, Func<T, bool> condition, Func<T, R> map)
+        {
+            if (source == null)
+                return null;
+            var arr = source as T[];
+            if (arr != null)
+                return arr.Match(condition, map);
+            return source.Where(condition).Select(map);
         }
 
         /// <summary>Produces new array without item at specified <paramref name="index"/>. 
@@ -290,7 +572,7 @@ namespace DryIoc
             var s = new StringBuilder('{');
             if (Key != null)
                 s.Append(Key);
-            s.Append(',');
+            s.Append(',').Append(' ');
             if (Value != null)
                 s.Append(Value);
             s.Append('}');
@@ -325,7 +607,6 @@ namespace DryIoc
         /// <summary>Creates the key value pair.</summary>
         /// <typeparam name="K">Key type</typeparam> <typeparam name="V">Value type</typeparam>
         /// <param name="key">Key</param> <param name="value">Value</param> <returns>New pair.</returns>
-        [MethodImpl((MethodImplOptions)256)] // AggressiveInlining
         public static KV<K, V> Of<K, V>(K key, V value)
         {
             return new KV<K, V>(key, value);
@@ -334,7 +615,6 @@ namespace DryIoc
         /// <summary>Creates the new pair with new key and old value.</summary>
         /// <typeparam name="K">Key type</typeparam> <typeparam name="V">Value type</typeparam>
         /// <param name="source">Source value</param> <param name="key">New key</param> <returns>New pair</returns>
-        [MethodImpl((MethodImplOptions)256)] // AggressiveInlining
         public static KV<K, V> WithKey<K, V>(this KV<K, V> source, K key)
         {
             return new KV<K, V>(key, source.Value);
@@ -343,7 +623,6 @@ namespace DryIoc
         /// <summary>Creates the new pair with old key and new value.</summary>
         /// <typeparam name="K">Key type</typeparam> <typeparam name="V">Value type</typeparam>
         /// <param name="source">Source value</param> <param name="value">New value.</param> <returns>New pair</returns>
-        [MethodImpl((MethodImplOptions)256)] // AggressiveInlining
         public static KV<K, V> WithValue<K, V>(this KV<K, V> source, V value)
         {
             return new KV<K, V>(source.Key, value);
@@ -357,7 +636,6 @@ namespace DryIoc
     /// <returns>Changed value.</returns>
     public delegate V Update<V>(V oldValue, V newValue);
 
-    // todo: V3: Rename to ImTree
     /// <summary>Simple immutable AVL tree with integer keys and object values.</summary>
     public sealed class ImTreeMapIntToObj
     {
@@ -498,7 +776,6 @@ namespace DryIoc
         #endregion
     }
 
-    // todo: V3: Rename to ImHashTree
     /// <summary>Immutable http://en.wikipedia.org/wiki/AVL_tree where actual node key is hash code of <typeparamref name="K"/>.</summary>
     public sealed class ImTreeMap<K, V>
     {
@@ -613,7 +890,7 @@ namespace DryIoc
             Height = 1 + (left.Height > right.Height ? left.Height : right.Height);
         }
 
-        private ImTreeMap<K, V> AddOrUpdate(int hash, K key, V value, Update<V> update, bool updateOnly)
+        internal ImTreeMap<K, V> AddOrUpdate(int hash, K key, V value, Update<V> update, bool updateOnly)
         {
             return Height == 0 ? (updateOnly ? this : new ImTreeMap<K, V>(hash, key, value, null, Empty, Empty))
                 : (hash == Hash ? UpdateValueAndResolveConflicts(key, value, update, updateOnly)
@@ -648,7 +925,7 @@ namespace DryIoc
             return new ImTreeMap<K, V>(Hash, Key, Value, conflicts, Left, Right);
         }
 
-        private V GetConflictedValueOrDefault(K key, V defaultValue)
+        internal V GetConflictedValueOrDefault(K key, V defaultValue)
         {
             if (Conflicts != null)
                 for (var i = 0; i < Conflicts.Length; i++)
@@ -681,5 +958,100 @@ namespace DryIoc
         }
 
         #endregion
+    }
+
+    /// <summary>AVL trees forest - uses last hash bits to quickly find target tree, more performant Lookup but no traversal.</summary>
+    /// <typeparam name="K">Key type</typeparam> <typeparam name="V">Value type.</typeparam>
+    public sealed class ImMap<K, V>
+    {
+        private const int NumberOfTrees = 32;
+        private const int HashBitsToTree = NumberOfTrees - 1;  // get last 4 bits, fast (hash % NumberOfTrees)
+
+        /// <summary>Empty tree to start with.</summary>
+        public static readonly ImMap<K, V> Empty = new ImMap<K, V>(new ImTreeMap<K, V>[NumberOfTrees], 0);
+
+        /// <summary>Count in items stored.</summary>
+        public readonly int Count;
+
+        /// <summary>True if contains no items</summary>
+        public bool IsEmpty { get { return Count == 0; } }
+
+        /// <summary>Looks for key in a tree and returns the key value if found, or <paramref name="defaultValue"/> otherwise.</summary>
+        /// <param name="key">Key to look for.</param> <param name="defaultValue">(optional) Value to return if key is not found.</param>
+        /// <returns>Found value or <paramref name="defaultValue"/>.</returns>
+        public V GetValueOrDefault(K key, V defaultValue = default(V))
+        {
+            var hash = key.GetHashCode();
+
+            var t = _trees[hash & HashBitsToTree];
+            if (t == null)
+                return defaultValue;
+
+            while (t.Height != 0 && t.Hash != hash)
+                t = hash < t.Hash ? t.Left : t.Right;
+
+            if (t.Height != 0 && (ReferenceEquals(key, t.Key) || key.Equals(t.Key)))
+                return t.Value;
+
+            return t.GetConflictedValueOrDefault(key, defaultValue);
+        }
+
+        /// <summary>Returns new tree with added key-value. 
+        /// If value with the same key is exist then the value is replaced.</summary>
+        /// <param name="key">Key to add.</param><param name="value">Value to add.</param>
+        /// <returns>New tree with added or updated key-value.</returns>
+        public ImMap<K, V> AddOrUpdate(K key, V value)
+        {
+            var hash = key.GetHashCode();
+
+            var treeIndex = hash & HashBitsToTree;
+
+            var trees = _trees;
+            var tree = trees[treeIndex];
+            if (tree == null)
+                tree = ImTreeMap<K, V>.Empty;
+
+            tree = tree.AddOrUpdate(hash, key, value, null, false);
+
+            var newTrees = new ImTreeMap<K, V>[NumberOfTrees];
+            Array.Copy(trees, 0, newTrees, 0, NumberOfTrees);
+            newTrees[treeIndex] = tree;
+
+            return new ImMap<K, V>(newTrees, Count + 1);
+        }
+
+        /// <summary>Looks for <paramref name="key"/> and replaces its value with new <paramref name="value"/></summary>
+        /// <param name="key">Key to look for.</param>
+        /// <param name="value">New value to replace key value with.</param>
+        /// <returns>New tree with updated value or the SAME tree if no key found.</returns>
+        public ImMap<K, V> Update(K key, V value)
+        {
+            var hash = key.GetHashCode();
+
+            var treeIndex = hash & HashBitsToTree;
+
+            var trees = _trees;
+            var tree = trees[treeIndex];
+            if (tree == null)
+                return this;
+
+            var newTree = tree.AddOrUpdate(hash, key, value, null, true);
+            if (newTree == tree)
+                return this;
+
+            var newTrees = new ImTreeMap<K, V>[NumberOfTrees];
+            Array.Copy(trees, 0, newTrees, 0, NumberOfTrees);
+            newTrees[treeIndex] = newTree;
+
+            return new ImMap<K, V>(newTrees, Count);
+        }
+
+        private readonly ImTreeMap<K, V>[] _trees;
+
+        private ImMap(ImTreeMap<K, V>[] newTrees, int count)
+        {
+            _trees = newTrees;
+            Count = count;
+        }
     }
 }

@@ -12,8 +12,7 @@
 		<description>$description$</description>
 		<summary>$description$</summary>
 		<releaseNotes>
-			* Upgrade to .NET framework 4.5.2
-			* Upgrade to DryIoc 2.9.7
+			* Upgrade to DryIoc 2.11.6
 		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
