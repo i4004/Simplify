@@ -17,7 +17,6 @@
 			* Upgrade to Castle.Core 4.0.8
 			* Upgrade to Castle.Windsor 4.0.8
 		</releaseNotes>
-		<releaseNotes>Upgrade to Simplify.DI 1.1.2</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET DI IOC-container-provider</tags>
