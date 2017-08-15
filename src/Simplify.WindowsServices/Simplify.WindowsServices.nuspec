@@ -13,6 +13,7 @@
 		<summary>$description$</summary>
 		<releaseNotes>
 			+ Added 'console' parameter to run service as a console application
+			* Upgrade to .NET Framework 4.5.2
 			* Upgrade to Simplify.DI 1.2.1
 			* Upgrade to ncrontab 3.3
 		</releaseNotes>
