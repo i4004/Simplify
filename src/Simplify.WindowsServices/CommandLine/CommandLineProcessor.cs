@@ -50,6 +50,9 @@ namespace Simplify.WindowsServices.CommandLine
 				case CommandLineAction.UninstallService:
 					InstallationController.UninstallService();
 					return ProcessCommandLineResult.CommandLineActionExecuted;
+
+				case CommandLineAction.RunAsConsole:
+					return ProcessCommandLineResult.SkipServiceStart;
 			}
 
 			Console.WriteLine($"Undefined service parameters: '{string.Concat(args)}'");
@@ -71,6 +74,9 @@ namespace Simplify.WindowsServices.CommandLine
 
 			if (args[0] == "uninstall")
 				return CommandLineAction.UninstallService;
+
+			if (args[0] == "console")
+				return CommandLineAction.RunAsConsole;
 
 			return CommandLineAction.UndefinedAction;
 		}

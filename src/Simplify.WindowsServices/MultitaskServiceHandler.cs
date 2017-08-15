@@ -245,12 +245,21 @@ namespace Simplify.WindowsServices
 		/// Starts the windows-service.
 		/// </summary>
 		/// <param name="args">The arguments.</param>
-		public void Start(string[] args = null)
+		public bool Start(string[] args = null)
 		{
 			var commandLineProcessResult = CommandLineProcessor.ProcessCommandLineArguments(args);
 
-			if (commandLineProcessResult == ProcessCommandLineResult.NoArguments)
-				ServiceBase.Run(this);
+			switch (commandLineProcessResult)
+			{
+				case ProcessCommandLineResult.SkipServiceStart:
+					return false;
+
+				case ProcessCommandLineResult.NoArguments:
+					ServiceBase.Run(this);
+					break;
+			}
+
+			return true;
 		}
 
 		private void RunBasicJob(IServiceJob job)

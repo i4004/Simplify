@@ -18,6 +18,11 @@
 		/// <summary>
 		/// The command line action executed
 		/// </summary>
-		CommandLineActionExecuted
+		CommandLineActionExecuted,
+
+		/// <summary>
+		/// The skip service start
+		/// </summary>
+		SkipServiceStart
 	}
 }

@@ -18,6 +18,11 @@
 		/// <summary>
 		/// The uninstall service action from command line
 		/// </summary>
-		UninstallService
+		UninstallService,
+
+		/// <summary>
+		/// The run as console application action from command line
+		/// </summary>
+		RunAsConsole
 	}
 }
