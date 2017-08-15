@@ -107,12 +107,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="NCrontab, Version=3.1.19111.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ncrontab.3.1.0\lib\net45\NCrontab.dll</HintPath>
+    <Reference Include="NCrontab, Version=3.2.20120.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ncrontab.3.3.0\lib\net35\NCrontab.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Simplify.DI, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Simplify.DI.1.1.2\lib\net45\Simplify.DI.dll</HintPath>
+    <Reference Include="Simplify.DI, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Simplify.DI.1.2.1\lib\net452\Simplify.DI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Simplify.System">
