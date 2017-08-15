@@ -12,11 +12,9 @@
 		<description>Windows services framework with DI.</description>
 		<summary>$description$</summary>
 		<releaseNotes>
-			+ Windows service installattion/deinstallation by service commands line parameters install/uninstall
-			+ ServiceAccount can be specified in ServiceInstallerSettings
-			* ServiceInstallerBase simplify (run as user name and password can be used without changing ServiceInstallerBase implementor)
-			* CleanupOnTaskFinish enabled by default
-			* Upgrade to Simplify.DI 1.1.2
+			+ Added 'console' parameter to run service as a console application
+			* Upgrade to Simplify.DI 1.2.1
+			* Upgrade to ncrontab 3.3
 		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
