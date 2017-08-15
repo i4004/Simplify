@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Dependency1.cs" />
+    <Compile Include="IocRegistrations.cs" />
     <Compile Include="ServiceInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -57,16 +58,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="SimpleInjector, Version=4.0.8.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
-      <HintPath>..\packages\SimpleInjector.4.0.8\lib\net45\SimpleInjector.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Simplify.DI, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Simplify.DI.1.2.1\lib\net452\Simplify.DI.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Simplify.DI.Provider.SimpleInjector, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Simplify.DI.Provider.SimpleInjector.1.3.0\lib\net452\Simplify.DI.Provider.SimpleInjector.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

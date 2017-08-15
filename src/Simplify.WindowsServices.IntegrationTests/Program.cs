@@ -1,5 +1,4 @@
 ﻿using Simplify.DI;
-using Simplify.DI.Provider.SimpleInjector;
 
 namespace Simplify.WindowsServices.IntegrationTests
 {
@@ -12,19 +11,20 @@ namespace Simplify.WindowsServices.IntegrationTests
 			System.Diagnostics.Debugger.Launch();
 #endif
 
-			DIContainer.Current = new SimpleInjectorDIProvider();
+			IocRegistrations.Register();
 
 			var handler = new MultitaskServiceHandler();
 
 			handler.AddJob<TaskProcessor1>("TaskProcessor1Settings");
 			handler.AddJob<TaskProcessor2>("TaskProcessor2Settings", "Run", true);
 			handler.AddJob<TaskProcessor3>("TaskProcessor3Settings", "Run", true);
-			handler.AddBasicJob<BasicTaskProcessor>(true);
+			handler.AddBasicJob<BasicTaskProcessor>();
 
-			DIContainer.Current.Register<Dependency1>();
-			DIContainer.Current.Register<TaskProcessor1>();
+			if (handler.Start(args))
+				return;
 
-			handler.Start(args);
+			using (var scope = DIContainer.Current.BeginLifetimeScope())
+				scope.Container.Resolve<BasicTaskProcessor>().Run();
 		}
 	}
 }
