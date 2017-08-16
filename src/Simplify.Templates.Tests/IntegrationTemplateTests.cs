@@ -49,6 +49,8 @@ namespace Simplify.Templates.Tests
 			tpl.Set("NotFoundItem", (ITemplate)null);
 
 			masterTemplate.Add("Items", tpl);
+			masterTemplate.Set("FromTemplateNull", (ITemplate)null);
+			masterTemplate.Set("FromTemplateNotNull", Template.FromString("test"));
 
 			Assert.AreEqual(masterTestTemplate.Get(), masterTemplate.Get());
 		}

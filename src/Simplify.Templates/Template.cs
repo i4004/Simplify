@@ -306,7 +306,7 @@ namespace Simplify.Templates
 		/// <param name="template">Value to set</param>
 		public ITemplate Set(string variableName, ITemplate template)
 		{
-			return template != null ? Set(variableName, template.Get()) : this;
+			return Set(variableName, template?.Get());
 		}
 
 		/// <summary>
@@ -386,7 +386,7 @@ namespace Simplify.Templates
 		/// <param name="template">Value to set</param>
 		public ITemplate Add(string variableName, ITemplate template)
 		{
-			return template != null ? Add(variableName, template.Get()) : this;
+			return Add(variableName, template?.Get());
 		}
 
 		/// <summary>

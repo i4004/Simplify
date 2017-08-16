@@ -3,3 +3,5 @@
 <div>
 {Items}
 </div>
+{FromTemplateNull}
+{FromTemplateNotNull}
