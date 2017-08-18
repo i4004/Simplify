@@ -34,6 +34,11 @@
 		/// </value>
 		public ITemplate Template { get; }
 
+		/// <summary>
+		/// Formats the name of the variable to replace respecting model prefix.
+		/// </summary>
+		/// <param name="variableName">Name of the variable.</param>
+		/// <returns></returns>
 		protected string FormatModelVariableName(string variableName)
 		{
 			return ModelPrefix != null ? ModelPrefix + ModelPrefixSeparator + variableName : variableName;
