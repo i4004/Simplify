@@ -17,12 +17,13 @@ namespace Simplify.Templates
 		private readonly IList<string> _skipProperties = new List<string>();
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="ModelSetter{T}"/> class.
+		/// Initializes a new instance of the <see cref="ModelSetter{T}" /> class.
 		/// </summary>
 		/// <param name="template">The template.</param>
 		/// <param name="model">The model.</param>
-		public ModelSetter(ITemplate template, T model)
-			: base(template)
+		/// <param name="modelPrefix">The model prefix.</param>
+		public ModelSetter(ITemplate template, T model, string modelPrefix = null)
+			: base(template, modelPrefix)
 		{
 			_model = model;
 
@@ -49,7 +50,7 @@ namespace Simplify.Templates
 			_skipProperties.Add(expression.Member.Name);
 
 			var propInfo = _modelType.GetProperty(expression.Member.Name);
-			Template.Set(ModelPrefix + propInfo.Name, dataExpression.Invoke((TData) propInfo.GetValue(_model)));
+			Template.Set(FormatModelVariableName(propInfo.Name), dataExpression.Invoke((TData) propInfo.GetValue(_model)));
 
 			return this;
 		}
@@ -66,7 +67,7 @@ namespace Simplify.Templates
 				if (_skipProperties.Contains(propInfo.Name)) continue;
 
 				var value = _model == null ? null : propInfo.GetValue(_model);
-				Template.Set(ModelPrefix + propInfo.Name, value);
+				Template.Set(FormatModelVariableName(propInfo.Name), value);
 			}
 
 			return Template;
@@ -84,7 +85,7 @@ namespace Simplify.Templates
 				if (_skipProperties.Contains(propInfo.Name)) continue;
 
 				var value = _model == null ? null : propInfo.GetValue(_model);
-				Template.Add(ModelPrefix + propInfo.Name, value);
+				Template.Add(FormatModelVariableName(propInfo.Name), value);
 			}
 
 			return Template;

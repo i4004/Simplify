@@ -6,16 +6,23 @@
 	public abstract class ModelSetterBase
 	{
 		/// <summary>
-		/// The model prefix
+		/// The model prefix separator
 		/// </summary>
-		public static string ModelPrefix = "Model.";
+		public static string ModelPrefixSeparator = ".";
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="ModelSetterBase"/> class.
+		/// The model prefix
+		/// </summary>
+		protected string ModelPrefix { get; }
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ModelSetterBase" /> class.
 		/// </summary>
 		/// <param name="template">The template.</param>
-		protected ModelSetterBase(ITemplate template)
+		/// <param name="modelPrefix">The model prefix.</param>
+		protected ModelSetterBase(ITemplate template, string modelPrefix = null)
 		{
+			ModelPrefix = modelPrefix;
 			Template = template;
 		}
 
@@ -25,6 +32,11 @@
 		/// <value>
 		/// The template.
 		/// </value>
-		public ITemplate Template { get; private set; }
+		public ITemplate Template { get; }
+
+		protected string FormatModelVariableName(string variableName)
+		{
+			return ModelPrefix != null ? ModelPrefix + ModelPrefixSeparator + variableName : variableName;
+		}
 	}
 }

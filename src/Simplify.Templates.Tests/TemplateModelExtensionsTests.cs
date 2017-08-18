@@ -12,7 +12,7 @@ namespace Simplify.Templates.Tests
 		[SetUp]
 		public void Initialize()
 		{
-			_template = Template.FromString("{Model.ID} {Model.Name} {Model.EMail} {Model.CreationTime}");
+			_template = Template.FromString("{ID} {Name} {EMail} {CreationTime}");
 		}
 
 		[Test]
@@ -54,7 +54,7 @@ namespace Simplify.Templates.Tests
 		{
 			// Assign
 
-			_template = Template.FromString("{Model.ID} {Model.Name} {Model.EMail}");
+			_template = Template.FromString("{ID} {Name} {EMail}");
 			var model = new TestModel();
 
 			// Act
@@ -69,7 +69,7 @@ namespace Simplify.Templates.Tests
 		{
 			// Assign
 
-			_template = Template.FromString("{Model.Name} {Model.EMail}");
+			_template = Template.FromString("{Name} {EMail}");
 			var model = new TestModel { Name = "Test", EMail = "test@test.com" };
 			var model2 = new TestModel { Name = "Foo", EMail = "foomail@test.com" };
 
@@ -87,7 +87,7 @@ namespace Simplify.Templates.Tests
 		{
 			// Assign
 
-			_template = Template.FromString("{Model.ID} {Model.Name}");
+			_template = Template.FromString("{ID} {Name}");
 			var model = new ChildTestModel { ID = 3, Name = "Hello!" };
 
 			// Act
@@ -95,6 +95,21 @@ namespace Simplify.Templates.Tests
 
 			// Assert
 			Assert.AreEqual("3 Hello!", _template.Get());
+		}
+
+		[Test]
+		public void Set_ModelWithPrefix_PrefixAdded()
+		{
+			// Assign
+
+			_template = Template.FromString("{Model.ID}");
+			var model = new ChildTestModel { ID = 3 };
+
+			// Act
+			_template.Model(model, "Model").Set();
+
+			// Assert
+			Assert.AreEqual("3", _template.Get());
 		}
 	}
 }
