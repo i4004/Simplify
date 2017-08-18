@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.IO.Abstractions.TestingHelpers;
 
 using NUnit.Framework;
@@ -19,13 +20,15 @@ namespace Simplify.Templates.Tests
 		[Test]
 		public void Load_FromFileSystem_LoadedCorrectly()
 		{
-			var files = new Dictionary<string, MockFileData> {{"Templates/Foo.en.tpl", "test"}};
+			var file = Path.Combine("Templates", "Foo.en.tpl");
+
+			var files = new Dictionary<string, MockFileData> {{ file, "test"}};
 
 			var fs = new MockFileSystem(files);
 
 			Template.FileSystem = fs;
 
-			Assert.AreEqual("test", new Template("Templates/Foo.en.tpl").Get());
+			Assert.AreEqual("test", new Template(file).Get());
 		}
 	}
 }
