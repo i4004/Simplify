@@ -50,7 +50,9 @@ namespace Simplify.Templates
 			_skipProperties.Add(expression.Member.Name);
 
 			var propInfo = _modelType.GetProperty(expression.Member.Name);
-			Template.Set(FormatModelVariableName(propInfo.Name), dataExpression.Invoke((TData) propInfo.GetValue(_model)));
+
+			if (propInfo != null)
+				Template.Set(FormatModelVariableName(propInfo.Name), dataExpression.Invoke((TData) propInfo.GetValue(_model)));
 
 			return this;
 		}
