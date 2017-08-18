@@ -12,7 +12,8 @@
 		<description>Text templates engine.</description>
 		<summary>$description$</summary>
 		<releaseNotes>
-			* Upgrade to System.IO.Abstractions 2.0.0.124
+			* Exporting Model without Model prefix in variables (Model prefix is now an optinal parameter)
+			* Upgrade to System.IO.Abstractions 2.0.0.144
 		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
