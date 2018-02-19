@@ -93,7 +93,7 @@ namespace Simplify.FluentNHibernate
 			if (query != null)
 				queryable = queryable.Where(query);
 
-			queryable = queryable.Cacheable();
+			queryable = queryable.SetOptions(x => x.SetCacheable(true));
 
 			return queryable.Select(x => x).SingleOrDefault();
 		}
