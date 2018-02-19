@@ -103,26 +103,6 @@ namespace Simplify.FluentNHibernate
 		#region List operations
 
 		/// <summary>
-		/// Get a list of sorted objects
-		/// </summary>
-		/// <typeparam name="T">The type of elements</typeparam>
-		/// <typeparam name="TOrder">Order comparing values type</typeparam>
-		/// <param name="session">The NHibernate session.</param>
-		/// <param name="orderExpression">Ordering expression</param>
-		/// <param name="orderDescending">Descending sorting</param>
-		/// <returns>List of objects</returns>
-		[Obsolete]
-		public static IList<T> GetSortedList<T, TOrder>(this ISession session, Expression<Func<T, TOrder>> orderExpression = null, bool orderDescending = false)
-		{
-			var queryable = session.Query<T>();
-
-			if (orderExpression != null)
-				queryable = orderDescending ? queryable.OrderByDescending(orderExpression) : queryable.OrderBy(orderExpression);
-
-			return queryable.Select(x => x).ToList();
-		}
-
-		/// <summary>
 		/// Get a list of objects
 		/// </summary>
 		/// <typeparam name="T">The type of elements</typeparam>
@@ -146,82 +126,6 @@ namespace Simplify.FluentNHibernate
 				queryable = customProcessing(queryable);
 
 			return queryable.Select(x => x).ToList();
-		}
-
-		/// <summary>
-		/// Get a list of objects
-		/// </summary>
-		/// <typeparam name="T">The type of elements</typeparam>
-		/// <typeparam name="TOrder">Order comparing values type</typeparam>
-		/// <param name="session">The NHibernate session.</param>
-		/// <param name="query">Query</param>
-		/// <param name="orderExpression">Filtering expression</param>
-		/// <param name="orderDescending">Descending sorting</param>
-		/// <returns>List of objects</returns>
-		[Obsolete]
-		public static IList<T> GetList<T, TOrder>(this ISession session, Expression<Func<T, bool>> query = null, Expression<Func<T, TOrder>> orderExpression = null, bool orderDescending = false)
-			where T : class
-		{
-			var queryable = session.Query<T>();
-
-			if (query != null)
-				queryable = queryable.Where(query);
-
-			if (orderExpression != null)
-				queryable = orderDescending ? queryable.OrderByDescending(orderExpression) : queryable.OrderBy(orderExpression);
-
-			return queryable.Select(x => x).ToList();
-		}
-
-		/// <summary>
-		/// Get sorted list of objects
-		/// </summary>
-		/// <typeparam name="T">The type of elements</typeparam>
-		/// <typeparam name="TOrder">Order comparing value type</typeparam>
-		/// <param name="session">The NHibernate session.</param>
-		/// <param name="orderExpression">Ordering function</param>
-		/// <param name="orderDescending">Descending sorting</param>
-		/// <returns>Sorted list of objects</returns>
-		[Obsolete]
-		public static IList<T> GetListSorted<T, TOrder>(this ISession session, Expression<Func<T, TOrder>> orderExpression = null, bool orderDescending = false)
-			where T : class
-		{
-			var queryable = session.Query<T>();
-
-			if (orderExpression != null)
-				queryable = orderDescending ? queryable.OrderByDescending(orderExpression) : queryable.OrderBy(orderExpression);
-
-			return queryable.Select(x => x).ToList();
-		}
-
-		/// <summary>
-		/// Gets the list of objects paged.
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <typeparam name="TOrder">Order comparing value type.</typeparam>
-		/// <param name="session">The session.</param>
-		/// <param name="pageIndex">Index of the page.</param>
-		/// <param name="itemsPerPage">The items per page.</param>
-		/// <param name="query">The query.</param>
-		/// <param name="orderExpression">The order expression.</param>
-		/// <param name="orderDescending">Descending sorting.</param>
-		/// <returns></returns>
-		[Obsolete]
-		public static IList<T> GetListPaged<T, TOrder>(this ISession session, int pageIndex, int itemsPerPage,
-			Expression<Func<T, bool>> query = null, Expression<Func<T, TOrder>> orderExpression = null,
-			bool orderDescending = false)
-			where T : class
-		{
-			var queryable = session.Query<T>();
-
-			if (query != null)
-				queryable = queryable.Where(query);
-
-			if (orderExpression != null)
-				queryable = orderDescending ? queryable.OrderByDescending(orderExpression) : queryable.OrderBy(orderExpression);
-
-			return queryable.Skip(pageIndex * itemsPerPage)
-				.Take(itemsPerPage).ToList();
 		}
 
 		/// <summary>
