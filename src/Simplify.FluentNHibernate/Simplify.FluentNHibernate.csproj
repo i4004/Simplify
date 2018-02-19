@@ -75,6 +75,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchemaExporter.cs" />
     <Compile Include="SessionExtensions.cs" />
+    <Compile Include="SimplifyFluentNHibernateException.cs" />
     <Compile Include="SqlStatementInterceptor.cs" />
   </ItemGroup>
   <ItemGroup>
