@@ -4,6 +4,7 @@ branches:
   - master
   - develop
 skip_tags: true
+image: Visual Studio 2017
 configuration: Release
 platform: Any CPU
 clone_depth: 1
