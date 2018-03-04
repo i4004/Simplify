@@ -25,16 +25,16 @@ Packages status
 
 ### Main
 
-| Package | Dependencies | .NET version |
+| Package | Dependencies | Target Framework |
 | :------ | :------: | :------: |
 | [![Nuget version](http://img.shields.io/badge/Simplify.DI-v1.2.1-blue.png)](https://www.nuget.org/packages/Simplify.DI/) | [![NuGet Status](http://nugetstatus.com/Simplify.DI.png)](http://nugetstatus.com/packages/Simplify.DI) | 4.5.2 |
 | [![Nuget version](http://img.shields.io/badge/Simplify.DI.Provider.CastleWindsor-v1.2-blue.png)](https://www.nuget.org/packages/Simplify.DI.Provider.CastleWindsor/) | [![NuGet Status](http://nugetstatus.com/Simplify.DI.Provider.CastleWindsor.png)](http://nugetstatus.com/packages/Simplify.DI.Provider.CastleWindsor) | 4.5.2 |
 | [![Nuget version](http://img.shields.io/badge/Simplify.DI.Provider.SimpleInjector-v1.3-blue.png)](https://www.nuget.org/packages/Simplify.DI.Provider.SimpleInjector/) | [![NuGet Status](http://nugetstatus.com/Simplify.DI.Provider.SimpleInjector.png)](http://nugetstatus.com/packages/Simplify.DI.Provider.SimpleInjector) | 4.5.2 |
 | [![Nuget version](http://img.shields.io/badge/Simplify.DI.Wcf-v1.1.4-blue.png)](https://www.nuget.org/packages/Simplify.DI.Wcf/) | [![NuGet Status](http://nugetstatus.com/Simplify.DI.Wcf.png)](http://nugetstatus.com/packages/Simplify.DI.Wcf)  | 4.5.2 |
 | [![Nuget version](http://img.shields.io/badge/Simplify.Extensions-v1.1-blue.png)](https://www.nuget.org/packages/Simplify.Extensions/) | [![NuGet Status](http://nugetstatus.com/Simplify.Extensions.png)](http://nugetstatus.com/packages/Simplify.Extensions) | 4.5 |
-| [![Nuget version](http://img.shields.io/badge/Simplify.FluentNHibernate-v1.6-blue.png)](https://www.nuget.org/packages/Simplify.FluentNHibernate/) | [![NuGet Status](http://nugetstatus.com/Simplify.FluentNHibernate.png)](http://nugetstatus.com/packages/Simplify.FluentNHibernate) | 4.5.2 |
+| [![Nuget version](http://img.shields.io/badge/Simplify.FluentNHibernate-v1.7-blue.png)](https://www.nuget.org/packages/Simplify.FluentNHibernate/) | [![NuGet Status](http://nugetstatus.com/Simplify.FluentNHibernate.png)](http://nugetstatus.com/packages/Simplify.FluentNHibernate) | 4.6.2 |
 | [![Nuget version](http://img.shields.io/badge/Simplify.Log-v1.1.1-blue.png)](https://www.nuget.org/packages/Simplify.Log/) | [![NuGet Status](http://nugetstatus.com/Simplify.Log.png)](http://nugetstatus.com/packages/Simplify.Log) | 4.5.2 |
-| [![Nuget version](http://img.shields.io/badge/Simplify.Mail-v1.3-blue.png)](https://www.nuget.org/packages/Simplify.Mail/) | [![NuGet Status](http://nugetstatus.com/Simplify.Mail.png)](http://nugetstatus.com/packages/Simplify.Mail) | 4.5 |
+| [![Nuget version](http://img.shields.io/badge/Simplify.Mail-v1.3.1-blue.png)](https://www.nuget.org/packages/Simplify.Mail/) | [![NuGet Status](http://nugetstatus.com/Simplify.Mail.png)](http://nugetstatus.com/packages/Simplify.Mail) | 4.5.2, Standard 2.0 |
 | [![Nuget version](http://img.shields.io/badge/Simplify.System-v1-blue.png)](https://www.nuget.org/packages/Simplify.System/) | [![NuGet Status](http://nugetstatus.com/Simplify.System.png)](http://nugetstatus.com/packages/Simplify.System) | 4.5 |
 | [![Nuget version](http://img.shields.io/badge/Simplify.System.Sources-v1-blue.png)](https://www.nuget.org/packages/Simplify.System.Sources/) | [![NuGet Status](http://nugetstatus.com/Simplify.System.Sources.png)](http://nugetstatus.com/packages/Simplify.System.Sources) | 4.5 |
 | [![Nuget version](http://img.shields.io/badge/Simplify.Templates-v1.3-blue.png)](https://www.nuget.org/packages/Simplify.Templates/) | [![NuGet Status](http://nugetstatus.com/Simplify.Templates.png)](http://nugetstatus.com/packages/Simplify.Templates) | 4.5.2 |
@@ -44,7 +44,7 @@ Packages status
 
 ### Extra
 
-| Package | Dependencies | .NET version |
+| Package | Dependencies | Target Framework |
 | :------ | :------: | :------: |
 | [![Nuget version](http://img.shields.io/badge/Simplify.Cryptography-v1-blue.png)](https://www.nuget.org/packages/Simplify.Cryptography/) | [![NuGet Status](http://nugetstatus.com/Simplify.Cryptography.png)](http://nugetstatus.com/packages/Simplify.Cryptography) | 4.5 |
 | [![Nuget version](http://img.shields.io/badge/Simplify.IO-v1.0.6-blue.png)](https://www.nuget.org/packages/Simplify.IO/) | [![NuGet Status](http://nugetstatus.com/Simplify.IO.png)](http://nugetstatus.com/packages/Simplify.IO) | 4.5.2 |
