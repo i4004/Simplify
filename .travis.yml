@@ -16,5 +16,5 @@ before_script:
  - chmod +x .ci/nunit.sh
 
 script:
- - xbuild /p:Platform="Any CPU" /p:Configuration=Release src/Simplify.sln /tv:15.0
+ - xbuild /p:Platform="Any CPU" /p:Configuration=Release src/Simplify.sln /tv:14.0
  - .ci/nunit.sh .ci/tests.nunit
