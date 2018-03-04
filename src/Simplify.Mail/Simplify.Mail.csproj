@@ -20,17 +20,11 @@
 			* Upgrade to .net framework 4.5.2
 		</PackageReleaseNotes>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
-		<OutputPath>bin\Any CPU\Debug\netstandard2.0\</OutputPath>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<OutputPath>bin\Any CPU\Debug\</OutputPath>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
-		<OutputPath>bin\Any CPU\Release\netstandard2.0\</OutputPath>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net452|AnyCPU'">
-		<OutputPath>bin\Any CPU\Debug\net452\</OutputPath>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net452|AnyCPU'">
-		<OutputPath>bin\Any CPU\Release\net452\</OutputPath>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<OutputPath>bin\Any CPU\Release\</OutputPath>
 	</PropertyGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
 		<PackageReference Include="System.Configuration.ConfigurationManager" Version="4.4.1" />
