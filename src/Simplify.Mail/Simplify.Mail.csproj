@@ -28,7 +28,7 @@
 		<Reference Include="System.Configuration" />
 	</ItemGroup>
 	<PropertyGroup>
-		<OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
-		<DocumentationFile>bin\$(Platform)\$(Configuration)\$(TargetFramework\Simplify.Mail.xml</DocumentationFile>
+		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
+		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.Mail.xml</DocumentationFile>
 	</PropertyGroup>
 </Project>
