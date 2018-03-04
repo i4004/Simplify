@@ -15,14 +15,22 @@
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET mail-sender</PackageTags>
 		<Authors>Alexander Krylkov</Authors>
-		<PackageReleaseNotes>* Upgrade to .net standard 2.0
-* Upgrade to .net framework 4.5.2</PackageReleaseNotes>
+		<PackageReleaseNotes>
+			* Upgrade to .net standard 2.0
+			* Upgrade to .net framework 4.5.2
+		</PackageReleaseNotes>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
-	  <OutputPath>bin\Any CPU\Debug\netstandard2.0\</OutputPath>
+		<OutputPath>bin\Any CPU\Debug\netstandard2.0\</OutputPath>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
-	  <OutputPath>bin\Any CPU\Release\netstandard2.0\</OutputPath>
+		<OutputPath>bin\Any CPU\Release\netstandard2.0\</OutputPath>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net452|AnyCPU'">
+		<OutputPath>bin\Any CPU\Debug\net452\</OutputPath>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net452|AnyCPU'">
+		<OutputPath>bin\Any CPU\Release\net452\</OutputPath>
 	</PropertyGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
 		<PackageReference Include="System.Configuration.ConfigurationManager" Version="4.4.1" />
