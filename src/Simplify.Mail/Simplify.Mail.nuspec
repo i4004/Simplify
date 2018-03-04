@@ -12,10 +12,8 @@
 		<description>Simple mail sender.</description>
 		<summary>$description$</summary>
 		<releaseNotes>
-			+ MailSender constructor with IMailSenderSettings
-			+ MailSender constructor with parameters instead of config file
-			+ Send method with MailMessage parameter
-			* Optional config user name and password parameters (if no user name specified, then default credentials will be used)
+			* Upgrade to .net standard 2.0
+			* Upgrade to .net framework 4.5.2
 		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
