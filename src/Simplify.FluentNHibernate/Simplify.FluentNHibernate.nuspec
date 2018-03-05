@@ -12,8 +12,9 @@
 		<description>$description$</description>
 		<summary>$description$</summary>
 		<releaseNotes>
-			- GetList methods with sorting marked as obsolete
-			+ customProcessing parameter added for GetList methods (replacing sorting)
+			- Obsolete methods removed
+			* Upgrade to .NET Framework 4.6.2
+			* Upgrade to FluentNHibernate 2.1.0 (NHibernate 5.0.3)
 		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
