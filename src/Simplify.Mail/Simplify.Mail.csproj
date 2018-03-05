@@ -16,7 +16,7 @@
 		<PackageTags>.NET mail-sender</PackageTags>
 		<Authors>Alexander Krylkov</Authors>
 		<PackageReleaseNotes>
-			* Upgrade to .net standard 2.0
+			* Switch to .net standard 2.0
 			* Upgrade to .net framework 4.5.2
 		</PackageReleaseNotes>
 	</PropertyGroup>
