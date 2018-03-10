@@ -19,8 +19,6 @@
 			* Added .NET Standard 1.3 support
 			* Upgrade to SimpleInjector 4.0.12
 		</PackageReleaseNotes>
-	</PropertyGroup>
-	<PropertyGroup>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.DI.xml</DocumentationFile>
 	</PropertyGroup>

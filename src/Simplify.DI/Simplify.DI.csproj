@@ -19,8 +19,6 @@
 			* Added .NET Standard 1.0 support
 			* Upgrade to DryIoc 2.12.7
 		</PackageReleaseNotes>
-	</PropertyGroup>
-	<PropertyGroup>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.DI.xml</DocumentationFile>
 	</PropertyGroup>
