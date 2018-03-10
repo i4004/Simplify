@@ -19,6 +19,8 @@
 			* Switch to .net standard 2.0
 			* Upgrade to .net framework 4.5.2
 		</PackageReleaseNotes>
+		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
+		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.Mail.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
 		<PackageReference Include="System.Configuration.ConfigurationManager" Version="4.4.1" />
@@ -27,8 +29,4 @@
 		<Reference Include="System" />
 		<Reference Include="System.Configuration" />
 	</ItemGroup>
-	<PropertyGroup>
-		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
-		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.Mail.xml</DocumentationFile>
-	</PropertyGroup>
 </Project>
