@@ -16,16 +16,15 @@
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET DI IOC-container</PackageTags>
 		<PackageReleaseNotes>
-			* Switch to .net standard 1.0
+			* Added .NET Standard 1.0 support
+			* Upgrade to DryIoc 2.12.7
 		</PackageReleaseNotes>
 	</PropertyGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
-		<Reference Include="System" />
-	</ItemGroup>
 	<PropertyGroup>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.DI.xml</DocumentationFile>
 	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="DryIoc" Version="2.12.7" PrivateAssets="All" />
+	</ItemGroup>
 </Project>
