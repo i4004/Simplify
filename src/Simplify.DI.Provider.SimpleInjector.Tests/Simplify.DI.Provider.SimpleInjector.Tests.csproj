@@ -13,8 +13,6 @@
 		<PackageReference Include="Simplify.DI" Version="1.2.2" />
 		<PackageReference Include="SimpleInjector" Version="4.0.12" />
 		<PackageReference Include="NUnit" Version="2.6.4" />
-	</ItemGroup>
-	<ItemGroup>
 		<ProjectReference Include="..\Simplify.DI.Provider.SimpleInjector\Simplify.DI.Provider.SimpleInjector.csproj" />
 		<ProjectReference Include="..\Simplify.DI.Tests\Simplify.DI.Tests.csproj" />
 	</ItemGroup>

@@ -11,8 +11,6 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="NUnit" Version="2.6.4" />
-	</ItemGroup>
-	<ItemGroup>
 		<ProjectReference Include="..\Simplify.DI\Simplify.DI.csproj" />
 	</ItemGroup>
 </Project>
