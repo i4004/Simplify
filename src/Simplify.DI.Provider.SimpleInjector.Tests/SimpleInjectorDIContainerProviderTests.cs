@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using Simplify.DI.Tests;
+using Simplify.DI.TestsTypes;
 
 namespace Simplify.DI.Provider.SimpleInjector.Tests
 {
