@@ -16,7 +16,7 @@ namespace Simplify.System.Tests
 			Assert.AreEqual("Simplify.System unit tests", assemblyInfo.Description);
 			Assert.AreEqual("Simplify", assemblyInfo.ProductName);
 			Assert.AreEqual("Simplify.System.Tests", assemblyInfo.Title);
-			Assert.AreEqual("1.0.0.0", assemblyInfo.Version.ToString());
+			Assert.AreEqual("1.1.0.0", assemblyInfo.Version.ToString());
 		}
 	}
 }

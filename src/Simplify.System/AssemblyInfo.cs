@@ -12,6 +12,18 @@ namespace Simplify.System
 		private readonly Assembly _infoAssembly;
 
 		/// <summary>
+		/// Initializes a new instance of the <see cref="AssemblyInfo"/> class.
+		/// </summary>
+		/// <param name="infoAssembly">The information assembly.</param>
+		/// <exception cref="ArgumentNullException">infoAssembly</exception>
+		public AssemblyInfo(Assembly infoAssembly)
+		{
+			if (infoAssembly == null) throw new ArgumentNullException("infoAssembly");
+
+			_infoAssembly = infoAssembly;
+		}
+
+		/// <summary>
 		/// Gets or sets the entry assembly information.
 		/// </summary>
 		/// <exception cref="ArgumentNullException">value</exception>
@@ -24,18 +36,6 @@ namespace Simplify.System
 
 				_entryAssemblyInfo = value;
 			}
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="AssemblyInfo"/> class.
-		/// </summary>
-		/// <param name="infoAssembly">The information assembly.</param>
-		/// <exception cref="ArgumentNullException">infoAssembly</exception>
-		public AssemblyInfo(Assembly infoAssembly)
-		{
-			if (infoAssembly == null) throw new ArgumentNullException("infoAssembly");
-
-			_infoAssembly = infoAssembly;
 		}
 
 		/// <summary>
