@@ -18,17 +18,8 @@ namespace Simplify.System
 		/// <exception cref="ArgumentNullException">value</exception>
 		public static ITimeProvider Current
 		{
-			get
-			{
-				return _currentInstance ?? (_currentInstance = new SystemTimeProvider());
-			}
-			set
-			{
-				if (value == null)
-					throw new ArgumentNullException("value");
-
-				_currentInstance = value;
-			}
+			get => _currentInstance ?? (_currentInstance = new SystemTimeProvider());
+			set => _currentInstance = value ?? throw new ArgumentNullException(nameof(value));
 		}
 	}
 }

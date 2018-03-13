@@ -18,9 +18,7 @@ namespace Simplify.System
 		/// <exception cref="ArgumentNullException">infoAssembly</exception>
 		public AssemblyInfo(Assembly infoAssembly)
 		{
-			if (infoAssembly == null) throw new ArgumentNullException("infoAssembly");
-
-			_infoAssembly = infoAssembly;
+			_infoAssembly = infoAssembly ?? throw new ArgumentNullException("infoAssembly");
 		}
 
 		/// <summary>
@@ -29,13 +27,8 @@ namespace Simplify.System
 		/// <exception cref="ArgumentNullException">value</exception>
 		public static IAssemblyInfo Entry
 		{
-			get { return _entryAssemblyInfo ?? (_entryAssemblyInfo = new AssemblyInfo(Assembly.GetEntryAssembly())); }
-			set
-			{
-				if (value == null) throw new ArgumentNullException("value");
-
-				_entryAssemblyInfo = value;
-			}
+			get => _entryAssemblyInfo ?? (_entryAssemblyInfo = new AssemblyInfo(Assembly.GetEntryAssembly()));
+			set => _entryAssemblyInfo = value ?? throw new ArgumentNullException(nameof(value));
 		}
 
 		/// <summary>
@@ -44,7 +37,7 @@ namespace Simplify.System
 		/// <value>
 		/// The version.
 		/// </value>
-		public Version Version { get { return _infoAssembly.GetName().Version; } }
+		public Version Version => _infoAssembly.GetName().Version;
 
 		/// <summary>
 		/// Gets the assembly title.

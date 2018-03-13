@@ -13,10 +13,7 @@ namespace Simplify.System
 		/// <value>
 		/// The current UTC time.
 		/// </value>
-		public DateTime UtcNow
-		{
-			get { return DateTime.UtcNow; }
-		}
+		public DateTime UtcNow => DateTime.UtcNow;
 
 		/// <summary>
 		/// Gets the current time.
@@ -24,10 +21,7 @@ namespace Simplify.System
 		/// <value>
 		/// The current time.
 		/// </value>
-		public DateTime Now
-		{
-			get { return DateTime.Now; }
-		}
+		public DateTime Now => DateTime.Now;
 
 		/// <summary>
 		/// Gets the today date without time.
@@ -35,9 +29,6 @@ namespace Simplify.System
 		/// <value>
 		/// The today date without time.
 		/// </value>
-		public DateTime Today
-		{
-			get { return DateTime.Today; }
-		}
+		public DateTime Today => DateTime.Today;
 	}
 }
