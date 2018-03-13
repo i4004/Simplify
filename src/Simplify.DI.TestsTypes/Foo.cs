@@ -1,4 +1,4 @@
-﻿namespace Simplify.DI.Tests
+﻿namespace Simplify.DI.TestsTypes
 {
 	public class Foo
 	{

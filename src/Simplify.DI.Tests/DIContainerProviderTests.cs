@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Simplify.DI.Provider.DryIoc;
+using Simplify.DI.TestsTypes;
 
 namespace Simplify.DI.Tests
 {
