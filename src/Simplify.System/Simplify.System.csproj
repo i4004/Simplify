@@ -12,7 +12,7 @@
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET</PackageTags>
 		<PackageReleaseNotes>
-			* Added .NET Standard 1.0 support
+			* Added .NET Standard 2.0 support
 			* Upgrade to .NET Framework 4.5.2
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
