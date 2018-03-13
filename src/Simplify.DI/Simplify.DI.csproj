@@ -1,14 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>netstandard1.0;net452</TargetFrameworks>
-		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<Description>Simplify DI common interface for IOC containers</Description>
-		<Company>Alexander Krylkov</Company>
 		<Authors>Alexander Krylkov</Authors>
 		<Product>Simplify</Product>
+		<Description>Simplify DI common interface for IOC containers</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<AssemblyVersion>1.2.2.0</AssemblyVersion>
-		<FileVersion>1.2.2.0</FileVersion>
 		<Version>1.2.2</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.DI</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>

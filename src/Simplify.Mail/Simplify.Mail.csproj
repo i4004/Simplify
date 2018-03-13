@@ -1,20 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
-		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<Description>Simple mail sender</Description>
-		<Company>Alexander Krylkov</Company>
+		<Authors>Alexander Krylkov</Authors>
 		<Product>Simplify</Product>
+		<Description>Simple mail sender</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<AssemblyVersion>1.3.1.0</AssemblyVersion>
-		<FileVersion>1.3.1.0</FileVersion>
 		<Version>1.3.1</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.Mail</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/i4004/Simplify/src/Simplify.Mail</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET mail-sender</PackageTags>
-		<Authors>Alexander Krylkov</Authors>
 		<PackageReleaseNotes>
 			* Switch to .net standard 2.0
 			* Upgrade to .net framework 4.5.2
