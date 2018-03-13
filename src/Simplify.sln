@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Log", "Simplify.Log\Simplify.Log.csproj", "{DA27C4E4-081C-4BF6-B6EF-0D1C093450E4}"
 EndProject
@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Extensions.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.WindowsServices", "Simplify.WindowsServices\Simplify.WindowsServices.csproj", "{7F2A1DE8-B41E-4EC5-B4E2-248FF692E06A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Mail", "Simplify.Mail\Simplify.Mail.csproj", "{B6530CBE-72B9-4EF6-9BDE-20D7220FF5DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.Mail", "Simplify.Mail\Simplify.Mail.csproj", "{B6530CBE-72B9-4EF6-9BDE-20D7220FF5DA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Xml", "Simplify.Xml\Simplify.Xml.csproj", "{F9158939-08D1-4F10-9250-1437A8ED1799}"
 EndProject
@@ -61,13 +61,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0ABE7D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.System", "Simplify.System\Simplify.System.csproj", "{BB69325D-028C-4F20-8F46-B0F4D70598C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.DI", "Simplify.DI\Simplify.DI.csproj", "{F83B9317-345D-4815-AC12-E71C0684CFEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.DI", "Simplify.DI\Simplify.DI.csproj", "{F83B9317-345D-4815-AC12-E71C0684CFEA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.System.Tests", "Simplify.System.Tests\Simplify.System.Tests.csproj", "{BDFB91F8-9C0B-4E60-AF5A-397B939501DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.DI.Provider.CastleWindsor", "Simplify.DI.Provider.CastleWindsor\Simplify.DI.Provider.CastleWindsor.csproj", "{24E43EA7-A88B-405D-B343-E4919147F70C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.DI.Provider.CastleWindsor", "Simplify.DI.Provider.CastleWindsor\Simplify.DI.Provider.CastleWindsor.csproj", "{24E43EA7-A88B-405D-B343-E4919147F70C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.DI.Provider.SimpleInjector", "Simplify.DI.Provider.SimpleInjector\Simplify.DI.Provider.SimpleInjector.csproj", "{27EAB5AE-F310-4A41-8D2F-59F773654783}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.DI.Provider.SimpleInjector", "Simplify.DI.Provider.SimpleInjector\Simplify.DI.Provider.SimpleInjector.csproj", "{27EAB5AE-F310-4A41-8D2F-59F773654783}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.WindowsServices.SingleTaskExample", "Examples\Simplify.WindowsServices.SingleTaskExample\Simplify.WindowsServices.SingleTaskExample.csproj", "{E18A26A0-ADA6-442C-B01D-12E2EB51AF34}"
 EndProject
@@ -75,7 +75,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.WindowsServices.Mu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.DI.Wcf", "Simplify.DI.Wcf\Simplify.DI.Wcf.csproj", "{E62E8148-E29B-4933-A336-5D3740FEB8CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.DI.Tests", "Simplify.DI.Tests\Simplify.DI.Tests.csproj", "{E9625FD9-A982-4C83-9835-25E99BBB724C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.DI.Tests", "Simplify.DI.Tests\Simplify.DI.Tests.csproj", "{E9625FD9-A982-4C83-9835-25E99BBB724C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DI", "DI", "{2D619A98-03A6-434F-B8CA-4473D4F8C52A}"
 EndProject
@@ -87,7 +87,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Repository.FluentN
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.DI.Provider.CastleWindsor.Tests", "Simplify.DI.Provider.CastleWindsor.Tests\Simplify.DI.Provider.CastleWindsor.Tests.csproj", "{4622E1B8-F5FF-4B20-BA40-ECCEFA6E568D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.DI.Provider.SimpleInjector.Tests", "Simplify.DI.Provider.SimpleInjector.Tests\Simplify.DI.Provider.SimpleInjector.Tests.csproj", "{402D19B5-578C-4C05-A77C-FDCB4417C54D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.DI.Provider.SimpleInjector.Tests", "Simplify.DI.Provider.SimpleInjector.Tests\Simplify.DI.Provider.SimpleInjector.Tests.csproj", "{402D19B5-578C-4C05-A77C-FDCB4417C54D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WindowsServices", "WindowsServices", "{5CAE2FF3-6428-4A1C-845B-BF1866939105}"
 EndProject
@@ -110,6 +110,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{5327AB70-43E9-4465-AB60-93192CA98C29}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Pipelines", "Simplify.Pipelines\Simplify.Pipelines.csproj", "{B8C5D2EA-6129-4F79-9753-2AA4DB98BA66}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.DI.TestsTypes", "Simplify.DI.TestsTypes\Simplify.DI.TestsTypes.csproj", "{28E6487F-C9D0-41AD-B9B5-B4CE08FD5F33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -495,6 +497,18 @@ Global
 		{B8C5D2EA-6129-4F79-9753-2AA4DB98BA66}.Release|x64.Build.0 = Release|Any CPU
 		{B8C5D2EA-6129-4F79-9753-2AA4DB98BA66}.Release|x86.ActiveCfg = Release|Any CPU
 		{B8C5D2EA-6129-4F79-9753-2AA4DB98BA66}.Release|x86.Build.0 = Release|Any CPU
+		{28E6487F-C9D0-41AD-B9B5-B4CE08FD5F33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28E6487F-C9D0-41AD-B9B5-B4CE08FD5F33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28E6487F-C9D0-41AD-B9B5-B4CE08FD5F33}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{28E6487F-C9D0-41AD-B9B5-B4CE08FD5F33}.Debug|x64.Build.0 = Debug|Any CPU
+		{28E6487F-C9D0-41AD-B9B5-B4CE08FD5F33}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{28E6487F-C9D0-41AD-B9B5-B4CE08FD5F33}.Debug|x86.Build.0 = Debug|Any CPU
+		{28E6487F-C9D0-41AD-B9B5-B4CE08FD5F33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28E6487F-C9D0-41AD-B9B5-B4CE08FD5F33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28E6487F-C9D0-41AD-B9B5-B4CE08FD5F33}.Release|x64.ActiveCfg = Release|Any CPU
+		{28E6487F-C9D0-41AD-B9B5-B4CE08FD5F33}.Release|x64.Build.0 = Release|Any CPU
+		{28E6487F-C9D0-41AD-B9B5-B4CE08FD5F33}.Release|x86.ActiveCfg = Release|Any CPU
+		{28E6487F-C9D0-41AD-B9B5-B4CE08FD5F33}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -531,5 +545,6 @@ Global
 		{4622E1B8-F5FF-4B20-BA40-ECCEFA6E568D} = {2D619A98-03A6-434F-B8CA-4473D4F8C52A}
 		{402D19B5-578C-4C05-A77C-FDCB4417C54D} = {2D619A98-03A6-434F-B8CA-4473D4F8C52A}
 		{FDE80D70-B1C1-43ED-9037-3533479B7C81} = {5CAE2FF3-6428-4A1C-845B-BF1866939105}
+		{28E6487F-C9D0-41AD-B9B5-B4CE08FD5F33} = {2D619A98-03A6-434F-B8CA-4473D4F8C52A}
 	EndGlobalSection
 EndGlobal
