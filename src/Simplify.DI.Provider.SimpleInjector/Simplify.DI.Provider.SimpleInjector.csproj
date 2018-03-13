@@ -8,7 +8,7 @@
 		<Version>1.3.1</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.DI</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
-		<RepositoryUrl>https://github.com/i4004/Simplify/src/Simplify.DI.Provider.SimpleInjector</RepositoryUrl>
+		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.DI.Provider.SimpleInjector</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET DI IOC-container-provider</PackageTags>
 		<PackageReleaseNotes>
@@ -16,7 +16,7 @@
 			* Upgrade to SimpleInjector 4.0.12
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
-		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.DI.xml</DocumentationFile>
+		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.DI.Provider.SimpleInjector.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Simplify.DI" Version="1.2.2" />

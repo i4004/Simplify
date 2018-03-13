@@ -8,7 +8,7 @@
 		<Version>1.3.1</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.Mail</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
-		<RepositoryUrl>https://github.com/i4004/Simplify/src/Simplify.Mail</RepositoryUrl>
+		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.Mail</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET mail-sender</PackageTags>
 		<PackageReleaseNotes>
