@@ -1,14 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>netstandard1.3;net452</TargetFrameworks>
-		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<Description>Simplify.DI SimpleInjector provider</Description>
-		<Company>Alexander Krylkov</Company>
 		<Authors>Alexander Krylkov</Authors>
 		<Product>Simplify</Product>
+		<Description>Simplify.DI SimpleInjector provider</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<AssemblyVersion>1.3.1.0</AssemblyVersion>
-		<FileVersion>1.3.1.0</FileVersion>
 		<Version>1.3.1</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.DI</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
