@@ -8,6 +8,7 @@ using Simplify.DI;
 using Simplify.System;
 using Simplify.WindowsServices.CommandLine;
 using Simplify.WindowsServices.Jobs;
+using Simplify.WindowsServices.Jobs.Crontab;
 
 namespace Simplify.WindowsServices
 {
@@ -16,9 +17,11 @@ namespace Simplify.WindowsServices
 	/// </summary>
 	public class MultitaskServiceHandler : ServiceBase
 	{
-		private readonly IList<IServiceJob> _jobsList = new List<IServiceJob>();
-		private readonly IDictionary<ICrontabServiceJob, Task> _jobsInWork = new Dictionary<ICrontabServiceJob, Task>();
-		private readonly IDictionary<object, ILifetimeScope> _basicJobsInWork = new Dictionary<object, ILifetimeScope>();
+		private readonly IList<IServiceJob> _jobs = new List<IServiceJob>();
+		private readonly IList<ICrontabServiceJobTask> _workingJobsTasks = new List<ICrontabServiceJobTask>();
+		private readonly IDictionary<object, ILifetimeScope> _workingBasicJobs = new Dictionary<object, ILifetimeScope>();
+
+		private long _jobTaskID;
 
 		private IServiceJobFactory _serviceJobFactory;
 		private ICommandLineProcessor _commandLineProcessor;
@@ -46,17 +49,8 @@ namespace Simplify.WindowsServices
 		/// <exception cref="ArgumentNullException">value</exception>
 		public IServiceJobFactory ServiceJobFactory
 		{
-			get
-			{
-				return _serviceJobFactory ?? (_serviceJobFactory = new ServiceJobFactory());
-			}
-			set
-			{
-				if (value == null)
-					throw new ArgumentNullException(nameof(value));
-
-				_serviceJobFactory = value;
-			}
+			get => _serviceJobFactory ?? (_serviceJobFactory = new ServiceJobFactory());
+			set => _serviceJobFactory = value ?? throw new ArgumentNullException(nameof(value));
 		}
 
 		/// <summary>
@@ -65,17 +59,8 @@ namespace Simplify.WindowsServices
 		/// <exception cref="ArgumentNullException"></exception>
 		public ICommandLineProcessor CommandLineProcessor
 		{
-			get
-			{
-				return _commandLineProcessor ?? (_commandLineProcessor = new CommandLineProcessor());
-			}
-			set
-			{
-				if (value == null)
-					throw new ArgumentNullException(nameof(value));
-
-				_commandLineProcessor = value;
-			}
+			get => _commandLineProcessor ?? (_commandLineProcessor = new CommandLineProcessor());
+			set => _commandLineProcessor = value ?? throw new ArgumentNullException(nameof(value));
 		}
 
 		/// <summary>
@@ -97,7 +82,7 @@ namespace Simplify.WindowsServices
 			job.OnCronTimerTick += OnCronTimerTick;
 			job.OnStartWork += OnStartWork;
 
-			_jobsList.Add(job);
+			_jobs.Add(job);
 		}
 
 		/// <summary>
@@ -125,7 +110,7 @@ namespace Simplify.WindowsServices
 
 			var job = ServiceJobFactory.CreateServiceJob<T>(invokeMethodName);
 
-			_jobsList.Add(job);
+			_jobs.Add(job);
 		}
 
 		/// <summary>
@@ -157,7 +142,7 @@ namespace Simplify.WindowsServices
 		{
 			if (disposing)
 			{
-				foreach (var jobObject in _basicJobsInWork.Select(item => item.Key as IDisposable))
+				foreach (var jobObject in _workingBasicJobs.Select(item => item.Key as IDisposable))
 					jobObject?.Dispose();
 			}
 
@@ -170,7 +155,7 @@ namespace Simplify.WindowsServices
 		/// <param name="args">Data passed by the start command.</param>
 		protected override void OnStart(string[] args)
 		{
-			foreach (var job in _jobsList)
+			foreach (var job in _jobs)
 			{
 				job.Start();
 
@@ -188,8 +173,8 @@ namespace Simplify.WindowsServices
 		{
 			Task[] itemsToWait;
 
-			lock (_jobsInWork)
-				itemsToWait = _jobsInWork.Values.ToArray();
+			lock (_workingJobsTasks)
+				itemsToWait = _workingJobsTasks.Select(x => x.Task).ToArray();
 
 			Task.WaitAll(itemsToWait);
 
@@ -205,10 +190,6 @@ namespace Simplify.WindowsServices
 
 			job.CrontabProcessor.CalculateNextOccurrences();
 
-			lock (_jobsInWork)
-				if (_jobsInWork.ContainsKey(job))
-					return;
-
 			OnStartWork(state);
 		}
 
@@ -216,26 +197,29 @@ namespace Simplify.WindowsServices
 		{
 			var job = (ICrontabServiceJob)state;
 
-			lock (_jobsInWork)
+			lock (_workingJobsTasks)
 			{
-				if (_jobsInWork.ContainsKey(job))
+				if (_workingJobsTasks.Count(x => x.Job == job) >= job.Settings.MaximumParallerTasksCount)
 					return;
 
-				_jobsInWork.Add(job, Task.Factory.StartNew(Run, job));
+				_jobTaskID++;
+
+				_workingJobsTasks.Add(new CrontabServiceJobTask(_jobTaskID, job,
+					Task.Factory.StartNew(Run, new Tuple<long, ICrontabServiceJob>(_jobTaskID, job))));
 			}
 		}
 
 		private void Run(object state)
 		{
-			var job = (ICrontabServiceJob)state;
+			var job = (Tuple<long, ICrontabServiceJob>)state;
 
 			try
 			{
 				using (var scope = DIContainer.Current.BeginLifetimeScope())
 				{
-					var jobObject = scope.Container.Resolve(job.JobClassType);
+					var jobObject = scope.Container.Resolve(job.Item2.JobClassType);
 
-					job.InvokeMethodInfo.Invoke(jobObject, job.IsParameterlessMethod ? null : new object[] { ServiceName });
+					job.Item2.InvokeMethodInfo.Invoke(jobObject, job.Item2.IsParameterlessMethod ? null : new object[] { ServiceName });
 				}
 			}
 			catch (Exception e)
@@ -247,11 +231,11 @@ namespace Simplify.WindowsServices
 			}
 			finally
 			{
-				if (job.Settings.CleanupOnTaskFinish)
+				if (job.Item2.Settings.CleanupOnTaskFinish)
 					GC.Collect();
 
-				lock (_jobsInWork)
-					_jobsInWork.Remove(job);
+				lock (_workingJobsTasks)
+					_workingJobsTasks.Remove(_workingJobsTasks.Single(x => x.ID == job.Item1));
 			}
 		}
 
@@ -265,7 +249,7 @@ namespace Simplify.WindowsServices
 
 				job.InvokeMethodInfo.Invoke(jobObject, job.IsParameterlessMethod ? null : new object[] { ServiceName });
 
-				_basicJobsInWork.Add(jobObject, scope);
+				_workingBasicJobs.Add(jobObject, scope);
 			}
 			catch (Exception e)
 			{
