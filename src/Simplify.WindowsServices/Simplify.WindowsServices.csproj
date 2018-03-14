@@ -22,10 +22,8 @@
 		<PackageReference Include="ncrontab" Version="3.3.0" />
 		<PackageReference Include="Simplify.DI" Version="1.2.2" />
 		<PackageReference Include="Simplify.System" Version="1.0.1" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Reference Include="System.Configuration" />
-	  <Reference Include="System.Configuration.Install" />
-	  <Reference Include="System.ServiceProcess" />
+		<Reference Include="System.Configuration" />
+		<Reference Include="System.Configuration.Install" />
+		<Reference Include="System.ServiceProcess" />
 	</ItemGroup>
 </Project>
