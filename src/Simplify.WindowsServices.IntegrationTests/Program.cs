@@ -8,7 +8,7 @@ namespace Simplify.WindowsServices.IntegrationTests
 		{
 #if DEBUG
 			// Run debugger
-			System.Diagnostics.Debugger.Launch();
+			global::System.Diagnostics.Debugger.Launch();
 #endif
 
 			IocRegistrations.Register();
