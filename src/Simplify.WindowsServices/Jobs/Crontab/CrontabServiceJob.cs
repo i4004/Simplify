@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Threading;
-using Simplify.WindowsServices.Jobs.Crontab;
 
-namespace Simplify.WindowsServices.Jobs
+namespace Simplify.WindowsServices.Jobs.Crontab
 {
 	/// <summary>
 	/// Provides crontab service job
@@ -31,12 +30,10 @@ namespace Simplify.WindowsServices.Jobs
 		public CrontabServiceJob(IServiceJobSettings settings, ICrontabProcessorFactory crontabProcessorFactory, string invokeMethodName = "Run")
 			: base(invokeMethodName)
 		{
-			if (settings == null) throw new ArgumentNullException(nameof(settings));
-			if (crontabProcessorFactory == null) throw new ArgumentNullException(nameof(crontabProcessorFactory));
 			if (invokeMethodName == null) throw new ArgumentNullException(nameof(invokeMethodName));
 
-			Settings = settings;
-			_crontabProcessorFactory = crontabProcessorFactory;
+			Settings = settings ?? throw new ArgumentNullException(nameof(settings));
+			_crontabProcessorFactory = crontabProcessorFactory ?? throw new ArgumentNullException(nameof(crontabProcessorFactory));
 		}
 
 		/// <summary>
@@ -76,10 +73,10 @@ namespace Simplify.WindowsServices.Jobs
 				CrontabProcessor = _crontabProcessorFactory.Create(Settings.CrontabExpression);
 				CrontabProcessor.CalculateNextOccurrences();
 
-				_timer = new Timer(OnCronTimerTick, this, 1000, 60000);
+				_timer = new Timer(OnCronTimerTick ?? throw new InvalidOperationException("OnCronTimerTick is not assigned"), this, 1000, 60000);
 			}
 			else
-				_timer = new Timer(OnStartWork, this, 1000, Settings.ProcessingInterval * 1000);
+				_timer = new Timer(OnStartWork ?? throw new InvalidOperationException("OnStartWork is not assigned"), this, 1000, Settings.ProcessingInterval * 1000);
 		}
 
 		/// <summary>

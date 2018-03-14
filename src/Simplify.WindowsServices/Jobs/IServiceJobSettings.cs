@@ -25,5 +25,10 @@
 		/// Gets a value indicating whether GC.Collect will be executed on on task finish.
 		/// </summary>
 		bool CleanupOnTaskFinish { get; }
+
+		/// <summary>
+		/// Gets the maximum allowed paraller tasks of this job.
+		/// </summary>
+		int MaximumParallerTasksCount { get; }
 	}
 }

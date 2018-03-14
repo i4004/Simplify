@@ -1,8 +1,7 @@
 using System;
 using System.Threading;
-using Simplify.WindowsServices.Jobs.Crontab;
 
-namespace Simplify.WindowsServices.Jobs
+namespace Simplify.WindowsServices.Jobs.Crontab
 {
 	/// <summary>
 	/// Represent crontab service job

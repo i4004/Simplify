@@ -16,9 +16,8 @@ namespace Simplify.WindowsServices.Jobs
 			ProcessingInterval = 60;
 			CleanupOnTaskFinish = true;
 
-			var config = ConfigurationManager.GetSection(configSectionName) as NameValueCollection;
-
-			if (config == null) return;
+			if (!(ConfigurationManager.GetSection(configSectionName) is NameValueCollection config))
+				return;
 
 			CrontabExpression = config["CrontabExpression"];
 
@@ -33,6 +32,11 @@ namespace Simplify.WindowsServices.Jobs
 
 			if (!string.IsNullOrEmpty(cleanupOnTaskFinish))
 				CleanupOnTaskFinish = bool.Parse(cleanupOnTaskFinish);
+
+			var maximumParallerTasksCount = config["MaximumParallerTasksCount"];
+
+			if (!string.IsNullOrEmpty(maximumParallerTasksCount))
+				MaximumParallerTasksCount = int.Parse(maximumParallerTasksCount);
 		}
 
 		/// <summary>
@@ -55,5 +59,10 @@ namespace Simplify.WindowsServices.Jobs
 		/// Gets a value indicating whether GC.Collect will be executed on on task finish.
 		/// </summary>
 		public bool CleanupOnTaskFinish { get; }
+
+		/// <summary>
+		/// Gets the maximum allowed paraller tasks of this job.
+		/// </summary>
+		public int MaximumParallerTasksCount { get; } = 1;
 	}
 }
