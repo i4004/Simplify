@@ -10,8 +10,8 @@ namespace Simplify.WindowsServices.Jobs
 	/// <typeparam name="T"></typeparam>
 	public class CrontabServiceJob<T> : ServiceJob<T>, ICrontabServiceJob
 	{
-		private Timer _timer;
 		private readonly ICrontabProcessorFactory _crontabProcessorFactory;
+		private Timer _timer;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CrontabServiceJob{T}" /> class.
@@ -40,6 +40,16 @@ namespace Simplify.WindowsServices.Jobs
 		}
 
 		/// <summary>
+		/// Occurs on cron timer tick.
+		/// </summary>
+		public event TimerCallback OnCronTimerTick;
+
+		/// <summary>
+		/// Occurs on interval timer tick.
+		/// </summary>
+		public event TimerCallback OnStartWork;
+
+		/// <summary>
 		/// Gets the settings.
 		/// </summary>
 		/// <value>
@@ -54,16 +64,6 @@ namespace Simplify.WindowsServices.Jobs
 		/// The crontab processor.
 		/// </value>
 		public ICrontabProcessor CrontabProcessor { get; private set; }
-
-		/// <summary>
-		/// Occurs on cron timer tick.
-		/// </summary>
-		public event TimerCallback OnCronTimerTick;
-
-		/// <summary>
-		/// Occurs on interval timer tick.
-		/// </summary>
-		public event TimerCallback OnStartWork;
 
 		/// <summary>
 		/// Starts this job timer.

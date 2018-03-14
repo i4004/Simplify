@@ -33,6 +33,11 @@ namespace Simplify.WindowsServices
 		}
 
 		/// <summary>
+		/// Occurs when exception thrown.
+		/// </summary>
+		public event ServiceExceptionEventHandler OnException;
+
+		/// <summary>
 		/// Gets or sets the service job factory.
 		/// </summary>
 		/// <value>
@@ -72,13 +77,6 @@ namespace Simplify.WindowsServices
 				_commandLineProcessor = value;
 			}
 		}
-
-		/// <summary>
-		/// Occurs when exception thrown.
-		/// </summary>
-		public event ServiceExceptionEventHandler OnException;
-
-		#region Jobs creation
 
 		/// <summary>
 		/// Adds the job.
@@ -130,7 +128,26 @@ namespace Simplify.WindowsServices
 			_jobsList.Add(job);
 		}
 
-		#endregion Jobs creation
+		/// <summary>
+		/// Starts the windows-service.
+		/// </summary>
+		/// <param name="args">The arguments.</param>
+		public bool Start(string[] args = null)
+		{
+			var commandLineProcessResult = CommandLineProcessor.ProcessCommandLineArguments(args);
+
+			switch (commandLineProcessResult)
+			{
+				case ProcessCommandLineResult.SkipServiceStart:
+					return false;
+
+				case ProcessCommandLineResult.NoArguments:
+					ServiceBase.Run(this);
+					break;
+			}
+
+			return true;
+		}
 
 		/// <summary>
 		/// Disposes of the resources (other than memory) used by the <see cref="T:System.ServiceProcess.ServiceBase" />.
@@ -146,8 +163,6 @@ namespace Simplify.WindowsServices
 
 			base.Dispose(disposing);
 		}
-
-		#region Service process control
 
 		/// <summary>
 		/// When implemented in a derived class, executes when a Start command is sent to the service by the Service Control Manager (SCM) or when the operating system starts (for a service that starts automatically). Specifies actions to take when the service starts.
@@ -175,10 +190,6 @@ namespace Simplify.WindowsServices
 
 			base.OnStop();
 		}
-
-		#endregion Service process control
-
-		#region Crontab jobs operations
 
 		private void OnCronTimerTick(object state)
 		{
@@ -237,29 +248,6 @@ namespace Simplify.WindowsServices
 				lock (_jobsInWork)
 					_jobsInWork.Remove(job);
 			}
-		}
-
-		#endregion Crontab jobs operations
-
-		/// <summary>
-		/// Starts the windows-service.
-		/// </summary>
-		/// <param name="args">The arguments.</param>
-		public bool Start(string[] args = null)
-		{
-			var commandLineProcessResult = CommandLineProcessor.ProcessCommandLineArguments(args);
-
-			switch (commandLineProcessResult)
-			{
-				case ProcessCommandLineResult.SkipServiceStart:
-					return false;
-
-				case ProcessCommandLineResult.NoArguments:
-					ServiceBase.Run(this);
-					break;
-			}
-
-			return true;
 		}
 
 		private void RunBasicJob(IServiceJob job)

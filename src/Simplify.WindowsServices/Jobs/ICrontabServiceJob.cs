@@ -10,6 +10,16 @@ namespace Simplify.WindowsServices.Jobs
 	public interface ICrontabServiceJob : IServiceJob, IDisposable
 	{
 		/// <summary>
+		/// Occurs on cron timer tick.
+		/// </summary>
+		event TimerCallback OnCronTimerTick;
+
+		/// <summary>
+		/// Occurs on interval timer tick.
+		/// </summary>
+		event TimerCallback OnStartWork;
+
+		/// <summary>
 		/// Gets the settings.
 		/// </summary>
 		/// <value>
@@ -24,15 +34,5 @@ namespace Simplify.WindowsServices.Jobs
 		/// The crontab processor.
 		/// </value>
 		ICrontabProcessor CrontabProcessor { get; }
-
-		/// <summary>
-		/// Occurs on cron timer tick.
-		/// </summary>
-		event TimerCallback OnCronTimerTick;
-
-		/// <summary>
-		/// Occurs on interval timer tick.
-		/// </summary>
-		event TimerCallback OnStartWork;
 	}
 }

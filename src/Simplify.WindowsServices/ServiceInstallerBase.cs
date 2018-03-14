@@ -98,24 +98,6 @@ namespace Simplify.WindowsServices
 			Initialize(description, displayName, serviceName, account, userName, password);
 		}
 
-		private void Initialize(string description, string displayName, string serviceName, ServiceAccount account,
-								string userName, string password)
-		{
-			_serviceInstaller.Description = description;
-			_serviceInstaller.DisplayName = displayName;
-			_serviceInstaller.ServiceName = serviceName;
-
-			_serviceProcessInstaller.Account = account;
-			_serviceProcessInstaller.Password = userName;
-			_serviceProcessInstaller.Username = password;
-
-			Installers.AddRange(new Installer[]
-				{
-					_serviceProcessInstaller,
-					_serviceInstaller
-				});
-		}
-
 		/// <summary>
 		/// Perform the installation of service (used by system)
 		/// </summary>
@@ -129,6 +111,42 @@ namespace Simplify.WindowsServices
 			}
 
 			base.Install(stateSaver);
+		}
+
+		private static ServiceAccount TryParseServiceAccountFieldData(string data)
+		{
+			switch (data)
+			{
+				case "NetworkService":
+					return ServiceAccount.NetworkService;
+
+				case "LocalSystem":
+					return ServiceAccount.LocalSystem;
+
+				case "User":
+					return ServiceAccount.User;
+
+				default:
+					return ServiceAccount.LocalService;
+			}
+		}
+
+		private void Initialize(string description, string displayName, string serviceName, ServiceAccount account,
+			string userName, string password)
+		{
+			_serviceInstaller.Description = description;
+			_serviceInstaller.DisplayName = displayName;
+			_serviceInstaller.ServiceName = serviceName;
+
+			_serviceProcessInstaller.Account = account;
+			_serviceProcessInstaller.Password = userName;
+			_serviceProcessInstaller.Username = password;
+
+			Installers.AddRange(new Installer[]
+			{
+				_serviceProcessInstaller,
+				_serviceInstaller
+			});
 		}
 
 		private void TryToLoadRunAsUserSettings(Assembly serviceAssembly = null)
@@ -157,24 +175,6 @@ namespace Simplify.WindowsServices
 			}
 
 			_serviceAccount = !IsRunAsUserSet() ? TryParseServiceAccountFieldData(serviceAccount) : ServiceAccount.User;
-		}
-
-		private static ServiceAccount TryParseServiceAccountFieldData(string data)
-		{
-			switch (data)
-			{
-				case "NetworkService":
-					return ServiceAccount.NetworkService;
-
-				case "LocalSystem":
-					return ServiceAccount.LocalSystem;
-
-				case "User":
-					return ServiceAccount.User;
-
-				default:
-					return ServiceAccount.LocalService;
-			}
 		}
 
 		private bool IsRunAsUserSet()
