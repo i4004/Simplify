@@ -22,6 +22,7 @@ namespace Simplify.WindowsServices
 		private readonly IDictionary<object, ILifetimeScope> _workingBasicJobs = new Dictionary<object, ILifetimeScope>();
 
 		private long _jobTaskID;
+		private bool shutdownInProcess;
 
 		private IServiceJobFactory _serviceJobFactory;
 		private ICommandLineProcessor _commandLineProcessor;
@@ -171,6 +172,7 @@ namespace Simplify.WindowsServices
 		/// </summary>
 		protected override void OnStop()
 		{
+			shutdownInProcess = true;
 			Task[] itemsToWait;
 
 			lock (_workingJobsTasks)
@@ -199,7 +201,7 @@ namespace Simplify.WindowsServices
 
 			lock (_workingJobsTasks)
 			{
-				if (_workingJobsTasks.Count(x => x.Job == job) >= job.Settings.MaximumParallerTasksCount)
+				if (shutdownInProcess || _workingJobsTasks.Count(x => x.Job == job) >= job.Settings.MaximumParallerTasksCount)
 					return;
 
 				_jobTaskID++;
