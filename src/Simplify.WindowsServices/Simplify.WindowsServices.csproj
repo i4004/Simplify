@@ -14,6 +14,7 @@
 		<PackageReleaseNotes>
 			* Upgrade to Simplify.DI 1.2.2
 			* Upgrade to Simplify.System 1.0.1
+			+ Single type job parallelism
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.WindowsServices.xml</DocumentationFile>
