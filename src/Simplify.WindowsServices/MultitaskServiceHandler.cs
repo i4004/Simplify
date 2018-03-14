@@ -186,8 +186,12 @@ namespace Simplify.WindowsServices
 		/// </summary>
 		protected override void OnStop()
 		{
+			Task[] itemsToWait;
+
 			lock (_jobsInWork)
-				Task.WaitAll(_jobsInWork.Values.ToArray());
+				itemsToWait = _jobsInWork.Values.ToArray();
+
+			Task.WaitAll(itemsToWait);
 
 			base.OnStop();
 		}
