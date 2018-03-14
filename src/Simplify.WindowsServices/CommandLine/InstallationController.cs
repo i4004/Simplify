@@ -6,7 +6,7 @@ namespace Simplify.WindowsServices.CommandLine
 	/// <summary>
 	/// Provides windows-service installation controller
 	/// </summary>
-	/// <seealso cref="Simplify.WindowsServices.CommandLine.IInstallationController" />
+	/// <seealso cref="IInstallationController" />
 	public class InstallationController : IInstallationController
 	{
 		/// <summary>
