@@ -8,7 +8,7 @@ namespace Simplify.WindowsServices.MultitaskExample
 		{
 #if DEBUG
 			// Run debugger
-			System.Diagnostics.Debugger.Launch();
+			global::System.Diagnostics.Debugger.Launch();
 #endif
 
 			var handler = new MultitaskServiceHandler();

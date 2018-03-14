@@ -6,7 +6,7 @@
 		{
 #if DEBUG
 			// Run debugger
-			System.Diagnostics.Debugger.Launch();
+			global::System.Diagnostics.Debugger.Launch();
 #endif
 
 			new SingleTaskServiceHandler<ServiceProcess>(true).Start(args);
