@@ -18,6 +18,7 @@ namespace Simplify.WindowsServices.IntegrationTests
 			handler.AddJob<TaskProcessor1>("TaskProcessor1Settings");
 			handler.AddJob<TaskProcessor2>("TaskProcessor2Settings", "Run", true);
 			handler.AddJob<TaskProcessor3>("TaskProcessor3Settings", "Run", true);
+			handler.AddJob<TaskProcessor4>("TaskProcessor4Settings", "Run", true);
 			handler.AddBasicJob<BasicTaskProcessor>();
 
 			if (handler.Start(args))
