@@ -15,13 +15,23 @@
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET</tags>
+		<dependencies>
+			<group targetFramework=".NETFramework4.5.2" />
+			<group targetFramework=".NETStandard2.0" />
+		</dependencies>
 	</metadata>
 	<files>
 		<file src="AssemblyInfo.cs" target="content/App_Packages/Simplify.System.Sources.$version$/AssemblyInfo.cs" />
+		<file src="AssemblyInfo.cs" target="contentFiles\cs\any\App_Packages\Simplify.System.Sources.$version$\AssemblyInfo.cs" />
 		<file src="IAssemblyInfo.cs" target="content/App_Packages/Simplify.System.Sources.$version$/IAssemblyInfo.cs" />
+		<file src="IAssemblyInfo.cs" target="contentFiles\cs\any\App_Packages\Simplify.System.Sources.$version$\IAssemblyInfo.cs" />
 		<file src="IHideObjectMembers.cs" target="content/App_Packages/Simplify.System.Sources.$version$/IHideObjectMembers.cs" />
+		<file src="IHideObjectMembers.cs" target="contentFiles\cs\any\App_Packages\Simplify.System.Sources.$version$\IHideObjectMembers.cs" />
 		<file src="ITimeProvider.cs" target="content/App_Packages/Simplify.System.Sources.$version$/ITimeProvider.cs" />
+		<file src="ITimeProvider.cs" target="contentFiles\cs\any\App_Packages\Simplify.System.Sources.$version$\ITimeProvider.cs" />
 		<file src="SystemTimeProvider.cs" target="content/App_Packages/Simplify.System.Sources.$version$/SystemTimeProvider.cs" />
+		<file src="SystemTimeProvider.cs" target="contentFiles\cs\any\App_Packages\Simplify.System.Sources.$version$\SystemTimeProvider.cs" />
 		<file src="TimeProvider.cs" target="content/App_Packages/Simplify.System.Sources.$version$/TimeProvider.cs" />
+		<file src="TimeProvider.cs" target="contentFiles\cs\any\App_Packages\Simplify.System.Sources.$version$\TimeProvider.cs" />
 	</files>
 </package>
