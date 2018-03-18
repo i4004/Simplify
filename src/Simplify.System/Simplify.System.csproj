@@ -5,7 +5,7 @@
 		<Product>Simplify</Product>
 		<Description>Core classes for applications and libraries</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>1.0.1.1</Version>
+		<Version>1.0.2</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.System</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.System</RepositoryUrl>

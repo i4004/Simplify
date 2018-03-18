@@ -11,7 +11,10 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Core classes for applications and libraries.</description>
 		<summary>Core classes for applications and libraries.</summary>
-		<releaseNotes></releaseNotes>
+		<releaseNotes>
+			* Added .NET Standard 2.0 support
+			* Upgrade to .NET Framework 4.5.2
+		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET</tags>
