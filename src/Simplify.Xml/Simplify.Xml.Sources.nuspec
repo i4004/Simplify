@@ -11,17 +11,22 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>XML extensions.</description>
 		<summary>XML extensions</summary>
-		<releaseNotes>Namespace conflict with Simplify.System resolved</releaseNotes>
+		<releaseNotes>
+			* Added .NET Standard 2.0 support
+			* Upgrade to .NET Framework 4.5.2
+		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET XML</tags>
-		<frameworkAssemblies>
-			<frameworkAssembly assemblyName="System.Xml" />
-			<frameworkAssembly assemblyName="System.Xml.Linq" />
-		</frameworkAssemblies>
+		<dependencies>
+			<group targetFramework=".NETFramework4.5.2" />
+			<group targetFramework=".NETStandard2.0" />
+		</dependencies>
 	</metadata>
 	<files>
 		<file src="XmlExtensions.cs" target="content/App_Packages/Simplify.Xml.Sources.$version$/XmlExtensions.cs" />
+		<file src="XmlExtensions.cs" target="contentFiles\cs\any\App_Packages\Simplify.Xml.Sources.$version$\XmlExtensions.cs" />
 		<file src="XmlSerializer.cs" target="content/App_Packages/Simplify.Xml.Sources.$version$/XmlSerializer.cs" />
+		<file src="XmlSerializer.cs" target="contentFiles\cs\any\App_Packages\Simplify.Xml.Sources.$version$\XmlSerializer.cs" />
 	</files>
 </package>

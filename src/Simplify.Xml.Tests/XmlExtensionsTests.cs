@@ -1,5 +1,4 @@
 ﻿using System.Xml.Linq;
-
 using NUnit.Framework;
 
 namespace Simplify.Xml.Tests
@@ -7,11 +6,9 @@ namespace Simplify.Xml.Tests
 	[TestFixture]
 	public class XmlExtensionsTests
 	{
-
 		[Test]
 		public void XElement_GetOuterXml_GettingCorrectly()
 		{
-			
 			var element = XElement.Parse("<test><foo>data</foo></test>");
 
 			Assert.AreEqual("<test><foo>data</foo></test>", element.OuterXml());
