@@ -16,7 +16,7 @@ Set-Content -Encoding UTF8 $file.PSPath
 $xmlVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo("$PSScriptRoot/src/Simplify.Xml/bin/Any CPU/Release/netstandard2.0/Simplify.Xml.dll").FileVersion
 $stringVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo("$PSScriptRoot/src/Simplify.String/bin/Release/Simplify.String.dll").FileVersion
 $systemVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo("$PSScriptRoot/src/Simplify.System/bin/Any CPU/Release/netstandard2.0/Simplify.System.dll").FileVersion
-$extensionsVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo("$PSScriptRoot/src/Simplify.Extensions/bin/Release/Simplify.Extensions.dll").FileVersion
+$extensionsVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo("$PSScriptRoot/src/Simplify.Extensions/bin/Any CPU/Release/netstandard1.0/Simplify.Extensions.dll").FileVersion
 
 # Packing source packages
 
