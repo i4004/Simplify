@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
+		<TargetFrameworks>net452</TargetFrameworks>
 		<Authors>Alexander Krylkov</Authors>
 		<Product>Simplify</Product>
 		<Description>Provides ability to use Simplify.DI as IOC container for WCF services</Description>
@@ -12,7 +12,6 @@
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET DI IOC-container</PackageTags>
 		<PackageReleaseNotes>
-			* Added .NET Standard 2.0 support
 			* Upgrade to Simplify.DI 1.2.2
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
@@ -20,7 +19,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Simplify.DI" Version="1.2.2" />
-		<PackageReference Include="System.ServiceModel.Duplex" Version="4.4.1" />
-		<PackageReference Include="System.ServiceModel.Primitives" Version="4.4.1" />
+		<Reference Include="System.ServiceModel" />
+		<Reference Include="System.ServiceModel.Activation" />
 	</ItemGroup>
 </Project>
