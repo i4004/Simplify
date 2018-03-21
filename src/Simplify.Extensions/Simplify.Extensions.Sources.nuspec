@@ -18,8 +18,12 @@
 	</metadata>
 	<files>
 		<file src="BytesExtensions.cs" target="content/App_Packages/Simplify.Extensions.Sources.$version$/BytesExtensions.cs" />
+		<file src="BytesExtensions.cs" target="contentFiles\cs\any\App_Packages\Simplify.Extensions.Sources.$version$\BytesExtensions.cs" />
 		<file src="DateTimeExtensions.cs" target="content/App_Packages/Simplify.Extensions.Sources.$version$/DateTimeExtensions.cs" />
+		<file src="DateTimeExtensions.cs" target="contentFiles\cs\any\App_Packages\Simplify.Extensions.Sources.$version$\DateTimeExtensions.cs" />
 		<file src="DoubleExtensions.cs" target="content/App_Packages/Simplify.Extensions.Sources.$version$/DoubleExtensions.cs" />
+		<file src="DoubleExtensions.cs" target="contentFiles\cs\any\App_Packages\Simplify.Extensions.Sources.$version$\DoubleExtensions.cs" />
 		<file src="StringExtensions.cs" target="content/App_Packages/Simplify.Extensions.Sources.$version$/StringExtensions.cs" />
+		<file src="StringExtensions.cs" target="contentFiles\cs\any\App_Packages\Simplify.Extensions.Sources.$version$\StringExtensions.cs" />
 	</files>
 </package>
