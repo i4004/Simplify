@@ -20,30 +20,10 @@ namespace Simplify.Templates
 	{
 		private static Lazy<IFileSystem> _fileSystemInstance = new Lazy<IFileSystem>(() => new FileSystem());
 
-		/// <summary>
-		/// Gets or sets the file system for Template IO operations.
-		/// </summary>
-		/// <value>
-		/// The file system for Template IO operations.
-		/// </value>
-		public static IFileSystem FileSystem 
-		{
-			get
-			{
-				return _fileSystemInstance.Value;
-			}
-
-			set
-			{
-				if(value == null)
-					throw new ArgumentNullException(nameof(value));
-
-				_fileSystemInstance = new Lazy<IFileSystem>(() => value);
-			}
-		}
-
 		private string _text;
+
 		private string _textCopy;
+
 		private IDictionary<string, string> _addValues;
 
 		/// <summary>
@@ -79,7 +59,7 @@ namespace Simplify.Templates
 
 			if (string.IsNullOrEmpty(language))
 				language = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
-			
+
 			var currentCultureStringTableFileName = $"{filePath}.{language}.xml";
 			var defaultCultureStringTableFileName = $"{filePath}.{defaultLanguage}.xml";
 
@@ -153,6 +133,28 @@ namespace Simplify.Templates
 		}
 
 		/// <summary>
+		/// Gets or sets the file system for Template IO operations.
+		/// </summary>
+		/// <value>
+		/// The file system for Template IO operations.
+		/// </value>
+		public static IFileSystem FileSystem
+		{
+			get
+			{
+				return _fileSystemInstance.Value;
+			}
+
+			set
+			{
+				if (value == null)
+					throw new ArgumentNullException(nameof(value));
+
+				_fileSystemInstance = new Lazy<IFileSystem>(() => value);
+			}
+		}
+
+		/// <summary>
 		/// Gets the file path of the template file.
 		/// </summary>
 		/// <value>
@@ -169,7 +171,6 @@ namespace Simplify.Templates
 		/// Template default language
 		/// </summary>
 		public string DefaultLanguage { get; private set; }
-
 
 		/// <summary>
 		/// Initialize template class from a string
@@ -429,7 +430,7 @@ namespace Simplify.Templates
 
 			return text;
 		}
-		
+
 		private void InitializeText(string text, bool fixLineEndingsHtml = false)
 		{
 			if (text == null)

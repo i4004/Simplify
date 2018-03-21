@@ -8,7 +8,7 @@ namespace Simplify.Templates
 	/// </summary>
 	/// <typeparam name="T">Model type</typeparam>
 	public interface IModelSetter<T>
-		where T : class 
+		where T : class
 	{
 		/// <summary>
 		/// Customizes specified property data set to template, for example, you can set custom expression to convert DateTime values

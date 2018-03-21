@@ -22,7 +22,7 @@ namespace Simplify.Templates
 		/// Returns a hash code for this instance.
 		/// </summary>
 		/// <returns>
-		/// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+		/// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
 		/// </returns>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		int GetHashCode();

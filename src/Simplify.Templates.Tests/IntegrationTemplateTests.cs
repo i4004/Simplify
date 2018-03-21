@@ -10,6 +10,38 @@ namespace Simplify.Templates.Tests
 	[TestFixture]
 	public class IntegrationTemplateTests
 	{
+		[Test]
+		public void LocalTemplate_LoadAndUse_LoadedCorectly()
+		{
+			Thread.CurrentThread.CurrentCulture = new CultureInfo("ru");
+			TestTemplate(new Template("TestData/Local/TemplateTest.tpl"), new Template(File.ReadAllText("TestData/Local/MasterTemplate.tpl"), false),
+				new Template("TestData/Local/TemplateTestResult.tpl"), new Template("TestData/Local/MasterTemplateResult.tpl"));
+		}
+
+		[Test]
+		public void EmbeddedTemplate_LoadAndUse_LoadedCorrectly()
+		{
+			TestTemplate(new Template(Assembly.GetExecutingAssembly(), "TestData.Embedded.TemplateTest.tpl", "ru"), Template.FromManifest("TestData.Embedded.MasterTemplate.tpl"),
+				new Template(Assembly.GetAssembly(typeof(IntegrationTemplateTests)), "TestData.Embedded.TemplateTestResult.tpl"), Template.FromManifest("TestData.Embedded.MasterTemplateResult.tpl"));
+		}
+
+		[Test]
+		public void LoadWithLineEndingsFix_FixedCorrectly()
+		{
+			Assert.AreEqual("data<br />", new Template("data" + Environment.NewLine, true).Get());
+		}
+
+		[Test]
+		public void LoadTemplate_ExceptionsThrownCorrectly()
+		{
+			Assert.Throws<ArgumentNullException>(() => new Template(null, false));
+			Assert.Throws<ArgumentNullException>(() => new Template(null));
+			Assert.Throws<TemplateException>(() => new Template("NotFound"));
+			Assert.Throws<ArgumentNullException>(() => new Template(Assembly.GetCallingAssembly(), null));
+			Assert.Throws<ArgumentNullException>(() => new Template((Assembly)null, null));
+			Assert.Throws<TemplateException>(() => new Template(Assembly.GetCallingAssembly(), ("NotFound")));
+		}
+
 		private static void TestTemplate(ITemplate tpl, ITemplate masterTemplate, ITemplate testTemplate, ITemplate masterTestTemplate)
 		{
 			masterTemplate.Set("Title", "Hello world!!!");
@@ -53,38 +85,6 @@ namespace Simplify.Templates.Tests
 			masterTemplate.Set("FromTemplateNotNull", Template.FromString("test"));
 
 			Assert.AreEqual(masterTestTemplate.Get(), masterTemplate.Get());
-		}
-
-		[Test]
-		public void LocalTemplate_LoadAndUse_LoadedCorectly()
-		{
-			Thread.CurrentThread.CurrentCulture = new CultureInfo("ru");
-			TestTemplate(new Template("TestData/Local/TemplateTest.tpl"), new Template(File.ReadAllText("TestData/Local/MasterTemplate.tpl"), false),
-				new Template("TestData/Local/TemplateTestResult.tpl"), new Template("TestData/Local/MasterTemplateResult.tpl"));
-		}
-
-		[Test]
-		public void EmbeddedTemplate_LoadAndUse_LoadedCorrectly()
-		{
-			TestTemplate(new Template(Assembly.GetExecutingAssembly(), "TestData.Embedded.TemplateTest.tpl", "ru"), Template.FromManifest("TestData.Embedded.MasterTemplate.tpl"),
-				new Template(Assembly.GetAssembly(typeof(IntegrationTemplateTests)), "TestData.Embedded.TemplateTestResult.tpl"), Template.FromManifest("TestData.Embedded.MasterTemplateResult.tpl"));
-		}
-
-		[Test]
-		public void LoadWithLineEndingsFix_FixedCorrectly()
-		{
-			Assert.AreEqual("data<br />", new Template("data" + Environment.NewLine, true).Get());
-		}
-
-		[Test]
-		public void LoadTemplate_ExceptionsThrownCorrectly()
-		{
-			Assert.Throws<ArgumentNullException>(() => new Template(null, false));
-			Assert.Throws<ArgumentNullException>(() => new Template(null));
-			Assert.Throws<TemplateException>(() => new Template("NotFound"));
-			Assert.Throws<ArgumentNullException>(() => new Template(Assembly.GetCallingAssembly(), null));
-			Assert.Throws<ArgumentNullException>(() => new Template((Assembly)null, null));
-			Assert.Throws<TemplateException>(() => new Template(Assembly.GetCallingAssembly(), ("NotFound")));
 		}
 	}
 }

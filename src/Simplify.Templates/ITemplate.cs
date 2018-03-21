@@ -22,7 +22,7 @@
 		/// Template default language
 		/// </summary>
 		string DefaultLanguage { get; }
-		
+
 		/// <summary>
 		/// Set template variable value (all occurrences will be replaced)
 		/// </summary>
@@ -64,7 +64,7 @@
 		/// <param name="variableName">Variable name</param>
 		/// <param name="value">Value to set</param>
 		ITemplate Set(string variableName, long value);
-		
+
 		/// <summary>
 		/// Set template variable value with text from template (all occurrences will be replaced)
 		/// </summary>

@@ -11,11 +11,6 @@
 		public static string ModelPrefixSeparator = ".";
 
 		/// <summary>
-		/// The model prefix
-		/// </summary>
-		protected string ModelPrefix { get; }
-
-		/// <summary>
 		/// Initializes a new instance of the <see cref="ModelSetterBase" /> class.
 		/// </summary>
 		/// <param name="template">The template.</param>
@@ -33,6 +28,11 @@
 		/// The template.
 		/// </value>
 		public ITemplate Template { get; }
+
+		/// <summary>
+		/// The model prefix
+		/// </summary>
+		protected string ModelPrefix { get; }
 
 		/// <summary>
 		/// Formats the name of the variable to replace respecting model prefix.
