@@ -8,6 +8,14 @@
 		<Version>1.1.3</Version>
 	</PropertyGroup>
 	<ItemGroup>
+	  <EmbeddedResource Include="TestData\Embedded\MasterTemplate.tpl" />
+	  <EmbeddedResource Include="TestData\Embedded\MasterTemplateResult.tpl" />
+	  <EmbeddedResource Include="TestData\Embedded\TemplateTest.tpl" />
+	  <EmbeddedResource Include="TestData\Embedded\TemplateTest.tpl-en.xml" />
+	  <EmbeddedResource Include="TestData\Embedded\TemplateTest.tpl-ru.xml" />
+	  <EmbeddedResource Include="TestData\Embedded\TemplateTestResult.tpl" />
+	</ItemGroup>
+	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.6.1" />
 		<PackageReference Include="Moq" Version="4.8.2" />
 		<PackageReference Include="NUnit" Version="3.10.1" />
@@ -15,4 +23,22 @@
 		<PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="2.1.0.178" />
 		<ProjectReference Include="..\Simplify.Templates\Simplify.Templates.csproj" />
 	</ItemGroup>
-</Project>
+	<ItemGroup>
+	  <None Update="TestData\Local\MasterTemplate.tpl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory></None>
+	  <None Update="TestData\Local\MasterTemplateResult.tpl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="TestData\Local\TemplateTest.tpl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="TestData\Local\TemplateTest.tpl.en.xml">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="TestData\Local\TemplateTest.tpl.ru.xml">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="TestData\Local\TemplateTestResult.tpl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup></Project>
