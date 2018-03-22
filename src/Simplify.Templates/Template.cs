@@ -141,10 +141,7 @@ namespace Simplify.Templates
 		/// </value>
 		public static IFileSystem FileSystem
 		{
-			get
-			{
-				return _fileSystemInstance.Value;
-			}
+			get => _fileSystemInstance.Value;
 
 			set
 			{
@@ -436,12 +433,8 @@ namespace Simplify.Templates
 
 		private void InitializeText(string text, string language = "en", bool fixLineEndingsHtml = false)
 		{
-			if (text == null)
-				throw new ArgumentNullException(nameof(text));
-
+			_text = text ?? throw new ArgumentNullException(nameof(text));
 			Language = language;
-
-			_text = text;
 
 			if (fixLineEndingsHtml)
 				_text = _text.Replace(Environment.NewLine, "<br />");
