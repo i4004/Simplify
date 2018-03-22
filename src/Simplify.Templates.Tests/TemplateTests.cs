@@ -12,9 +12,10 @@ namespace Simplify.Templates.Tests
 		[Test]
 		public void Load_FromString_LoadedCorrectly()
 		{
-			var tpl = new Template("test", false);
+			var tpl = Template.FromString("test");
 
 			Assert.AreEqual("test", tpl.Get());
+			Assert.AreEqual("en", tpl.Language);
 		}
 
 		[Test]
@@ -22,7 +23,7 @@ namespace Simplify.Templates.Tests
 		{
 			var file = Path.Combine("Templates", "Foo.en.tpl");
 
-			var files = new Dictionary<string, MockFileData> {{ file, "test"}};
+			var files = new Dictionary<string, MockFileData> { { file, "test" } };
 
 			var fs = new MockFileSystem(files);
 
