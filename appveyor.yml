@@ -9,10 +9,12 @@ configuration: Release
 platform: Any CPU
 clone_depth: 1
 before_build:
-- cmd: '"src/.nuget/NuGet.exe" restore src/Simplify.sln'
+ - cmd: '"src/.nuget/NuGet.exe" restore src/Simplify.sln'
 build:
   publish_nuget: true
   parallel: true
   verbosity: minimal
+test_script:
+ - ps: .\RunTests.ps1
 deploy_script:
-- ps: .\MakeSourcePackages.ps1
+ - ps: .\MakeSourcePackages.ps1
