@@ -3,33 +3,33 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Log", "Simplify.Log\Simplify.Log.csproj", "{DA27C4E4-081C-4BF6-B6EF-0D1C093450E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.Log", "Simplify.Log\Simplify.Log.csproj", "{DA27C4E4-081C-4BF6-B6EF-0D1C093450E4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Templates", "Simplify.Templates\Simplify.Templates.csproj", "{9936D660-C421-4155-832E-EDA412A14506}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Templates.Tests", "Simplify.Templates.Tests\Simplify.Templates.Tests.csproj", "{02536C02-B696-4CEF-9B19-85CAA04A8C17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Extensions", "Simplify.Extensions\Simplify.Extensions.csproj", "{AC0D763E-2F85-4340-A36A-7B92EB3A73D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.Extensions", "Simplify.Extensions\Simplify.Extensions.csproj", "{AC0D763E-2F85-4340-A36A-7B92EB3A73D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Extensions.Tests", "Simplify.Extensions.Tests\Simplify.Extensions.Tests.csproj", "{16F19AE3-A3E2-4C95-A8A7-0A7706F15479}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.Extensions.Tests", "Simplify.Extensions.Tests\Simplify.Extensions.Tests.csproj", "{16F19AE3-A3E2-4C95-A8A7-0A7706F15479}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.WindowsServices", "Simplify.WindowsServices\Simplify.WindowsServices.csproj", "{7F2A1DE8-B41E-4EC5-B4E2-248FF692E06A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.WindowsServices", "Simplify.WindowsServices\Simplify.WindowsServices.csproj", "{7F2A1DE8-B41E-4EC5-B4E2-248FF692E06A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.Mail", "Simplify.Mail\Simplify.Mail.csproj", "{B6530CBE-72B9-4EF6-9BDE-20D7220FF5DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Xml", "Simplify.Xml\Simplify.Xml.csproj", "{F9158939-08D1-4F10-9250-1437A8ED1799}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.Xml", "Simplify.Xml\Simplify.Xml.csproj", "{F9158939-08D1-4F10-9250-1437A8ED1799}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Xml.Tests", "Simplify.Xml.Tests\Simplify.Xml.Tests.csproj", "{37D1D0E6-DBBA-4EAD-99D3-380FB3C97EF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.Xml.Tests", "Simplify.Xml.Tests\Simplify.Xml.Tests.csproj", "{37D1D0E6-DBBA-4EAD-99D3-380FB3C97EF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.FluentNHibernate", "Simplify.FluentNHibernate\Simplify.FluentNHibernate.csproj", "{0F73C429-1B2F-48B7-9D38-20DA17AD350B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.FluentNHibernate", "Simplify.FluentNHibernate\Simplify.FluentNHibernate.csproj", "{0F73C429-1B2F-48B7-9D38-20DA17AD350B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.FluentNHibernate.Tests", "Simplify.FluentNHibernate.Tests\Simplify.FluentNHibernate.Tests.csproj", "{731FD050-AE09-4EA6-838C-FE8032DB4219}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.FluentNHibernate.Tests", "Simplify.FluentNHibernate.Tests\Simplify.FluentNHibernate.Tests.csproj", "{731FD050-AE09-4EA6-838C-FE8032DB4219}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{2D057C2A-06BD-48F2-A075-B6EC42D39007}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.FluentNHibernate.Examples.Database", "Examples\Simplify.FluentNHibernate.Examples.Database\Simplify.FluentNHibernate.Examples.Database.csproj", "{5D326E8A-851B-4537-A477-838709FDB965}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.FluentNHibernate.Examples.Database", "Examples\Simplify.FluentNHibernate.Examples.Database\Simplify.FluentNHibernate.Examples.Database.csproj", "{5D326E8A-851B-4537-A477-838709FDB965}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.FluentNHibernate.Examples.Domain", "Examples\Simplify.FluentNHibernate.Examples.Domain\Simplify.FluentNHibernate.Examples.Domain.csproj", "{959DF948-6208-4EA2-BBB8-BA87E6FDCAB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.FluentNHibernate.Examples.Domain", "Examples\Simplify.FluentNHibernate.Examples.Domain\Simplify.FluentNHibernate.Examples.Domain.csproj", "{959DF948-6208-4EA2-BBB8-BA87E6FDCAB7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{21CDC14F-3620-4C15-B4BB-EBE5CBB96579}"
 	ProjectSection(SolutionItems) = preProject
@@ -45,9 +45,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.IO", "Simplify.IO\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.IO.Tests", "Simplify.IO.Tests\Simplify.IO.Tests.csproj", "{C089B4F9-1F37-4EED-949B-E22A64A998A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Cryptography", "Simplify.Cryptography\Simplify.Cryptography.csproj", "{B0649DEA-1801-4BC4-97B0-756A796569CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.Cryptography", "Simplify.Cryptography\Simplify.Cryptography.csproj", "{B0649DEA-1801-4BC4-97B0-756A796569CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Cryptography.Tests", "Simplify.Cryptography.Tests\Simplify.Cryptography.Tests.csproj", "{B47C5267-B979-444D-9E59-057972465941}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.Cryptography.Tests", "Simplify.Cryptography.Tests\Simplify.Cryptography.Tests.csproj", "{B47C5267-B979-444D-9E59-057972465941}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.String", "Simplify.String\Simplify.String.csproj", "{43FEB1F0-BEBC-4736-A67B-70A883747449}"
 EndProject
@@ -59,21 +59,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0ABE7D
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.System", "Simplify.System\Simplify.System.csproj", "{BB69325D-028C-4F20-8F46-B0F4D70598C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.System", "Simplify.System\Simplify.System.csproj", "{BB69325D-028C-4F20-8F46-B0F4D70598C8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.DI", "Simplify.DI\Simplify.DI.csproj", "{F83B9317-345D-4815-AC12-E71C0684CFEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.System.Tests", "Simplify.System.Tests\Simplify.System.Tests.csproj", "{BDFB91F8-9C0B-4E60-AF5A-397B939501DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.System.Tests", "Simplify.System.Tests\Simplify.System.Tests.csproj", "{BDFB91F8-9C0B-4E60-AF5A-397B939501DB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.DI.Provider.CastleWindsor", "Simplify.DI.Provider.CastleWindsor\Simplify.DI.Provider.CastleWindsor.csproj", "{24E43EA7-A88B-405D-B343-E4919147F70C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.DI.Provider.SimpleInjector", "Simplify.DI.Provider.SimpleInjector\Simplify.DI.Provider.SimpleInjector.csproj", "{27EAB5AE-F310-4A41-8D2F-59F773654783}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.WindowsServices.SingleTaskExample", "Examples\Simplify.WindowsServices.SingleTaskExample\Simplify.WindowsServices.SingleTaskExample.csproj", "{E18A26A0-ADA6-442C-B01D-12E2EB51AF34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.WindowsServices.SingleTaskExample", "Examples\Simplify.WindowsServices.SingleTaskExample\Simplify.WindowsServices.SingleTaskExample.csproj", "{E18A26A0-ADA6-442C-B01D-12E2EB51AF34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.WindowsServices.MultitaskExample", "Examples\Simplify.WindowsServices.MultitaskExample\Simplify.WindowsServices.MultitaskExample.csproj", "{5CA3660E-F7C0-4382-8121-23F8F551C88E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.WindowsServices.MultitaskExample", "Examples\Simplify.WindowsServices.MultitaskExample\Simplify.WindowsServices.MultitaskExample.csproj", "{5CA3660E-F7C0-4382-8121-23F8F551C88E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.DI.Wcf", "Simplify.DI.Wcf\Simplify.DI.Wcf.csproj", "{E62E8148-E29B-4933-A336-5D3740FEB8CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.DI.Wcf", "Simplify.DI.Wcf\Simplify.DI.Wcf.csproj", "{E62E8148-E29B-4933-A336-5D3740FEB8CB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.DI.Tests", "Simplify.DI.Tests\Simplify.DI.Tests.csproj", "{E9625FD9-A982-4C83-9835-25E99BBB724C}"
 EndProject
@@ -81,17 +81,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DI", "DI", "{2D619A98-03A6-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", "{F43AE642-DC80-4BE0-93BD-8B718950C8BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Repository", "Simplify.Repository\Simplify.Repository.csproj", "{9EB05935-EAD1-4B3C-B758-0AF26338C474}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.Repository", "Simplify.Repository\Simplify.Repository.csproj", "{9EB05935-EAD1-4B3C-B758-0AF26338C474}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Repository.FluentNHibernate", "Simplify.Repository.FluentNHibernate\Simplify.Repository.FluentNHibernate.csproj", "{FB81EF87-C5C4-4D03-B229-2CC7DF3CF970}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.Repository.FluentNHibernate", "Simplify.Repository.FluentNHibernate\Simplify.Repository.FluentNHibernate.csproj", "{FB81EF87-C5C4-4D03-B229-2CC7DF3CF970}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.DI.Provider.CastleWindsor.Tests", "Simplify.DI.Provider.CastleWindsor.Tests\Simplify.DI.Provider.CastleWindsor.Tests.csproj", "{4622E1B8-F5FF-4B20-BA40-ECCEFA6E568D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.DI.Provider.CastleWindsor.Tests", "Simplify.DI.Provider.CastleWindsor.Tests\Simplify.DI.Provider.CastleWindsor.Tests.csproj", "{4622E1B8-F5FF-4B20-BA40-ECCEFA6E568D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.DI.Provider.SimpleInjector.Tests", "Simplify.DI.Provider.SimpleInjector.Tests\Simplify.DI.Provider.SimpleInjector.Tests.csproj", "{402D19B5-578C-4C05-A77C-FDCB4417C54D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WindowsServices", "WindowsServices", "{5CAE2FF3-6428-4A1C-845B-BF1866939105}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.WindowsServices.IntegrationTests", "Simplify.WindowsServices.IntegrationTests\Simplify.WindowsServices.IntegrationTests.csproj", "{FDE80D70-B1C1-43ED-9037-3533479B7C81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.WindowsServices.IntegrationTests", "Simplify.WindowsServices.IntegrationTests\Simplify.WindowsServices.IntegrationTests.csproj", "{FDE80D70-B1C1-43ED-9037-3533479B7C81}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XML", "XML", "{A3C5C113-2B5C-4BC4-BE86-2B2183B1937D}"
 EndProject
@@ -176,13 +176,13 @@ Global
 		{7F2A1DE8-B41E-4EC5-B4E2-248FF692E06A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7F2A1DE8-B41E-4EC5-B4E2-248FF692E06A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F2A1DE8-B41E-4EC5-B4E2-248FF692E06A}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{7F2A1DE8-B41E-4EC5-B4E2-248FF692E06A}.Debug|x86.ActiveCfg = Debug|x86
-		{7F2A1DE8-B41E-4EC5-B4E2-248FF692E06A}.Debug|x86.Build.0 = Debug|x86
+		{7F2A1DE8-B41E-4EC5-B4E2-248FF692E06A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7F2A1DE8-B41E-4EC5-B4E2-248FF692E06A}.Debug|x86.Build.0 = Debug|Any CPU
 		{7F2A1DE8-B41E-4EC5-B4E2-248FF692E06A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F2A1DE8-B41E-4EC5-B4E2-248FF692E06A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7F2A1DE8-B41E-4EC5-B4E2-248FF692E06A}.Release|x64.ActiveCfg = Release|Any CPU
-		{7F2A1DE8-B41E-4EC5-B4E2-248FF692E06A}.Release|x86.ActiveCfg = Release|x86
-		{7F2A1DE8-B41E-4EC5-B4E2-248FF692E06A}.Release|x86.Build.0 = Release|x86
+		{7F2A1DE8-B41E-4EC5-B4E2-248FF692E06A}.Release|x86.ActiveCfg = Release|Any CPU
+		{7F2A1DE8-B41E-4EC5-B4E2-248FF692E06A}.Release|x86.Build.0 = Release|Any CPU
 		{B6530CBE-72B9-4EF6-9BDE-20D7220FF5DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B6530CBE-72B9-4EF6-9BDE-20D7220FF5DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6530CBE-72B9-4EF6-9BDE-20D7220FF5DA}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -223,18 +223,18 @@ Global
 		{0F73C429-1B2F-48B7-9D38-20DA17AD350B}.Release|x64.ActiveCfg = Release|Any CPU
 		{0F73C429-1B2F-48B7-9D38-20DA17AD350B}.Release|x86.ActiveCfg = Release|Any CPU
 		{0F73C429-1B2F-48B7-9D38-20DA17AD350B}.Release|x86.Build.0 = Release|Any CPU
-		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Debug|Any CPU.Build.0 = Debug|x86
-		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Debug|x64.ActiveCfg = Debug|x64
-		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Debug|x64.Build.0 = Debug|x64
-		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Debug|x86.ActiveCfg = Debug|x86
-		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Debug|x86.Build.0 = Debug|x86
-		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Release|Any CPU.ActiveCfg = Release|x86
-		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Release|Any CPU.Build.0 = Release|x86
-		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Release|x64.ActiveCfg = Release|x64
-		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Release|x64.Build.0 = Release|x64
-		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Release|x86.ActiveCfg = Release|x86
-		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Release|x86.Build.0 = Release|x86
+		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Debug|x64.Build.0 = Debug|Any CPU
+		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Debug|x86.Build.0 = Debug|Any CPU
+		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Release|Any CPU.Build.0 = Release|Any CPU
+		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Release|x64.ActiveCfg = Release|Any CPU
+		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Release|x64.Build.0 = Release|Any CPU
+		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Release|x86.ActiveCfg = Release|Any CPU
+		{731FD050-AE09-4EA6-838C-FE8032DB4219}.Release|x86.Build.0 = Release|Any CPU
 		{5D326E8A-851B-4537-A477-838709FDB965}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5D326E8A-851B-4537-A477-838709FDB965}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D326E8A-851B-4537-A477-838709FDB965}.Debug|x64.ActiveCfg = Debug|Any CPU

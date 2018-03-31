@@ -28,9 +28,7 @@ namespace Simplify.Extensions
 		/// <returns></returns>
 		public static DateTime? TryToDateTimeExact(this string s, string format)
 		{
-			DateTime date;
-
-			return DateTime.TryParseExact(s, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date) ? date : (DateTime?)null;
+			return DateTime.TryParseExact(s, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out var date) ? date : (DateTime?)null;
 		}
 	}
 }
