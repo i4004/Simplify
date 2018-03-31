@@ -13,7 +13,7 @@ namespace Simplify.Templates.Tests
 		[SetUp]
 		public void Initialize()
 		{
-			Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+			Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? throw new InvalidOperationException());
 		}
 
 		[Test]
