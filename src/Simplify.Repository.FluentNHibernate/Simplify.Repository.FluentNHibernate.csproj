@@ -1,89 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FB81EF87-C5C4-4D03-B229-2CC7DF3CF970}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Simplify.Repository.FluentNHibernate</RootNamespace>
-    <AssemblyName>Simplify.Repository.FluentNHibernate</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Simplify.Repository.FluentNHibernate.xml</DocumentationFile>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-  </PropertyGroup>
-  <!-- Ignore the CS1701 errors when building on something else than Windows (no way to specify "not msbuild" or mono)-->
-  <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
-    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="Entities\IdentityObject.cs" />
-    <Compile Include="Entities\NamedObject.cs" />
-    <Compile Include="FactoryManagerBase.cs" />
-    <Compile Include="Mappings\IdentityObjectMap.cs" />
-    <Compile Include="Mappings\NamedObjectMap.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\GenericRepository.cs" />
-    <Compile Include="UnitOfWork.cs" />
-    <Compile Include="TransactUnitOfWork.cs" />
-    <Compile Include="BeginTransactUnitOfWork.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="FluentNHibernate, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentNHibernate.2.0.3.0\lib\net40\FluentNHibernate.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NHibernate, Version=4.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <HintPath>..\packages\NHibernate.4.1.0.4000\lib\net40\NHibernate.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Simplify.FluentNHibernate, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Simplify.FluentNHibernate.1.6.0\lib\net452\Simplify.FluentNHibernate.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Simplify.Repository, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Simplify.Repository.0.4.0\lib\net452\Simplify.Repository.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-    <None Include="Simplify.Repository.FluentNHibernate.nuspec" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>net452</TargetFrameworks>
+		<Authors>Alexander Krylkov</Authors>
+		<Product>Simplify</Product>
+		<Description>Simplify.Repository FluentNHibernate implementation</Description>
+		<Copyright>Licensed under LGPL</Copyright>
+		<Version>0.4.1</Version>
+		<PackageProjectUrl>https://github.com/i4004/Simplify</PackageProjectUrl>
+		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
+		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.Repository.FluentNHibernat</RepositoryUrl>
+		<RepositoryType>GIT</RepositoryType>
+		<PackageTags>.NET Repository UoW Model</PackageTags>
+		<PackageReleaseNotes></PackageReleaseNotes>
+		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
+		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.Repository.FluentNHibernat.xml</DocumentationFile>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Simplify.FluentNHibernate" Version="1.6.0" />
+		<PackageReference Include="Simplify.Repository" Version="0.4.0" />
+	</ItemGroup>
 </Project>
