@@ -10,6 +10,12 @@ namespace Simplify.Templates.Tests
 	[TestFixture]
 	public class IntegrationTemplateTests
 	{
+		[SetUp]
+		public void Initialize()
+		{
+			Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+		}
+
 		[Test]
 		public void LocalTemplate_LoadAndUse_LoadedCorectly()
 		{
