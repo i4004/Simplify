@@ -11,12 +11,13 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>String operations/validation functions</description>
 		<summary>String operations/validation functions</summary>
-		<releaseNotes>* International mobile phones numbers validation (size/symbols validation) added</releaseNotes>
+		<releaseNotes></releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET</tags>
 	</metadata>
 	<files>
 		<file src="StringHelper.cs" target="content/App_Packages/Simplify.String.Sources.$version$/StringHelper.cs" />
+		<file src="StringHelper.cs" target="contentFiles\cs\any\App_Packages\Simplify.String.Sources.$version$\StringHelper.cs" />
 	</files>
 </package>
