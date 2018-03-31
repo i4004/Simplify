@@ -6,6 +6,7 @@
 		<Description>Simplify.FluentNHibernate domain classes examples</Description>
 		<Copyright>Licensed under LGPL</Copyright>
 		<Version>1.0.2</Version>
+		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\Simplify.Repository\Simplify.Repository.csproj" />
