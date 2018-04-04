@@ -6,7 +6,7 @@ Get-ChildItem .\**\*.csproj -Recurse |
     ForEach-Object { 
 
         # Run dotnet test on the project and output the results in mstest format (also works for other frameworks like nunit)
-        & dotnet test $_.FullName --configuration $config --no-build --no-restore --logger "trx;LogFileName=..\..\test-result.trx" 
+        & dotnet test $_.FullName --configuration $config --no-build --no-restore --logger "trx;LogFileName=..\..\..\test-result.trx" 
 
         # if on build server upload results to AppVeyor
         if ("${ENV:APPVEYOR_JOB_ID}" -ne "") {
