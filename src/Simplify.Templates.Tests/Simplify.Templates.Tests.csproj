@@ -6,6 +6,7 @@
 		<Description>Simplify.Templates unit tests</Description>
 		<Copyright>Licensed under LGPL</Copyright>
 		<Version>1.1.3</Version>
+		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 	</PropertyGroup>
 	<ItemGroup>
 		<EmbeddedResource Include="TestData\Embedded\MasterTemplate.tpl" />

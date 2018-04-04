@@ -6,6 +6,7 @@
 		<Description>Simplify.Extensions unit tests</Description>
 		<Copyright>Licensed under LGPL</Copyright>
 		<Version>1.1.1</Version>
+		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.6.1" />

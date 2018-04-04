@@ -6,6 +6,7 @@
 		<Description>Simplify.DI.Provider.SimpleInjector unit tests</Description>
 		<Copyright>Licensed under LGPL</Copyright>
 		<Version>1.1</Version>
+		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Simplify.DI" Version="1.2.2" />
