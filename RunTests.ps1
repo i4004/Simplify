@@ -1,8 +1,11 @@
 $config = "release"
+$excludeProjects = @('Simplify.WindowsServices.IntegrationTests')
+
+$excludeProjectsRegex = [string]::Join('|', $excludeProjects)
 
 # Find each test project and run tests and upload results to AppVeyor
 Get-ChildItem .\**\*.csproj -Recurse | 
-    Where-Object { $_.Name -match ".*Test(s)?.csproj$"} | 
+    Where-Object { ($_.Name -match ".*Test(s)?.csproj$") -or ($_.Name -notmatch $excludeProjectsRegex) } | 
     ForEach-Object { 
 
         # Run dotnet test on the project and output the results in mstest format (also works for other frameworks like nunit)
