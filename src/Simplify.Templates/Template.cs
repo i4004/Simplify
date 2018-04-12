@@ -30,10 +30,11 @@ namespace Simplify.Templates
 		/// Initialize template class from a string
 		/// </summary>
 		/// <param name="text">The template text.</param>
+		/// <param name="language">Template language.</param>
 		/// <param name="fixLineEndingsHtml">If set to <c>true</c> Replace all caret return characters by html <![CDATA[<BR />]]> tag.</param>
-		public Template(string text, bool fixLineEndingsHtml)
+		public Template(string text, string language, bool fixLineEndingsHtml)
 		{
-			InitializeText(text, fixLineEndingsHtml);
+			InitializeText(text, language, fixLineEndingsHtml);
 			_textCopy = _text;
 		}
 
@@ -140,10 +141,7 @@ namespace Simplify.Templates
 		/// </value>
 		public static IFileSystem FileSystem
 		{
-			get
-			{
-				return _fileSystemInstance.Value;
-			}
+			get => _fileSystemInstance.Value;
 
 			set
 			{
@@ -176,10 +174,12 @@ namespace Simplify.Templates
 		/// Initialize template class from a string
 		/// </summary>
 		/// <param name="text">The template text.</param>
+		/// <param name="language">Template language.</param>
 		/// <param name="fixLineEndingsHtml">If set to <c>true</c> Replace all caret return characters by html <![CDATA[<BR />]]> tag.</param>
-		public static ITemplate FromString(string text, bool fixLineEndingsHtml = false)
+		/// <returns></returns>
+		public static ITemplate FromString(string text, string language = "en", bool fixLineEndingsHtml = false)
 		{
-			return new Template(text, fixLineEndingsHtml);
+			return new Template(text, language, fixLineEndingsHtml);
 		}
 
 		/// <summary>
@@ -431,12 +431,10 @@ namespace Simplify.Templates
 			return text;
 		}
 
-		private void InitializeText(string text, bool fixLineEndingsHtml = false)
+		private void InitializeText(string text, string language = "en", bool fixLineEndingsHtml = false)
 		{
-			if (text == null)
-				throw new ArgumentNullException(nameof(text));
-
-			_text = text;
+			_text = text ?? throw new ArgumentNullException(nameof(text));
+			Language = language;
 
 			if (fixLineEndingsHtml)
 				_text = _text.Replace(Environment.NewLine, "<br />");
@@ -444,7 +442,7 @@ namespace Simplify.Templates
 
 		private void LoadWithLocalization(string text, string currentCultureStringTableText = null, string defaultCultureStringTableText = null, string language = "", string defaultLanguage = "en", bool fixLineEndingsHtml = false)
 		{
-			InitializeText(text, fixLineEndingsHtml);
+			InitializeText(text, fixLineEndingsHtml: fixLineEndingsHtml);
 
 			Language = language;
 

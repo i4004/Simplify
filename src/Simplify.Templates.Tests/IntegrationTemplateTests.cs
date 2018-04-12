@@ -20,7 +20,7 @@ namespace Simplify.Templates.Tests
 		public void LocalTemplate_LoadAndUse_LoadedCorectly()
 		{
 			Thread.CurrentThread.CurrentCulture = new CultureInfo("ru");
-			TestTemplate(new Template("TestData/Local/TemplateTest.tpl"), new Template(File.ReadAllText("TestData/Local/MasterTemplate.tpl"), false),
+			TestTemplate(new Template("TestData/Local/TemplateTest.tpl"), new Template(File.ReadAllText("TestData/Local/MasterTemplate.tpl"), "en", false),
 				new Template("TestData/Local/TemplateTestResult.tpl"), new Template("TestData/Local/MasterTemplateResult.tpl"));
 		}
 
@@ -34,13 +34,13 @@ namespace Simplify.Templates.Tests
 		[Test]
 		public void LoadWithLineEndingsFix_FixedCorrectly()
 		{
-			Assert.AreEqual("data<br />", new Template("data" + Environment.NewLine, true).Get());
+			Assert.AreEqual("data<br />", new Template("data" + Environment.NewLine, "en", true).Get());
 		}
 
 		[Test]
 		public void LoadTemplate_ExceptionsThrownCorrectly()
 		{
-			Assert.Throws<ArgumentNullException>(() => new Template(null, false));
+			Assert.Throws<ArgumentNullException>(() => new Template(null, null, false));
 			Assert.Throws<ArgumentNullException>(() => new Template(null));
 			Assert.Throws<TemplateException>(() => new Template("NotFound"));
 			Assert.Throws<ArgumentNullException>(() => new Template(Assembly.GetCallingAssembly(), null));
