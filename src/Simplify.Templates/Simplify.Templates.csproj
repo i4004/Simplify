@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net452</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
 		<Authors>Alexander Krylkov</Authors>
 		<Product>Simplify</Product>
 		<Description>Text templates engine</Description>
@@ -17,6 +17,6 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Simplify.Xml.Sources" Version="1.0.4" PrivateAssets="All" />
-		<PackageReference Include="System.IO.Abstractions" Version="2.0.0.144" />
+		<PackageReference Include="System.IO.Abstractions" Version="2.1.0.178" />
 	</ItemGroup>
 </Project>
