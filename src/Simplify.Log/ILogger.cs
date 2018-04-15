@@ -20,7 +20,7 @@ namespace Simplify.Log
 		/// <param name="e">Exception to get data from</param>
 		/// <returns>Text written to log file (contain time information etc.)</returns>
 		string Write(Exception e);
-		
+
 		/// <summary>
 		/// Write data of an exception to log file and returs written data formatted with HTML line breaks
 		/// </summary>

@@ -12,6 +12,6 @@ namespace Simplify.Log
 		/// Initializes a new instance of the <see cref="LoggerException"/> class.
 		/// </summary>
 		/// <param name="message">The message that describes the error.</param>
-		public LoggerException(string message) : base(message) {}
+		public LoggerException(string message) : base(message) { }
 	}
 }

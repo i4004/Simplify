@@ -9,6 +9,7 @@
 		/// The relative path type
 		/// </summary>
 		Relative,
+
 		/// <summary>
 		/// The full path type
 		/// </summary>

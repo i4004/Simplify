@@ -45,6 +45,33 @@ namespace Simplify.Log
 		}
 
 		/// <summary>
+		/// Gets or sets the default logger instance.
+		/// </summary>
+		/// <value>
+		/// The default logger instance.
+		/// </value>
+		/// <exception cref="System.ArgumentNullException">value</exception>
+		public static ILogger Default
+		{
+			get => _defaultLogger.Value;
+			set
+			{
+				if (value == null)
+					throw new ArgumentNullException(nameof(value));
+
+				_defaultLogger = new Lazy<ILogger>(() => value);
+			}
+		}
+
+		/// <summary>
+		/// Gets the logger settings.
+		/// </summary>
+		/// <value>
+		/// The logger settings.
+		/// </value>
+		public LoggerSettings Settings { get; }
+
+		/// <summary>
 		/// Gets or sets the file system for Logger IO operations.
 		/// </summary>
 		/// <value>
@@ -64,45 +91,6 @@ namespace Simplify.Log
 
 				_fileSystem = new Lazy<IFileSystem>(() => value);
 			}
-		}
-
-		/// <summary>
-		/// Gets or sets the default logger instance.
-		/// </summary>
-		/// <value>
-		/// The default logger instance.
-		/// </value>
-		/// <exception cref="System.ArgumentNullException">value</exception>
-		public static ILogger Default
-		{
-			get { return _defaultLogger.Value; }
-			set
-			{
-				if (value == null)
-					throw new ArgumentNullException(nameof(value));
-
-				_defaultLogger = new Lazy<ILogger>(() => value);
-			}
-		}
-
-		/// <summary>
-		/// Gets the logger settings.
-		/// </summary>
-		/// <value>
-		/// The logger settings.
-		/// </value>
-		public LoggerSettings Settings { get; }
-
-		private void Initialize()
-		{
-			if (Settings.PathType == LoggerPathType.FullPath)
-				_currentLogFileName = Settings.FileName;
-			else if (HttpContext.Current != null)
-				_currentLogFileName = $"{HttpContext.Current.Request.PhysicalApplicationPath}{Settings.FileName}";
-			else if (OperationContext.Current != null)
-				_currentLogFileName = $"{System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath}{Settings.FileName}";
-			else
-				_currentLogFileName = $"{Path.GetDirectoryName(Assembly.GetCallingAssembly().Location)}/{Settings.FileName}";
 		}
 
 		/// <summary>
@@ -153,6 +141,18 @@ namespace Simplify.Log
 		public string WriteWeb(Exception e)
 		{
 			return Write(e).Replace("\r\n", "<br />");
+		}
+
+		private void Initialize()
+		{
+			if (Settings.PathType == LoggerPathType.FullPath)
+				_currentLogFileName = Settings.FileName;
+			else if (HttpContext.Current != null)
+				_currentLogFileName = $"{HttpContext.Current.Request.PhysicalApplicationPath}{Settings.FileName}";
+			else if (OperationContext.Current != null)
+				_currentLogFileName = $"{System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath}{Settings.FileName}";
+			else
+				_currentLogFileName = $"{Path.GetDirectoryName(Assembly.GetCallingAssembly().Location)}/{Settings.FileName}";
 		}
 
 		private string GetInnerExceptionData(int currentLevel, Exception e)
