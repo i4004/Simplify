@@ -50,7 +50,7 @@ namespace Simplify.Log
 		/// <value>
 		/// The default logger instance.
 		/// </value>
-		/// <exception cref="System.ArgumentNullException">value</exception>
+		/// <exception cref="ArgumentNullException">value</exception>
 		public static ILogger Default
 		{
 			get => _defaultLogger.Value;
@@ -79,10 +79,7 @@ namespace Simplify.Log
 		/// </value>
 		internal static IFileSystem FileSystem
 		{
-			get
-			{
-				return _fileSystem.Value;
-			}
+			get => _fileSystem.Value;
 
 			set
 			{
@@ -100,12 +97,11 @@ namespace Simplify.Log
 		/// <returns>Text written to log file (contain time information etc.)</returns>
 		public string Write(string message)
 		{
-			var stack = new StackTrace();
-			var functionName = stack.GetFrame(1).GetMethod().Name;
+			var generatedMessage = Generate(message);
 
-			WriteToFile($" {functionName} : {message}");
+			WriteToFile(generatedMessage);
 
-			return message;
+			return generatedMessage;
 		}
 
 		/// <summary>
@@ -118,15 +114,7 @@ namespace Simplify.Log
 			if (e == null)
 				return "";
 
-			var trace = new StackTrace(e, true);
-
-			var fileLineNumber = trace.GetFrame(0).GetFileLineNumber();
-			var fileColumnNumber = trace.GetFrame(0).GetFileColumnNumber();
-
-			var positionPrefix = fileLineNumber == 0 && fileColumnNumber == 0 ? "" : $"[{fileLineNumber}:{fileColumnNumber}]";
-
-			var message =
-				$"{positionPrefix} {e.GetType()} : {e.Message}{Environment.NewLine}{trace}{GetInnerExceptionData(1, e.InnerException)}";
+			var message = Generate(e);
 
 			WriteToFile(message);
 
@@ -143,19 +131,50 @@ namespace Simplify.Log
 			return Write(e).Replace("\r\n", "<br />");
 		}
 
-		private void Initialize()
+		/// <summary>
+		/// Generates the log message (contain time information etc.).
+		/// </summary>
+		/// <param name="message">Text message</param>
+		/// <returns></returns>
+		public string Generate(string message)
 		{
-			if (Settings.PathType == LoggerPathType.FullPath)
-				_currentLogFileName = Settings.FileName;
-			else if (HttpContext.Current != null)
-				_currentLogFileName = $"{HttpContext.Current.Request.PhysicalApplicationPath}{Settings.FileName}";
-			else if (OperationContext.Current != null)
-				_currentLogFileName = $"{System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath}{Settings.FileName}";
-			else
-				_currentLogFileName = $"{Path.GetDirectoryName(Assembly.GetCallingAssembly().Location)}/{Settings.FileName}";
+			var stack = new StackTrace();
+			var functionName = stack.GetFrame(1).GetMethod().Name;
+
+			return $" {functionName} : {message}";
 		}
 
-		private string GetInnerExceptionData(int currentLevel, Exception e)
+		/// <summary>
+		/// Generates full stack data of an exception
+		/// </summary>
+		/// <param name="e">Exception to get data from</param>
+		/// <returns></returns>
+		public string Generate(Exception e)
+		{
+			if (e == null)
+				return "";
+
+			var trace = new StackTrace(e, true);
+
+			var fileLineNumber = trace.GetFrame(0).GetFileLineNumber();
+			var fileColumnNumber = trace.GetFrame(0).GetFileColumnNumber();
+
+			var positionPrefix = fileLineNumber == 0 && fileColumnNumber == 0 ? "" : $"[{fileLineNumber}:{fileColumnNumber}]";
+
+			return $"{positionPrefix} {e.GetType()} : {e.Message}{Environment.NewLine}{trace}{GetInnerExceptionData(1, e.InnerException)}";
+		}
+
+		/// <summary>
+		/// Generates full stack data of an exception formatted with HTML line breaks
+		/// </summary>
+		/// <param name="e">Exception to get data from</param>
+		/// <returns></returns>
+		public string GenerateWeb(Exception e)
+		{
+			return Generate(e).Replace("\r\n", "<br />");
+		}
+
+		private static string GetInnerExceptionData(int currentLevel, Exception e)
 		{
 			if (e == null)
 				return null;
@@ -172,6 +191,18 @@ namespace Simplify.Log
 
 			return
 				$"[Inner Exception{levelText}]{positionPrefix} {e.GetType()} : {e.Message}{Environment.NewLine}{trace}{GetInnerExceptionData(currentLevel + 1, e.InnerException)}";
+		}
+
+		private void Initialize()
+		{
+			if (Settings.PathType == LoggerPathType.FullPath)
+				_currentLogFileName = Settings.FileName;
+			else if (HttpContext.Current != null)
+				_currentLogFileName = $"{HttpContext.Current.Request.PhysicalApplicationPath}{Settings.FileName}";
+			else if (OperationContext.Current != null)
+				_currentLogFileName = $"{System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath}{Settings.FileName}";
+			else
+				_currentLogFileName = $"{Path.GetDirectoryName(Assembly.GetCallingAssembly().Location)}/{Settings.FileName}";
 		}
 
 		private void WriteToFile(string message)

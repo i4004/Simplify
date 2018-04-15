@@ -27,5 +27,26 @@ namespace Simplify.Log
 		/// <param name="e">Exception to get data from</param>
 		/// <returns>Text written to log file (contain time information etc.) formatted with HTML line breaks</returns>
 		string WriteWeb(Exception e);
+
+		/// <summary>
+		/// Generates the log message (contain time information etc.).
+		/// </summary>
+		/// <param name="message">Text message</param>
+		/// <returns></returns>
+		string Generate(string message);
+
+		/// <summary>
+		/// Generates full stack data of an exception
+		/// </summary>
+		/// <param name="e">Exception to get data from</param>
+		/// <returns></returns>
+		string Generate(Exception e);
+
+		/// <summary>
+		///Generates full stack data of an exception formatted with HTML line breaks
+		/// </summary>
+		/// <param name="e">Exception to get data from</param>
+		/// <returns></returns>
+		string GenerateWeb(Exception e);
 	}
 }
