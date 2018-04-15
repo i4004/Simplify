@@ -141,7 +141,7 @@ namespace Simplify.Log
 			var stack = new StackTrace();
 			var functionName = stack.GetFrame(1).GetMethod().Name;
 
-			return $" {functionName} : {message}";
+			return AddTimeInformation($" {functionName} : {message}");
 		}
 
 		/// <summary>
@@ -161,7 +161,7 @@ namespace Simplify.Log
 
 			var positionPrefix = fileLineNumber == 0 && fileColumnNumber == 0 ? "" : $"[{fileLineNumber}:{fileColumnNumber}]";
 
-			return $"{positionPrefix} {e.GetType()} : {e.Message}{Environment.NewLine}{trace}{GetInnerExceptionData(1, e.InnerException)}";
+			return AddTimeInformation($"{positionPrefix} {e.GetType()} : {e.Message}{Environment.NewLine}{trace}{GetInnerExceptionData(1, e.InnerException)}");
 		}
 
 		/// <summary>
@@ -172,6 +172,11 @@ namespace Simplify.Log
 		public string GenerateWeb(Exception e)
 		{
 			return Generate(e).Replace("\r\n", "<br />");
+		}
+
+		private static string AddTimeInformation(string message)
+		{
+			return $"[{DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss:fff", CultureInfo.InvariantCulture)}]{message}";
 		}
 
 		private static string GetInnerExceptionData(int currentLevel, Exception e)
@@ -223,8 +228,7 @@ namespace Simplify.Log
 					}
 				}
 
-				var writeMessage =
-					$"[{DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss:fff", CultureInfo.InvariantCulture)}]{message}{Environment.NewLine}";
+				var writeMessage = message + Environment.NewLine;
 
 				FileSystem.File.AppendAllText(_currentLogFileName, writeMessage);
 			}
