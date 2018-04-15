@@ -5,13 +5,14 @@
 		<Product>Simplify</Product>
 		<Description>Simple logger</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>1.1.1</Version>
+		<Version>1.2</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.Log</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.Log</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET logger</PackageTags>
 		<PackageReleaseNotes>
+			+ Generate strack trace message without file write
 			* Upgrade to System.IO.Abstractions 2.1.0.178
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
