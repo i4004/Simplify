@@ -19,7 +19,7 @@ namespace Simplify.Resources
 		/// </returns>
 		public static string GetAssociatedValue<T>(this IResourcesStringTable stringTable, T enumValue) where T : struct
 		{
-			return stringTable[enumValue.GetType().Name + Enum.GetName(typeof(T), enumValue)] ?? "";
+			return stringTable[enumValue.GetType().Name + Enum.GetName(typeof(T), enumValue)];
 		}
 
 		/// <summary>
