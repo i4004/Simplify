@@ -1,21 +1,39 @@
-﻿using NUnit.Framework;
+﻿using System.Reflection;
+using NUnit.Framework;
 
 namespace Simplify.Resources.Tests
 {
 	[TestFixture]
-	public class StringTableTests
+	public class ResourcesStringTableTests
 	{
 		private IResourcesStringTable _uow;
 
 		[SetUp]
 		public void Initialize()
 		{
-			_uow = new ResourcesStringTable(true, "ProgramResources");
 		}
 
 		[Test]
 		public void ResourcesStringTableIndexer_ExistingString_Found()
 		{
+			//Assign
+
+			_uow = new ResourcesStringTable(true, "ProgramResources");
+
+			// Act
+			var testString = _uow["TestString"];
+
+			// Assert
+			Assert.AreEqual("Hello World!", testString);
+		}
+
+		[Test]
+		public void ResourcesStringTableIndexer_CustomAssemblyExistingString_Found()
+		{
+			//Assign
+
+			_uow = new ResourcesStringTable(Assembly.GetAssembly(typeof(ResourcesStringTableTests)), "ProgramResources");
+
 			// Act
 			var testString = _uow["TestString"];
 
