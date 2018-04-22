@@ -39,7 +39,7 @@ namespace Simplify.Resources
 		/// <summary>
 		/// Get string table record by name
 		/// </summary>
-		public string this[string name] => _resourceManager.GetString(name);
+		public string this[string name] => GetString(name);
 
 		/// <summary>
 		/// Get string table record by name
