@@ -12,6 +12,9 @@
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET assembly-resources</PackageTags>
 		<PackageReleaseNotes>
+			+ .NET Standard 2.0 Support
+			* Upgrade to .NET Framework 4.5.2
+			- CustomComponentResourceManager removed
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.Resources.xml</DocumentationFile>
