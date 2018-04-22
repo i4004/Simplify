@@ -7,25 +7,16 @@ namespace Simplify.Repository.FluentNHibernate
 	/// <summary>
 	/// Provides unit of work with manual open transaction
 	/// </summary>
-	public class BeginTransactUnitOfWork : IBeginTransactUnitOfWork
+	public class BeginTransactUnitOfWork : UnitOfWork, IBeginTransactUnitOfWork
 	{
 		private ITransaction _transaction;
-
-		/// <summary>
-		/// Gets the session.
-		/// </summary>
-		/// <value>
-		/// The session.
-		/// </value>
-		public ISession Session { get; }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BeginTransactUnitOfWork"/> class.
 		/// </summary>
 		/// <param name="sessionFactory">The session factory.</param>
-		public BeginTransactUnitOfWork(ISessionFactory sessionFactory)
+		public BeginTransactUnitOfWork(ISessionFactory sessionFactory) : base(sessionFactory)
 		{
-			Session = sessionFactory.OpenSession();
 		}
 
 		/// <summary>
