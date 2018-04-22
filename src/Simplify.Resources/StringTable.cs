@@ -14,14 +14,8 @@ namespace Simplify.Resources
 		/// </summary>
 		public static IResourcesStringTable Entry
 		{
-			get { return _entryStringTable ?? (_entryStringTable = new ResourcesStringTable(false, "ProgramResources")); }
-			set
-			{
-				if(value == null)
-					throw new ArgumentNullException();
-
-				_entryStringTable = value;
-			}
+			get => _entryStringTable ?? (_entryStringTable = new ResourcesStringTable(false, "ProgramResources"));
+			set => _entryStringTable = value ?? throw new ArgumentNullException();
 		}
 	}
 }
