@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net45</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
 		<Authors>Alexander Krylkov</Authors>
 		<Product>Simplify</Product>
 		<Description>Classes for working with assembly resource files (localizable string table)</Description>
