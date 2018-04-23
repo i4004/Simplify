@@ -20,10 +20,14 @@ namespace Simplify.FluentNHibernate.Tests
 		[SetUp]
 		public void Initialize()
 		{
+			// Configuration
+
 			var configuration =
 			Fluently.Configure()
-			.InitializeFromConfigSqLiteInMemory(true)
+			.InitializeFromConfigSqLite("Test.sqlite", true)
 			.AddMappingsFromAssemblyOf<UserMap>(PrimaryKey.Name.Is(x => "ID"));
+
+			// Export
 
 			Configuration config = null;
 			configuration.ExposeConfiguration(c => config = c);
@@ -40,20 +44,17 @@ namespace Simplify.FluentNHibernate.Tests
 			Assert.IsNull(_session.GetObject<User>(x => x.Name == "test"));
 
 			_session.Insert(new User { Name = "test" });
-			//_session.Flush();
 
 			var user = _session.GetObject<User>(x => x.Name == "test");
 			Assert.IsNotNull(user);
 
 			user.Name = "foo";
 			_session.Update(user);
-			//_session.Flush();
 
 			user = _session.GetObject<User>(x => x.Name == "foo");
 			Assert.IsNotNull(user);
 
 			_session.Delete(user);
-			//_session.Flush();
 			Assert.IsNull(_session.GetObject<User>(x => x.Name == "foo"));
 		}
 
@@ -69,8 +70,6 @@ namespace Simplify.FluentNHibernate.Tests
 			_session.Insert(new User { Name = "test4", LastActivityTime = new DateTime(2015, 2, 3, 14, 14, 0) });
 			_session.Insert(new User { Name = "test5", LastActivityTime = new DateTime(2015, 2, 3, 14, 16, 0) });
 			_session.Insert(new User { Name = "foo1", LastActivityTime = new DateTime(2015, 2, 3, 14, 16, 0) });
-
-			//_session.Flush();
 
 			var items = _session.GetListPaged<User>(1, 2, x => x.Name.Contains("test"), x => x.OrderByDescending(o => o.LastActivityTime));
 
