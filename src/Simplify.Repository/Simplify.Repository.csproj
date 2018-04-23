@@ -5,14 +5,16 @@
 		<Product>Simplify</Product>
 		<Description>Repository, unit of work and related patterns interfaces</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>0.4.1</Version>
+		<Version>1.0</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.Repository</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET Repository UoW Model</PackageTags>
 		<PackageReleaseNotes>
-			* Added .NET Standard 1.2 support
+			* Types names/namespaces refactored
+			- Obsolete methods removed
+			- IGenericRepository.AddOrUpdate removed
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.Repository.xml</DocumentationFile>
