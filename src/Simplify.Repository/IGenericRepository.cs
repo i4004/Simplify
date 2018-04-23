@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Simplify.Repository.Repositories
+namespace Simplify.Repository
 {
 	/// <summary>
 	/// Represent generic repository pattern for easy NHibernate repositories implementation
