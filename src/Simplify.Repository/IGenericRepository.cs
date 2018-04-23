@@ -73,12 +73,6 @@ namespace Simplify.Repository
 		object Add(T entity);
 
 		/// <summary>
-		/// Adds or update the object.
-		/// </summary>
-		/// <param name="entity">The entity.</param>
-		void AddOrUpdate(T entity);
-
-		/// <summary>
 		/// Deletes the object.
 		/// </summary>
 		/// <param name="entity">The entity.</param>
