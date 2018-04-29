@@ -27,8 +27,8 @@
 		bool CleanupOnTaskFinish { get; }
 
 		/// <summary>
-		/// Gets the maximum allowed paraller tasks of this job.
+		/// Gets the maximum allowed parallel tasks of this job.
 		/// </summary>
-		int MaximumParallerTasksCount { get; }
+		int MaximumParallelTasksCount { get; }
 	}
 }

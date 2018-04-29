@@ -201,7 +201,7 @@ namespace Simplify.WindowsServices
 
 			lock (_workingJobsTasks)
 			{
-				if (shutdownInProcess || _workingJobsTasks.Count(x => x.Job == job) >= job.Settings.MaximumParallerTasksCount)
+				if (shutdownInProcess || _workingJobsTasks.Count(x => x.Job == job) >= job.Settings.MaximumParallelTasksCount)
 					return;
 
 				_jobTaskID++;
