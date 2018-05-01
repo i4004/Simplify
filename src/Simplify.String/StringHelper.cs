@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Net.Mail;
+using System.Text.RegularExpressions;
 
 namespace Simplify.String
 {
@@ -27,11 +29,17 @@ namespace Simplify.String
 			if (string.IsNullOrEmpty(eMail))
 				return false;
 
-			const string regularExpression = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
-								 @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
-								 @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+			try
+			{
+				// ReSharper disable once ObjectCreationAsStatement
+				new MailAddress(eMail);
 
-			return Regex.IsMatch(eMail, regularExpression);
+				return true;
+			}
+			catch (FormatException)
+			{
+				return false;
+			}
 		}
 
 		/// <summary>
@@ -82,6 +90,16 @@ namespace Simplify.String
 			return (float)(gRet.CountLike * 100.0 / gRet.SubRows);
 		}
 
+		/// <summary>
+		/// Strips the HTML tags of the strings.
+		/// </summary>
+		/// <param name="source">The source string.</param>
+		/// <returns></returns>
+		public static string StripHtmlTags(string source)
+		{
+			return Regex.Replace(source, "<.*?>", string.Empty);
+		}
+
 		private static RetCount Matching(string stringA, string stringB, int length)
 		{
 			RetCount tempRet;
@@ -115,16 +133,6 @@ namespace Simplify.String
 		{
 			public long SubRows;
 			public long CountLike;
-		}
-
-		/// <summary>
-		/// Strips the HTML tags of the strings.
-		/// </summary>
-		/// <param name="source">The source string.</param>
-		/// <returns></returns>
-		public static string StripHtmlTags(string source)
-		{
-			return Regex.Replace(source, "<.*?>", string.Empty);
 		}
 	}
 }

@@ -21,14 +21,14 @@ namespace Simplify.String.Tests
 		{
 			Assert.IsTrue(StringHelper.ValidateEMail("testname@pupkin.org"));
 			Assert.IsTrue(StringHelper.ValidateEMail("someaddress.test.company@pupkin.org"));
+			Assert.IsTrue(StringHelper.ValidateEMail("someaddress.test@company"));
+			Assert.IsTrue(StringHelper.ValidateEMail("someaddress.test@companyorg"));
 
 			Assert.IsFalse(StringHelper.ValidateEMail(null));
 			Assert.IsFalse(StringHelper.ValidateEMail("someaddress"));
 			Assert.IsFalse(StringHelper.ValidateEMail("someaddress.test.company.org"));
-			Assert.IsFalse(StringHelper.ValidateEMail("someaddress.test@company"));
 			Assert.IsFalse(StringHelper.ValidateEMail("someaddress@test@company.org"));
 			Assert.IsFalse(StringHelper.ValidateEMail("someaddress.test..company.org"));
-			Assert.IsFalse(StringHelper.ValidateEMail("someaddress.test@companyorg"));
 		}
 
 		[Test]
