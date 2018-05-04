@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net462</TargetFrameworks>
+		<TargetFrameworks>netcoreapp2.0</TargetFrameworks>
 		<Authors>Alexander Krylkov</Authors>
 		<Product>Simplify</Product>
 		<Description>Simplify.FluentNHibernate unit tests</Description>
@@ -14,8 +14,6 @@
 		<PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
 		<PackageReference Include="System.Data.SQLite" Version="1.0.108" />
 		<PackageReference Include="System.Data.SQLite.MSIL" Version="1.0.108" />
-		<ProjectReference Include="..\Examples\Simplify.FluentNHibernate.Examples.Database\Simplify.FluentNHibernate.Examples.Database.csproj" />
 		<ProjectReference Include="..\Simplify.FluentNHibernate\Simplify.FluentNHibernate.csproj" />
-		<PackageReference Include="FluentNHibernate" Version="2.1.2" />
 	</ItemGroup>
 </Project>
