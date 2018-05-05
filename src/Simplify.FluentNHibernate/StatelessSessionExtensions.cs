@@ -1,0 +1,182 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+
+using NHibernate;
+using NHibernate.Linq;
+
+namespace Simplify.FluentNHibernate
+{
+	/// <summary>
+	/// NHibernate.IStatelessSession extensions
+	/// </summary>
+	public static class StatelessSessionExtensions
+	{
+		#region Single objects operations
+
+		/// <summary>
+		/// Get an object from single item table
+		/// </summary>
+		/// <typeparam name="T">Object type to get</typeparam>
+		/// <param name="session">The NHibernate session.</param>
+		/// <returns></returns>
+		public static T GetSingleObject<T>(this IStatelessSession session)
+			where T : class
+		{
+			return GetSingleObject<T>(session, LockMode.None);
+		}
+
+		/// <summary>
+		/// Get an object from single item table
+		/// </summary>
+		/// <typeparam name="T">Object type to get</typeparam>
+		/// <param name="session">The NHibernate session.</param>
+		/// <param name="lockMode">The lock mode.</param>
+		/// <returns></returns>
+		public static T GetSingleObject<T>(this IStatelessSession session, LockMode lockMode)
+			where T : class
+		{
+			return session.CreateCriteria<T>()
+				.SetLockMode(lockMode)
+				.UniqueResult<T>();
+		}
+
+		/// <summary>
+		/// Get an object from database by filter (in case of several objects returned exception will be thrown)
+		/// </summary>
+		/// <typeparam name="T">The type of the object</typeparam>
+		/// <param name="session">The NHibernate session.</param>
+		/// <param name="query">Query</param>
+		/// <returns></returns>
+		public static T GetObject<T>(this IStatelessSession session, Expression<Func<T, bool>> query = null)
+			where T : class
+		{
+			var queryable = session.Query<T>();
+
+			if (query != null)
+				queryable = queryable.Where(query);
+
+			return queryable.Select(x => x).SingleOrDefault();
+		}
+
+		/// <summary>
+		/// Get a first object from database by filter
+		/// </summary>
+		/// <typeparam name="T">The type of the object</typeparam>
+		/// <param name="session">The NHibernate session.</param>
+		/// <param name="query">Query</param>
+		/// <returns></returns>
+		public static T GetFirstObject<T>(this IStatelessSession session, Expression<Func<T, bool>> query = null)
+			where T : class
+		{
+			var queryable = session.Query<T>();
+
+			if (query != null)
+				queryable = queryable.Where(query);
+
+			return queryable.Select(x => x).FirstOrDefault();
+		}
+
+		/// <summary>
+		/// Get and cache an object from database by filter (in case of several objects returned exception will be thrown)
+		/// </summary>
+		/// <typeparam name="T">The type of the object</typeparam>
+		/// <param name="session">The NHibernate session.</param>
+		/// <param name="query">Query</param>
+		/// <returns></returns>
+		public static T GetObjectCacheable<T>(this IStatelessSession session, Expression<Func<T, bool>> query = null)
+			where T : class
+		{
+			var queryable = session.Query<T>();
+
+			if (query != null)
+				queryable = queryable.Where(query);
+
+			queryable = queryable.SetOptions(x => x.SetCacheable(true));
+
+			return queryable.Select(x => x).SingleOrDefault();
+		}
+
+		#endregion Single objects operations
+
+		#region List operations
+
+		/// <summary>
+		/// Get a list of objects
+		/// </summary>
+		/// <typeparam name="T">The type of elements</typeparam>
+		/// <param name="session">The NHibernate session.</param>
+		/// <param name="query">Query</param>
+		/// <param name="customProcessing">The custom processing.</param>
+		/// <returns>
+		/// List of objects
+		/// </returns>
+		public static IList<T> GetList<T>(this IStatelessSession session,
+			Expression<Func<T, bool>> query = null,
+			Func<IQueryable<T>, IQueryable<T>> customProcessing = null)
+			where T : class
+		{
+			var queryable = session.Query<T>();
+
+			if (query != null)
+				queryable = queryable.Where(query);
+
+			if (customProcessing != null)
+				queryable = customProcessing(queryable);
+
+			return queryable.Select(x => x).ToList();
+		}
+
+		/// <summary>
+		/// Gets the list of objects paged.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="session">The session.</param>
+		/// <param name="pageIndex">Index of the page.</param>
+		/// <param name="itemsPerPage">The items per page.</param>
+		/// <param name="query">The query.</param>
+		/// <param name="customProcessing">The custom processing.</param>
+		/// <returns></returns>
+		public static IList<T> GetListPaged<T>(this IStatelessSession session, int pageIndex, int itemsPerPage,
+			Expression<Func<T, bool>> query = null,
+			Func<IQueryable<T>, IQueryable<T>> customProcessing = null)
+			where T : class
+		{
+			var queryable = session.Query<T>();
+
+			if (query != null)
+				queryable = queryable.Where(query);
+
+			if (customProcessing != null)
+				queryable = customProcessing(queryable);
+
+			return queryable.Skip(pageIndex * itemsPerPage)
+				.Take(itemsPerPage).ToList();
+		}
+
+		#endregion List operations
+
+		#region Count operations
+
+		/// <summary>
+		/// Gets the number of elements.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="session">The session.</param>
+		/// <param name="query">The query.</param>
+		/// <returns></returns>
+		public static int GetCount<T>(this IStatelessSession session, Expression<Func<T, bool>> query = null)
+			where T : class
+		{
+			var queryable = session.Query<T>();
+
+			if (query != null)
+				queryable = queryable.Where(query);
+
+			return queryable.Count();
+		}
+
+		#endregion Count operations
+	}
+}
