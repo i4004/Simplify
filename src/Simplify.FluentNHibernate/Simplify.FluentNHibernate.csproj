@@ -27,6 +27,5 @@
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
 		<Reference Include="System" />
-		<!-- <Reference Include="System.Configuration" /> -->
 	</ItemGroup>
 </Project>
