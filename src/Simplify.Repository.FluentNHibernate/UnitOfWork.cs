@@ -1,4 +1,5 @@
-﻿using NHibernate;
+﻿using System;
+using NHibernate;
 
 namespace Simplify.Repository.FluentNHibernate
 {
@@ -7,14 +8,6 @@ namespace Simplify.Repository.FluentNHibernate
 	/// </summary>
 	public class UnitOfWork : IUnitOfWork
 	{
-		/// <summary>
-		/// Gets the session.
-		/// </summary>
-		/// <value>
-		/// The session.
-		/// </value>
-		public ISession Session { get; }
-
 		/// <summary>
 		/// Initializes a new instance of the <see cref="UnitOfWork"/> class.
 		/// </summary>
@@ -25,11 +18,33 @@ namespace Simplify.Repository.FluentNHibernate
 		}
 
 		/// <summary>
+		/// Gets the session.
+		/// </summary>
+		/// <value>
+		/// The session.
+		/// </value>
+		public ISession Session { get; private set; }
+
+		/// <summary>
 		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
 		/// </summary>
 		public void Dispose()
 		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		/// <summary>
+		/// Releases unmanaged and - optionally - managed resources.
+		/// </summary>
+		/// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+		protected virtual void Dispose(bool disposing)
+		{
+			if (!disposing)
+				return;
+
 			Session?.Dispose();
+			Session = null;
 		}
 	}
 }
