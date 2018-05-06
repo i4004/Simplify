@@ -5,13 +5,20 @@
 		<Product>Simplify</Product>
 		<Description>Simplify.Repository FluentNHibernate implementation</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>0.4.1</Version>
+		<Version>1.0</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.Repository.FluentNHibernat</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET Repository UoW Model</PackageTags>
-		<PackageReleaseNotes />
+		<PackageReleaseNotes>
+			* Upgrade to .NET Framework 4.6.2
+			+ .NET Standard 2.0 support
+			+ StatelessGenericRepository added
+			* Onsolete methods removed
+			* Types names refactored
+			* Unit of works dispose improved
+		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.Repository.FluentNHibernat.xml</DocumentationFile>
 	</PropertyGroup>
