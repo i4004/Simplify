@@ -17,6 +17,6 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Simplify.FluentNHibernate" Version="1.8.0" />
-		<PackageReference Include="Simplify.Repository" Version="0.4.1" />
+		<PackageReference Include="Simplify.Repository" Version="1.0.0" />
 	</ItemGroup>
 </Project>
