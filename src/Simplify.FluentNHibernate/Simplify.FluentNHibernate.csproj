@@ -5,16 +5,16 @@
 		<Product>Simplify</Product>
 		<Description>Simplifies FluentNHibernate connection configuration and allows you to write data-base queries with lambda expressions</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>1.7.0</Version>
+		<Version>1.8.0</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.FluentNHibernate</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.FluentNHibernate</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET FluentNHibernate ORM</PackageTags>
 		<PackageReleaseNotes>
-			- Obsolete methods removed
-			* Upgrade to .NET Framework 4.6.2
-			* Upgrade to FluentNHibernate 2.1.0 (NHibernate 5.0.3)
+			+ .NET Standard 2.0 support
+			* Upgrade to FluentNHibernate 2.1.2 (NHibernate 5.1.1)
+			+ Stateless session extensions
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.FluentNHibernate.xml</DocumentationFile>
