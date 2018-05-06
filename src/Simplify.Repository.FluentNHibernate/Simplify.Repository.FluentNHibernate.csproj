@@ -15,7 +15,7 @@
 			* Upgrade to .NET Framework 4.6.2
 			+ .NET Standard 2.0 support
 			+ StatelessGenericRepository added
-			* Onsolete methods removed
+			* Obsolete methods removed
 			* Types names refactored
 			* Unit of works dispose improved
 		</PackageReleaseNotes>
