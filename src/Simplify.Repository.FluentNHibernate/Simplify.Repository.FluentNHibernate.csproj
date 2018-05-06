@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net452</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net462</TargetFrameworks>
 		<Authors>Alexander Krylkov</Authors>
 		<Product>Simplify</Product>
 		<Description>Simplify.Repository FluentNHibernate implementation</Description>
@@ -11,12 +11,12 @@
 		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.Repository.FluentNHibernat</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET Repository UoW Model</PackageTags>
-		<PackageReleaseNotes></PackageReleaseNotes>
+		<PackageReleaseNotes />
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.Repository.FluentNHibernat.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Simplify.FluentNHibernate" Version="1.6.0" />
-		<PackageReference Include="Simplify.Repository" Version="0.4.0" />
+		<PackageReference Include="Simplify.FluentNHibernate" Version="1.8.0" />
+		<PackageReference Include="Simplify.Repository" Version="0.4.1" />
 	</ItemGroup>
 </Project>
