@@ -18,6 +18,7 @@ namespace Simplify.Repository.FluentNHibernate
 		public AutoStatelessUnitOfWork(ISessionFactory sessionFactory) : base(sessionFactory)
 		{
 			_transaction = Session.BeginTransaction();
+			IsTransactionActive = true;
 		}
 
 		/// <summary>
@@ -34,7 +35,7 @@ namespace Simplify.Repository.FluentNHibernate
 		/// <exception cref="InvalidOperationException">Oops! We don't have an active transaction</exception>
 		public void Commit()
 		{
-			if (!_transaction.IsActive)
+			if (!IsTransactionActive)
 				throw new InvalidOperationException("Oops! We don't have an active transaction");
 
 			_transaction.Commit();
