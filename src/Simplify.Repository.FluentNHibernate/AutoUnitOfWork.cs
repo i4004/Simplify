@@ -1,15 +1,24 @@
 ﻿using System;
-using System.Data;
 using NHibernate;
 
 namespace Simplify.Repository.FluentNHibernate
 {
 	/// <summary>
-	/// Provides unit of work with manual open transaction
+	/// Provides unit of work with auto-open transaction
 	/// </summary>
-	public class BeginTransactUnitOfWork : IBeginTransactUnitOfWork
+	public class AutoUnitOfWork : IAutoUnitOfWork
 	{
-		private ITransaction _transaction;
+		private readonly ITransaction _transaction;
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="AutoUnitOfWork"/> class.
+		/// </summary>
+		/// <param name="sessionFactory">The session factory.</param>
+		public AutoUnitOfWork(ISessionFactory sessionFactory)
+		{
+			Session = sessionFactory.OpenSession();
+			_transaction = Session.BeginTransaction();
+		}
 
 		/// <summary>
 		/// Gets the session.
@@ -20,27 +29,9 @@ namespace Simplify.Repository.FluentNHibernate
 		public ISession Session { get; }
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="BeginTransactUnitOfWork"/> class.
-		/// </summary>
-		/// <param name="sessionFactory">The session factory.</param>
-		public BeginTransactUnitOfWork(ISessionFactory sessionFactory)
-		{
-			Session = sessionFactory.OpenSession();
-		}
-
-		/// <summary>
-		/// Begins the transaction.
-		/// </summary>
-		/// <param name="isolationLevel">The isolation level.</param>
-		public virtual void BeginTransaction(IsolationLevel isolationLevel = IsolationLevel.ReadCommitted)
-		{
-			_transaction = Session.BeginTransaction(isolationLevel);
-		}
-
-		/// <summary>
 		/// Commits transaction.
 		/// </summary>
-		/// <exception cref="System.InvalidOperationException">Oops! We don't have an active transaction</exception>
+		/// <exception cref="InvalidOperationException">Oops! We don't have an active transaction</exception>
 		public virtual void Commit()
 		{
 			if (!_transaction.IsActive)
