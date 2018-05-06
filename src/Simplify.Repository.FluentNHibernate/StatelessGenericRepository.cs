@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using NHibernate;
-using Simplify.Repository.Repositories;
+using Simplify.FluentNHibernate;
 
-namespace Simplify.Repository.FluentNHibernate.Repositories
+namespace Simplify.Repository.FluentNHibernate
 {
 	/// <summary>
 	/// Provides generic repository pattern for easy NHibernate stateless session repositories implementation
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
-	/// <seealso cref="Simplify.Repository.Repositories.IGenericRepository{T}" />
 	public class StatelessGenericRepository<T> : IGenericRepository<T>
 		where T : class
 	{
