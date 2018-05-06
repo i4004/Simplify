@@ -9,9 +9,9 @@ using NHibernate.Linq;
 namespace Simplify.FluentNHibernate
 {
 	/// <summary>
-	/// NHibernate.ISession extensions
+	/// NHibernate.IStatelessSession extensions
 	/// </summary>
-	public static class SessionExtensions
+	public static class StatelessSessionExtensions
 	{
 		#region Single objects operations
 
@@ -21,7 +21,7 @@ namespace Simplify.FluentNHibernate
 		/// <typeparam name="T">Object type to get</typeparam>
 		/// <param name="session">The NHibernate session.</param>
 		/// <returns></returns>
-		public static T GetSingleObject<T>(this ISession session)
+		public static T GetSingleObject<T>(this IStatelessSession session)
 			where T : class
 		{
 			return GetSingleObject<T>(session, LockMode.None);
@@ -34,7 +34,7 @@ namespace Simplify.FluentNHibernate
 		/// <param name="session">The NHibernate session.</param>
 		/// <param name="lockMode">The lock mode.</param>
 		/// <returns></returns>
-		public static T GetSingleObject<T>(this ISession session, LockMode lockMode)
+		public static T GetSingleObject<T>(this IStatelessSession session, LockMode lockMode)
 			where T : class
 		{
 			return session.CreateCriteria<T>()
@@ -49,7 +49,7 @@ namespace Simplify.FluentNHibernate
 		/// <param name="session">The NHibernate session.</param>
 		/// <param name="query">Query</param>
 		/// <returns></returns>
-		public static T GetObject<T>(this ISession session, Expression<Func<T, bool>> query = null)
+		public static T GetObject<T>(this IStatelessSession session, Expression<Func<T, bool>> query = null)
 			where T : class
 		{
 			var queryable = session.Query<T>();
@@ -67,7 +67,7 @@ namespace Simplify.FluentNHibernate
 		/// <param name="session">The NHibernate session.</param>
 		/// <param name="query">Query</param>
 		/// <returns></returns>
-		public static T GetFirstObject<T>(this ISession session, Expression<Func<T, bool>> query = null)
+		public static T GetFirstObject<T>(this IStatelessSession session, Expression<Func<T, bool>> query = null)
 			where T : class
 		{
 			var queryable = session.Query<T>();
@@ -85,7 +85,7 @@ namespace Simplify.FluentNHibernate
 		/// <param name="session">The NHibernate session.</param>
 		/// <param name="query">Query</param>
 		/// <returns></returns>
-		public static T GetObjectCacheable<T>(this ISession session, Expression<Func<T, bool>> query = null)
+		public static T GetObjectCacheable<T>(this IStatelessSession session, Expression<Func<T, bool>> query = null)
 			where T : class
 		{
 			var queryable = session.Query<T>();
@@ -112,7 +112,7 @@ namespace Simplify.FluentNHibernate
 		/// <returns>
 		/// List of objects
 		/// </returns>
-		public static IList<T> GetList<T>(this ISession session,
+		public static IList<T> GetList<T>(this IStatelessSession session,
 			Expression<Func<T, bool>> query = null,
 			Func<IQueryable<T>, IQueryable<T>> customProcessing = null)
 			where T : class
@@ -138,7 +138,7 @@ namespace Simplify.FluentNHibernate
 		/// <param name="query">The query.</param>
 		/// <param name="customProcessing">The custom processing.</param>
 		/// <returns></returns>
-		public static IList<T> GetListPaged<T>(this ISession session, int pageIndex, int itemsPerPage,
+		public static IList<T> GetListPaged<T>(this IStatelessSession session, int pageIndex, int itemsPerPage,
 			Expression<Func<T, bool>> query = null,
 			Func<IQueryable<T>, IQueryable<T>> customProcessing = null)
 			where T : class
@@ -166,7 +166,7 @@ namespace Simplify.FluentNHibernate
 		/// <param name="session">The session.</param>
 		/// <param name="query">The query.</param>
 		/// <returns></returns>
-		public static int GetCount<T>(this ISession session, Expression<Func<T, bool>> query = null)
+		public static int GetCount<T>(this IStatelessSession session, Expression<Func<T, bool>> query = null)
 			where T : class
 		{
 			var queryable = session.Query<T>();
