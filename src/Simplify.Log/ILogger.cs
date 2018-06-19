@@ -32,21 +32,24 @@ namespace Simplify.Log
 		/// Generates the log message (contain time information etc.).
 		/// </summary>
 		/// <param name="message">Text message</param>
+		/// <param name="addTimeInformation">Adds time information prefix to the generated message.</param>
 		/// <returns></returns>
-		string Generate(string message);
+		string Generate(string message, bool addTimeInformation = true);
 
 		/// <summary>
 		/// Generates full stack data of an exception
 		/// </summary>
 		/// <param name="e">Exception to get data from</param>
+		/// <param name="addTimeInformation">Adds time information prefix to the generated message.</param>
 		/// <returns></returns>
-		string Generate(Exception e);
+		string Generate(Exception e, bool addTimeInformation = true);
 
 		/// <summary>
 		///Generates full stack data of an exception formatted with HTML line breaks
 		/// </summary>
 		/// <param name="e">Exception to get data from</param>
+		/// <param name="addTimeInformation">Adds time information prefix to the generated message.</param>
 		/// <returns></returns>
-		string GenerateWeb(Exception e);
+		string GenerateWeb(Exception e, bool addTimeInformation = true);
 	}
 }
