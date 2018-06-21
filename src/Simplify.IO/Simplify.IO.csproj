@@ -3,7 +3,7 @@
 		<TargetFrameworks>net452</TargetFrameworks>
 		<Authors>Alexander Krylkov</Authors>
 		<Product>Simplify</Product>
-		<Description>Simplify.IO unit tests</Description>
+		<Description>IO helper functions</Description>
 		<Copyright>Licensed under LGPL</Copyright>
 		<Version>1.0.7</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify</PackageProjectUrl>
