@@ -13,6 +13,6 @@
 		<PackageReference Include="NUnit" Version="3.10.1" />
 		<PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
 		<ProjectReference Include="..\Simplify.IO\Simplify.IO.csproj" />
-		<PackageReference Include="System.IO.Abstractions" Version="2.0.0.144" />
+		<PackageReference Include="System.IO.Abstractions" Version="2.1.0.178" />
 	</ItemGroup>
 </Project>
