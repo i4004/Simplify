@@ -12,8 +12,8 @@
 		<PackageReference Include="Simplify.DI" Version="1.2.2" />
 		<PackageReference Include="Castle.Windsor" Version="4.1.0" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.6.1" />
-		<PackageReference Include="NUnit" Version="3.10.1" />
-		<PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
+		<PackageReference Include="NUnit" Version="3.11.0" />
+		<PackageReference Include="NUnit3TestAdapter" Version="3.11.0" />
 		<ProjectReference Include="..\Simplify.DI.Provider.CastleWindsor\Simplify.DI.Provider.CastleWindsor.csproj" />
 		<ProjectReference Include="..\Simplify.DI.TestsTypes\Simplify.DI.TestsTypes.csproj" />
 	</ItemGroup>
