@@ -1,0 +1,19 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+	{
+		"label": "Build",
+		"command": "dotnet",
+		"type": "process",
+		"args": [
+			"build",
+			"${workspaceFolder}/src/Simplify.sln"
+		],
+		"problemMatcher": "$msCompile",
+		"group":
+		{
+			"kind": "build",
+			"isDefault": true
+		}
+	}]
+}
