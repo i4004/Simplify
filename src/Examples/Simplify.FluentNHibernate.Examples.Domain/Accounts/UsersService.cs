@@ -1,7 +1,6 @@
 ﻿using System;
-using Simplify.FluentNHibernate.Examples.Domain.Model.Accounts;
-using Simplify.FluentNHibernate.Examples.Domain.Model.Location;
-using Simplify.Repository.Repositories;
+using Simplify.FluentNHibernate.Examples.Domain.Location;
+using Simplify.Repository;
 
 namespace Simplify.FluentNHibernate.Examples.Domain.Accounts
 {

@@ -1,6 +1,4 @@
-﻿using Simplify.FluentNHibernate.Examples.Domain.Model.Accounts;
-
-namespace Simplify.FluentNHibernate.Examples.Domain.Accounts
+﻿namespace Simplify.FluentNHibernate.Examples.Domain.Accounts
 {
 	public interface IUsersService
 	{
