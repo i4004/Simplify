@@ -1,6 +1,4 @@
-﻿using Simplify.Repository.Model;
-
-namespace Simplify.Repository.FluentNHibernate.Entities
+﻿namespace Simplify.Repository.FluentNHibernate
 {
 	/// <summary>
 	/// Provides object with name

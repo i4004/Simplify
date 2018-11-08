@@ -1,6 +1,6 @@
-﻿using Simplify.Repository.Model;
+﻿using Simplify.Repository;
 
-namespace Simplify.FluentNHibernate.Examples.Domain.Model.Location
+namespace Simplify.FluentNHibernate.Examples.Domain.Location
 {
 	public interface ICityName : INamedObject
 	{

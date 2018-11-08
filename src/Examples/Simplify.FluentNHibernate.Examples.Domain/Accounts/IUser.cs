@@ -1,8 +1,8 @@
 ﻿using System;
-using Simplify.FluentNHibernate.Examples.Domain.Model.Location;
-using Simplify.Repository.Model;
+using Simplify.FluentNHibernate.Examples.Domain.Location;
+using Simplify.Repository;
 
-namespace Simplify.FluentNHibernate.Examples.Domain.Model.Accounts
+namespace Simplify.FluentNHibernate.Examples.Domain.Accounts
 {
 	public interface IUser : INamedObject
 	{

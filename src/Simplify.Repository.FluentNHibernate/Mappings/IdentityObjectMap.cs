@@ -1,5 +1,4 @@
 using FluentNHibernate.Mapping;
-using Simplify.Repository.Model;
 
 namespace Simplify.Repository.FluentNHibernate.Mappings
 {

@@ -1,31 +1,22 @@
 ﻿using System;
-using System.Data;
 using NHibernate;
 
 namespace Simplify.Repository.FluentNHibernate
 {
 	/// <summary>
-	/// Provides unit of work with manual open transaction
+	/// Provides unit of work with auto-open transaction
 	/// </summary>
-	public class TransactUnitOfWork : UnitOfWork, ITransactUnitOfWork
+	public class AutoUnitOfWork : UnitOfWork, IAutoUnitOfWork
 	{
-		private ITransaction _transaction;
+		private readonly ITransaction _transaction;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="TransactUnitOfWork"/> class.
+		/// Initializes a new instance of the <see cref="AutoUnitOfWork"/> class.
 		/// </summary>
 		/// <param name="sessionFactory">The session factory.</param>
-		public TransactUnitOfWork(ISessionFactory sessionFactory) : base(sessionFactory)
+		public AutoUnitOfWork(ISessionFactory sessionFactory) : base(sessionFactory)
 		{
-		}
-
-		/// <summary>
-		/// Begins the transaction.
-		/// </summary>
-		/// <param name="isolationLevel">The isolation level.</param>
-		public virtual void BeginTransaction(IsolationLevel isolationLevel = IsolationLevel.ReadCommitted)
-		{
-			_transaction = Session.BeginTransaction(isolationLevel);
+			_transaction = Session.BeginTransaction();
 		}
 
 		/// <summary>

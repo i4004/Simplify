@@ -3,22 +3,21 @@
 		<TargetFrameworks>net452</TargetFrameworks>
 		<Authors>Alexander Krylkov</Authors>
 		<Product>Simplify</Product>
-		<Description>Simplify.IO unit tests</Description>
+		<Description>IO helper functions</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>1.1.1</Version>
+		<Version>1.0.7</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.IO</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET IO</PackageTags>
 		<PackageReleaseNotes>
-			* Upgrade to .net framework 4.5.2
-			* Upgrade to System.IO.Abstractions 2.0.0.144
+			* Upgrade to System.IO.Abstractions 2.1.0.178
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.IO.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="System.IO.Abstractions" Version="2.0.0.144" />
+		<PackageReference Include="System.IO.Abstractions" Version="2.1.0.178" />
 	</ItemGroup>
 </Project>

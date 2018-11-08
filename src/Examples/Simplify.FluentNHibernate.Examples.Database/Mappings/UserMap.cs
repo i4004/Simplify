@@ -1,5 +1,5 @@
-﻿using Simplify.FluentNHibernate.Examples.Database.Entities.Accounts;
-using Simplify.FluentNHibernate.Examples.Database.Entities.Location;
+﻿using Simplify.FluentNHibernate.Examples.Database.Accounts;
+using Simplify.FluentNHibernate.Examples.Database.Location;
 using Simplify.Repository.FluentNHibernate.Mappings;
 
 namespace Simplify.FluentNHibernate.Examples.Database.Mappings
