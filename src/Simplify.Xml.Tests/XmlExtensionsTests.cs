@@ -11,17 +11,17 @@ namespace Simplify.Xml.Tests
 		private const string ExpectedInner = "<foo>data</foo>";
 
 		[Test]
-		public void XElement_GetOuterXml_GettingCorrectly()
+		public void XNode_GetOuterXml_GettingCorrectly()
 		{
-			var element = XElement.Parse(InputString);
+			XNode element = XElement.Parse(InputString);
 
 			Assert.AreEqual(ExpectedOuter, element.OuterXml());
 		}
 
 		[Test]
-		public void XElement_GetInnerXml_GettingCorrectly()
+		public void XNode_GetInnerXml_GettingCorrectly()
 		{
-			var element = XElement.Parse(InputString);
+			XNode element = XElement.Parse(InputString);
 
 			Assert.AreEqual(ExpectedInner, element.InnerXml());
 		}
