@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 namespace Simplify.Xml
 {
@@ -29,6 +30,22 @@ namespace Simplify.Xml
 			var xReader = element.CreateReader();
 			xReader.MoveToContent();
 			return xReader.ReadInnerXml();
+		}
+
+		/// <summary>
+		/// Removes all XML namespaces from string containing XML data.
+		/// </summary>
+		/// <param name="xmlData">The XML data.</param>
+		/// <returns></returns>
+		public static string RemoveAllXmlNamespaces(this string xmlData)
+		{
+			const string xmlnsPattern = "\\s+xmlns\\s*(:\\w)?\\s*=\\s*\\\"(?<url>[^\\\"]*)\\\"";
+			var matchCol = Regex.Matches(xmlData, xmlnsPattern);
+
+			foreach (Match m in matchCol)
+				xmlData = xmlData.Replace(m.ToString(), "");
+
+			return xmlData;
 		}
 	}
 }
