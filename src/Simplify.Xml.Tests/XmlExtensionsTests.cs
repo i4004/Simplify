@@ -6,20 +6,24 @@ namespace Simplify.Xml.Tests
 	[TestFixture]
 	public class XmlExtensionsTests
 	{
+		private const string InputString = "<test><foo>data</foo></test>";
+		private const string ExpectedOuter = "<test><foo>data</foo></test>";
+		private const string ExpectedInner = "<foo>data</foo>";
+
 		[Test]
 		public void XElement_GetOuterXml_GettingCorrectly()
 		{
-			var element = XElement.Parse("<test><foo>data</foo></test>");
+			var element = XElement.Parse(InputString);
 
-			Assert.AreEqual("<test><foo>data</foo></test>", element.OuterXml());
+			Assert.AreEqual(ExpectedOuter, element.OuterXml());
 		}
 
 		[Test]
 		public void XElement_GetInnerXml_GettingCorrectly()
 		{
-			var element = XElement.Parse("<test><foo>data</foo></test>");
+			var element = XElement.Parse(InputString);
 
-			Assert.AreEqual("<foo>data</foo>", element.InnerXml());
+			Assert.AreEqual(ExpectedInner, element.InnerXml());
 		}
 	}
 }
