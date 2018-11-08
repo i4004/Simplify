@@ -97,7 +97,7 @@ namespace Simplify.Log
 		/// <returns>Text written to log file (contain time information etc.)</returns>
 		public string Write(string message)
 		{
-			var generatedMessage = Generate(message);
+			var generatedMessage = Generate(message, false);
 
 			WriteToFile(generatedMessage);
 
@@ -114,7 +114,7 @@ namespace Simplify.Log
 			if (e == null)
 				return "";
 
-			var message = Generate(e);
+			var message = Generate(e, false);
 
 			WriteToFile(message);
 
@@ -135,21 +135,28 @@ namespace Simplify.Log
 		/// Generates the log message (contain time information etc.).
 		/// </summary>
 		/// <param name="message">Text message</param>
+		/// <param name="addTimeInformation">Adds time information prefix to the generated message.</param>
 		/// <returns></returns>
-		public string Generate(string message)
+		public string Generate(string message, bool addTimeInformation = true)
 		{
 			var stack = new StackTrace();
 			var functionName = stack.GetFrame(1).GetMethod().Name;
 
-			return AddTimeInformation($" {functionName} : {message}");
+			var generatedMessage = $" {functionName} : {message}";
+
+			if (addTimeInformation)
+				generatedMessage = AddTimeInformation(generatedMessage);
+
+			return generatedMessage;
 		}
 
 		/// <summary>
 		/// Generates full stack data of an exception
 		/// </summary>
 		/// <param name="e">Exception to get data from</param>
+		/// <param name="addTimeInformation">Adds time information prefix to the generated message.</param>
 		/// <returns></returns>
-		public string Generate(Exception e)
+		public string Generate(Exception e, bool addTimeInformation = true)
 		{
 			if (e == null)
 				return "";
@@ -161,17 +168,23 @@ namespace Simplify.Log
 
 			var positionPrefix = fileLineNumber == 0 && fileColumnNumber == 0 ? "" : $"[{fileLineNumber}:{fileColumnNumber}]";
 
-			return AddTimeInformation($"{positionPrefix} {e.GetType()} : {e.Message}{Environment.NewLine}{trace}{GetInnerExceptionData(1, e.InnerException)}");
+			var generatedMessage = $"{positionPrefix} {e.GetType()} : {e.Message}{Environment.NewLine}{trace}{GetInnerExceptionData(1, e.InnerException)}";
+
+			if (addTimeInformation)
+				generatedMessage = AddTimeInformation(generatedMessage);
+
+			return generatedMessage;
 		}
 
 		/// <summary>
 		/// Generates full stack data of an exception formatted with HTML line breaks
 		/// </summary>
 		/// <param name="e">Exception to get data from</param>
+		/// <param name="addTimeInformation">Adds time information prefix to the generated message.</param>
 		/// <returns></returns>
-		public string GenerateWeb(Exception e)
+		public string GenerateWeb(Exception e, bool addTimeInformation = true)
 		{
-			return Generate(e).Replace("\r\n", "<br />");
+			return Generate(e, addTimeInformation).Replace("\r\n", "<br />");
 		}
 
 		private static string AddTimeInformation(string message)
@@ -228,7 +241,7 @@ namespace Simplify.Log
 					}
 				}
 
-				var writeMessage = message + Environment.NewLine;
+				var writeMessage = AddTimeInformation(message + Environment.NewLine);
 
 				FileSystem.File.AppendAllText(_currentLogFileName, writeMessage);
 			}

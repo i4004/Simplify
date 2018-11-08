@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using Simplify.FluentNHibernate.Examples.Domain.Model.Location;
-using Simplify.Repository.FluentNHibernate.Entities;
+using Simplify.FluentNHibernate.Examples.Domain.Location;
+using Simplify.Repository.FluentNHibernate;
 
-namespace Simplify.FluentNHibernate.Examples.Database.Entities.Location
+namespace Simplify.FluentNHibernate.Examples.Database.Location
 {
 	public class City : IdentityObject, ICity
 	{

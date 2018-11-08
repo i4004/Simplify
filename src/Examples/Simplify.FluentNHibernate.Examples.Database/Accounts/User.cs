@@ -1,9 +1,9 @@
 ﻿using System;
-using Simplify.FluentNHibernate.Examples.Domain.Model.Accounts;
-using Simplify.FluentNHibernate.Examples.Domain.Model.Location;
-using Simplify.Repository.FluentNHibernate.Entities;
+using Simplify.FluentNHibernate.Examples.Domain.Accounts;
+using Simplify.FluentNHibernate.Examples.Domain.Location;
+using Simplify.Repository.FluentNHibernate;
 
-namespace Simplify.FluentNHibernate.Examples.Database.Entities.Accounts
+namespace Simplify.FluentNHibernate.Examples.Database.Accounts
 {
 	public class User : NamedObject, IUser
 	{

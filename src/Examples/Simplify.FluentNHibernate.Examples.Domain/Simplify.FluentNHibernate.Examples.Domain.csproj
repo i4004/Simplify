@@ -9,6 +9,6 @@
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\Simplify.Repository\Simplify.Repository.csproj" />
+		<PackageReference Include="Simplify.Repository" Version="1.0.0" />
 	</ItemGroup>
 </Project>

@@ -3,7 +3,7 @@
 		<TargetFrameworks>net452</TargetFrameworks>
 		<Authors>Alexander Krylkov</Authors>
 		<Product>Simplify</Product>
-		<Description>Simplify.WindowsServices integration tests service</Description>
+		<Description>Simplify.WindowsServices integration tester service</Description>
 		<Copyright>Licensed under LGPL</Copyright>
 		<Version>0.4.1</Version>
 		<OutputType>Exe</OutputType>

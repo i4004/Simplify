@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Simplify.FluentNHibernate.Examples.Domain.Model.Location;
-using Simplify.Repository.Repositories;
+using Simplify.Repository;
 
 namespace Simplify.FluentNHibernate.Examples.Domain.Location
 {

@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net462</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0</TargetFrameworks>
 		<Authors>Alexander Krylkov</Authors>
 		<Product>Simplify</Product>
 		<Description>Simplify.FluentNHibernate database mappings examples</Description>
@@ -9,10 +9,7 @@
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="FluentNHibernate" Version="2.1.0" />
-		<ProjectReference Include="..\..\Simplify.FluentNHibernate\Simplify.FluentNHibernate.csproj" />
-		<ProjectReference Include="..\..\Simplify.Repository.FluentNHibernate\Simplify.Repository.FluentNHibernate.csproj" />
-		<ProjectReference Include="..\..\Simplify.Repository\Simplify.Repository.csproj" />
+		<PackageReference Include="Simplify.Repository.FluentNHibernate" Version="1.0.0" />
 		<ProjectReference Include="..\Simplify.FluentNHibernate.Examples.Domain\Simplify.FluentNHibernate.Examples.Domain.csproj" />
 	</ItemGroup>
 </Project>

@@ -11,7 +11,10 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>String operations/validation functions</description>
 		<summary>String operations/validation functions</summary>
-		<releaseNotes></releaseNotes>
+		<releaseNotes>
+			+ .NET Standard 2.0 support
+			* ValidateEMail reimplemented via System.Net.Mail.MailAddress internal validator
+		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
 		<tags>.NET</tags>

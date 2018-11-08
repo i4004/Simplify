@@ -1,4 +1,4 @@
-﻿namespace Simplify.Repository.Model
+﻿namespace Simplify.Repository
 {
 	/// <summary>
 	/// Represent object with identifier

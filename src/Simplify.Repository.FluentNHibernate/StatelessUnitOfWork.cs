@@ -4,17 +4,18 @@ using NHibernate;
 namespace Simplify.Repository.FluentNHibernate
 {
 	/// <summary>
-	/// Provides unit of work
+	/// Provides unit of work with stateless session
 	/// </summary>
-	public class UnitOfWork : IUnitOfWork
+	/// <seealso cref="IUnitOfWork" />
+	public class StatelessUnitOfWork : IUnitOfWork
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="UnitOfWork"/> class.
+		/// Initializes a new instance of the <see cref="StatelessUnitOfWork"/> class.
 		/// </summary>
 		/// <param name="sessionFactory">The session factory.</param>
-		public UnitOfWork(ISessionFactory sessionFactory)
+		public StatelessUnitOfWork(ISessionFactory sessionFactory)
 		{
-			Session = sessionFactory.OpenSession();
+			Session = sessionFactory.OpenStatelessSession();
 		}
 
 		/// <summary>
@@ -23,10 +24,10 @@ namespace Simplify.Repository.FluentNHibernate
 		/// <value>
 		/// The session.
 		/// </value>
-		public ISession Session { get; private set; }
+		public IStatelessSession Session { get; private set; }
 
 		/// <summary>
-		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+		/// Releases unmanaged and - optionally - managed resources.
 		/// </summary>
 		public void Dispose()
 		{
@@ -43,7 +44,9 @@ namespace Simplify.Repository.FluentNHibernate
 			if (!disposing)
 				return;
 
-			Session?.Dispose();
+			if (Session.IsOpen)
+				Session.Close();
+
 			Session = null;
 		}
 	}
