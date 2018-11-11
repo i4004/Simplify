@@ -1,5 +1,6 @@
 ﻿using System.Xml.Linq;
 using NUnit.Framework;
+using Simplify.Templates;
 
 namespace Simplify.Xml.Tests
 {
@@ -24,6 +25,16 @@ namespace Simplify.Xml.Tests
 
 			// Act & Assert
 			Assert.AreEqual("<foo>data</foo>", element.InnerXml());
+		}
+
+		[Test]
+		public void RemoveAllXmlNamespaces_XmlStringWithBNamespaces_XmlStringWithoutNamespaces()
+		{
+			// Assign
+			var str = Template.FromManifest("TestData.XmlWithNamespaces.xml").Get();
+
+			// Act & Assert
+			Assert.AreEqual(Template.FromManifest("TestData.XmlWithoutNamespaces..xml").Get(), str.RemoveAllXmlNamespaces());
 		}
 	}
 }
