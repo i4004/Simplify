@@ -43,7 +43,7 @@ Packages status
 | [![Nuget version](http://img.shields.io/badge/Simplify.Templates-v1.4.1-blue.png)](https://www.nuget.org/packages/Simplify.Templates/) | [![NuGet Status](http://nugetstatus.com/Simplify.Templates.png)](http://nugetstatus.com/packages/Simplify.Templates) | 4.5.2, Standard 2.0 |
 | [![Nuget version](http://img.shields.io/badge/Simplify.Web-green.png)](https://github.com/i4004/Simplify.Web) |||
 | [![Nuget version](http://img.shields.io/badge/Simplify.WindowsServices-v2.6-blue.png)](https://www.nuget.org/packages/Simplify.WindowsServices/) | [![NuGet Status](http://nugetstatus.com/Simplify.WindowsServices.png)](http://nugetstatus.com/packages/Simplify.WindowsServices) | 4.5.2 |
-| [![Nuget version](http://img.shields.io/badge/Simplify.Xml-v1.0.4-blue.png)](https://www.nuget.org/packages/Simplify.Xml/) | [![NuGet Status](http://nugetstatus.com/Simplify.Xml.png)](http://nugetstatus.com/packages/Simplify.Xml) | 4.5.2, Standard 2.0 |
+| [![Nuget version](http://img.shields.io/badge/Simplify.Xml-v1.1-blue.png)](https://www.nuget.org/packages/Simplify.Xml/) | [![NuGet Status](http://nugetstatus.com/Simplify.Xml.png)](http://nugetstatus.com/packages/Simplify.Xml) | 4.5.2, Standard 2.0 |
 | [![Nuget version](http://img.shields.io/badge/Simplify.Xml.Sources-v1.0.4-blue.png)](https://www.nuget.org/packages/Simplify.Xml.Sources/) | [![NuGet Status](http://nugetstatus.com/Simplify.Xml.Sources.png)](http://nugetstatus.com/packages/Simplify.Xml.Sources) | 4.5.2, Standard 2.0 |
 
 ### Extra
