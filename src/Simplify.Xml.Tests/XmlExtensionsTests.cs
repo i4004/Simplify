@@ -15,20 +15,20 @@ namespace Simplify.Xml.Tests
 		public void GetOuterXml_XElement_GettingCorrectly()
 		{
 			// Assign
-			var element = XElement.Parse("<test><foo>data</foo></test>");
+			var element = XElement.Parse(InputString);
 
 			// Act & Assert
-			Assert.AreEqual("<test><foo>data</foo></test>", element.OuterXml());
+			Assert.AreEqual(ExpectedOuter, element.OuterXml());
 		}
 
 		[Test]
 		public void GetInnerXml_XElement_GettingCorrectly()
 		{
 			// Assign
-			var element = XElement.Parse("<test><foo>data</foo></test>");
+			var element = XElement.Parse(InputString);
 
 			// Act & Assert
-			Assert.AreEqual("<foo>data</foo>", element.InnerXml());
+			Assert.AreEqual(ExpectedInner, element.InnerXml());
 		}
 
 		[Test]
