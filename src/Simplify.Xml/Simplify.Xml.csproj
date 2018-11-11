@@ -5,15 +5,15 @@
 		<Product>Simplify</Product>
 		<Description>XML extensions</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>1.0.4</Version>
+		<Version>1.1</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.Xml</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.Xml</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET XML</PackageTags>
 		<PackageReleaseNotes>
-			* Added .NET Standard 1.0 support
-			* Upgrade to .NET Framework 4.5.2
+			* OuterXml/InnerXml for XNode elements instead of just XElements
+			+ RemoveAllXmlNamespaces added
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.Xml.xml</DocumentationFile>
