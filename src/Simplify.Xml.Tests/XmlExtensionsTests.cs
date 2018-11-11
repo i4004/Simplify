@@ -7,6 +7,10 @@ namespace Simplify.Xml.Tests
 	[TestFixture]
 	public class XmlExtensionsTests
 	{
+		private const string InputString = "<test><foo>data</foo></test>";
+		private const string ExpectedOuter = "<test><foo>data</foo></test>";
+		private const string ExpectedInner = "<foo>data</foo>";
+
 		[Test]
 		public void GetOuterXml_XElement_GettingCorrectly()
 		{
