@@ -1,11 +1,13 @@
-﻿namespace Simplify.DI.Provider.DryIoc
+﻿using DryIoc;
+
+namespace Simplify.DI.Provider.DryIoc
 {
 	/// <summary>
 	/// DryIoc DI provider lifetime scope implementation
 	/// </summary>
 	public class DryIocLifetimeScope : ILifetimeScope
 	{
-		private readonly DryIocDIProvider _currentScopeProvider;
+		private readonly IResolverContext _context;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="DryIocLifetimeScope"/> class.
@@ -13,24 +15,24 @@
 		/// <param name="provider">The provider.</param>
 		public DryIocLifetimeScope(DryIocDIProvider provider)
 		{
-			_currentScopeProvider = new DryIocDIProvider { Container = provider.Container.OpenScope() };
-			Container = _currentScopeProvider;
+			_context = provider.Container.OpenScope();
+			Resolver = new DryIocDIResolver(_context);
 		}
 
 		/// <summary>
-		/// Gets the DI container provider (should be user to resolve types when using scoping).
+		/// Gets the DI container resolver (should be used to resolve types when using scoping).
 		/// </summary>
 		/// <value>
-		/// The DI container provider (should be user to resolve types when using scoping).
+		/// The DI container resolver (should be used to resolve types when using scoping).
 		/// </value>
-		public IDIContainerProvider Container { get; private set; }
+		public IDIResolver Resolver { get; }
 
 		/// <summary>
 		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
 		/// </summary>
 		public void Dispose()
 		{
-			_currentScopeProvider.Container.Dispose();
+			_context.Dispose();
 		}
 	}
 }

@@ -21,10 +21,7 @@ namespace Simplify.DI
 			}
 			set
 			{
-				if (value == null)
-					throw new ArgumentNullException("value");
-
-				_current = value;
+				_current = value ?? throw new ArgumentNullException("value");
 			}
 		}
 	}
