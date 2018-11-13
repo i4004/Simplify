@@ -5,15 +5,16 @@
 		<Product>Simplify</Product>
 		<Description>Simplify DI common interface for IOC containers</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>1.2.2</Version>
+		<Version>2.0.0</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.DI</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.DI</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET DI IOC-container</PackageTags>
 		<PackageReleaseNotes>
-			* Added .NET Standard 1.0 support
-			* Upgrade to DryIoc 2.12.7
+			* Upgrade to DryIoc 3.0.2
+			* Resolver/Registrator split
+			+ Container provider Dispose
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.DI.xml</DocumentationFile>
