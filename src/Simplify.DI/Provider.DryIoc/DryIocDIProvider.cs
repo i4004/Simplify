@@ -15,17 +15,8 @@ namespace Simplify.DI.Provider.DryIoc
 		/// </summary>
 		public IContainer Container
 		{
-			get
-			{
-				return _container ?? (_container = new Container());
-			}
-			set
-			{
-				if (value == null)
-					throw new ArgumentNullException("value");
-
-				_container = value;
-			}
+			get => _container ?? (_container = new Container());
+			set => _container = value ?? throw new ArgumentNullException(nameof(value));
 		}
 
 		/// <summary>
@@ -68,38 +59,22 @@ namespace Simplify.DI.Provider.DryIoc
 		/// <typeparam name="TService">Service type.</typeparam>
 		/// <param name="instanceCreator">The instance creator.</param>
 		/// <param name="lifetimeType">Lifetime type of the registering concrete type.</param>
-		public void Register<TService>(Func<IDIContainerProvider, TService> instanceCreator,
+		public void Register<TService>(Func<IDIRegistrator, TService> instanceCreator,
 			LifetimeType lifetimeType = LifetimeType.PerLifetimeScope)
-			where TService : class 
+			where TService : class
 		{
 			switch (lifetimeType)
 			{
 				case LifetimeType.Transient:
-					Container.RegisterDelegate(c =>
-					{
-						var provider = new DryIocDIProvider { Container = (Container)c };
-						return instanceCreator(provider);
-					},
-						Reuse.Transient);
-
+					Container.RegisterDelegate(c => instanceCreator(this), Reuse.Transient);
 					break;
 
 				case LifetimeType.Singleton:
-					Container.RegisterDelegate(c =>
-					{
-						var provider = new DryIocDIProvider { Container = (Container)c };
-						return instanceCreator(provider);
-					},
-						Reuse.Singleton);
+					Container.RegisterDelegate(c => instanceCreator(this), Reuse.Singleton);
 					break;
 
 				case LifetimeType.PerLifetimeScope:
-					Container.RegisterDelegate(c =>
-					{
-						var provider = new DryIocDIProvider { Container = (Container)c };
-						return instanceCreator(provider);
-					},
-						Reuse.InCurrentScope);
+					Container.RegisterDelegate(c => instanceCreator(this), Reuse.InCurrentScope);
 					break;
 			}
 		}
@@ -111,6 +86,14 @@ namespace Simplify.DI.Provider.DryIoc
 		public ILifetimeScope BeginLifetimeScope()
 		{
 			return new DryIocLifetimeScope(this);
+		}
+
+		/// <summary>
+		/// Releases unmanaged and - optionally - managed resources.
+		/// </summary>
+		public void Dispose()
+		{
+			_container?.Dispose();
 		}
 	}
 }

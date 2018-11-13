@@ -3,16 +3,16 @@
 namespace Simplify.DI
 {
 	/// <summary>
-	/// Represents DI Container provider lifetime scope
+	/// Represents DI container provider lifetime scope
 	/// </summary>
-	public interface ILifetimeScope : IDisposable, IHideObjectMembers
+	public interface ILifetimeScope : IDisposable
 	{
 		/// <summary>
-		/// Gets the DI container provider (should be used to resolve types when using scoping).
+		/// Gets the DI container resolver (should be used to resolve types when using scoping).
 		/// </summary>
 		/// <value>
-		/// The DI container provider (should be used to resolve types when using scoping).
+		/// The DI container resolver (should be used to resolve types when using scoping).
 		/// </value>
-		IDIContainerProvider Container { get; }
+		IDIResolver Resolver { get; }
 	}
 }

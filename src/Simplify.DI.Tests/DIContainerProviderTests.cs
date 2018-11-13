@@ -32,10 +32,10 @@ namespace Simplify.DI.Tests
 			Foo foo4;
 
 			using (var scope = _provider.BeginLifetimeScope())
-				foo3 = scope.Container.Resolve<Foo>();
+				foo3 = scope.Resolver.Resolve<Foo>();
 
 			using (var scope = _provider.BeginLifetimeScope())
-				foo4 = scope.Container.Resolve<Foo>();
+				foo4 = scope.Resolver.Resolve<Foo>();
 
 			// Assert
 
@@ -61,10 +61,10 @@ namespace Simplify.DI.Tests
 			Foo foo4;
 
 			using (var scope = _provider.BeginLifetimeScope())
-				foo3 = scope.Container.Resolve<Foo>();
+				foo3 = scope.Resolver.Resolve<Foo>();
 
 			using (var scope = _provider.BeginLifetimeScope())
-				foo4 = scope.Container.Resolve<Foo>();
+				foo4 = scope.Resolver.Resolve<Foo>();
 
 			// Assert
 
@@ -97,10 +97,10 @@ namespace Simplify.DI.Tests
 			Foo foo4;
 
 			using (var scope = _provider.BeginLifetimeScope())
-				foo3 = scope.Container.Resolve<Foo>();
+				foo3 = scope.Resolver.Resolve<Foo>();
 
 			using (var scope = _provider.BeginLifetimeScope())
-				foo4 = scope.Container.Resolve<Foo>();
+				foo4 = scope.Resolver.Resolve<Foo>();
 
 			// Assert
 
@@ -132,12 +132,12 @@ namespace Simplify.DI.Tests
 			Foo foo5;
 
 			using (var scope = _provider.BeginLifetimeScope())
-				foo3 = scope.Container.Resolve<Foo>();
+				foo3 = scope.Resolver.Resolve<Foo>();
 
 			using (var scope = _provider.BeginLifetimeScope())
 			{
-				foo4 = scope.Container.Resolve<Foo>();
-				foo5 = scope.Container.Resolve<Foo>();
+				foo4 = scope.Resolver.Resolve<Foo>();
+				foo5 = scope.Resolver.Resolve<Foo>();
 			}
 
 			// Assert
@@ -166,12 +166,12 @@ namespace Simplify.DI.Tests
 			Foo foo5;
 
 			using (var scope = _provider.BeginLifetimeScope())
-				foo3 = scope.Container.Resolve<Foo>();
+				foo3 = scope.Resolver.Resolve<Foo>();
 
 			using (var scope = _provider.BeginLifetimeScope())
 			{
-				foo4 = scope.Container.Resolve<Foo>();
-				foo5 = scope.Container.Resolve<Foo>();
+				foo4 = scope.Resolver.Resolve<Foo>();
+				foo5 = scope.Resolver.Resolve<Foo>();
 			}
 
 			// Assert
