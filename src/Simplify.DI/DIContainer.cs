@@ -15,14 +15,8 @@ namespace Simplify.DI
 		/// </summary>
 		public static IDIContainerProvider Current
 		{
-			get
-			{
-				return _current ?? (_current = new DryIocDIProvider());
-			}
-			set
-			{
-				_current = value ?? throw new ArgumentNullException("value");
-			}
+			get => _current ?? (_current = new DryIocDIProvider());
+			set => _current = value ?? throw new ArgumentNullException(nameof(value));
 		}
 	}
 }
