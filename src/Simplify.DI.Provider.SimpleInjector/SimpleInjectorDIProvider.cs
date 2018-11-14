@@ -41,16 +41,16 @@ namespace Simplify.DI.Provider.SimpleInjector
 		{
 			switch (lifetimeType)
 			{
-				case LifetimeType.Transient:
-					Container.Register(serviceType, implementationType, Lifestyle.Transient);
+				case LifetimeType.PerLifetimeScope:
+					Container.Register(serviceType, implementationType, Lifestyle.Scoped);
 					break;
 
 				case LifetimeType.Singleton:
 					Container.Register(serviceType, implementationType, Lifestyle.Singleton);
 					break;
 
-				case LifetimeType.PerLifetimeScope:
-					Container.Register(serviceType, implementationType, Lifestyle.Scoped);
+				case LifetimeType.Transient:
+					Container.Register(serviceType, implementationType, Lifestyle.Transient);
 					break;
 			}
 		}
@@ -66,16 +66,16 @@ namespace Simplify.DI.Provider.SimpleInjector
 		{
 			switch (lifetimeType)
 			{
-				case LifetimeType.Transient:
-					Container.Register(() => instanceCreator(this), Lifestyle.Transient);
+				case LifetimeType.PerLifetimeScope:
+					Container.Register(() => instanceCreator(this), Lifestyle.Scoped);
 					break;
 
 				case LifetimeType.Singleton:
 					Container.Register(() => instanceCreator(this), Lifestyle.Singleton);
 					break;
 
-				case LifetimeType.PerLifetimeScope:
-					Container.Register(() => instanceCreator(this), Lifestyle.Scoped);
+				case LifetimeType.Transient:
+					Container.Register(() => instanceCreator(this), Lifestyle.Transient);
 					break;
 			}
 		}
