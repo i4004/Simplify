@@ -16,18 +16,18 @@ namespace Simplify.DI.Provider.CastleWindsor
 		/// <param name="provider">The provider.</param>
 		public CastleWindsorLifetimeScope(CastleWindsorDIProvider provider)
 		{
-			Container = provider;
+			Resolver = provider;
 
 			_scope = provider.Container.BeginScope();
 		}
 
 		/// <summary>
-		/// Gets the DI container provider (should be user to resolve types when using scoping).
+		/// Gets the DI container resolver (should be used to resolve types when using scoping).
 		/// </summary>
 		/// <value>
-		/// The DI container provider (should be user to resolve types when using scoping).
+		/// The DI container resolver (should be used to resolve types when using scoping).
 		/// </value>
-		public IDIContainerProvider Container { get; private set; }
+		public IDIResolver Resolver { get; }
 
 		/// <summary>
 		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.

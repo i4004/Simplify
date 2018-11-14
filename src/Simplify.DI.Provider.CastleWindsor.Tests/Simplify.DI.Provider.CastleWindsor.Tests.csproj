@@ -5,12 +5,12 @@
 		<Product>Simplify</Product>
 		<Description>Simplify.DI.Provider.CastleWindsor unit tests</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>1.1</Version>
+		<Version>1.2</Version>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Simplify.DI" Version="1.2.2" />
-		<PackageReference Include="Castle.Windsor" Version="4.1.0" />
+		<PackageReference Include="Simplify.DI" Version="2.0.1" />
+		<PackageReference Include="Castle.Windsor" Version="4.1.1" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.6.1" />
 		<PackageReference Include="NUnit" Version="3.11.0" />
 		<PackageReference Include="NUnit3TestAdapter" Version="3.11.0" />

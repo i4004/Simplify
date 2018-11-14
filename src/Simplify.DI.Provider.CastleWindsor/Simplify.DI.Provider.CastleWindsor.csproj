@@ -5,21 +5,21 @@
 		<Product>Simplify</Product>
 		<Description>Simplify.DI CastleWindsor provider</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>1.2.1</Version>
+		<Version>1.3.0</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.DI</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.DI.Provider.CastleWindsor</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET DI IOC-container-provider</PackageTags>
 		<PackageReleaseNotes>
-			* Added .NET Standard 1.6 support
-			* Upgrade to Castle.Windsor 4.1
+			* Upgrade to Simplify.DI 2.0.1
+			* Upgrade to Castle.Windsor 4.1.1
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.DI.Provider.CastleWindsor.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Castle.Windsor" Version="4.1.0" />
-		<PackageReference Include="Simplify.DI" Version="1.2.2" />
+		<PackageReference Include="Castle.Windsor" Version="4.1.1" />
+		<PackageReference Include="Simplify.DI" Version="2.0.1" />
 	</ItemGroup>
 </Project>
