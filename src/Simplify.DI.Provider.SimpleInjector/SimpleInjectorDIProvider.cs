@@ -16,18 +16,9 @@ namespace Simplify.DI.Provider.SimpleInjector
 		/// </summary>
 		public Container Container
 		{
-			get
-			{
-				return _container ??
-					   (_container = new Container { Options = { DefaultScopedLifestyle = new AsyncScopedLifestyle() } });
-			}
-			set
-			{
-				if (value == null)
-					throw new ArgumentNullException(nameof(value));
-
-				_container = value;
-			}
+			get => _container ??
+				   (_container = new Container { Options = { DefaultScopedLifestyle = new AsyncScopedLifestyle() } });
+			set => _container = value ?? throw new ArgumentNullException(nameof(value));
 		}
 
 		/// <summary>
@@ -50,16 +41,16 @@ namespace Simplify.DI.Provider.SimpleInjector
 		{
 			switch (lifetimeType)
 			{
-				case LifetimeType.Transient:
-					Container.Register(serviceType, implementationType, Lifestyle.Transient);
+				case LifetimeType.PerLifetimeScope:
+					Container.Register(serviceType, implementationType, Lifestyle.Scoped);
 					break;
 
 				case LifetimeType.Singleton:
 					Container.Register(serviceType, implementationType, Lifestyle.Singleton);
 					break;
 
-				case LifetimeType.PerLifetimeScope:
-					Container.Register(serviceType, implementationType, Lifestyle.Scoped);
+				case LifetimeType.Transient:
+					Container.Register(serviceType, implementationType, Lifestyle.Transient);
 					break;
 			}
 		}
@@ -70,21 +61,21 @@ namespace Simplify.DI.Provider.SimpleInjector
 		/// <typeparam name="TService">Concrete type.</typeparam>
 		/// <param name="instanceCreator">The instance creator.</param>
 		/// <param name="lifetimeType">Lifetime type of the registering concrete type.</param>
-		public void Register<TService>(Func<IDIContainerProvider, TService> instanceCreator, LifetimeType lifetimeType = LifetimeType.Singleton)
+		public void Register<TService>(Func<IDIResolver, TService> instanceCreator, LifetimeType lifetimeType = LifetimeType.Singleton)
 			where TService : class
 		{
 			switch (lifetimeType)
 			{
-				case LifetimeType.Transient:
-					Container.Register(() => instanceCreator(this), Lifestyle.Transient);
+				case LifetimeType.PerLifetimeScope:
+					Container.Register(() => instanceCreator(this), Lifestyle.Scoped);
 					break;
 
 				case LifetimeType.Singleton:
 					Container.Register(() => instanceCreator(this), Lifestyle.Singleton);
 					break;
 
-				case LifetimeType.PerLifetimeScope:
-					Container.Register(() => instanceCreator(this), Lifestyle.Scoped);
+				case LifetimeType.Transient:
+					Container.Register(() => instanceCreator(this), Lifestyle.Transient);
 					break;
 			}
 		}
@@ -96,6 +87,14 @@ namespace Simplify.DI.Provider.SimpleInjector
 		public ILifetimeScope BeginLifetimeScope()
 		{
 			return new SimpleInjectorLifetimeScope(this);
+		}
+
+		/// <summary>
+		/// Releases unmanaged and - optionally - managed resources.
+		/// </summary>
+		public void Dispose()
+		{
+			_container?.Dispose();
 		}
 	}
 }
