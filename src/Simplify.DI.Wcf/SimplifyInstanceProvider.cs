@@ -34,7 +34,7 @@ namespace Simplify.DI.Wcf
 
 			try
 			{
-				return scope.Container.Resolve(_serviceType);
+				return scope.Resolver.Resolve(_serviceType);
 			}
 			catch
 			{
