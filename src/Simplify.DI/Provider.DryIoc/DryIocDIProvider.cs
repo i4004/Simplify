@@ -39,16 +39,16 @@ namespace Simplify.DI.Provider.DryIoc
 		{
 			switch (lifetimeType)
 			{
-				case LifetimeType.Transient:
-					Container.Register(serviceType, implementationType, Reuse.Transient);
+				case LifetimeType.PerLifetimeScope:
+					Container.Register(serviceType, implementationType, Reuse.InCurrentScope);
 					break;
 
 				case LifetimeType.Singleton:
 					Container.Register(serviceType, implementationType, Reuse.Singleton);
 					break;
 
-				case LifetimeType.PerLifetimeScope:
-					Container.Register(serviceType, implementationType, Reuse.InCurrentScope);
+				case LifetimeType.Transient:
+					Container.Register(serviceType, implementationType, Reuse.Transient);
 					break;
 			}
 		}
@@ -59,22 +59,22 @@ namespace Simplify.DI.Provider.DryIoc
 		/// <typeparam name="TService">Service type.</typeparam>
 		/// <param name="instanceCreator">The instance creator.</param>
 		/// <param name="lifetimeType">Lifetime type of the registering concrete type.</param>
-		public void Register<TService>(Func<IDIContainerProvider, TService> instanceCreator,
+		public void Register<TService>(Func<IDIResolver, TService> instanceCreator,
 			LifetimeType lifetimeType = LifetimeType.PerLifetimeScope)
 			where TService : class
 		{
 			switch (lifetimeType)
 			{
-				case LifetimeType.Transient:
-					Container.RegisterDelegate(c => instanceCreator(this), Reuse.Transient);
+				case LifetimeType.PerLifetimeScope:
+					Container.RegisterDelegate(c => instanceCreator(new DryIocDIResolver(c)), Reuse.InCurrentScope);
 					break;
 
 				case LifetimeType.Singleton:
-					Container.RegisterDelegate(c => instanceCreator(this), Reuse.Singleton);
+					Container.RegisterDelegate(c => instanceCreator(new DryIocDIResolver(c)), Reuse.Singleton);
 					break;
 
-				case LifetimeType.PerLifetimeScope:
-					Container.RegisterDelegate(c => instanceCreator(this), Reuse.InCurrentScope);
+				case LifetimeType.Transient:
+					Container.RegisterDelegate(c => instanceCreator(new DryIocDIResolver(c)), Reuse.Transient);
 					break;
 			}
 		}
