@@ -31,10 +31,10 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 			Foo foo4;
 
 			using (var scope = _provider.BeginLifetimeScope())
-				foo3 = scope.Container.Resolve<Foo>();
+				foo3 = scope.Resolver.Resolve<Foo>();
 
 			using (var scope = _provider.BeginLifetimeScope())
-				foo4 = scope.Container.Resolve<Foo>();
+				foo4 = scope.Resolver.Resolve<Foo>();
 
 			// Assert
 
@@ -60,10 +60,10 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 			Foo foo4;
 
 			using (var scope = _provider.BeginLifetimeScope())
-				foo3 = scope.Container.Resolve<Foo>();
+				foo3 = scope.Resolver.Resolve<Foo>();
 
 			using (var scope = _provider.BeginLifetimeScope())
-				foo4 = scope.Container.Resolve<Foo>();
+				foo4 = scope.Resolver.Resolve<Foo>();
 
 			// Assert
 
@@ -96,10 +96,10 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 			Foo foo4;
 
 			using (var scope = _provider.BeginLifetimeScope())
-				foo3 = scope.Container.Resolve<Foo>();
+				foo3 = scope.Resolver.Resolve<Foo>();
 
 			using (var scope = _provider.BeginLifetimeScope())
-				foo4 = scope.Container.Resolve<Foo>();
+				foo4 = scope.Resolver.Resolve<Foo>();
 
 			// Assert
 
@@ -131,12 +131,12 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 			Foo foo5;
 
 			using (var scope = _provider.BeginLifetimeScope())
-				foo3 = scope.Container.Resolve<Foo>();
+				foo3 = scope.Resolver.Resolve<Foo>();
 
 			using (var scope = _provider.BeginLifetimeScope())
 			{
-				foo4 = scope.Container.Resolve<Foo>();
-				foo5 = scope.Container.Resolve<Foo>();
+				foo4 = scope.Resolver.Resolve<Foo>();
+				foo5 = scope.Resolver.Resolve<Foo>();
 			}
 
 			// Assert
@@ -165,12 +165,12 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 			Foo foo5;
 
 			using (var scope = _provider.BeginLifetimeScope())
-				foo3 = scope.Container.Resolve<Foo>();
+				foo3 = scope.Resolver.Resolve<Foo>();
 
 			using (var scope = _provider.BeginLifetimeScope())
 			{
-				foo4 = scope.Container.Resolve<Foo>();
-				foo5 = scope.Container.Resolve<Foo>();
+				foo4 = scope.Resolver.Resolve<Foo>();
+				foo5 = scope.Resolver.Resolve<Foo>();
 			}
 
 			// Assert
@@ -181,6 +181,32 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 
 			Assert.AreNotEqual(foo3.Bar1, foo4.Bar1);
 			Assert.AreEqual(foo4.Bar1, foo5.Bar1);
+		}
+
+		[Test]
+		public void Resolve_DelegateWithResolve_ScopeVersionReturned()
+		{
+			// Assign
+
+			_provider.Register<Bar1>();
+			_provider.Register<Bar2>();
+			_provider.Register(p => new Foo(p.Resolve<Bar1>(), p.Resolve<Bar2>()));
+
+			Foo foo1;
+			Foo foo2;
+
+			// Act
+
+			using (var scope = _provider.BeginLifetimeScope())
+				foo1 = scope.Resolver.Resolve<Foo>();
+
+			using (var scope = _provider.BeginLifetimeScope())
+				foo2 = scope.Resolver.Resolve<Foo>();
+
+			// Assert
+
+			Assert.AreNotEqual(foo1, foo2);
+			Assert.AreNotEqual(foo1.Bar1, foo2.Bar1);
 		}
 	}
 }

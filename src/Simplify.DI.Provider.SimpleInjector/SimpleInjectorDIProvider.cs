@@ -16,18 +16,9 @@ namespace Simplify.DI.Provider.SimpleInjector
 		/// </summary>
 		public Container Container
 		{
-			get
-			{
-				return _container ??
-					   (_container = new Container { Options = { DefaultScopedLifestyle = new AsyncScopedLifestyle() } });
-			}
-			set
-			{
-				if (value == null)
-					throw new ArgumentNullException(nameof(value));
-
-				_container = value;
-			}
+			get => _container ??
+				   (_container = new Container { Options = { DefaultScopedLifestyle = new AsyncScopedLifestyle() } });
+			set => _container = value ?? throw new ArgumentNullException(nameof(value));
 		}
 
 		/// <summary>
@@ -70,7 +61,7 @@ namespace Simplify.DI.Provider.SimpleInjector
 		/// <typeparam name="TService">Concrete type.</typeparam>
 		/// <param name="instanceCreator">The instance creator.</param>
 		/// <param name="lifetimeType">Lifetime type of the registering concrete type.</param>
-		public void Register<TService>(Func<IDIContainerProvider, TService> instanceCreator, LifetimeType lifetimeType = LifetimeType.Singleton)
+		public void Register<TService>(Func<IDIResolver, TService> instanceCreator, LifetimeType lifetimeType = LifetimeType.Singleton)
 			where TService : class
 		{
 			switch (lifetimeType)
@@ -96,6 +87,14 @@ namespace Simplify.DI.Provider.SimpleInjector
 		public ILifetimeScope BeginLifetimeScope()
 		{
 			return new SimpleInjectorLifetimeScope(this);
+		}
+
+		/// <summary>
+		/// Releases unmanaged and - optionally - managed resources.
+		/// </summary>
+		public void Dispose()
+		{
+			_container?.Dispose();
 		}
 	}
 }
