@@ -5,7 +5,7 @@
 		<Product>Simplify</Product>
 		<Description>Text templates engine</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>1.4.1</Version>
+		<Version>1.5-pre01</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.Templates</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.Templates</RepositoryUrl>
