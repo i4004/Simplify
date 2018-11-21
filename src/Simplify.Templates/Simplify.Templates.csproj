@@ -19,6 +19,6 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Simplify.Xml.Sources" Version="1.0.4" PrivateAssets="All" />
-		<PackageReference Include="System.IO.Abstractions" Version="2.1.0.231" />
+		<PackageReference Include="System.IO.Abstractions" Version="2.2.9-beta" />
 	</ItemGroup>
 </Project>
