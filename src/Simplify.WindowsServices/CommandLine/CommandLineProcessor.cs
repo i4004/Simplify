@@ -3,7 +3,7 @@
 namespace Simplify.WindowsServices.CommandLine
 {
 	/// <summary>
-	/// Providles windows-service command line processor
+	/// Provides windows-service command line processor
 	/// </summary>
 	/// <seealso cref="Simplify.WindowsServices.CommandLine.ICommandLineProcessor" />
 	public class CommandLineProcessor : ICommandLineProcessor
@@ -16,17 +16,8 @@ namespace Simplify.WindowsServices.CommandLine
 		/// <exception cref="ArgumentNullException"></exception>
 		public IInstallationController InstallationController
 		{
-			get
-			{
-				return _installationController ?? (_installationController = new InstallationController());
-			}
-			set
-			{
-				if (value == null)
-					throw new ArgumentNullException(nameof(value));
-
-				_installationController = value;
-			}
+			get => _installationController ?? (_installationController = new InstallationController());
+			set => _installationController = value ?? throw new ArgumentNullException(nameof(value));
 		}
 
 		/// <summary>

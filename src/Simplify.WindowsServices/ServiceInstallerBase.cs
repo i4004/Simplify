@@ -164,14 +164,14 @@ namespace Simplify.WindowsServices
 
 			foreach (var item in configSectionElement.XPathSelectElements("add").Where(item => item.Attribute(XName.Get("key")) != null))
 			{
-				if (item.Attribute(XName.Get("key")).Value == RunAsUserNameFieldName)
-					_userName = item.Attribute(XName.Get("value")).Value;
+				if (item.Attribute(XName.Get("key"))?.Value == RunAsUserNameFieldName)
+					_userName = item.Attribute(XName.Get("value"))?.Value;
 
-				if (item.Attribute(XName.Get("key")).Value == RunAsUserPasswordFieldName)
-					_password = item.Attribute(XName.Get("value")).Value;
+				if (item.Attribute(XName.Get("key"))?.Value == RunAsUserPasswordFieldName)
+					_password = item.Attribute(XName.Get("value"))?.Value;
 
-				if (item.Attribute(XName.Get("key")).Value == ServiceAccountFieldName)
-					serviceAccount = item.Attribute(XName.Get("value")).Value;
+				if (item.Attribute(XName.Get("key"))?.Value == ServiceAccountFieldName)
+					serviceAccount = item.Attribute(XName.Get("value"))?.Value;
 			}
 
 			_serviceAccount = !IsRunAsUserSet() ? TryParseServiceAccountFieldData(serviceAccount) : ServiceAccount.User;

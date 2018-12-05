@@ -30,7 +30,7 @@ namespace Simplify.WindowsServices
 		/// <value>
 		/// The name of the service.
 		/// </value>
-		public string ServiceName { get; private set; }
+		public string ServiceName { get; }
 
 		/// <summary>
 		/// Gets the exception.
@@ -38,6 +38,6 @@ namespace Simplify.WindowsServices
 		/// <value>
 		/// The exception.
 		/// </value>
-		public Exception Exception { get; private set; }
+		public Exception Exception { get; }
 	}
 }
