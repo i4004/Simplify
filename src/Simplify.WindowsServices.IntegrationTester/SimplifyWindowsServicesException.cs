@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Simplify.WindowsServices.IntegrationTests
+namespace Simplify.WindowsServices.IntegrationTester
 {
 	public class SimplifyWindowsServicesException : Exception
 	{

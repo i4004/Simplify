@@ -1,6 +1,6 @@
 ﻿using Simplify.DI;
 
-namespace Simplify.WindowsServices.IntegrationTests
+namespace Simplify.WindowsServices.IntegrationTester
 {
 	internal class Program
 	{
@@ -25,7 +25,7 @@ namespace Simplify.WindowsServices.IntegrationTests
 				return;
 
 			using (var scope = DIContainer.Current.BeginLifetimeScope())
-				scope.Container.Resolve<BasicTaskProcessor>().Run();
+				scope.Resolver.Resolve<BasicTaskProcessor>().Run();
 		}
 	}
 }

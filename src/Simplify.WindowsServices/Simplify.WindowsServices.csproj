@@ -5,23 +5,22 @@
 		<Product>Simplify</Product>
 		<Description>Windows services framework with DI</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>2.6</Version>
+		<Version>2.7</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.WindowsServices</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.WindowsServices</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET windows-service DI</PackageTags>
 		<PackageReleaseNotes>
-			* Upgrade to Simplify.DI 1.2.2
-			* Upgrade to Simplify.System 1.0.1
-			+ Single type job parallelism
+			* Upgrade to Simplify.DI 2.0.1
+			* MaximumParallerTasksCount settings spelling fix
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.WindowsServices.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="ncrontab" Version="3.3.0" />
-		<PackageReference Include="Simplify.DI" Version="1.2.2" />
+		<PackageReference Include="Simplify.DI" Version="2.0.1" />
 		<PackageReference Include="Simplify.System" Version="1.0.1" />
 		<Reference Include="System.Configuration" />
 		<Reference Include="System.Configuration.Install" />

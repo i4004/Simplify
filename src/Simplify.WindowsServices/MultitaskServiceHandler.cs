@@ -219,7 +219,7 @@ namespace Simplify.WindowsServices
 			{
 				using (var scope = DIContainer.Current.BeginLifetimeScope())
 				{
-					var jobObject = scope.Container.Resolve(job.Item2.JobClassType);
+					var jobObject = scope.Resolver.Resolve(job.Item2.JobClassType);
 
 					job.Item2.InvokeMethodInfo.Invoke(jobObject, job.Item2.IsParameterlessMethod ? null : new object[] { ServiceName });
 				}
@@ -247,7 +247,7 @@ namespace Simplify.WindowsServices
 			{
 				var scope = DIContainer.Current.BeginLifetimeScope();
 
-				var jobObject = scope.Container.Resolve(job.JobClassType);
+				var jobObject = scope.Resolver.Resolve(job.JobClassType);
 
 				job.InvokeMethodInfo.Invoke(jobObject, job.IsParameterlessMethod ? null : new object[] { ServiceName });
 

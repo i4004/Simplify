@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Threading;
 
-namespace Simplify.WindowsServices.IntegrationTests
+namespace Simplify.WindowsServices.IntegrationTester
 {
 	public class TaskProcessor3
 	{

@@ -1,6 +1,6 @@
 ﻿using Simplify.DI;
 
-namespace Simplify.WindowsServices.IntegrationTests
+namespace Simplify.WindowsServices.IntegrationTester
 {
 	public static class IocRegistrations
 	{

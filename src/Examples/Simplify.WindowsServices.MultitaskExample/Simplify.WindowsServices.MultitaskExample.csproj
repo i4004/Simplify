@@ -10,8 +10,6 @@
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Simplify.DI" Version="1.2.2" />
-		<PackageReference Include="Simplify.System" Version="1.0.1" />
 		<Reference Include="System.Configuration" />
 		<Reference Include="System.Configuration.Install" />
 		<Reference Include="System.ServiceProcess" />

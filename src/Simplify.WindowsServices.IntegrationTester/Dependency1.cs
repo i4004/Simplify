@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Simplify.WindowsServices.IntegrationTests
+namespace Simplify.WindowsServices.IntegrationTester
 {
 	public class Dependency1 : IDisposable
 	{
