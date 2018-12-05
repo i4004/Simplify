@@ -9,7 +9,7 @@ namespace Simplify.WindowsServices.IntegrationTester
 		{
 			Trace.WriteLine("--- TaskProcessor4 launched");
 
-			Thread.Sleep(190000);
+			Thread.Sleep(5000);
 		}
 	}
 }
