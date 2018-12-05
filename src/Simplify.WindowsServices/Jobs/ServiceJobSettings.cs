@@ -33,10 +33,10 @@ namespace Simplify.WindowsServices.Jobs
 			if (!string.IsNullOrEmpty(cleanupOnTaskFinish))
 				CleanupOnTaskFinish = bool.Parse(cleanupOnTaskFinish);
 
-			var maximumParallerTasksCount = config["MaximumParallerTasksCount"];
+			var maximumParallelTasksCount = config["MaximumParallelTasksCount"];
 
-			if (!string.IsNullOrEmpty(maximumParallerTasksCount))
-				MaximumParallerTasksCount = int.Parse(maximumParallerTasksCount);
+			if (!string.IsNullOrEmpty(maximumParallelTasksCount))
+				MaximumParallelTasksCount = int.Parse(maximumParallelTasksCount);
 		}
 
 		/// <summary>
@@ -61,8 +61,8 @@ namespace Simplify.WindowsServices.Jobs
 		public bool CleanupOnTaskFinish { get; }
 
 		/// <summary>
-		/// Gets the maximum allowed paraller tasks of this job.
+		/// Gets the maximum allowed parallel tasks of this job.
 		/// </summary>
-		public int MaximumParallerTasksCount { get; } = 1;
+		public int MaximumParallelTasksCount { get; } = 1;
 	}
 }
