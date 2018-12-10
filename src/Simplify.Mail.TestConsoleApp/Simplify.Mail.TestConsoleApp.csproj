@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netcoreapp2.1</TargetFramework>
+		<Authors>Alexander Krylkov</Authors>
+		<Product>Simplify</Product>
+		<Description>Simplify.Mail .NET Core test app</Description>
+		<Copyright>Licensed under LGPL</Copyright>
+		<Version>0.1</Version>
+		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
+		<OutputType>Exe</OutputType>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Simplify.Mail\Simplify.Mail.csproj" />
+	</ItemGroup>
+</Project>
