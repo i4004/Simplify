@@ -1,6 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<!--<TargetFrameworks>netcoreapp2.0</TargetFrameworks>-->
 		<TargetFrameworks>net462</TargetFrameworks>
 		<Authors>Alexander Krylkov</Authors>
 		<Product>Simplify</Product>
@@ -14,10 +13,5 @@
 		<PackageReference Include="NUnit" Version="3.11.0" />
 		<PackageReference Include="NUnit3TestAdapter" Version="3.11.0" />
 		<ProjectReference Include="..\Simplify.Mail\Simplify.Mail.csproj" />
-	</ItemGroup>
-	<ItemGroup>
-	  <None Update="App.config">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </None>
 	</ItemGroup>
 </Project>
