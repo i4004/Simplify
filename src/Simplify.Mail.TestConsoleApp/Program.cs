@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Simplify.Mail.TestConsoleApp.Setup;
 
 namespace Simplify.Mail.TestConsoleApp
 {
 	internal class Program
 	{
-		private static void Main(string[] args)
+		private static void Main()
 		{
-			Console.WriteLine("Hello World!");
+			IocRegistrations.Register();
+
+			MailSender.Default.Send("somesender@somedomain.com", "somereceiver@somedomain.com", "Hello subject", "Hello World!!!");
 		}
 	}
 }
