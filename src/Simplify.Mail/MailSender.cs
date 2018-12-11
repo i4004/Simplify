@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
+using Microsoft.Extensions.Configuration;
 using Simplify.Mail.Settings;
 using Simplify.Mail.Settings.Impl;
 
@@ -31,6 +32,20 @@ namespace Simplify.Mail
 			if (string.IsNullOrEmpty(configurationSectionName)) throw new ArgumentNullException(nameof(configurationSectionName));
 
 			Settings = new ConfigurationManagedBasedMailSenderSettings(configurationSectionName);
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MailSender" /> class.
+		/// </summary>
+		/// <param name="configuration">The configuration.</param>
+		/// <param name="configurationSectionName">Name of the configuration section in a configuration (for example in the appsettings.json configuration file).</param>
+		/// <exception cref="ArgumentNullException">configurationSectionName</exception>
+		public MailSender(IConfiguration configuration, string configurationSectionName = "MailSenderSettings")
+		{
+			if (string.IsNullOrEmpty(configurationSectionName))
+				throw new ArgumentNullException(nameof(configurationSectionName));
+
+			Settings = new ConfigurationBasedMailSenderSettings(configuration, configurationSectionName);
 		}
 
 		/// <summary>
