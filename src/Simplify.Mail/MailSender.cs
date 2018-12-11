@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Text;
 using Simplify.Mail.Settings;
+using Simplify.Mail.Settings.Impl;
 
 namespace Simplify.Mail
 {
@@ -24,12 +25,12 @@ namespace Simplify.Mail
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MailSender"/> class.
 		/// </summary>
-		/// <param name="configurationSectionName">Name of the configuration section in the configuration file.</param>
+		/// <param name="configurationSectionName">Name of the configuration section in the *.config configuration file.</param>
 		public MailSender(string configurationSectionName = "MailSenderSettings")
 		{
 			if (string.IsNullOrEmpty(configurationSectionName)) throw new ArgumentNullException(nameof(configurationSectionName));
 
-			Settings = new MailSenderSettings(configurationSectionName);
+			Settings = new ConfigurationManagedBasedMailSenderSettings(configurationSectionName);
 		}
 
 		/// <summary>
@@ -55,7 +56,7 @@ namespace Simplify.Mail
 		/// Initializes a new instance of the <see cref="MailSender"/> class.
 		/// </summary>
 		/// <param name="settings">The settings.</param>
-		/// <exception cref="System.ArgumentNullException">settings</exception>
+		/// <exception cref="ArgumentNullException">settings</exception>
 		public MailSender(IMailSenderSettings settings)
 		{
 			Settings = settings ?? throw new ArgumentNullException(nameof(settings));
