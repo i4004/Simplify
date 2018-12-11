@@ -6,7 +6,7 @@ namespace Simplify.Mail
 	/// <summary>
 	/// Represent E-mail sending interface
 	/// </summary>
-	public interface IMailSender : IHideObjectMembers
+	public interface IMailSender
 	{
 		/// <summary>
 		/// MailSender settings
