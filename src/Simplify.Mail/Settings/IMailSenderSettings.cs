@@ -31,7 +31,7 @@ namespace Simplify.Mail.Settings
 		int AntiSpamPoolMessageLifeTime { get; }
 
 		/// <summary>
-		/// Anit-spam messages pool on
+		/// Anti-spam messages pool on
 		/// </summary>
 		bool AntiSpamMessagesPoolOn { get; }
 
