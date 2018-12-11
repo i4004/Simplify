@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
+using Simplify.Mail.Settings;
 
 namespace Simplify.Mail
 {

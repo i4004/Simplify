@@ -1,4 +1,4 @@
-namespace Simplify.Mail
+namespace Simplify.Mail.Settings
 {
 	/// <summary>
 	/// Represent MailSender settings

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Specialized;
 using System.Configuration;
 
-namespace Simplify.Mail
+namespace Simplify.Mail.Settings
 {
 	/// <summary>
 	/// Represents MailSender settings

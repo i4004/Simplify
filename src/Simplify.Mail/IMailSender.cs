@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Net.Mail;
+using Simplify.Mail.Settings;
 
 namespace Simplify.Mail
 {
