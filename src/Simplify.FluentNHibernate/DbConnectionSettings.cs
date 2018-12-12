@@ -10,6 +10,58 @@ namespace Simplify.FluentNHibernate
 	public class DbConnectionSettings
 	{
 		/// <summary>
+		/// Loads the specified configuration section name containing data-base connection settings.
+		/// </summary>
+		/// <param name="configSectionName">Name of the configuration section.</param>
+		/// <exception cref="DatabaseConnectionConfigurationException"></exception>
+		public DbConnectionSettings(string configSectionName = "DatabaseConnectionSettings")
+		{
+			if (string.IsNullOrEmpty(configSectionName)) throw new ArgumentNullException(nameof(configSectionName));
+
+			var settings = (NameValueCollection)ConfigurationManager.GetSection(configSectionName);
+
+			if (settings == null)
+				throw new DatabaseConnectionConfigurationException(
+					$"Database connection section '{configSectionName}' was not found");
+
+			ServerName = settings["ServerName"];
+
+			if (string.IsNullOrEmpty(ServerName))
+				throw new DatabaseConnectionConfigurationException(
+					$"Database connection section '{configSectionName}' ServerName property was not specified");
+
+			DataBaseName = settings["DataBaseName"];
+
+			if (string.IsNullOrEmpty(DataBaseName))
+				throw new DatabaseConnectionConfigurationException(
+					$"Database connection section '{configSectionName}' DataBaseName property was not specified");
+
+			UserName = settings["UserName"];
+
+			if (string.IsNullOrEmpty(UserName))
+				throw new DatabaseConnectionConfigurationException(
+					$"Database connection section '{configSectionName}' UserName property was not specified");
+
+			UserPassword = settings["UserPassword"];
+
+			var showSqlText = settings["ShowSql"];
+
+			if (!string.IsNullOrEmpty(showSqlText))
+			{
+				if (bool.TryParse(showSqlText, out var buffer))
+					ShowSql = buffer;
+			}
+
+			var port = settings["Port"];
+
+			if (!string.IsNullOrEmpty(port))
+			{
+				if (int.TryParse(port, out var buffer))
+					Port = buffer;
+			}
+		}
+
+		/// <summary>
 		/// Gets the name of the server.
 		/// </summary>
 		/// <value>
@@ -50,61 +102,5 @@ namespace Simplify.FluentNHibernate
 		/// Gets the port number.
 		/// </summary>
 		public int? Port { get; }
-
-		/// <summary>
-		/// Loads the specified configuration section name containing data-base connection settings.
-		/// </summary>
-		/// <param name="configSectionName">Name of the configuration section.</param>
-		/// <exception cref="DatabaseConnectionConfigurationException"></exception>
-		public DbConnectionSettings(string configSectionName = "DatabaseConnectionSettings")
-		{
-			if (string.IsNullOrEmpty(configSectionName)) throw new ArgumentNullException(nameof(configSectionName));
-
-			var settings = (NameValueCollection)ConfigurationManager.GetSection(configSectionName);
-
-			if (settings == null)
-				throw new DatabaseConnectionConfigurationException(
-					$"Database connection section '{configSectionName}' was not found");
-
-			ServerName = settings["ServerName"];
-
-			if (string.IsNullOrEmpty(ServerName))
-				throw new DatabaseConnectionConfigurationException(
-					$"Database connection section '{configSectionName}' ServerName property was not specified");
-
-			DataBaseName = settings["DataBaseName"];
-
-			if (string.IsNullOrEmpty(DataBaseName))
-				throw new DatabaseConnectionConfigurationException(
-					$"Database connection section '{configSectionName}' DataBaseName property was not specified");
-
-			UserName = settings["UserName"];
-
-			if (string.IsNullOrEmpty(UserName))
-				throw new DatabaseConnectionConfigurationException(
-					$"Database connection section '{configSectionName}' UserName property was not specified");
-
-			UserPassword = settings["UserPassword"];
-
-			var showSqlText = settings["ShowSql"];
-
-			if (!string.IsNullOrEmpty(showSqlText))
-			{
-				bool buffer;
-
-				if (bool.TryParse(showSqlText, out buffer))
-					ShowSql = buffer;
-			}
-
-			var port = settings["Port"];
-
-			if (!string.IsNullOrEmpty(port))
-			{
-				int buffer;
-
-				if (int.TryParse(port, out buffer))
-					Port = buffer;
-			}
-		}
 	}
 }
