@@ -13,6 +13,7 @@
 		<PackageTags>.NET mail-sender</PackageTags>
 		<PackageReleaseNotes>
 			+ Microsoft.Extensions.Configuration based configuration support
+			* Upgrade to .NET Framework 4.6.2
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.Mail.xml</DocumentationFile>
