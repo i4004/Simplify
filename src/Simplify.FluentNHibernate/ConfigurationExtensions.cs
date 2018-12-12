@@ -16,6 +16,8 @@ namespace Simplify.FluentNHibernate
 	/// </summary>
 	public static class ConfigurationExtensions
 	{
+		#region Oracle Client
+
 		/// <summary>
 		/// Initialize Oracle connection using Oracle10 client configuration and using oracle client to connect to database
 		/// </summary>
@@ -60,6 +62,31 @@ namespace Simplify.FluentNHibernate
 				new ConfigurationBasedDbConnectionSettings(configuration, configSectionName),
 				additionalClientConfiguration);
 		}
+
+		private static FluentConfiguration InitializeFromConfigOracleClient(
+			FluentConfiguration configuration,
+			DbConnectionSettings settings,
+			Action<OracleClientConfiguration> additionalClientConfiguration = null)
+		{
+			var clientConfiguration = OracleClientConfiguration.Oracle10.ConnectionString(c =>
+				c.Server(settings.ServerName)
+					.Port(settings.Port ?? 1521)
+					.Instance(settings.DataBaseName)
+					.Username(settings.UserName)
+					.Password(settings.UserPassword));
+
+			additionalClientConfiguration?.Invoke(clientConfiguration);
+
+			configuration.Database(clientConfiguration);
+			configuration.ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none"));
+
+			if (settings.ShowSql)
+				configuration.ExposeConfiguration(x => x.SetInterceptor(new SqlStatementInterceptor()));
+
+			return configuration;
+		}
+
+		#endregion Oracle Client
 
 		/// <summary>
 		/// Initialize Oracle connection using Oracle10 client configuration and using Oracle.DataAccess.dll to connect to database
@@ -301,29 +328,6 @@ namespace Simplify.FluentNHibernate
 			configuration.Mappings(m => m.FluentMappings
 				.AddFromAssemblyOf<T>()
 				.Conventions.Add(conventions));
-
-			return configuration;
-		}
-
-		private static FluentConfiguration InitializeFromConfigOracleClient(
-			FluentConfiguration configuration,
-			DbConnectionSettings settings,
-			Action<OracleClientConfiguration> additionalClientConfiguration = null)
-		{
-			var clientConfiguration = OracleClientConfiguration.Oracle10.ConnectionString(c =>
-				c.Server(settings.ServerName)
-					.Port(settings.Port ?? 1521)
-					.Instance(settings.DataBaseName)
-					.Username(settings.UserName)
-					.Password(settings.UserPassword));
-
-			additionalClientConfiguration?.Invoke(clientConfiguration);
-
-			configuration.Database(clientConfiguration);
-			configuration.ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none"));
-
-			if (settings.ShowSql)
-				configuration.ExposeConfiguration(x => x.SetInterceptor(new SqlStatementInterceptor()));
 
 			return configuration;
 		}
