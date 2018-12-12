@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System.Linq;
+using Microsoft.Extensions.Configuration;
 
 namespace Simplify.Mail.Settings.Impl
 {
@@ -12,20 +13,20 @@ namespace Simplify.Mail.Settings.Impl
 		/// </summary>
 		/// <param name="configuration">The configuration.</param>
 		/// <param name="configSectionName">Name of the configuration section.</param>
-		/// <exception cref="MailSenderException">No MailSenderSettings section in config file.
+		/// <exception cref="MailSenderException">No MailSenderSettings in config.
 		/// or
-		/// MailSenderSettings SmtpServerAddress is empty or missing from config file.
+		/// MailSenderSettings SmtpServerAddress is empty or missing from config.
 		/// or
-		/// MailSenderSettings SmtpUserName is empty or missing from config file.
+		/// MailSenderSettings SmtpUserName is empty or missing from config.
 		/// or
-		/// MailSenderSettings SmtpUserPassword is empty or missing from config file.</exception>
+		/// MailSenderSettings SmtpUserPassword is empty or missing from config.</exception>
 		public ConfigurationBasedMailSenderSettings(IConfiguration configuration,
 			string configSectionName = "MailSenderSettings")
 		{
 			var config = configuration.GetSection(configSectionName);
 
-			if (config?.Value == null)
-				throw new MailSenderException("No MailSenderSettings '" + configSectionName + "' section in config file.");
+			if (!config.GetChildren().Any())
+				throw new MailSenderException("No MailSenderSettings found in '" + configSectionName + "' section in configuration.");
 
 			LoadGeneralSettings(config);
 			LoadExtraSettings(config);
@@ -36,7 +37,7 @@ namespace Simplify.Mail.Settings.Impl
 			SmtpServerAddress = config["SmtpServerAddress"];
 
 			if (string.IsNullOrEmpty(SmtpServerAddress))
-				throw new MailSenderException("MailSenderSettings SmtpServerAddress is empty or missing from config file.");
+				throw new MailSenderException("MailSenderSettings SmtpServerAddress is empty or missing from config.");
 
 			var smtpServerPortNumberString = config["SmtpServerPortNumber"];
 
