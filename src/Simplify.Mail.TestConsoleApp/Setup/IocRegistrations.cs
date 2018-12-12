@@ -8,7 +8,7 @@ namespace Simplify.Mail.TestConsoleApp.Setup
 		public static void Register()
 		{
 			DIContainer.Current.Register<IConfiguration>(r => new ConfigurationBuilder()
-				.AddJsonFile("appsettings.json", true, true)
+				.AddJsonFile("appsettings.json", false)
 				.Build());
 
 			DIContainer.Current.Register<IMailSender>(r => new MailSender(r.Resolve<IConfiguration>()));
