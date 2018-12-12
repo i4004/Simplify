@@ -5,6 +5,7 @@ using FluentNHibernate.Conventions;
 using NHibernate.Driver;
 
 using Simplify.FluentNHibernate.Drivers;
+using Simplify.FluentNHibernate.Settings.Impl;
 
 namespace Simplify.FluentNHibernate
 {
@@ -27,7 +28,7 @@ namespace Simplify.FluentNHibernate
 		{
 			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-			var settings = new DbConnectionSettings(configSectionName);
+			var settings = new ConfigurationManagerBasedDbConnectionSettings(configSectionName);
 
 			var clientConfiguration = OracleClientConfiguration.Oracle10.ConnectionString(c =>
 				c.Server(settings.ServerName)
@@ -61,7 +62,7 @@ namespace Simplify.FluentNHibernate
 		{
 			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-			var settings = new DbConnectionSettings(configSectionName);
+			var settings = new ConfigurationManagerBasedDbConnectionSettings(configSectionName);
 
 			var clientConfiguration = OracleDataClientConfiguration.Oracle10.ConnectionString(c => c
 				.Server(settings.ServerName)
@@ -96,7 +97,7 @@ namespace Simplify.FluentNHibernate
 		{
 			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-			var settings = new DbConnectionSettings(configSectionName);
+			var settings = new ConfigurationManagerBasedDbConnectionSettings(configSectionName);
 
 			var clientConfiguration = OracleClientConfiguration.Oracle10.ConnectionString(c => c
 				.Server(settings.ServerName)
@@ -131,7 +132,7 @@ namespace Simplify.FluentNHibernate
 		{
 			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-			var settings = new DbConnectionSettings(configSectionName);
+			var settings = new ConfigurationManagerBasedDbConnectionSettings(configSectionName);
 
 			var clientConfiguration = MySQLConfiguration.Standard.ConnectionString(c => c
 				.Server(settings.ServerName)
@@ -164,7 +165,7 @@ namespace Simplify.FluentNHibernate
 		{
 			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-			var settings = new DbConnectionSettings(configSectionName);
+			var settings = new ConfigurationManagerBasedDbConnectionSettings(configSectionName);
 
 			var clientConfiguration = MsSqlConfiguration.MsSql2008.ConnectionString(c => c
 				.Server(settings.ServerName)
@@ -197,7 +198,7 @@ namespace Simplify.FluentNHibernate
 		{
 			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-			var settings = new DbConnectionSettings(configSectionName);
+			var settings = new ConfigurationManagerBasedDbConnectionSettings(configSectionName);
 
 			var clientConfiguration = PostgreSQLConfiguration.PostgreSQL82.ConnectionString(c => c
 				.Host(settings.ServerName)
