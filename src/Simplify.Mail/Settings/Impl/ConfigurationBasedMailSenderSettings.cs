@@ -24,7 +24,7 @@ namespace Simplify.Mail.Settings.Impl
 		{
 			var config = configuration.GetSection(configSectionName);
 
-			if (config == null)
+			if (config?.Value == null)
 				throw new MailSenderException("No MailSenderSettings '" + configSectionName + "' section in config file.");
 
 			LoadGeneralSettings(config);
