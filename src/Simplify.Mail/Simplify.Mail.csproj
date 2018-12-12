@@ -5,15 +5,14 @@
 		<Product>Simplify</Product>
 		<Description>Simple mail sender</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>1.3.1</Version>
+		<Version>1.4</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.Mail</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.Mail</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET mail-sender</PackageTags>
 		<PackageReleaseNotes>
-			* Switch to .net standard 2.0
-			* Upgrade to .net framework 4.5.2
+			+ Microsoft.Extensions.Configuration based configuration support
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.Mail.xml</DocumentationFile>
