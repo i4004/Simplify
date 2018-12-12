@@ -2,9 +2,11 @@
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using FluentNHibernate.Conventions;
+using Microsoft.Extensions.Configuration;
 using NHibernate.Driver;
 
 using Simplify.FluentNHibernate.Drivers;
+using Simplify.FluentNHibernate.Settings;
 using Simplify.FluentNHibernate.Settings.Impl;
 
 namespace Simplify.FluentNHibernate
@@ -28,24 +30,35 @@ namespace Simplify.FluentNHibernate
 		{
 			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-			var settings = new ConfigurationManagerBasedDbConnectionSettings(configSectionName);
+			return InitializeFromConfigOracleClient(configuration,
+				new ConfigurationManagerBasedDbConnectionSettings(configSectionName),
+				additionalClientConfiguration);
+		}
 
-			var clientConfiguration = OracleClientConfiguration.Oracle10.ConnectionString(c =>
-				c.Server(settings.ServerName)
-					.Port(settings.Port ?? 1521)
-					.Instance(settings.DataBaseName)
-					.Username(settings.UserName)
-					.Password(settings.UserPassword));
+		/// <summary>
+		/// Initialize Oracle connection using Oracle10 client configuration and using oracle client to connect to database
+		/// </summary>
+		/// <param name="fluentConfiguration">The fluentNHibernate configuration.</param>
+		/// <param name="configuration">The database configuration.</param>
+		/// <param name="configSectionName">Configuration section name in configuration</param>
+		/// <param name="additionalClientConfiguration">The additional client configuration.</param>
+		/// <returns></returns>
+		/// <exception cref="ArgumentNullException">
+		/// fluentConfiguration
+		/// or
+		/// configuration
+		/// </exception>
+		public static FluentConfiguration InitializeFromConfigOracleClient(this FluentConfiguration fluentConfiguration,
+			IConfiguration configuration,
+			string configSectionName = "DatabaseConnectionSettings",
+			Action<OracleClientConfiguration> additionalClientConfiguration = null)
+		{
+			if (fluentConfiguration == null) throw new ArgumentNullException(nameof(fluentConfiguration));
+			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-			additionalClientConfiguration?.Invoke(clientConfiguration);
-
-			configuration.Database(clientConfiguration);
-			configuration.ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none"));
-
-			if (settings.ShowSql)
-				configuration.ExposeConfiguration(x => x.SetInterceptor(new SqlStatementInterceptor()));
-
-			return configuration;
+			return InitializeFromConfigOracleClient(fluentConfiguration,
+				new ConfigurationBasedDbConnectionSettings(configuration, configSectionName),
+				additionalClientConfiguration);
 		}
 
 		/// <summary>
@@ -288,6 +301,29 @@ namespace Simplify.FluentNHibernate
 			configuration.Mappings(m => m.FluentMappings
 				.AddFromAssemblyOf<T>()
 				.Conventions.Add(conventions));
+
+			return configuration;
+		}
+
+		private static FluentConfiguration InitializeFromConfigOracleClient(
+			FluentConfiguration configuration,
+			DbConnectionSettings settings,
+			Action<OracleClientConfiguration> additionalClientConfiguration = null)
+		{
+			var clientConfiguration = OracleClientConfiguration.Oracle10.ConnectionString(c =>
+				c.Server(settings.ServerName)
+					.Port(settings.Port ?? 1521)
+					.Instance(settings.DataBaseName)
+					.Username(settings.UserName)
+					.Password(settings.UserPassword));
+
+			additionalClientConfiguration?.Invoke(clientConfiguration);
+
+			configuration.Database(clientConfiguration);
+			configuration.ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none"));
+
+			if (settings.ShowSql)
+				configuration.ExposeConfiguration(x => x.SetInterceptor(new SqlStatementInterceptor()));
 
 			return configuration;
 		}
