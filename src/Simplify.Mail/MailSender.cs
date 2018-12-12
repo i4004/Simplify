@@ -4,6 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
+using Microsoft.Extensions.Configuration;
+using Simplify.Mail.Settings;
+using Simplify.Mail.Settings.Impl;
 
 namespace Simplify.Mail
 {
@@ -14,39 +17,35 @@ namespace Simplify.Mail
 	{
 		private static IMailSender _defaultInstance;
 
-		/// <summary>
-		/// Default MailSender instance
-		/// </summary>
-		public static IMailSender Default
-		{
-			get
-			{
-				return _defaultInstance ?? (_defaultInstance = new MailSender());
-			}
-			set
-			{
-				if (value == null)
-					throw new ArgumentNullException("value");
-
-				_defaultInstance = value;
-			}
-		}
-
 		private readonly object _locker = new object();
 
-		private SmtpClient _smtpClient;
-
 		private readonly Dictionary<string, DateTime> _antiSpamPool = new Dictionary<string, DateTime>();
+
+		private SmtpClient _smtpClient;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MailSender"/> class.
 		/// </summary>
-		/// <param name="configurationSectionName">Name of the configuration section in the configuration file.</param>
+		/// <param name="configurationSectionName">Name of the configuration section in the *.config configuration file.</param>
 		public MailSender(string configurationSectionName = "MailSenderSettings")
 		{
-			if(string.IsNullOrEmpty(configurationSectionName)) throw new ArgumentNullException("configurationSectionName");
+			if (string.IsNullOrEmpty(configurationSectionName)) throw new ArgumentNullException(nameof(configurationSectionName));
 
-			Settings = new MailSenderSettings(configurationSectionName);
+			Settings = new ConfigurationManagedBasedMailSenderSettings(configurationSectionName);
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MailSender" /> class.
+		/// </summary>
+		/// <param name="configuration">The configuration.</param>
+		/// <param name="configurationSectionName">Name of the configuration section in a configuration (for example in the appsettings.json configuration file).</param>
+		/// <exception cref="ArgumentNullException">configurationSectionName</exception>
+		public MailSender(IConfiguration configuration, string configurationSectionName = "MailSenderSettings")
+		{
+			if (string.IsNullOrEmpty(configurationSectionName))
+				throw new ArgumentNullException(nameof(configurationSectionName));
+
+			Settings = new ConfigurationBasedMailSenderSettings(configuration, configurationSectionName);
 		}
 
 		/// <summary>
@@ -62,7 +61,7 @@ namespace Simplify.Mail
 		public MailSender(string smtpServerAddress, int smtpServerPortNumber, string smtpUserName, string smtpUserPassword,
 			bool enableSsl = false, bool antiSpamMessagesPoolOn = true, int antiSpamPoolMessageLifeTime = 125)
 		{
-			if (string.IsNullOrEmpty(smtpServerAddress)) throw new ArgumentNullException("smtpServerAddress");
+			if (string.IsNullOrEmpty(smtpServerAddress)) throw new ArgumentNullException(nameof(smtpServerAddress));
 
 			Settings = new MailSenderSettings(smtpServerAddress, smtpServerPortNumber, smtpUserName, smtpUserPassword, enableSsl,
 				antiSpamMessagesPoolOn, antiSpamPoolMessageLifeTime);
@@ -72,18 +71,25 @@ namespace Simplify.Mail
 		/// Initializes a new instance of the <see cref="MailSender"/> class.
 		/// </summary>
 		/// <param name="settings">The settings.</param>
-		/// <exception cref="System.ArgumentNullException">settings</exception>
+		/// <exception cref="ArgumentNullException">settings</exception>
 		public MailSender(IMailSenderSettings settings)
 		{
-			if (settings == null) throw new ArgumentNullException("settings");
+			Settings = settings ?? throw new ArgumentNullException(nameof(settings));
+		}
 
-			Settings = settings;
+		/// <summary>
+		/// Default MailSender instance
+		/// </summary>
+		public static IMailSender Default
+		{
+			get => _defaultInstance ?? (_defaultInstance = new MailSender());
+			set => _defaultInstance = value ?? throw new ArgumentNullException(nameof(value));
 		}
 
 		/// <summary>
 		/// MailSender settings
 		/// </summary>
-		public IMailSenderSettings Settings { get; private set; }
+		public IMailSenderSettings Settings { get; }
 
 		/// <summary>
 		/// Get current SMTP client
@@ -162,11 +168,11 @@ namespace Simplify.Mail
 					return;
 
 				var mm = new MailMessage(from, to, subject, body)
-					{
-						BodyEncoding = Encoding.UTF8,
-						IsBodyHtml = true,
-						DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure,
-					};
+				{
+					BodyEncoding = Encoding.UTF8,
+					IsBodyHtml = true,
+					DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure,
+				};
 
 				if (attachments != null)
 					foreach (var attachment in attachments)
@@ -215,11 +221,11 @@ namespace Simplify.Mail
 				foreach (var item in addresses)
 				{
 					var mm = new MailMessage(fromMailAddress, item, subject, body)
-						{
-							BodyEncoding = Encoding.UTF8,
-							IsBodyHtml = true,
-							DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure
-						};
+					{
+						BodyEncoding = Encoding.UTF8,
+						IsBodyHtml = true,
+						DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure
+					};
 
 					if (attachments != null)
 						foreach (var attachment in attachments)
@@ -266,7 +272,6 @@ namespace Simplify.Mail
 				if (CheckAntiSpamPool(bodyForAntiSpam ?? body))
 					return;
 
-
 				var mm = new MailMessage
 				{
 					From = new MailAddress(fromMailAddress),
@@ -285,7 +290,6 @@ namespace Simplify.Mail
 						mm.Attachments.Add(attachment);
 
 				client.Send(mm);
-
 			}
 		}
 

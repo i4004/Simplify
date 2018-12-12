@@ -1,15 +1,15 @@
 ﻿using System.Collections.Specialized;
 using System.Configuration;
 
-namespace Simplify.Mail
+namespace Simplify.Mail.Settings.Impl
 {
 	/// <summary>
-	/// Represents MailSender settings
+	/// Represents MailSender settings based on ConfigurationManager
 	/// </summary>
-	public sealed class MailSenderSettings : IMailSenderSettings
+	public sealed class ConfigurationManagedBasedMailSenderSettings : MailSenderSettings
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="MailSenderSettings"/> class.
+		/// Initializes a new instance of the <see cref="ConfigurationManagedBasedMailSenderSettings"/> class.
 		/// </summary>
 		/// <param name="configSectionName">Name of the configuration section in the configuration file.</param>
 		/// <exception cref="MailSenderException">
@@ -21,12 +21,8 @@ namespace Simplify.Mail
 		/// or
 		/// MailSenderSettings SmtpUserPassword is empty or missing from config file.
 		/// </exception>
-		public MailSenderSettings(string configSectionName = "MailSenderSettings")
+		public ConfigurationManagedBasedMailSenderSettings(string configSectionName = "MailSenderSettings")
 		{
-			SmtpServerPortNumber = 25;
-			AntiSpamPoolMessageLifeTime = 125;
-			AntiSpamMessagesPoolOn = true;
-
 			var configSection = (NameValueCollection)ConfigurationManager.GetSection(configSectionName);
 
 			if (configSection == null)
@@ -37,7 +33,7 @@ namespace Simplify.Mail
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="MailSenderSettings"/> class.
+		/// Initializes a new instance of the <see cref="ConfigurationManagedBasedMailSenderSettings"/> class.
 		/// </summary>
 		/// <param name="smtpServerAddress">The SMTP server address.</param>
 		/// <param name="smtpServerPortNumber">The SMTP server port number.</param>
@@ -46,55 +42,22 @@ namespace Simplify.Mail
 		/// <param name="enableSsl">Enables SSL connection.</param>
 		/// <param name="antiSpamMessagesPoolOn">Enables anti-spam messages pool.</param>
 		/// <param name="antiSpamPoolMessageLifeTime">The anti-spam pool message life time.</param>
-		public MailSenderSettings(string smtpServerAddress, int smtpServerPortNumber, string smtpUserName, string smtpUserPassword,
-			bool enableSsl = false, bool antiSpamMessagesPoolOn = true, int antiSpamPoolMessageLifeTime = 125)
+		public ConfigurationManagedBasedMailSenderSettings(string smtpServerAddress,
+			int smtpServerPortNumber,
+			string smtpUserName,
+			string smtpUserPassword,
+			bool enableSsl = false,
+			bool antiSpamMessagesPoolOn = true,
+			int antiSpamPoolMessageLifeTime = 125)
+			: base(smtpServerAddress,
+				smtpServerPortNumber,
+				smtpUserName,
+				smtpUserPassword,
+				enableSsl,
+				antiSpamMessagesPoolOn,
+				antiSpamPoolMessageLifeTime)
 		{
-			SmtpServerAddress = smtpServerAddress;
-			SmtpServerPortNumber = smtpServerPortNumber;
-			SmtpUserName = smtpUserName;
-			SmtpUserPassword = smtpUserPassword;
-			EnableSsl = enableSsl;
-			AntiSpamMessagesPoolOn = antiSpamMessagesPoolOn;
-			AntiSpamPoolMessageLifeTime = antiSpamPoolMessageLifeTime;
 		}
-
-		/// <summary>
-		/// The SMTP server address
-		/// </summary>
-		public string SmtpServerAddress { get; private set; }
-
-		/// <summary>
-		/// The SMTP server port number
-		/// </summary>
-		public int SmtpServerPortNumber { get; private set; }
-
-		/// <summary>
-		/// The mail sender SMTP user name
-		/// </summary>
-		public string SmtpUserName { get; private set; }
-
-		/// <summary>
-		/// The mail sender SMTP user password
-		/// </summary>
-		public string SmtpUserPassword { get; private set; }
-
-		/// <summary>
-		/// Anti-spam pool message life time (min.)
-		/// </summary>
-		public int AntiSpamPoolMessageLifeTime { get; private set; }
-
-		/// <summary>
-		/// Anit-spam messages pool on
-		/// </summary>
-		public bool AntiSpamMessagesPoolOn { get; private set; }
-
-		/// <summary>
-		/// Gets a value indicating whether SSL is enabled for connection.
-		/// </summary>
-		/// <value>
-		/// <c>true</c> if SSL is enabled for connection; otherwise, <c>false</c>.
-		/// </value>
-		public bool EnableSsl { get; private set; }
 
 		private void LoadGeneralSettings(NameValueCollection config)
 		{
