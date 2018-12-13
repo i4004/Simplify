@@ -5,25 +5,25 @@
 		<Product>Simplify</Product>
 		<Description>Simplifies FluentNHibernate connection configuration and allows you to write data-base queries with lambda expressions</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>1.8.0</Version>
+		<Version>1.9</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.FluentNHibernate</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.FluentNHibernate</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET FluentNHibernate ORM</PackageTags>
 		<PackageReleaseNotes>
-			+ .NET Standard 2.0 support
-			* Upgrade to FluentNHibernate 2.1.2 (NHibernate 5.1.1)
-			+ Stateless session extensions
+			+ IConfiguration (appsettings.json) support added
+			* Upgrade to System.Configuration.ConfigurationManager 4.5
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.FluentNHibernate.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="FluentNHibernate" Version="2.1.2" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-		<PackageReference Include="System.Configuration.ConfigurationManager" Version="4.4.1" />
+		<PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
 		<Reference Include="System" />
