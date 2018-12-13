@@ -80,7 +80,7 @@ namespace Simplify.FluentNHibernate
 
 			fluentConfiguration.Database(clientConfiguration);
 
-			PerformCommonInitialization(fluentConfiguration, settings);
+			PerformCommonInitialization(fluentConfiguration, settings.ShowSql);
 		}
 
 		#endregion Oracle Client
@@ -152,7 +152,7 @@ namespace Simplify.FluentNHibernate
 
 			fluentConfiguration.Database(clientConfiguration);
 
-			PerformCommonInitialization(fluentConfiguration, settings);
+			PerformCommonInitialization(fluentConfiguration, settings.ShowSql);
 		}
 
 		#endregion ODP.NET Native
@@ -224,7 +224,7 @@ namespace Simplify.FluentNHibernate
 
 			fluentConfiguration.Database(clientConfiguration);
 
-			PerformCommonInitialization(fluentConfiguration, settings);
+			PerformCommonInitialization(fluentConfiguration, settings.ShowSql);
 		}
 
 		#endregion ODP.NET
@@ -294,7 +294,7 @@ namespace Simplify.FluentNHibernate
 
 			fluentConfiguration.Database(clientConfiguration);
 
-			PerformCommonInitialization(fluentConfiguration, settings);
+			PerformCommonInitialization(fluentConfiguration, settings.ShowSql);
 		}
 
 		#endregion MySQL
@@ -308,7 +308,7 @@ namespace Simplify.FluentNHibernate
 		/// <param name="configSectionName">Configuration section name in App.config or Web.config file.</param>
 		/// <param name="additionalClientConfiguration">The additional client configuration.</param>
 		/// <returns></returns>
-		/// <exception cref="ArgumentNullException"></exception>
+		/// <exception cref="ArgumentNullException">fluentConfiguration</exception>
 		public static FluentConfiguration InitializeFromConfigMsSql(this FluentConfiguration fluentConfiguration,
 			string configSectionName = "DatabaseConnectionSettings",
 			Action<MsSqlConfiguration> additionalClientConfiguration = null)
@@ -364,7 +364,7 @@ namespace Simplify.FluentNHibernate
 
 			fluentConfiguration.Database(clientConfiguration);
 
-			PerformCommonInitialization(fluentConfiguration, settings);
+			PerformCommonInitialization(fluentConfiguration, settings.ShowSql);
 		}
 
 		#endregion MS SQL
@@ -378,7 +378,7 @@ namespace Simplify.FluentNHibernate
 		/// <param name="configSectionName">Configuration section name in App.config or Web.config file.</param>
 		/// <param name="additionalClientConfiguration">The additional client configuration.</param>
 		/// <returns></returns>
-		/// <exception cref="ArgumentNullException"></exception>
+		/// <exception cref="ArgumentNullException">fluentConfiguration</exception>
 		public static FluentConfiguration InitializeFromConfigPostgreSql(this FluentConfiguration fluentConfiguration,
 			string configSectionName = "DatabaseConnectionSettings",
 			Action<PostgreSQLConfiguration> additionalClientConfiguration = null)
@@ -435,91 +435,101 @@ namespace Simplify.FluentNHibernate
 
 			fluentConfiguration.Database(clientConfiguration);
 
-			PerformCommonInitialization(fluentConfiguration, settings);
+			PerformCommonInitialization(fluentConfiguration, settings.ShowSql);
 		}
 
 		#endregion PostgreSQL
 
+		#region SQLite
+
 		/// <summary>
 		/// Initialize SqLite connection using Standard client configuration
 		/// </summary>
-		/// <param name="configuration">The fluentNHibernate configuration.</param>
+		/// <param name="fluentConfiguration">The fluentNHibernate configuration.</param>
 		/// <param name="fileName">Name of the SqLite database file.</param>
 		/// <param name="showSql">if set to <c>true</c> then all executed SQL queries will be shown in trace window.</param>
 		/// <param name="additionalClientConfiguration">The additional client configuration.</param>
 		/// <returns></returns>
-		/// <exception cref="ArgumentNullException"></exception>
-		public static FluentConfiguration InitializeFromConfigSqLite(this FluentConfiguration configuration,
-			string fileName, bool showSql = false,
+		/// <exception cref="ArgumentNullException">
+		/// fluentConfiguration
+		/// or
+		/// fileName
+		/// </exception>
+		public static FluentConfiguration InitializeFromConfigSqLite(this FluentConfiguration fluentConfiguration,
+			string fileName,
+			bool showSql = false,
 			Action<SQLiteConfiguration> additionalClientConfiguration = null)
 		{
-			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
+			if (fluentConfiguration == null) throw new ArgumentNullException(nameof(fluentConfiguration));
+			if (fileName == null) throw new ArgumentNullException(nameof(fileName));
 
 			var clientConfiguration = SQLiteConfiguration.Standard.UsingFile(fileName);
 
 			additionalClientConfiguration?.Invoke(clientConfiguration);
 
-			configuration.Database(clientConfiguration);
-			configuration.ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none"));
+			fluentConfiguration.Database(clientConfiguration);
 
-			if (showSql)
-				configuration.ExposeConfiguration(x => x.SetInterceptor(new SqlStatementInterceptor()));
+			PerformCommonInitialization(fluentConfiguration, showSql);
 
-			return configuration;
+			return fluentConfiguration;
 		}
+
+		#endregion SQLite
+
+		#region SQLite In-Memory
 
 		/// <summary>
 		/// Initialize SqLite connection using in memory database
 		/// </summary>
-		/// <param name="configuration">The fluentNHibernate configuration.</param>
+		/// <param name="fluentConfiguration">The fluentNHibernate configuration.</param>
 		/// <param name="showSql">if set to <c>true</c> then all executed SQL queries will be shown in trace window.</param>
 		/// <param name="additionalClientConfiguration">The additional client configuration.</param>
 		/// <returns></returns>
-		/// <exception cref="ArgumentNullException"></exception>
-		public static FluentConfiguration InitializeFromConfigSqLiteInMemory(this FluentConfiguration configuration,
+		/// <exception cref="ArgumentNullException">fluentConfiguration</exception>
+		public static FluentConfiguration InitializeFromConfigSqLiteInMemory(this FluentConfiguration fluentConfiguration,
 			bool showSql = false,
 			Action<SQLiteConfiguration> additionalClientConfiguration = null)
 		{
-			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
+			if (fluentConfiguration == null) throw new ArgumentNullException(nameof(fluentConfiguration));
 
 			var clientConfiguration = SQLiteConfiguration.Standard.InMemory();
 
 			additionalClientConfiguration?.Invoke(clientConfiguration);
 
-			configuration.Database(clientConfiguration);
-			configuration.ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none"));
+			fluentConfiguration.Database(clientConfiguration);
 
-			if (showSql)
-				configuration.ExposeConfiguration(x => x.SetInterceptor(new SqlStatementInterceptor()));
+			PerformCommonInitialization(fluentConfiguration, showSql);
 
-			return configuration;
+			return fluentConfiguration;
 		}
+
+		#endregion SQLite In-Memory
 
 		/// <summary>
 		/// Adds the mappings from assembly of specified type.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
-		/// <param name="configuration">The fluentNHibernate configuration.</param>
+		/// <param name="fluentConfiguration">The fluentNHibernate configuration.</param>
 		/// <param name="conventions">The conventions.</param>
 		/// <returns></returns>
-		/// <exception cref="System.ArgumentNullException">configuration</exception>
-		public static FluentConfiguration AddMappingsFromAssemblyOf<T>(this FluentConfiguration configuration, params IConvention[] conventions)
+		/// <exception cref="ArgumentNullException">fluentConfiguration</exception>
+		public static FluentConfiguration AddMappingsFromAssemblyOf<T>(this FluentConfiguration fluentConfiguration, params IConvention[] conventions)
 		{
-			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
+			if (fluentConfiguration == null) throw new ArgumentNullException(nameof(fluentConfiguration));
 
-			configuration.Mappings(m => m.FluentMappings
+			fluentConfiguration.Mappings(m => m.FluentMappings
 				.AddFromAssemblyOf<T>()
 				.Conventions.Add(conventions));
 
-			return configuration;
+			return fluentConfiguration;
 		}
 
-		private static void PerformCommonInitialization(FluentConfiguration configuration, DbConnectionSettings settings)
+		private static void PerformCommonInitialization(FluentConfiguration fluentConfiguration, bool showSql)
 		{
-			configuration.ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none"));
+			fluentConfiguration.ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none"));
 
-			if (settings.ShowSql)
-				configuration.ExposeConfiguration(x => x.SetInterceptor(new SqlStatementInterceptor()));
+			if (showSql)
+				fluentConfiguration.ExposeConfiguration(x => x.SetInterceptor(new SqlStatementInterceptor()));
 		}
 	}
 }
