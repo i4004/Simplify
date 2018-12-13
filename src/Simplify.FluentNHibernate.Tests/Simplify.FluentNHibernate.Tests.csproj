@@ -13,6 +13,12 @@
 		<PackageReference Include="NUnit" Version="3.11.0" />
 		<PackageReference Include="NUnit3TestAdapter" Version="3.11.0" />
 		<PackageReference Include="System.Data.SQLite" Version="1.0.108" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
 		<ProjectReference Include="..\Simplify.FluentNHibernate\Simplify.FluentNHibernate.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Update="appsettings.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 </Project>
