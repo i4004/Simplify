@@ -18,7 +18,7 @@ namespace Simplify.FluentNHibernate
 		/// <param name="configuration">The configuration.</param>
 		public static void Export(FluentConfiguration configuration)
 		{
-			if (configuration == null) throw new ArgumentNullException("configuration");
+			if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
 			Configuration config = null;
 			configuration.ExposeConfiguration(c => config = c);
