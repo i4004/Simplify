@@ -1,11 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>netcoreapp2.0</TargetFrameworks>
 		<Authors>Alexander Krylkov</Authors>
 		<Product>Simplify</Product>
 		<Description>Simplify.Templates unit tests</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>1.1.3</Version>
+		<Version>1.1.4</Version>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 	</PropertyGroup>
 	<ItemGroup>
@@ -21,7 +21,7 @@
 		<PackageReference Include="NUnit" Version="3.11.0" />
 		<PackageReference Include="NUnit3TestAdapter" Version="3.11.0" />
 		<PackageReference Include="Moq" Version="4.10.0" />
-		<PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="2.2.9-beta" />
+		<PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="3.0.2" />
 		<ProjectReference Include="..\Simplify.Templates\Simplify.Templates.csproj" />
 	</ItemGroup>
 	<ItemGroup>
