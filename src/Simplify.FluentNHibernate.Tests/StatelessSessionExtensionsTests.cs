@@ -38,7 +38,7 @@ namespace Simplify.FluentNHibernate.Tests
 		}
 
 		[Test]
-		public void GetObject_Tests()
+		public void Stateless_GetObject_Tests()
 		{
 			Assert.IsNull(_session.GetObject<User>(x => x.Name == "test"));
 
@@ -58,7 +58,7 @@ namespace Simplify.FluentNHibernate.Tests
 		}
 
 		[Test]
-		public void GetListPaged_Tests()
+		public void Stateless_GetListPaged_Tests()
 		{
 			// Act
 

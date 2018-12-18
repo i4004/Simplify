@@ -4,6 +4,7 @@ namespace Simplify.Mail.IntegrationTests
 {
 	// For test SMTP server you can use https://github.com/rnwood/smtp4dev
 	[TestFixture]
+	[Category("Integration")]
 	public class MailSenderTests
 	{
 		[Test]
