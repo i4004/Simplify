@@ -1,5 +1,5 @@
 $config = "release"
-$excludeProjects = @('Simplify.WindowsServices.IntegrationTests', 'Simplify.Mail.IntegrationTests')
+$excludeProjects = @('Simplify.Mail.IntegrationTests')
 
 $excludeProjectsRegex = [string]::Join('|', $excludeProjects)
 
