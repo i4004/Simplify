@@ -1,4 +1,6 @@
-﻿using Simplify.DI;
+﻿using Microsoft.Extensions.Configuration;
+using Simplify.DI;
+using Simplify.WindowsServices.MultitaskExample.Setup;
 
 namespace Simplify.WindowsServices.MultitaskExample
 {
@@ -10,14 +12,20 @@ namespace Simplify.WindowsServices.MultitaskExample
 			// Run debugger
 			global::System.Diagnostics.Debugger.Launch();
 #endif
+			IocRegistrations.Register();
 
 			var handler = new MultitaskServiceHandler();
 
-			handler.AddJob<TaskProcessor1>(true);
-			handler.AddJob<TaskProcessor1>("TaskProcessor1SecondTaskSettings", "RunTask2");
+			using (var scope = DIContainer.Current.BeginLifetimeScope())
+			{
+				var configuration = scope.Resolver.Resolve<IConfiguration>();
 
-			DIContainer.Current.Register<TaskProcessor2>();
-			handler.AddJob<TaskProcessor2>();
+				handler.AddJob<TaskProcessor1>(true);
+				handler.AddJob<TaskProcessor1>("TaskProcessor1SecondTaskSettings", "RunTask2");
+
+				DIContainer.Current.Register<TaskProcessor2>();
+				handler.AddJob<TaskProcessor2>(configuration);
+			}
 
 			handler.Start(args);
 		}
