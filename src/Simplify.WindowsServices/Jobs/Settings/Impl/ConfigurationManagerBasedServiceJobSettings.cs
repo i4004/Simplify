@@ -16,15 +16,6 @@ namespace Simplify.WindowsServices.Jobs.Settings.Impl
 			if (!(ConfigurationManager.GetSection(configSectionName) is NameValueCollection config))
 				return;
 
-			CrontabExpression = config["CrontabExpression"];
-
-			if (!string.IsNullOrEmpty(CrontabExpression)) return;
-
-			var processingInterval = config["ProcessingInterval"];
-
-			if (!string.IsNullOrEmpty(processingInterval))
-				ProcessingInterval = int.Parse(processingInterval);
-
 			var cleanupOnTaskFinish = config["CleanupOnTaskFinish"];
 
 			if (!string.IsNullOrEmpty(cleanupOnTaskFinish))
@@ -34,6 +25,16 @@ namespace Simplify.WindowsServices.Jobs.Settings.Impl
 
 			if (!string.IsNullOrEmpty(maximumParallelTasksCount))
 				MaximumParallelTasksCount = int.Parse(maximumParallelTasksCount);
+
+			CrontabExpression = config["CrontabExpression"];
+
+			if (!string.IsNullOrEmpty(CrontabExpression))
+				return;
+
+			var processingInterval = config["ProcessingInterval"];
+
+			if (!string.IsNullOrEmpty(processingInterval))
+				ProcessingInterval = int.Parse(processingInterval);
 		}
 	}
 }
