@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net452</TargetFrameworks>
+		<TargetFrameworks>net462</TargetFrameworks>
 		<Authors>Alexander Krylkov</Authors>
 		<Product>Simplify</Product>
 		<Description>Windows services framework with DI</Description>
@@ -22,6 +22,7 @@
 		<PackageReference Include="ncrontab" Version="3.3.0" />
 		<PackageReference Include="Simplify.DI" Version="2.0.1" />
 		<PackageReference Include="Simplify.System" Version="1.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
 		<Reference Include="System.Configuration" />
 		<Reference Include="System.Configuration.Install" />
 		<Reference Include="System.ServiceProcess" />
