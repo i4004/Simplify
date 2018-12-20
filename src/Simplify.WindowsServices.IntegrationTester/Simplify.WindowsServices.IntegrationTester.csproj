@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net452</TargetFrameworks>
+		<TargetFrameworks>net462</TargetFrameworks>
 		<Authors>Alexander Krylkov</Authors>
 		<Product>Simplify</Product>
 		<Description>Simplify.WindowsServices integration tester service</Description>
@@ -14,6 +14,12 @@
 		<Reference Include="System.Configuration" />
 		<Reference Include="System.Configuration.Install" />
 		<Reference Include="System.ServiceProcess" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
 		<ProjectReference Include="..\Simplify.WindowsServices\Simplify.WindowsServices.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Update="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 </Project>
