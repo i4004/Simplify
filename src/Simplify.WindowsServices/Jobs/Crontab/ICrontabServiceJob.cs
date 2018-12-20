@@ -1,5 +1,6 @@
 using System;
 using System.Threading;
+using Simplify.WindowsServices.Jobs.Settings;
 
 namespace Simplify.WindowsServices.Jobs.Crontab
 {

@@ -1,4 +1,5 @@
 ﻿using Simplify.WindowsServices.Jobs.Crontab;
+using Simplify.WindowsServices.Jobs.Settings;
 
 namespace Simplify.WindowsServices.Jobs
 {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Specialized;
 using System.Configuration;
 
-namespace Simplify.WindowsServices.Jobs
+namespace Simplify.WindowsServices.Jobs.Settings
 {
 	/// <summary>
 	/// Provides service job settings
