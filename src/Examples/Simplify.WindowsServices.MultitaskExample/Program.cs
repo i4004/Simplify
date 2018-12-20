@@ -1,4 +1,5 @@
-﻿using Simplify.DI;
+﻿using Microsoft.Extensions.Configuration;
+using Simplify.DI;
 
 namespace Simplify.WindowsServices.MultitaskExample
 {
@@ -10,6 +11,9 @@ namespace Simplify.WindowsServices.MultitaskExample
 			// Run debugger
 			global::System.Diagnostics.Debugger.Launch();
 #endif
+			var configuration = new ConfigurationBuilder()
+				.AddJsonFile("appsettings.json", false)
+				.Build();
 
 			var handler = new MultitaskServiceHandler();
 
@@ -17,7 +21,7 @@ namespace Simplify.WindowsServices.MultitaskExample
 			handler.AddJob<TaskProcessor1>("TaskProcessor1SecondTaskSettings", "RunTask2");
 
 			DIContainer.Current.Register<TaskProcessor2>();
-			handler.AddJob<TaskProcessor2>();
+			handler.AddJob<TaskProcessor2>(configuration);
 
 			handler.Start(args);
 		}

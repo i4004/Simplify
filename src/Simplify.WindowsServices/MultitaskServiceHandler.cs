@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.ServiceProcess;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using Simplify.DI;
 using Simplify.System;
 using Simplify.WindowsServices.CommandLine;
@@ -80,10 +81,27 @@ namespace Simplify.WindowsServices
 
 			var job = ServiceJobFactory.CreateCrontabServiceJob<T>(configurationSectionName, invokeMethodName);
 
-			job.OnCronTimerTick += OnCronTimerTick;
-			job.OnStartWork += OnStartWork;
+			InitializeJob(job);
+		}
 
-			_jobs.Add(job);
+		/// <summary>
+		/// Adds the job.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="configuration">The configuration.</param>
+		/// <param name="configurationSectionName">Name of the configuration section.</param>
+		/// <param name="invokeMethodName">Name of the invoke method.</param>
+		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
+		public void AddJob<T>(IConfiguration configuration, string configurationSectionName = null, string invokeMethodName = "Run",
+			bool automaticallyRegisterUserType = false)
+			where T : class
+		{
+			if (automaticallyRegisterUserType)
+				DIContainer.Current.Register<T>(LifetimeType.Transient);
+
+			var job = ServiceJobFactory.CreateCrontabServiceJob<T>(configuration, configurationSectionName, invokeMethodName);
+
+			InitializeJob(job);
 		}
 
 		/// <summary>
@@ -95,6 +113,18 @@ namespace Simplify.WindowsServices
 			where T : class
 		{
 			AddJob<T>(null, "Run", automaticallyRegisterUserType);
+		}
+
+		/// <summary>
+		/// Adds the service job.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="configuration">The configuration.</param>
+		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
+		public void AddJob<T>(IConfiguration configuration, bool automaticallyRegisterUserType)
+			where T : class
+		{
+			AddJob<T>(configuration, null, "Run", automaticallyRegisterUserType);
 		}
 
 		/// <summary>
@@ -181,6 +211,14 @@ namespace Simplify.WindowsServices
 			Task.WaitAll(itemsToWait);
 
 			base.OnStop();
+		}
+
+		private void InitializeJob(ICrontabServiceJob job)
+		{
+			job.OnCronTimerTick += OnCronTimerTick;
+			job.OnStartWork += OnStartWork;
+
+			_jobs.Add(job);
 		}
 
 		private void OnCronTimerTick(object state)
