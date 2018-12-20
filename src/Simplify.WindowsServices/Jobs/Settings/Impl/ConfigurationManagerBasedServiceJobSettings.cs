@@ -4,14 +4,14 @@ using System.Configuration;
 namespace Simplify.WindowsServices.Jobs.Settings.Impl
 {
 	/// <summary>
-	/// Provides service job settings
+	/// Provides service job settings based on ConfigurationManager
 	/// </summary>
-	public class ConfigurationManagerServiceJobSettings : ServiceJobSettings
+	public class ConfigurationManagerBasedServiceJobSettings : ServiceJobSettings
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="ConfigurationManagerServiceJobSettings"/> class.
+		/// Initializes a new instance of the <see cref="ConfigurationManagerBasedServiceJobSettings"/> class.
 		/// </summary>
-		public ConfigurationManagerServiceJobSettings(string configSectionName = "ServiceSettings")
+		public ConfigurationManagerBasedServiceJobSettings(string configSectionName = "ServiceSettings")
 		{
 			if (!(ConfigurationManager.GetSection(configSectionName) is NameValueCollection config))
 				return;

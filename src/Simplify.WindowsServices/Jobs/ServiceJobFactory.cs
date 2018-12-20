@@ -34,7 +34,7 @@ namespace Simplify.WindowsServices.Jobs
 				configurationSectionName = type.Name + "Settings";
 			}
 
-			return new CrontabServiceJob<T>(new ConfigurationManagerServiceJobSettings(configurationSectionName), new CrontabProcessorFactory(), invokeMethodName);
+			return new CrontabServiceJob<T>(new ConfigurationManagerBasedServiceJobSettings(configurationSectionName), new CrontabProcessorFactory(), invokeMethodName);
 		}
 	}
 }
