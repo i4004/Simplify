@@ -1,5 +1,5 @@
 ﻿using Simplify.WindowsServices.Jobs.Crontab;
-using Simplify.WindowsServices.Jobs.Settings;
+using Simplify.WindowsServices.Jobs.Settings.Impl;
 
 namespace Simplify.WindowsServices.Jobs
 {
@@ -34,7 +34,7 @@ namespace Simplify.WindowsServices.Jobs
 				configurationSectionName = type.Name + "Settings";
 			}
 
-			return new CrontabServiceJob<T>(new ServiceJobSettings(configurationSectionName), new CrontabProcessorFactory(), invokeMethodName);
+			return new CrontabServiceJob<T>(new ConfigurationManagerServiceJobSettings(configurationSectionName), new CrontabProcessorFactory(), invokeMethodName);
 		}
 	}
 }

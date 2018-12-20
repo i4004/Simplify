@@ -1,7 +1,4 @@
-﻿using System.Collections.Specialized;
-using System.Configuration;
-
-namespace Simplify.WindowsServices.Jobs.Settings
+﻿namespace Simplify.WindowsServices.Jobs.Settings
 {
 	/// <summary>
 	/// Provides service job settings
@@ -11,32 +8,8 @@ namespace Simplify.WindowsServices.Jobs.Settings
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ServiceJobSettings"/> class.
 		/// </summary>
-		public ServiceJobSettings(string configSectionName = "ServiceSettings")
+		protected ServiceJobSettings()
 		{
-			ProcessingInterval = 60;
-			CleanupOnTaskFinish = true;
-
-			if (!(ConfigurationManager.GetSection(configSectionName) is NameValueCollection config))
-				return;
-
-			CrontabExpression = config["CrontabExpression"];
-
-			if (!string.IsNullOrEmpty(CrontabExpression)) return;
-
-			var processingInterval = config["ProcessingInterval"];
-
-			if (!string.IsNullOrEmpty(processingInterval))
-				ProcessingInterval = int.Parse(processingInterval);
-
-			var cleanupOnTaskFinish = config["CleanupOnTaskFinish"];
-
-			if (!string.IsNullOrEmpty(cleanupOnTaskFinish))
-				CleanupOnTaskFinish = bool.Parse(cleanupOnTaskFinish);
-
-			var maximumParallelTasksCount = config["MaximumParallelTasksCount"];
-
-			if (!string.IsNullOrEmpty(maximumParallelTasksCount))
-				MaximumParallelTasksCount = int.Parse(maximumParallelTasksCount);
 		}
 
 		/// <summary>
@@ -45,7 +18,7 @@ namespace Simplify.WindowsServices.Jobs.Settings
 		/// <value>
 		/// The crontab expression.
 		/// </value>
-		public string CrontabExpression { get; }
+		public string CrontabExpression { get; protected set; }
 
 		/// <summary>
 		/// Gets the service processing interval (sec).
@@ -53,16 +26,16 @@ namespace Simplify.WindowsServices.Jobs.Settings
 		/// <value>
 		/// The service processing interval (sec).
 		/// </value>
-		public int ProcessingInterval { get; }
+		public int ProcessingInterval { get; protected set; } = 60;
 
 		/// <summary>
 		/// Gets a value indicating whether GC.Collect will be executed on on task finish.
 		/// </summary>
-		public bool CleanupOnTaskFinish { get; }
+		public bool CleanupOnTaskFinish { get; protected set; } = true;
 
 		/// <summary>
 		/// Gets the maximum allowed parallel tasks of this job.
 		/// </summary>
-		public int MaximumParallelTasksCount { get; } = 1;
+		public int MaximumParallelTasksCount { get; protected set; } = 1;
 	}
 }
