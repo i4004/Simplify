@@ -5,7 +5,7 @@ using NHibernate;
 namespace Simplify.Repository.FluentNHibernate
 {
 	/// <summary>
-	///  Provides unit of work with manual statless session open transaction
+	///  Provides unit of work with manual stateless session open transaction
 	/// </summary>
 	/// <seealso cref="IUnitOfWork" />
 	public class TransactStatelessUnitOfWork : StatelessUnitOfWork, ITransactUnitOfWork
