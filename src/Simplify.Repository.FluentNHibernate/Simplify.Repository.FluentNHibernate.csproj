@@ -16,7 +16,7 @@
 			* Upgrade to Simplify.FluentNHibernate 1.9
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
-		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.Repository.FluentNHibernat.xml</DocumentationFile>
+		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.Repository.FluentNHibernate.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Simplify.FluentNHibernate" Version="1.9.0" />
