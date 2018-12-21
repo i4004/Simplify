@@ -4,7 +4,7 @@ using NHibernate;
 namespace Simplify.Repository.FluentNHibernate
 {
 	/// <summary>
-	/// Base ckass for session factory managers
+	/// Base class for session factory managers
 	/// </summary>
 	public abstract class FactoryManagerBase : IDisposable
 	{
