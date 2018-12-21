@@ -14,6 +14,8 @@
 		<PackageReleaseNotes>
 			Updates
 			* Upgrade to Simplify.FluentNHibernate 1.9
+			Fixes
+			XML documentation file name fix
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.Repository.FluentNHibernate.xml</DocumentationFile>
