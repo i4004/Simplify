@@ -1,24 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net452</TargetFrameworks>
+		<TargetFrameworks>net462</TargetFrameworks>
 		<Authors>Alexander Krylkov</Authors>
 		<Product>Simplify</Product>
 		<Description>Simple logger</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>1.3.1</Version>
+		<Version>2.0</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.Log</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.Log</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET logger</PackageTags>
 		<PackageReleaseNotes>
-			+ Upgrade to System.IO.Abstractions 2.1.0.231
+			* Upgrade to System.IO.Abstractions 3.0.2
+			* .NET 4.5.2 version upgrade to .NET 4.6.2
+			* Microsoft.Extensions.Configuration (appsettings.json) based configuration support
+			* IHideObjectMembers removed
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.Log.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="System.IO.Abstractions" Version="2.1.0.231" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+		<PackageReference Include="System.IO.Abstractions" Version="3.0.2" />
 		<Reference Include="System.Configuration" />
 		<Reference Include="System.ServiceModel" />
 		<Reference Include="System.Web" />

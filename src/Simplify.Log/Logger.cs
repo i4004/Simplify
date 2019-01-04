@@ -6,6 +6,9 @@ using System.IO.Abstractions;
 using System.Reflection;
 using System.ServiceModel;
 using System.Web;
+using Microsoft.Extensions.Configuration;
+using Simplify.Log.Settings;
+using Simplify.Log.Settings.Impl;
 
 namespace Simplify.Log
 {
@@ -26,7 +29,19 @@ namespace Simplify.Log
 		/// <param name="configSectionName">Name of the configuration section in the configuration file.</param>
 		public Logger(string configSectionName = LoggerSettings.DefaultConfigSectionName)
 		{
-			Settings = new LoggerSettings(configSectionName);
+			Settings = new ConfigurationManagerBasedLoggerSettings(configSectionName);
+
+			Initialize();
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Logger" /> class.
+		/// </summary>
+		/// <param name="configuration">The configuration.</param>
+		/// <param name="configSectionName">Name of the configuration section in the configuration.</param>
+		public Logger(IConfiguration configuration, string configSectionName = LoggerSettings.DefaultConfigSectionName)
+		{
+			Settings = new ConfigurationBasedLoggerSettings(configuration, configSectionName);
 
 			Initialize();
 		}
@@ -69,7 +84,7 @@ namespace Simplify.Log
 		/// <value>
 		/// The logger settings.
 		/// </value>
-		public LoggerSettings Settings { get; }
+		public ILoggerSettings Settings { get; }
 
 		/// <summary>
 		/// Gets or sets the file system for Logger IO operations.

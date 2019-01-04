@@ -5,7 +5,7 @@ namespace Simplify.Log
 	/// <summary>
 	/// Logger class interface
 	/// </summary>
-	public interface ILogger : IHideObjectMembers
+	public interface ILogger
 	{
 		/// <summary>
 		/// Write text message to log file
