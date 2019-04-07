@@ -7,8 +7,6 @@ Simplify is a set of .NET libraries which provides daily needs functionality for
 
 ### All documentation can be found at [wiki](https://github.com/i4004/Simplify/wiki) page.
 
-## Issues status
-
 ## ![Project Board](https://github.com/users/i4004/projects/4)
 
 ## Build status
