@@ -5,18 +5,13 @@
 		<Product>Simplify</Product>
 		<Description>Simple logger</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>1.4</Version>
+		<Version>1.4.1</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.Log</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.Log</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET logger</PackageTags>
-		<PackageReleaseNotes>
-			* Upgrade to System.IO.Abstractions 3.0.2
-			* .NET 4.5.2 version upgrade to .NET 4.6.2
-			* Microsoft.Extensions.Configuration (appsettings.json) based configuration support
-			* IHideObjectMembers removed
-		</PackageReleaseNotes>
+		<PackageReleaseNotes>* Custom constructor initialize missed fix</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.Log.xml</DocumentationFile>
 	</PropertyGroup>

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using Simplify.Log.Settings;
+using Simplify.Log.Settings.Impl;
+using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -6,9 +9,6 @@ using System.IO.Abstractions;
 using System.Reflection;
 using System.ServiceModel;
 using System.Web;
-using Microsoft.Extensions.Configuration;
-using Simplify.Log.Settings;
-using Simplify.Log.Settings.Impl;
 
 namespace Simplify.Log
 {
@@ -57,6 +57,8 @@ namespace Simplify.Log
 			LoggerPathType pathType = LoggerSettings.DefaultPathType, bool showTraceOutput = false)
 		{
 			Settings = new LoggerSettings(maxFileSize, fileName, pathType, showTraceOutput);
+
+			Initialize();
 		}
 
 		/// <summary>
@@ -222,8 +224,7 @@ namespace Simplify.Log
 			var positionPrefix = fileLineNumber == 0 && fileColumnNumber == 0 ? "" : $"[{fileLineNumber}:{fileColumnNumber}]";
 			var levelText = currentLevel > 1 ? " " + currentLevel.ToString(CultureInfo.InvariantCulture) : "";
 
-			return
-				$"[Inner Exception{levelText}]{positionPrefix} {e.GetType()} : {e.Message}{Environment.NewLine}{trace}{GetInnerExceptionData(currentLevel + 1, e.InnerException)}";
+			return $"[Inner Exception{levelText}]{positionPrefix} {e.GetType()} : {e.Message}{Environment.NewLine}{trace}{GetInnerExceptionData(currentLevel + 1, e.InnerException)}";
 		}
 
 		private void Initialize()
