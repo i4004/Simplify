@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;net462</TargetFrameworks>
+		<Authors>Alexander Krylkov</Authors>
+		<Product>Simplify</Product>
+		<Description>Simplify.DI Microsoft.Extensions.DependencyInjection provider</Description>
+		<Copyright>Licensed under LGPL</Copyright>
+		<Version>1.0</Version>
+		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.DI</PackageProjectUrl>
+		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
+		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection</RepositoryUrl>
+		<RepositoryType>GIT</RepositoryType>
+		<PackageTags>.NET DI IOC-container-provider</PackageTags>
+		<PackageReleaseNotes>
+		</PackageReleaseNotes>
+		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
+		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.xml</DocumentationFile>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Simplify.DI" Version="2.0.1" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
+	</ItemGroup>
+</Project>

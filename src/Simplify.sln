@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2002
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.Log", "Simplify.Log\Simplify.Log.csproj", "{DA27C4E4-081C-4BF6-B6EF-0D1C093450E4}"
 EndProject
@@ -113,7 +113,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mail", "Mail", "{8DB1B5AE-9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.Mail.IntegrationTests", "Simplify.Mail.IntegrationTests\Simplify.Mail.IntegrationTests.csproj", "{5A7FC0B0-7733-4FDE-8AAB-780AA0DEF9A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplify.Mail.TestConsoleApp", "Simplify.Mail.TestConsoleApp\Simplify.Mail.TestConsoleApp.csproj", "{63870359-FEFF-479A-BB3A-E59FF2035E3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.Mail.TestConsoleApp", "Simplify.Mail.TestConsoleApp\Simplify.Mail.TestConsoleApp.csproj", "{63870359-FEFF-479A-BB3A-E59FF2035E3B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection", "Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection\Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.csproj", "{529D0CE0-F84C-4638-8EBF-54B6CA34ABD9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests", "Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests\Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests.csproj", "{07305782-627F-4264-937A-96D2CAC2D02E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -281,6 +285,14 @@ Global
 		{63870359-FEFF-479A-BB3A-E59FF2035E3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63870359-FEFF-479A-BB3A-E59FF2035E3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63870359-FEFF-479A-BB3A-E59FF2035E3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{529D0CE0-F84C-4638-8EBF-54B6CA34ABD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{529D0CE0-F84C-4638-8EBF-54B6CA34ABD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{529D0CE0-F84C-4638-8EBF-54B6CA34ABD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{529D0CE0-F84C-4638-8EBF-54B6CA34ABD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07305782-627F-4264-937A-96D2CAC2D02E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07305782-627F-4264-937A-96D2CAC2D02E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07305782-627F-4264-937A-96D2CAC2D02E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07305782-627F-4264-937A-96D2CAC2D02E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -321,6 +333,8 @@ Global
 		{F97331AE-E23C-4C4B-BBB7-CB50000B07C7} = {5CAE2FF3-6428-4A1C-845B-BF1866939105}
 		{5A7FC0B0-7733-4FDE-8AAB-780AA0DEF9A2} = {8DB1B5AE-9975-4554-BA99-3578626DEC6C}
 		{63870359-FEFF-479A-BB3A-E59FF2035E3B} = {8DB1B5AE-9975-4554-BA99-3578626DEC6C}
+		{529D0CE0-F84C-4638-8EBF-54B6CA34ABD9} = {2D619A98-03A6-434F-B8CA-4473D4F8C52A}
+		{07305782-627F-4264-937A-96D2CAC2D02E} = {2D619A98-03A6-434F-B8CA-4473D4F8C52A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {466E8FF6-456A-4262-A9ED-5E88DB8DCB08}
