@@ -45,7 +45,7 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection
 		/// <returns></returns>
 		public object Resolve(Type serviceType)
 		{
-			return ServiceProvider.GetService(serviceType);
+			return ServiceProvider.GetRequiredService(serviceType);
 		}
 
 		/// <summary>
@@ -84,15 +84,15 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection
 			switch (lifetimeType)
 			{
 				case LifetimeType.PerLifetimeScope:
-					Services.AddScoped(x => instanceCreator(this));
+					Services.AddScoped(c => instanceCreator(new MicrosoftDependencyInjectionDIResolver(c)));
 					break;
 
 				case LifetimeType.Singleton:
-					Services.AddSingleton(x => instanceCreator(this));
+					Services.AddSingleton(c => instanceCreator(new MicrosoftDependencyInjectionDIResolver(c)));
 					break;
 
 				case LifetimeType.Transient:
-					Services.AddTransient(x => instanceCreator(this));
+					Services.AddTransient(c => instanceCreator(new MicrosoftDependencyInjectionDIResolver(c)));
 					break;
 			}
 		}

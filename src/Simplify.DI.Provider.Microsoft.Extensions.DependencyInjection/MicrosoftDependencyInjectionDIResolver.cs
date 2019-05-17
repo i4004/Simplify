@@ -1,4 +1,5 @@
-﻿using Simplify.DI.Provider.DryIoc;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Simplify.DI.Provider.DryIoc;
 using System;
 
 namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection
@@ -27,7 +28,7 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection
 		/// <returns></returns>
 		public object Resolve(Type type)
 		{
-			return _serviceProvider.GetService(type);
+			return _serviceProvider.GetRequiredService(type);
 		}
 	}
 }
