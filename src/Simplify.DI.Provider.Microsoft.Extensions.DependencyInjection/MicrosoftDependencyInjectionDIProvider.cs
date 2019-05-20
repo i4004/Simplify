@@ -59,15 +59,15 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection
 			switch (lifetimeType)
 			{
 				case LifetimeType.PerLifetimeScope:
-					Services.AddScoped(serviceType);
+					Services.AddScoped(serviceType, implementationType);
 					break;
 
 				case LifetimeType.Singleton:
-					Services.AddSingleton(serviceType);
+					Services.AddSingleton(serviceType, implementationType);
 					break;
 
 				case LifetimeType.Transient:
-					Services.AddTransient(serviceType);
+					Services.AddTransient(serviceType, implementationType);
 					break;
 			}
 		}

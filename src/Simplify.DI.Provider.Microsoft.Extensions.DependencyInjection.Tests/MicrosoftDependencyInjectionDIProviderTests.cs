@@ -15,32 +15,22 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 		}
 
 		[Test]
-		public void Resolve_AllSingletones_EqualObjects()
+		public void Resolve_InterfaceWithImplementationType_Resolved()
 		{
 			// Assign
 
-			_provider.Register<Foo>(LifetimeType.Singleton);
-			_provider.Register<Bar1>(LifetimeType.Singleton);
-			_provider.Register<Bar2>(LifetimeType.Singleton);
+			_provider.Register<IBar1, Bar1>();
+
+			IBar1 bar;
 
 			// Act
 
-			var foo = _provider.Resolve<Foo>();
-			var foo2 = _provider.Resolve<Foo>();
-			Foo foo3;
-			Foo foo4;
-
 			using (var scope = _provider.BeginLifetimeScope())
-				foo3 = scope.Resolver.Resolve<Foo>();
-
-			using (var scope = _provider.BeginLifetimeScope())
-				foo4 = scope.Resolver.Resolve<Foo>();
+				bar = scope.Resolver.Resolve<IBar1>();
 
 			// Assert
 
-			Assert.AreEqual(foo, foo2);
-			Assert.AreEqual(foo, foo3);
-			Assert.AreEqual(foo, foo4);
+			Assert.IsNotNull(bar);
 		}
 
 		[Test]
