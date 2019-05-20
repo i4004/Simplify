@@ -16,7 +16,7 @@ build:
   parallel: true
   verbosity: minimal
 
- test:
+test:
   categories:
     except:
       - Integratation
