@@ -19,7 +19,7 @@ build:
 test:
   categories:
     except:
-      - Integratation
+      - Integration
 
 deploy_script:
  - ps: .\MakeSourcePackages.ps1
