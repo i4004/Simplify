@@ -1,13 +1,17 @@
-Simplify
-===
+# Simplify
 
 ![Simplify](https://raw.github.com/i4004/Simplify/master/Images/Icon128x128.png)
 
 Simplify is a set of .NET libraries which provides daily needs functionality for your applications. DI and mocking friendly.
 
-### All documentation can be found at [wiki](https://github.com/i4004/Simplify/wiki) page.
+## Issues
 
-## ![Project Board](https://github.com/users/i4004/projects/4)
+* [Testing new issues board](https://app.gitkraken.com/glo/board/XOJ3y_JVrgAPK84h)
+* [Current board](https://github.com/users/i4004/projects/4)
+
+## Documentation
+
+ All documentation can be found at [wiki](https://github.com/i4004/Simplify/wiki) page.
 
 ## Build status
 
@@ -16,8 +20,7 @@ Simplify is a set of .NET libraries which provides daily needs functionality for
 | **master** | [![Build status](https://ci.appveyor.com/api/projects/status/kmm7aa2iqp71dcwi/branch/master?svg=true)](https://ci.appveyor.com/project/i4004/simplify) |
 | **develop** | [![Build status](https://ci.appveyor.com/api/projects/status/kmm7aa2iqp71dcwi/branch/develop?svg=true)](https://ci.appveyor.com/project/i4004/simplify) |
 
-Packages status
-===
+## Packages status
 
 ### Main
 
