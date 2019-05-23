@@ -6,8 +6,7 @@ Simplify is a set of .NET libraries which provides daily needs functionality for
 
 ## Issues
 
-* [Testing new issues board](https://app.gitkraken.com/glo/board/XOJ3y_JVrgAPK84h)
-* [Current board](https://github.com/users/i4004/projects/4)
+[![Issues board](https://dxssrr2j0sq4w.cloudfront.net/3.2.0/img/external/zenhub-badge.png)](https://app.zenhub.com/workspaces/simplify-5ce3859397ab7c51aa180635/board?repos=17025953,51341283,66346856)
 
 ## Documentation
 
