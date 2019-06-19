@@ -56,3 +56,20 @@ Simplify is a set of .NET libraries which provides daily needs functionality for
 | [![Nuget version](http://img.shields.io/badge/Simplify.String-v1.2-blue.svg)](https://www.nuget.org/packages/Simplify.String/) | [![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/nuget/Simplify.String.svg)](https://libraries.io/nuget/Simplify.String) | 4.5.2, Standard 2.0 |
 | [![Nuget version](http://img.shields.io/badge/Simplify.String.Sources-v1.2-blue.svg)](https://www.nuget.org/packages/Simplify.String.Sources/) | [![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/nuget/Simplify.String.Sources.svg)](https://libraries.io/nuget/Simplify.String.Sources) | 4.5.2, Standard 2.0 |
 | [![Nuget version](http://img.shields.io/badge/Simplify.Windows.Forms-v1-blue.svg)](https://www.nuget.org/packages/Simplify.Windows.Forms/) | [![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/nuget/Simplify.Windows.Forms.svg)](https://libraries.io/nuget/Simplify.Windows.Forms) | 4.5 |
+
+## Contributing
+
+There are many ways in which you can participate in the project. Like most open-source software projects, contributing code is just one of many outlets where you can help improve. Some of the things that you could help out with are:
+
+* Documentation (both code and features)
+* Bug reports
+* Bug fixes
+* Feature requests
+* Feature implementations
+* Test coverage
+* Code quality
+* Sample applications
+
+## License
+
+Licensed under the GNU LESSER GENERAL PUBLIC LICENSE
