@@ -1,5 +1,5 @@
-﻿using System.Reflection;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using System.Reflection;
 
 namespace Simplify.System.Tests
 {
@@ -7,7 +7,7 @@ namespace Simplify.System.Tests
 	public class AssemblyInfoTests
 	{
 		[Test]
-		public void AssemblyInfo_GetCurrentAssemblyInfo_InformationsIsCorrect()
+		public void AssemblyInfo_GetCurrentAssemblyInfo_InformationIsCorrect()
 		{
 			var assemblyInfo = new AssemblyInfo(Assembly.GetAssembly((typeof(AssemblyInfoTests))));
 

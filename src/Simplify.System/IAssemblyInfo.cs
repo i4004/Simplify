@@ -5,7 +5,7 @@ namespace Simplify.System
 	/// <summary>
 	/// Assembly information interface
 	/// </summary>
-	public interface IAssemblyInfo : IHideObjectMembers
+	public interface IAssemblyInfo
 	{
 		/// <summary>
 		/// Gets the assembly version.

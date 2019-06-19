@@ -5,15 +5,15 @@
 		<Product>Simplify</Product>
 		<Description>Core classes for applications and libraries</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>1.0.2</Version>
+		<Version>1.1</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.System</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.System</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET</PackageTags>
 		<PackageReleaseNotes>
-			* Added .NET Standard 2.0 support
-			* Upgrade to .NET Framework 4.5.2
+			+ ApplicationEnvironment class with environment name added
+			- IHideObjectMembers removed
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.System.xml</DocumentationFile>

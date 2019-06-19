@@ -5,7 +5,7 @@ namespace Simplify.System
 	/// <summary>
 	/// Represent time provider
 	/// </summary>
-	public interface ITimeProvider : IHideObjectMembers
+	public interface ITimeProvider
 	{
 		/// <summary>
 		/// Gets the current UTC time.

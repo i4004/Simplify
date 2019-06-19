@@ -12,8 +12,8 @@
 		<description>Core classes for applications and libraries.</description>
 		<summary>Core classes for applications and libraries.</summary>
 		<releaseNotes>
-			* Added .NET Standard 2.0 support
-			* Upgrade to .NET Framework 4.5.2
+			+ ApplicationEnvironment class with environment name added
+			- IHideObjectMembers removed
 		</releaseNotes>
 		<copyright>Licensed under LGPL</copyright>
 		<language>en-US</language>
@@ -24,17 +24,17 @@
 		</dependencies>
 	</metadata>
 	<files>
+		<file src="ApplicationEnvironment.cs" target="content/App_Packages/Simplify.System.Sources.$version$/ApplicationEnvironment.cs" />
+		<file src="ApplicationEnvironment.cs" target="contentFiles\cs\any\App_Packages\Simplify.System.Sources.$version$\ApplicationEnvironment.cs" />
 		<file src="AssemblyInfo.cs" target="content/App_Packages/Simplify.System.Sources.$version$/AssemblyInfo.cs" />
 		<file src="AssemblyInfo.cs" target="contentFiles\cs\any\App_Packages\Simplify.System.Sources.$version$\AssemblyInfo.cs" />
 		<file src="IAssemblyInfo.cs" target="content/App_Packages/Simplify.System.Sources.$version$/IAssemblyInfo.cs" />
 		<file src="IAssemblyInfo.cs" target="contentFiles\cs\any\App_Packages\Simplify.System.Sources.$version$\IAssemblyInfo.cs" />
-		<file src="IHideObjectMembers.cs" target="content/App_Packages/Simplify.System.Sources.$version$/IHideObjectMembers.cs" />
-		<file src="IHideObjectMembers.cs" target="contentFiles\cs\any\App_Packages\Simplify.System.Sources.$version$\IHideObjectMembers.cs" />
 		<file src="ITimeProvider.cs" target="content/App_Packages/Simplify.System.Sources.$version$/ITimeProvider.cs" />
 		<file src="ITimeProvider.cs" target="contentFiles\cs\any\App_Packages\Simplify.System.Sources.$version$\ITimeProvider.cs" />
-		<file src="SystemTimeProvider.cs" target="content/App_Packages/Simplify.System.Sources.$version$/SystemTimeProvider.cs" />
-		<file src="SystemTimeProvider.cs" target="contentFiles\cs\any\App_Packages\Simplify.System.Sources.$version$\SystemTimeProvider.cs" />
 		<file src="TimeProvider.cs" target="content/App_Packages/Simplify.System.Sources.$version$/TimeProvider.cs" />
 		<file src="TimeProvider.cs" target="contentFiles\cs\any\App_Packages\Simplify.System.Sources.$version$\TimeProvider.cs" />
+		<file src="SystemTimeProvider.cs" target="content/App_Packages/Simplify.System.Sources.$version$/SystemTimeProvider.cs" />
+		<file src="SystemTimeProvider.cs" target="contentFiles\cs\any\App_Packages\Simplify.System.Sources.$version$\SystemTimeProvider.cs" />
 	</files>
 </package>

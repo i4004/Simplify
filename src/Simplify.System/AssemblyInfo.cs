@@ -18,7 +18,7 @@ namespace Simplify.System
 		/// <exception cref="ArgumentNullException">infoAssembly</exception>
 		public AssemblyInfo(Assembly infoAssembly)
 		{
-			_infoAssembly = infoAssembly ?? throw new ArgumentNullException("infoAssembly");
+			_infoAssembly = infoAssembly ?? throw new ArgumentNullException(nameof(infoAssembly));
 		}
 
 		/// <summary>
