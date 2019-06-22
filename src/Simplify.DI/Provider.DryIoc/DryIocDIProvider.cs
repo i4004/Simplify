@@ -101,7 +101,10 @@ namespace Simplify.DI.Provider.DryIoc
 		/// </summary>
 		public void Verify()
 		{
-			Container.Validate();
+			var result = Container.Validate();
+
+			if (result.Length > 0)
+				throw result[0].Value;
 		}
 	}
 }
