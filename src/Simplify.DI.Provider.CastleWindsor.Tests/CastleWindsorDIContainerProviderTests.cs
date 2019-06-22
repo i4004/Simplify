@@ -227,5 +227,41 @@ namespace Simplify.DI.Provider.CastleWindsor.Tests
 			Assert.AreNotEqual(foo1, foo2);
 			Assert.AreNotEqual(foo1.Bar1, foo2.Bar1);
 		}
+
+		[Test]
+		public void Verify_CorrectGraph_NoException()
+		{
+			// Assign
+
+			_provider.Register<Bar1>();
+			_provider.Register<Bar2>();
+			_provider.Register<Foo>();
+
+			// Act && Assert
+			Assert.DoesNotThrow(() => _provider.Verify());
+		}
+
+		[Test]
+		public void Verify_LifetimeScopeMismatch_ExceptionThrown()
+		{
+			// Assign
+
+			_provider.Register<Bar1>(LifetimeType.Transient);
+			_provider.Register<Bar2>();
+			_provider.Register<Foo>(LifetimeType.Singleton);
+
+			// Act && Assert
+			Assert.Throws<MisconfiguredComponentException>(() => _provider.Verify());
+		}
+
+		[Test]
+		public void Verify_MissingRegistrations_ExceptionThrown()
+		{
+			// Assign
+			_provider.Register<Foo>();
+
+			// Act && Assert
+			Assert.Throws<MisconfiguredComponentException>(() => _provider.Verify());
+		}
 	}
 }

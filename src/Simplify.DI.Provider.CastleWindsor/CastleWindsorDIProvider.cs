@@ -9,12 +9,12 @@ namespace Simplify.DI.Provider.CastleWindsor
 	/// </summary>
 	public class CastleWindsorDIProvider : IDIContainerProvider
 	{
-		private WindsorContainer _container;
+		private IWindsorContainer _container;
 
 		/// <summary>
 		/// The IOC container
 		/// </summary>
-		public WindsorContainer Container
+		public IWindsorContainer Container
 		{
 			get => _container ?? (_container = new WindsorContainer());
 			set => _container = value ?? throw new ArgumentNullException(nameof(value));
@@ -94,6 +94,14 @@ namespace Simplify.DI.Provider.CastleWindsor
 		public void Dispose()
 		{
 			_container?.Dispose();
+		}
+
+		/// <summary>
+		/// Performs container objects graph verification
+		/// </summary>
+		public void Verify()
+		{
+			Container.CheckForPotentiallyMisconfiguredComponents();
 		}
 	}
 }
