@@ -20,7 +20,7 @@
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.DI.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="DryIoc" Version="3.0.2" PrivateAssets="All" />
+		<PackageReference Include="DryIoc" Version="4.0.5" PrivateAssets="All" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
 		<Reference Include="System" />
