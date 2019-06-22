@@ -95,5 +95,13 @@ namespace Simplify.DI.Provider.DryIoc
 		{
 			_container?.Dispose();
 		}
+
+		/// <summary>
+		/// Performs container objects graph verification
+		/// </summary>
+		public void Verify()
+		{
+			Container.Validate();
+		}
 	}
 }
