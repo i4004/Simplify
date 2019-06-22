@@ -5,7 +5,7 @@ namespace Simplify.DI
 	/// <summary>
 	/// Represents DI container provider
 	/// </summary>
-	public interface IDIContainerProvider : IDIRegistrator, IDIResolver, IDIContextHandler, IDisposable
+	public interface IDIContainerProvider : IDIRegistrator, IDIResolver, IDIContextHandler, IDIVerifier, IDisposable
 	{
 	}
 }
