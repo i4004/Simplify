@@ -96,5 +96,13 @@ namespace Simplify.DI.Provider.SimpleInjector
 		{
 			_container?.Dispose();
 		}
+
+		/// <summary>
+		/// Performs container objects graph verification
+		/// </summary>
+		public void Verify()
+		{
+			Container.Verify();
+		}
 	}
 }
