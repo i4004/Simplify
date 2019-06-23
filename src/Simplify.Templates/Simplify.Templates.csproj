@@ -1,24 +1,24 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
 		<Authors>Alexander Krylkov</Authors>
 		<Product>Simplify</Product>
 		<Description>Text templates engine</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>1.5</Version>
+		<Version>1.5.1</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.Templates</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.Templates</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET Templates</PackageTags>
 		<PackageReleaseNotes>	
-			+ Upgrade to System.IO.Abstractions 3.0.2
+			+ Upgrade to System.IO.Abstractions 6.0.11
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.Templates.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Simplify.Xml.Sources" Version="1.0.4" PrivateAssets="All" />
-		<PackageReference Include="System.IO.Abstractions" Version="3.0.2" />
+		<PackageReference Include="System.IO.Abstractions" Version="6.0.11" />
 	</ItemGroup>
 </Project>
