@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection
 {
@@ -111,6 +111,14 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection
 		/// </summary>
 		public void Dispose()
 		{
+		}
+
+		/// <summary>
+		/// Represents DI container verifier
+		/// </summary>
+		public void Verify()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }
