@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace Simplify.Repository.FluentNHibernate
+namespace Simplify.Repository
 {
 	/// <summary>
 	/// Provides objects comparer based on IIdentityObject
