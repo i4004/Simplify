@@ -44,9 +44,7 @@ namespace Simplify.Repository.FluentNHibernate
 			if (!disposing)
 				return;
 
-			if (Session.IsOpen)
-				Session.Close();
-
+			Session?.Dispose();
 			Session = null;
 		}
 	}
