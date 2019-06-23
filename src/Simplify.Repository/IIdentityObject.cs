@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Represent object with identifier
 	/// </summary>
-	public interface IIdentityObject : IHideObjectMembers
+	public interface IIdentityObject
 	{
 		/// <summary>
 		/// Gets the identifier.
