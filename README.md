@@ -2,7 +2,7 @@
 
 ![Simplify](https://raw.github.com/i4004/Simplify/master/Images/Icon128x128.png)
 
-Simplify is a set of .NET libraries which provides daily needs functionality for your applications. DI and mocking friendly.
+`Simplify` is a set of .NET libraries which provides infrastructure for your applications. DI and mocking friendly.
 
 ## Issues
 
