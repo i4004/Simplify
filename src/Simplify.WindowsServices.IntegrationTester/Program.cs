@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
-using Simplify.DI;
+﻿using Simplify.DI;
+using Simplify.WindowsServices.IntegrationTester.Setup;
 
 namespace Simplify.WindowsServices.IntegrationTester
 {
@@ -13,17 +13,14 @@ namespace Simplify.WindowsServices.IntegrationTester
 #endif
 
 			IocRegistrations.Register();
-
-			var configuration = new ConfigurationBuilder()
-				.AddJsonFile("appsettings.json", false)
-				.Build();
+			DIContainer.Current.Verify();
 
 			var handler = new MultitaskServiceHandler();
 
 			handler.AddJob<TaskProcessor1>("TaskProcessor1Settings");
-			handler.AddJob<TaskProcessor2>(configuration, "TaskProcessor2Settings", "Run", true);
-			handler.AddJob<TaskProcessor3>(configuration, "TaskProcessor3Settings", "Run", true);
-			handler.AddJob<TaskProcessor4>("TaskProcessor4Settings", "Run", true);
+			handler.AddJob<TaskProcessor2>(IocRegistrations.Configuration, "TaskProcessor2Settings", startupArgs: "Hello world!!!");
+			handler.AddJob<TaskProcessor3>(IocRegistrations.Configuration, "TaskProcessor3Settings", automaticallyRegisterUserType: true);
+			handler.AddJob<TaskProcessor4>("TaskProcessor4Settings", "Execute");
 			handler.AddBasicJob<BasicTaskProcessor>();
 
 			if (handler.Start(args))

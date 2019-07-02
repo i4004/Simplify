@@ -19,17 +19,19 @@ namespace Simplify.WindowsServices.Jobs.Crontab
 		/// <param name="settings">The settings.</param>
 		/// <param name="crontabProcessorFactory">The crontab processor factory.</param>
 		/// <param name="invokeMethodName">Name of the invoke method.</param>
-		/// <exception cref="ArgumentNullException">
-		/// settings
+		/// <param name="args">The job arguments.</param>
+		/// <exception cref="ArgumentNullException">settings
 		/// or
-		/// invokeMethodName
-		/// </exception>
+		/// invokeMethodName</exception>
 		/// <exception cref="ServiceInitializationException"></exception>
 		/// <exception cref="ArgumentNullException">settings
 		/// or
 		/// invokeMethodName</exception>
-		public CrontabServiceJob(IServiceJobSettings settings, ICrontabProcessorFactory crontabProcessorFactory, string invokeMethodName = "Run")
-			: base(invokeMethodName)
+		public CrontabServiceJob(IServiceJobSettings settings,
+			ICrontabProcessorFactory crontabProcessorFactory,
+			string invokeMethodName,
+			IJobArgs args)
+			: base(invokeMethodName, args)
 		{
 			if (invokeMethodName == null) throw new ArgumentNullException(nameof(invokeMethodName));
 

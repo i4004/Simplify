@@ -5,7 +5,7 @@ namespace Simplify.WindowsServices.IntegrationTester
 {
 	public class TaskProcessor4
 	{
-		public void Run()
+		public void Execute()
 		{
 			Trace.WriteLine("--- TaskProcessor4 launched");
 
