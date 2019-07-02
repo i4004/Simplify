@@ -5,7 +5,7 @@
 		<Product>Simplify</Product>
 		<Description>Simplify.WindowsServices integration tester service</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>0.4.1</Version>
+		<Version>0.5</Version>
 		<OutputType>Exe</OutputType>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<IsPackable>false</IsPackable>
