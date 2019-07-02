@@ -251,15 +251,15 @@ namespace Simplify.WindowsServices
 
 		private void Run(object state)
 		{
-			var job = (Tuple<long, ICrontabServiceJob>)state;
+			var (jobTaskID, job) = (Tuple<long, ICrontabServiceJob>)state;
 
 			try
 			{
 				using (var scope = DIContainer.Current.BeginLifetimeScope())
 				{
-					var jobObject = scope.Resolver.Resolve(job.Item2.JobClassType);
+					var jobObject = scope.Resolver.Resolve(job.JobClassType);
 
-					job.Item2.InvokeMethodInfo.Invoke(jobObject, job.Item2.IsParameterlessMethod ? null : new object[] { ServiceName });
+					job.InvokeMethodInfo.Invoke(jobObject, job.IsParameterlessMethod ? null : new object[] { ServiceName });
 				}
 			}
 			catch (Exception e)
@@ -271,11 +271,11 @@ namespace Simplify.WindowsServices
 			}
 			finally
 			{
-				if (job.Item2.Settings.CleanupOnTaskFinish)
+				if (job.Settings.CleanupOnTaskFinish)
 					GC.Collect();
 
 				lock (_workingJobsTasks)
-					_workingJobsTasks.Remove(_workingJobsTasks.Single(x => x.ID == job.Item1));
+					_workingJobsTasks.Remove(_workingJobsTasks.Single(x => x.ID == jobTaskID));
 			}
 		}
 
