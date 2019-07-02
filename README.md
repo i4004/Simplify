@@ -10,7 +10,7 @@
 
 ## Documentation
 
- All documentation can be found at [wiki](https://github.com/i4004/Simplify/wiki) page.
+ All documentation can be found on the [wiki](https://github.com/i4004/Simplify/wiki) page.
 
 ## Build status
 
