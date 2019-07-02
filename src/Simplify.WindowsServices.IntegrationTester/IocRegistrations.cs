@@ -9,6 +9,8 @@ namespace Simplify.WindowsServices.IntegrationTester
 
 		public static void Register()
 		{
+			RegisterConfiguration();
+
 			DIContainer.Current.Register<Dependency1>();
 
 			DIContainer.Current.Register<TaskProcessor1>();
