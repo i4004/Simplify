@@ -172,10 +172,8 @@ namespace Simplify.WindowsServices
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing)
-			{
 				foreach (var jobObject in _workingBasicJobs.Select(item => item.Key as IDisposable))
 					jobObject?.Dispose();
-			}
 
 			base.Dispose(disposing);
 		}
