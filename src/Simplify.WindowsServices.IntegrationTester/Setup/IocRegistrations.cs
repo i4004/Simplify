@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Simplify.DI;
 
-namespace Simplify.WindowsServices.IntegrationTester
+namespace Simplify.WindowsServices.IntegrationTester.Setup
 {
 	public static class IocRegistrations
 	{
@@ -14,6 +14,8 @@ namespace Simplify.WindowsServices.IntegrationTester
 			DIContainer.Current.Register<Dependency1>();
 
 			DIContainer.Current.Register<TaskProcessor1>();
+			DIContainer.Current.Register<TaskProcessor2>();
+			DIContainer.Current.Register<TaskProcessor4>();
 			DIContainer.Current.Register<BasicTaskProcessor>();
 		}
 

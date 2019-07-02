@@ -51,7 +51,7 @@ namespace Simplify.WindowsServices
 		/// <exception cref="ArgumentNullException">value</exception>
 		public IServiceJobFactory ServiceJobFactory
 		{
-			get => _serviceJobFactory ?? (_serviceJobFactory = new ServiceJobFactory());
+			get => _serviceJobFactory ?? (_serviceJobFactory = new ServiceJobFactory(ServiceName));
 			set => _serviceJobFactory = value ?? throw new ArgumentNullException(nameof(value));
 		}
 
@@ -72,14 +72,17 @@ namespace Simplify.WindowsServices
 		/// <param name="configurationSectionName">Name of the configuration section.</param>
 		/// <param name="invokeMethodName">Name of the invoke method.</param>
 		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
-		public void AddJob<T>(string configurationSectionName = null, string invokeMethodName = "Run",
-			bool automaticallyRegisterUserType = false)
+		/// <param name="startupArgs">The startup arguments.</param>
+		public void AddJob<T>(string configurationSectionName = null,
+			string invokeMethodName = "Run",
+			bool automaticallyRegisterUserType = false,
+			object startupArgs = null)
 			where T : class
 		{
 			if (automaticallyRegisterUserType)
 				DIContainer.Current.Register<T>(LifetimeType.Transient);
 
-			var job = ServiceJobFactory.CreateCrontabServiceJob<T>(configurationSectionName, invokeMethodName);
+			var job = ServiceJobFactory.CreateCrontabServiceJob<T>(configurationSectionName, invokeMethodName, startupArgs);
 
 			InitializeJob(job);
 		}
@@ -92,14 +95,18 @@ namespace Simplify.WindowsServices
 		/// <param name="configurationSectionName">Name of the configuration section.</param>
 		/// <param name="invokeMethodName">Name of the invoke method.</param>
 		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
-		public void AddJob<T>(IConfiguration configuration, string configurationSectionName = null, string invokeMethodName = "Run",
-			bool automaticallyRegisterUserType = false)
+		/// <param name="startupArgs">The startup arguments.</param>
+		public void AddJob<T>(IConfiguration configuration,
+			string configurationSectionName = null,
+			string invokeMethodName = "Run",
+			bool automaticallyRegisterUserType = false,
+			object startupArgs = null)
 			where T : class
 		{
 			if (automaticallyRegisterUserType)
 				DIContainer.Current.Register<T>(LifetimeType.Transient);
 
-			var job = ServiceJobFactory.CreateCrontabServiceJob<T>(configuration, configurationSectionName, invokeMethodName);
+			var job = ServiceJobFactory.CreateCrontabServiceJob<T>(configuration, configurationSectionName, invokeMethodName, startupArgs);
 
 			InitializeJob(job);
 		}
@@ -121,7 +128,8 @@ namespace Simplify.WindowsServices
 		/// <typeparam name="T"></typeparam>
 		/// <param name="configuration">The configuration.</param>
 		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
-		public void AddJob<T>(IConfiguration configuration, bool automaticallyRegisterUserType)
+		public void AddJob<T>(IConfiguration configuration,
+			bool automaticallyRegisterUserType)
 			where T : class
 		{
 			AddJob<T>(configuration, null, "Run", automaticallyRegisterUserType);
@@ -133,13 +141,16 @@ namespace Simplify.WindowsServices
 		/// <typeparam name="T"></typeparam>
 		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
 		/// <param name="invokeMethodName">Name of the invoke method.</param>
-		public void AddBasicJob<T>(bool automaticallyRegisterUserType = false, string invokeMethodName = "Run")
+		/// <param name="startupArgs">The startup arguments.</param>
+		public void AddBasicJob<T>(bool automaticallyRegisterUserType = false,
+			string invokeMethodName = "Run",
+			object startupArgs = null)
 			where T : class
 		{
 			if (automaticallyRegisterUserType)
 				DIContainer.Current.Register<T>(LifetimeType.Transient);
 
-			var job = ServiceJobFactory.CreateServiceJob<T>(invokeMethodName);
+			var job = ServiceJobFactory.CreateServiceJob<T>(invokeMethodName, startupArgs);
 
 			_jobs.Add(job);
 		}
@@ -257,7 +268,7 @@ namespace Simplify.WindowsServices
 				{
 					var jobObject = scope.Resolver.Resolve(job.JobClassType);
 
-					job.InvokeMethodInfo.Invoke(jobObject, job.IsParameterlessMethod ? null : new object[] { ServiceName });
+					InvokeJobMethod(job, jobObject);
 				}
 			}
 			catch (Exception e)
@@ -285,7 +296,7 @@ namespace Simplify.WindowsServices
 
 				var jobObject = scope.Resolver.Resolve(job.JobClassType);
 
-				job.InvokeMethodInfo.Invoke(jobObject, job.IsParameterlessMethod ? null : new object[] { ServiceName });
+				InvokeJobMethod(job, jobObject);
 
 				_workingBasicJobs.Add(jobObject, scope);
 			}
@@ -295,6 +306,27 @@ namespace Simplify.WindowsServices
 					OnException(new ServiceExceptionArgs(ServiceName, e));
 				else
 					throw;
+			}
+		}
+
+		private void InvokeJobMethod(IServiceJob job, object jobObject)
+		{
+			switch (job.InvokeMethodParameterType)
+			{
+				case InvokeMethodParameterType.Parameterless:
+					job.InvokeMethodInfo.Invoke(jobObject, null);
+					break;
+
+				case InvokeMethodParameterType.ServiceName:
+					job.InvokeMethodInfo.Invoke(jobObject, new object[] { ServiceName });
+					break;
+
+				case InvokeMethodParameterType.Args:
+					job.InvokeMethodInfo.Invoke(jobObject, new object[] { job.JobArgs });
+					break;
+
+				default:
+					throw new ArgumentOutOfRangeException();
 			}
 		}
 	}
