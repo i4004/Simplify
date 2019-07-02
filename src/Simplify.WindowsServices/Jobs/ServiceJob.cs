@@ -84,7 +84,10 @@ namespace Simplify.WindowsServices.Jobs
 			var methodParameters = InvokeMethodInfo.GetParameters();
 
 			if (!methodParameters.Any())
+			{
 				InvokeMethodParameterType = InvokeMethodParameterType.Parameterless;
+				return;
+			}
 
 			if (methodParameters[0].ParameterType == typeof(string))
 				InvokeMethodParameterType = InvokeMethodParameterType.ServiceName;
