@@ -11,22 +11,20 @@ namespace Simplify.WindowsServices.Jobs
 	public class ServiceJob<T> : IServiceJob
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="ServiceJob{T}"/> class.
+		/// Initializes a new instance of the <see cref="ServiceJob{T}" /> class.
 		/// </summary>
 		/// <param name="invokeMethodName">Name of the invoke method.</param>
-		/// <exception cref="ArgumentNullException"></exception>
+		/// <param name="args">The arguments.</param>
+		/// <exception cref="ArgumentNullException">invokeMethodName</exception>
 		/// <exception cref="ServiceInitializationException"></exception>
-		public ServiceJob(string invokeMethodName = "Run")
+		public ServiceJob(string invokeMethodName, IJobArgs args)
 		{
 			if (invokeMethodName == null) throw new ArgumentNullException(nameof(invokeMethodName));
 
 			JobClassType = typeof(T);
-			InvokeMethodInfo = JobClassType.GetMethod(invokeMethodName);
+			JobArgs = args ?? throw new ArgumentNullException(nameof(args));
 
-			if (InvokeMethodInfo == null)
-				throw new ServiceInitializationException($"Method {invokeMethodName} not found in class {JobClassType.Name}");
-
-			IsParameterlessMethod = !InvokeMethodInfo.GetParameters().Any();
+			BuildInvokeMethodInfo(invokeMethodName);
 		}
 
 		/// <summary>
@@ -43,15 +41,23 @@ namespace Simplify.WindowsServices.Jobs
 		/// <value>
 		/// The invoke method information.
 		/// </value>
-		public MethodInfo InvokeMethodInfo { get; }
+		public MethodInfo InvokeMethodInfo { get; private set; }
 
 		/// <summary>
-		/// Gets a value indicating whether invoke method instance is parameterless method.
+		/// Gets the type of the invoke method parameter.
 		/// </summary>
 		/// <value>
-		/// <c>true</c> if invoke method is parameterless method; otherwise, <c>false</c>.
+		/// The type of the invoke method parameter.
 		/// </value>
-		public bool IsParameterlessMethod { get; }
+		public InvokeMethodParameterType InvokeMethodParameterType { get; private set; }
+
+		/// <summary>
+		/// Gets the job arguments.
+		/// </summary>
+		/// <value>
+		/// The job arguments.
+		/// </value>
+		public IJobArgs JobArgs { get; }
 
 		/// <summary>
 		/// Starts this job timer.
@@ -66,6 +72,28 @@ namespace Simplify.WindowsServices.Jobs
 		/// </summary>
 		public virtual void Stop()
 		{
+		}
+
+		private void BuildInvokeMethodInfo(string invokeMethodName)
+		{
+			InvokeMethodInfo = JobClassType.GetMethod(invokeMethodName);
+
+			if (InvokeMethodInfo == null)
+				throw new ServiceInitializationException($"Method {invokeMethodName} not found in class {JobClassType.Name}");
+
+			var methodParameters = InvokeMethodInfo.GetParameters();
+
+			if (!methodParameters.Any())
+			{
+				InvokeMethodParameterType = InvokeMethodParameterType.Parameterless;
+				return;
+			}
+
+			if (methodParameters[0].ParameterType == typeof(string))
+				InvokeMethodParameterType = InvokeMethodParameterType.ServiceName;
+
+			if (methodParameters[0].ParameterType == typeof(IJobArgs))
+				InvokeMethodParameterType = InvokeMethodParameterType.Args;
 		}
 	}
 }

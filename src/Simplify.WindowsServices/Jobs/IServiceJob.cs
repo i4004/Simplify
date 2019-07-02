@@ -25,12 +25,20 @@ namespace Simplify.WindowsServices.Jobs
 		MethodInfo InvokeMethodInfo { get; }
 
 		/// <summary>
-		/// Gets a value indicating whether invoke method instance is parameterless method.
+		/// Gets the type of the invoke method parameter.
 		/// </summary>
 		/// <value>
-		/// <c>true</c> if invoke method is parameterless method; otherwise, <c>false</c>.
+		/// The type of the invoke method parameter.
 		/// </value>
-		bool IsParameterlessMethod { get; }
+		InvokeMethodParameterType InvokeMethodParameterType { get; }
+
+		/// <summary>
+		/// Gets the job arguments.
+		/// </summary>
+		/// <value>
+		/// The job arguments.
+		/// </value>
+		IJobArgs JobArgs { get; }
 
 		/// <summary>
 		/// Starts this job timer.
