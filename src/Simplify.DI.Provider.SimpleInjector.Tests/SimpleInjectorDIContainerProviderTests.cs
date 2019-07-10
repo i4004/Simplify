@@ -256,6 +256,20 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 		}
 
 		[Test]
+		public void Verify_LifetimeScopeMismatchSingletonDependsOnPerLifetimeScope_ExceptionThrown()
+		{
+			// Assign
+
+			_provider.Register<IBar1, Bar1>();
+			_provider.Register(r => new Foo2(r.Resolve<IBar1>()), LifetimeType.Singleton);
+
+			_provider.Verify();
+
+			// Act && Assert
+			Assert.Throws<DiagnosticVerificationException>(() => _provider.Verify());
+		}
+
+		[Test]
 		public void Verify_MissingRegistrations_ExceptionThrown()
 		{
 			// Assign
