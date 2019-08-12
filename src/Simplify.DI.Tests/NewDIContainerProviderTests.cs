@@ -262,6 +262,18 @@ namespace Simplify.DI.Tests
 		}
 
 		[Test]
+		public void Verify_ScopedDependsOnSingleton_NoExceptions()
+		{
+			// Assign
+
+			_provider.Register<IBar, Bar>(LifetimeType.Singleton);
+			_provider.Register<IFoo, Foo>();
+
+			// Act && Assert
+			Assert.DoesNotThrow(() => _provider.Verify());
+		}
+
+		[Test]
 		public void Verify_ScopedDependsOnScoped_NoExceptions()
 		{
 			// Assign
