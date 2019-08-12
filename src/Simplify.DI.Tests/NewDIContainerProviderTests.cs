@@ -212,5 +212,45 @@ namespace Simplify.DI.Tests
 		}
 
 		#endregion Single dependency
+
+		#region Verification
+
+		[Test]
+		public void Verify_SingletonDependsOnTransient_ContainerException()
+		{
+			// Assign
+
+			_provider.Register<IBar, Bar>(LifetimeType.Transient);
+			_provider.Register<IFoo, Foo>(LifetimeType.Singleton);
+
+			// Act && Assert
+			Assert.Throws<ContainerException>(() => _provider.Verify());
+		}
+
+		[Test]
+		public void Verify_ScopedDependsOnTransient_ContainerException()
+		{
+			// Assign
+
+			_provider.Register<IBar, Bar>(LifetimeType.Transient);
+			_provider.Register<IFoo, Foo>();
+
+			// Act && Assert
+			Assert.Throws<ContainerException>(() => _provider.Verify());
+		}
+
+		[Test]
+		public void Verify_ScopedDependsOnScoped_NoExceptions()
+		{
+			// Assign
+
+			_provider.Register<IBar, Bar>();
+			_provider.Register<IFoo, Foo>();
+
+			// Act && Assert
+			Assert.DoesNotThrow(() => _provider.Verify());
+		}
+
+		#endregion Verification
 	}
 }
