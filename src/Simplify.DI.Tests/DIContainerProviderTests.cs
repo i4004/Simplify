@@ -17,25 +17,6 @@ namespace Simplify.DI.Tests
 		}
 
 		[Test]
-		public void Resolve_InterfaceWithImplementationType_Resolved()
-		{
-			// Assign
-
-			_provider.Register<IBar1, Bar1>();
-
-			IBar1 bar;
-
-			// Act
-
-			using (var scope = _provider.BeginLifetimeScope())
-				bar = scope.Resolver.Resolve<IBar1>();
-
-			// Assert
-
-			Assert.IsNotNull(bar);
-		}
-
-		[Test]
 		public void Resolve_AllSingletones_EqualObjects()
 		{
 			// Assign
