@@ -212,32 +212,6 @@ namespace Simplify.DI.Tests
 		}
 
 		[Test]
-		public void Verify_CorrectGraph_NoException()
-		{
-			// Assign
-
-			_provider.Register<Bar1>();
-			_provider.Register<Bar2>();
-			_provider.Register<Foo>();
-
-			// Act && Assert
-			Assert.DoesNotThrow(() => _provider.Verify());
-		}
-
-		[Test]
-		public void Verify_LifetimeScopeMismatch_ExceptionThrown()
-		{
-			// Assign
-
-			_provider.Register<Bar1>(LifetimeType.Transient);
-			_provider.Register<Bar2>();
-			_provider.Register<Foo>(LifetimeType.Singleton);
-
-			// Act && Assert
-			Assert.Throws<ContainerException>(() => _provider.Verify());
-		}
-
-		[Test]
 		public void Verify_LifetimeScopeMismatchSingletonDependsOnPerLifetimeScope_ExceptionThrown()
 		{
 			// Assign
@@ -246,16 +220,6 @@ namespace Simplify.DI.Tests
 			_provider.Register(r => new Foo2(r.Resolve<IBar1>()), LifetimeType.Singleton);
 
 			_provider.Verify();
-
-			// Act && Assert
-			Assert.Throws<ContainerException>(() => _provider.Verify());
-		}
-
-		[Test]
-		public void Verify_MissingRegistrations_ExceptionThrown()
-		{
-			// Assign
-			_provider.Register<Foo>();
 
 			// Act && Assert
 			Assert.Throws<ContainerException>(() => _provider.Verify());

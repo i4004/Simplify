@@ -216,6 +216,16 @@ namespace Simplify.DI.Tests
 		#region Verification
 
 		[Test]
+		public void Verify_MissingRegistration_ContainerException()
+		{
+			// Assign
+			_provider.Register<Foo>();
+
+			// Act && Assert
+			Assert.Throws<ContainerException>(() => _provider.Verify());
+		}
+
+		[Test]
 		public void Verify_SingletonDependsOnTransient_ContainerException()
 		{
 			// Assign
