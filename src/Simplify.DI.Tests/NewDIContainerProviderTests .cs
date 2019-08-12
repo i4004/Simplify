@@ -16,18 +16,35 @@ namespace Simplify.DI.Tests
 			_provider = new DryIocDIProvider();
 		}
 
-		#region Non-dependant
+		#region Type without dependency
 
 		[Test]
-		public void Resolve_NonDependencyType_NoRegistration_ContainerException()
+		public void Resolve_TypeWithoutDependencyAndNotRegistered_ContainerException()
 		{
-			// Act
+			// Act & Assert
+			Assert.Throws<ContainerException>(() => _provider.Resolve<NonDepFoo>());
+		}
+
+		[Test]
+		public void ScopedResolve_TypeWithoutDependencyAndNotRegistered_ContainerException()
+		{
+			// Act & Assert
 			using (var scope = _provider.BeginLifetimeScope())
 				Assert.Throws<ContainerException>(() => scope.Resolver.Resolve<NonDepFoo>());
 		}
 
 		[Test]
-		public void Resolve_NonDependencyType_Registered_Resolved()
+		public void Resolve_TypeWithoutDependencyAndScopeRegistered_ContainerException()
+		{
+			// Assign
+			_provider.Register<NonDepFoo>();
+
+			// Act & Assert
+			Assert.Throws<ContainerException>(() => _provider.Resolve<NonDepFoo>());
+		}
+
+		[Test]
+		public void ScopedResolve_TypeWithoutDependencyAndScopeRegistered_Resolved()
 		{
 			// Assign
 
@@ -44,11 +61,84 @@ namespace Simplify.DI.Tests
 		}
 
 		[Test]
-		public void Resolve_InterfaceWithImplementationType_Resolved()
+		public void Resolve_TypeWithoutDependencyAndSingletonRegistered_Resolved()
+		{
+			// Assign
+			_provider.Register<NonDepFoo>(LifetimeType.Singleton);
+
+			// Act
+			var foo = _provider.Resolve<NonDepFoo>();
+
+			// Assert
+			Assert.IsNotNull(foo);
+		}
+
+		[Test]
+		public void ScopedResolve_TypeWithoutDependencyAndSingletonRegistered_Resolved()
 		{
 			// Assign
 
-			_provider.Register<IBar, Bar>();
+			_provider.Register<NonDepFoo>(LifetimeType.Singleton);
+
+			NonDepFoo foo;
+
+			// Act
+			using (var scope = _provider.BeginLifetimeScope())
+				foo = scope.Resolver.Resolve<NonDepFoo>();
+
+			// Assert
+			Assert.IsNotNull(foo);
+		}
+
+		[Test]
+		public void Resolve_TypeWithoutDependencyAndTransientRegistered_Resolved()
+		{
+			// Assign
+			_provider.Register<NonDepFoo>(LifetimeType.Transient);
+
+			// Act
+			var foo = _provider.Resolve<NonDepFoo>();
+
+			// Assert
+			Assert.IsNotNull(foo);
+		}
+
+		[Test]
+		public void ScopedResolve_TypeWithoutDependencyAndTransientRegistered_Resolved()
+		{
+			// Assign
+
+			_provider.Register<NonDepFoo>(LifetimeType.Transient);
+
+			NonDepFoo foo;
+
+			// Act
+			using (var scope = _provider.BeginLifetimeScope())
+				foo = scope.Resolver.Resolve<NonDepFoo>();
+
+			// Assert
+			Assert.IsNotNull(foo);
+		}
+
+		[Test]
+		public void Resolve_InterfaceWithImplementationTypeAndTransient_Resolved()
+		{
+			// Assign
+			_provider.Register<IBar, Bar>(LifetimeType.Transient);
+
+			// Act
+			var bar = _provider.Resolve<IBar>();
+
+			// Assert
+			Assert.IsNotNull(bar);
+		}
+
+		[Test]
+		public void ScopedResolve_InterfaceWithImplementationTypeAndTransient_Resolved()
+		{
+			// Assign
+
+			_provider.Register<IBar, Bar>(LifetimeType.Transient);
 
 			IBar bar;
 
@@ -60,12 +150,42 @@ namespace Simplify.DI.Tests
 			Assert.IsNotNull(bar);
 		}
 
-		#endregion Non-dependant
+		[Test]
+		public void Resolve_InterfaceWithImplementationTypeAndTransientAndDelegateRegistration_Resolved()
+		{
+			// Assign
+			_provider.Register<IBar>(r => new Bar(), LifetimeType.Transient);
+
+			// Act
+			var bar = _provider.Resolve<IBar>();
+
+			// Assert
+			Assert.IsNotNull(bar);
+		}
+
+		[Test]
+		public void ScopedResolve_InterfaceWithImplementationTypeAndTransientAndDelegateRegistration_Resolved()
+		{
+			// Assign
+
+			_provider.Register<IBar>(r => new Bar(), LifetimeType.Transient);
+
+			IBar bar;
+
+			// Act
+			using (var scope = _provider.BeginLifetimeScope())
+				bar = scope.Resolver.Resolve<IBar>();
+
+			// Assert
+			Assert.IsNotNull(bar);
+		}
+
+		#endregion Type without dependency
 
 		#region Single dependency
 
 		[Test]
-		public void Resolve_SingleDependencyScoped_Resolved_Reused()
+		public void ScopedResolve_SingleDependencyAllScoped_ResolvedAndReused()
 		{
 			// Assign
 
@@ -73,15 +193,22 @@ namespace Simplify.DI.Tests
 			_provider.Register<IFoo, Foo>();
 
 			IFoo foo;
+			IFoo fooReused;
 
 			// Act
+
 			using (var scope = _provider.BeginLifetimeScope())
+			{
 				foo = scope.Resolver.Resolve<IFoo>();
+				fooReused = scope.Resolver.Resolve<IFoo>();
+			}
 
 			// Assert
 
 			Assert.IsNotNull(foo);
 			Assert.IsNotNull(foo.Bar);
+			Assert.AreEqual(foo, fooReused);
+			Assert.AreEqual(foo.Bar, fooReused.Bar);
 		}
 
 		#endregion Single dependency
