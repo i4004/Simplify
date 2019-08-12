@@ -216,7 +216,7 @@ namespace Simplify.DI.Tests
 		#region Verification
 
 		[Test]
-		public void Verify_MissingRegistration_ContainerException()
+		public void Verify_MissingDependencyRegistration_ContainerException()
 		{
 			// Assign
 			_provider.Register<Foo>();
