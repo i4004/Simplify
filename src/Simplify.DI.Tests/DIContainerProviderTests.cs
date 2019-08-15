@@ -22,7 +22,9 @@ namespace Simplify.DI.Tests
 		public void Resolve_NotRegistered_ContainerException()
 		{
 			// Act & Assert
-			Assert.Throws<ContainerException>(() => _provider.Resolve<NonDepFoo>());
+
+			var ex = Assert.Throws<ContainerException>(() => _provider.Resolve<NonDepFoo>());
+			Assert.That(ex.Message, Does.StartWith("Unable to resolve NonDepFoo IsResolutionCall"));
 		}
 
 		[Test]
@@ -30,7 +32,10 @@ namespace Simplify.DI.Tests
 		{
 			// Act & Assert
 			using (var scope = _provider.BeginLifetimeScope())
-				Assert.Throws<ContainerException>(() => scope.Resolver.Resolve<NonDepFoo>());
+			{
+				var ex = Assert.Throws<ContainerException>(() => scope.Resolver.Resolve<NonDepFoo>());
+				Assert.That(ex.Message, Does.StartWith("Unable to resolve NonDepFoo IsResolutionCall"));
+			}
 		}
 
 		[Test]
@@ -40,7 +45,9 @@ namespace Simplify.DI.Tests
 			_provider.Register<NonDepFoo>();
 
 			// Act & Assert
-			Assert.Throws<ContainerException>(() => _provider.Resolve<NonDepFoo>());
+
+			var ex = Assert.Throws<ContainerException>(() => _provider.Resolve<NonDepFoo>());
+			Assert.That(ex.Message, Does.StartWith("No current scope is available: probably you are registering to, or resolving from outside of the scope."));
 		}
 
 		[Test]
