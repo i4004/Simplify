@@ -22,7 +22,8 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 		public void Resolve_NotRegistered_ContainerException()
 		{
 			// Act & Assert
-			Assert.Throws<DiagnosticVerificationException>(() => _provider.Resolve<NonDepFoo>());
+			var ex = Assert.Throws<ActivationException>(() => _provider.Resolve<NonDepFoo>());
+			Assert.That(ex.Message, Does.StartWith("No registration for type NonDepFoo could be found and an implicit registration could not be made."));
 		}
 
 		[Test]

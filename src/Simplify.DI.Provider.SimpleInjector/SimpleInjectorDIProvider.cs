@@ -1,6 +1,6 @@
-﻿using System;
-using SimpleInjector;
+﻿using SimpleInjector;
 using SimpleInjector.Lifestyles;
+using System;
 
 namespace Simplify.DI.Provider.SimpleInjector
 {
@@ -17,7 +17,15 @@ namespace Simplify.DI.Provider.SimpleInjector
 		public Container Container
 		{
 			get => _container ??
-				   (_container = new Container { Options = { DefaultScopedLifestyle = new AsyncScopedLifestyle() } });
+				   (_container = new Container
+				   {
+					   Options =
+					   {
+						   DefaultScopedLifestyle = new AsyncScopedLifestyle(),
+						   ResolveUnregisteredConcreteTypes = false
+					   }
+				   });
+
 			set => _container = value ?? throw new ArgumentNullException(nameof(value));
 		}
 
