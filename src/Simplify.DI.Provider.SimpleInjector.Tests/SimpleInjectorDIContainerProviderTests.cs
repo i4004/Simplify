@@ -19,29 +19,37 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 		#region Existance tests
 
 		[Test]
-		public void Resolve_NotRegistered_ContainerException()
+		public void Resolve_NotRegistered_ActivationException()
 		{
 			// Act & Assert
+
 			var ex = Assert.Throws<ActivationException>(() => _provider.Resolve<NonDepFoo>());
 			Assert.That(ex.Message, Does.StartWith("No registration for type NonDepFoo could be found and an implicit registration could not be made."));
 		}
 
 		[Test]
-		public void ScopedResolve_NotRegistered_ContainerException()
+		public void ScopedResolve_NotRegistered_ActivationException()
 		{
 			// Act & Assert
+
 			using (var scope = _provider.BeginLifetimeScope())
-				Assert.Throws<DiagnosticVerificationException>(() => scope.Resolver.Resolve<NonDepFoo>());
+			{
+				var ex = Assert.Throws<ActivationException>(() => scope.Resolver.Resolve<NonDepFoo>());
+				Assert.That(ex.Message, Does.StartWith("No registration for type NonDepFoo could be found and an implicit registration could not be made."));
+			}
 		}
 
 		[Test]
-		public void Resolve_ScopeRegistered_ContainerException()
+		public void Resolve_ScopeRegisteredAndRequesterOutsideOfTheScope_ActivationException()
 		{
 			// Assign
 			_provider.Register<NonDepFoo>();
 
 			// Act & Assert
-			Assert.Throws<ActivationException>(() => _provider.Resolve<NonDepFoo>());
+
+			var ex = Assert.Throws<ActivationException>(() => _provider.Resolve<NonDepFoo>());
+			Assert.That(ex.Message,
+				Does.StartWith("NonDepFoo is registered as 'Async Scoped' lifestyle, but the instance is requested outside the context of an active (Async Scoped) scope."));
 		}
 
 		[Test]
@@ -433,7 +441,7 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 		}
 
 		[Test]
-		public void ScopedResolve_ScopedDependsOnTransient_ContainerException()
+		public void ScopedResolve_ScopedDependsOnTransient_ActivationException()
 		{
 			// Assign
 
@@ -443,12 +451,14 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 			using (var scope = _provider.BeginLifetimeScope())
 			{
 				// Act && Assert
-				Assert.Throws<ActivationException>(() => scope.Resolver.Resolve<IFoo>());
+
+				var ex = Assert.Throws<ActivationException>(() => scope.Resolver.Resolve<IFoo>());
+				Assert.That(ex.Message, Does.StartWith("A lifestyle mismatch has been detected. Foo (Async Scoped) depends on IBar implemented by Bar (Transient)."));
 			}
 		}
 
 		[Test]
-		public void ScopedResolve_ScopedDelegateDependsOnTransient_ContainerException()
+		public void ScopedResolve_ScopedDelegateDependsOnTransient_DiagnosticVerificationException()
 		{
 			// Assign
 
@@ -513,7 +523,7 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 		}
 
 		[Test]
-		public void ScopedResolve_SingletonDependsOnScoped_ContainerException()
+		public void ScopedResolve_SingletonDependsOnScoped_ActivationException()
 		{
 			// Assign
 
@@ -523,12 +533,15 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 			using (var scope = _provider.BeginLifetimeScope())
 			{
 				// Act && Assert
-				Assert.Throws<ActivationException>(() => scope.Resolver.Resolve<IFoo>());
+
+				var ex = Assert.Throws<ActivationException>(() => scope.Resolver.Resolve<IFoo>());
+				Assert.That(ex.Message,
+					Does.StartWith("A lifestyle mismatch has been detected. Foo (Singleton) depends on IBar implemented by Bar (Async Scoped)."));
 			}
 		}
 
 		[Test]
-		public void ScopedResolve_SingletonDelegateDependsOnScoped_ContainerException()
+		public void ScopedResolve_SingletonDelegateDependsOnScoped_DiagnosticVerificationException()
 		{
 			// Assign
 
@@ -543,7 +556,7 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 		}
 
 		[Test]
-		public void ScopedResolve_SingletonDependsOnTransient_ContainerException()
+		public void ScopedResolve_SingletonDependsOnTransient_ActivationException()
 		{
 			// Assign
 
@@ -553,7 +566,10 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 			using (var scope = _provider.BeginLifetimeScope())
 			{
 				// Act && Assert
-				Assert.Throws<ActivationException>(() => scope.Resolver.Resolve<IFoo>());
+
+				var ex = Assert.Throws<ActivationException>(() => scope.Resolver.Resolve<IFoo>());
+				Assert.That(ex.Message,
+					Does.StartWith("A lifestyle mismatch has been detected. Foo (Singleton) depends on IBar implemented by Bar (Transient)."));
 			}
 		}
 
@@ -685,17 +701,20 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 		#region Verification
 
 		[Test]
-		public void Verify_MissingDependencyRegistration_ContainerException()
+		public void Verify_MissingDependencyRegistration_InvalidOperationException()
 		{
 			// Assign
 			_provider.Register<Foo>();
 
 			// Act && Assert
-			Assert.Throws<InvalidOperationException>(() => _provider.Verify());
+
+			var ex = Assert.Throws<InvalidOperationException>(() => _provider.Verify());
+			Assert.That(ex.Message,
+				Does.StartWith("The configuration is invalid. Creating the instance for type Foo failed. The constructor of type Foo contains the parameter with name 'bar' and type IBar that is not registered."));
 		}
 
 		[Test]
-		public void Verify_ScopedDependsOnTransient_ContainerException()
+		public void Verify_ScopedDependsOnTransient_DiagnosticVerificationException()
 		{
 			// Assign
 
@@ -703,7 +722,10 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 			_provider.Register<IFoo, Foo>();
 
 			// Act && Assert
-			Assert.Throws<DiagnosticVerificationException>(() => _provider.Verify());
+
+			var ex = Assert.Throws<DiagnosticVerificationException>(() => _provider.Verify());
+			Assert.That(ex.Message, Does.Contain("The configuration is invalid. The following diagnostic warnings were reported:"));
+			Assert.That(ex.Message, Does.Contain("-[Lifestyle Mismatch] Foo (Async Scoped) depends on IBar implemented by Bar (Transient)."));
 		}
 
 		[Test]
@@ -731,7 +753,7 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 		}
 
 		[Test]
-		public void Verify_SingletonDependsOnScoped_ContainerException()
+		public void Verify_SingletonDependsOnScoped_DiagnosticVerificationException()
 		{
 			// Assign
 
@@ -739,7 +761,10 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 			_provider.Register<IFoo, Foo>(LifetimeType.Singleton);
 
 			// Act && Assert
-			Assert.Throws<DiagnosticVerificationException>(() => _provider.Verify());
+
+			var ex = Assert.Throws<DiagnosticVerificationException>(() => _provider.Verify());
+			Assert.That(ex.Message, Does.Contain("The configuration is invalid. The following diagnostic warnings were reported:"));
+			Assert.That(ex.Message, Does.Contain("-[Lifestyle Mismatch] Foo (Singleton) depends on IBar implemented by Bar (Async Scoped)."));
 		}
 
 		[Test]
@@ -751,7 +776,10 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 			_provider.Register<IFoo, Foo>(LifetimeType.Singleton);
 
 			// Act && Assert
-			Assert.Throws<DiagnosticVerificationException>(() => _provider.Verify());
+
+			var ex = Assert.Throws<DiagnosticVerificationException>(() => _provider.Verify());
+			Assert.That(ex.Message, Does.Contain("The configuration is invalid. The following diagnostic warnings were reported:"));
+			Assert.That(ex.Message, Does.Contain("-[Lifestyle Mismatch] Foo (Singleton) depends on IBar implemented by Bar (Transient)."));
 		}
 
 		[Test]
