@@ -529,7 +529,9 @@ namespace Simplify.DI.Tests
 			using (var scope = _provider.BeginLifetimeScope())
 			{
 				// Act && Assert
-				Assert.Throws<ContainerException>(() => scope.Resolver.Resolve<IFoo>());
+
+				var ex = Assert.Throws<ContainerException>(() => scope.Resolver.Resolve<IFoo>());
+				Assert.That(ex.Message, Does.StartWith("Dependency IBar as parameter \"bar\" IsSingletonOrDependencyOfSingleton reuse Scoped {Lifespan=100} lifespan shorter than its parent's: singleton Foo"));
 			}
 		}
 
@@ -697,7 +699,9 @@ namespace Simplify.DI.Tests
 			_provider.Register<Foo>();
 
 			// Act && Assert
-			Assert.Throws<ContainerException>(() => _provider.Verify());
+
+			var ex = Assert.Throws<ContainerException>(() => _provider.Verify());
+			Assert.That(ex.Message, Does.StartWith("Unable to resolve IBar as parameter \"bar\""));
 		}
 
 		[Test]
@@ -745,7 +749,9 @@ namespace Simplify.DI.Tests
 			_provider.Register<IFoo, Foo>(LifetimeType.Singleton);
 
 			// Act && Assert
-			Assert.Throws<ContainerException>(() => _provider.Verify());
+
+			var ex = Assert.Throws<ContainerException>(() => _provider.Verify());
+			Assert.That(ex.Message, Does.StartWith("Dependency IBar as parameter \"bar\" IsSingletonOrDependencyOfSingleton reuse Scoped {Lifespan=100} lifespan shorter than its parent's: singleton Foo"));
 		}
 
 		[Test]
