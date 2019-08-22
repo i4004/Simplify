@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Threading;
 
-namespace Simplify.WindowsServices.IntegrationTester
+namespace Simplify.Scheduler.IntegrationTester
 {
 	public class TaskProcessor1 : IDisposable
 	{

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Simplify.WindowsServices
+namespace Simplify.Scheduler
 {
 	/// <summary>
 	/// The exception class using for ApplicationHelper.Service services exceptions

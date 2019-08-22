@@ -1,8 +1,8 @@
+using NCrontab;
 using System;
 using System.Collections.Generic;
-using NCrontab;
 
-namespace Simplify.WindowsServices.Jobs.Crontab
+namespace Simplify.Scheduler.Jobs.Crontab
 {
 	/// <summary>
 	/// Represent multiple crontab schedules processor

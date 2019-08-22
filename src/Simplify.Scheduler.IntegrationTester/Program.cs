@@ -1,7 +1,7 @@
 ﻿using Simplify.DI;
-using Simplify.WindowsServices.IntegrationTester.Setup;
+using Simplify.Scheduler.IntegrationTester.Setup;
 
-namespace Simplify.WindowsServices.IntegrationTester
+namespace Simplify.Scheduler.IntegrationTester
 {
 	internal class Program
 	{

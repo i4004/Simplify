@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Simplify.DI;
 
-namespace Simplify.WindowsServices.IntegrationTester.Setup
+namespace Simplify.Scheduler.IntegrationTester.Setup
 {
 	public static class IocRegistrations
 	{

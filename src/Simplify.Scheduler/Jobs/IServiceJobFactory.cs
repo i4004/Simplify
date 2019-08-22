@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Simplify.WindowsServices.Jobs.Crontab;
+using Simplify.Scheduler.Jobs.Crontab;
 
-namespace Simplify.WindowsServices.Jobs
+namespace Simplify.Scheduler.Jobs
 {
 	/// <summary>
 	/// Represent service jobs factory

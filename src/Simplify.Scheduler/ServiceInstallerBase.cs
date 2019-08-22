@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Simplify.System;
+using System.Collections;
 using System.Configuration;
 using System.Configuration.Install;
 using System.Linq;
@@ -6,9 +7,8 @@ using System.Reflection;
 using System.ServiceProcess;
 using System.Xml.Linq;
 using System.Xml.XPath;
-using Simplify.System;
 
-namespace Simplify.WindowsServices
+namespace Simplify.Scheduler
 {
 	/// <summary>
 	/// Windows-services installer base class

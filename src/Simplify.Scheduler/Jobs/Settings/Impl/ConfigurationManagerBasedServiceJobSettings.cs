@@ -1,7 +1,7 @@
 ﻿using System.Collections.Specialized;
 using System.Configuration;
 
-namespace Simplify.WindowsServices.Jobs.Settings.Impl
+namespace Simplify.Scheduler.Jobs.Settings.Impl
 {
 	/// <summary>
 	/// Provides service job settings based on ConfigurationManager

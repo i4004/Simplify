@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace Simplify.WindowsServices.Jobs
+namespace Simplify.Scheduler.Jobs
 {
 	/// <summary>
 	/// Represent basic service job

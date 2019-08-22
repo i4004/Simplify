@@ -1,8 +1,8 @@
-﻿using System.Reflection;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Simplify.System;
+using System.Reflection;
 
-namespace Simplify.WindowsServices
+namespace Simplify.Scheduler
 {
 	/// <summary>
 	/// Provides class which runs as a windows service and periodically creates a class instance of specified type and launches it in separated thread

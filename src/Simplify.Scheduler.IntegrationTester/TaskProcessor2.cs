@@ -1,8 +1,8 @@
-﻿using System.Diagnostics;
+﻿using Simplify.Scheduler.Jobs;
+using System.Diagnostics;
 using System.Threading;
-using Simplify.WindowsServices.Jobs;
 
-namespace Simplify.WindowsServices.IntegrationTester
+namespace Simplify.Scheduler.IntegrationTester
 {
 	public class TaskProcessor2
 	{

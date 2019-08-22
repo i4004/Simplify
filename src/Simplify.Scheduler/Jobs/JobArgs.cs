@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Simplify.WindowsServices.Jobs
+namespace Simplify.Scheduler.Jobs
 {
 	/// <summary>
 	/// Provides an executing job arguments

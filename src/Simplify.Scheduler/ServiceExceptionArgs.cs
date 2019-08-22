@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Simplify.WindowsServices
+namespace Simplify.Scheduler
 {
 	/// <summary>
 	/// Service exception delegate

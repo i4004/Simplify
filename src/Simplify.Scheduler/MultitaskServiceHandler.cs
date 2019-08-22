@@ -1,17 +1,17 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using Simplify.DI;
+using Simplify.Scheduler.CommandLine;
+using Simplify.Scheduler.Jobs;
+using Simplify.Scheduler.Jobs.Crontab;
+using Simplify.System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.ServiceProcess;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
-using Simplify.DI;
-using Simplify.System;
-using Simplify.WindowsServices.CommandLine;
-using Simplify.WindowsServices.Jobs;
-using Simplify.WindowsServices.Jobs.Crontab;
 
-namespace Simplify.WindowsServices
+namespace Simplify.Scheduler
 {
 	/// <summary>
 	/// Provides class which runs as a windows service and periodically creates a class instances specified in added jobs and launches them in separated thread

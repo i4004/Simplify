@@ -1,4 +1,4 @@
-﻿namespace Simplify.WindowsServices.CommandLine
+﻿namespace Simplify.Scheduler.CommandLine
 {
 	/// <summary>
 	/// Result of command line process

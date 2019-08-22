@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
+using System.Linq;
 
-namespace Simplify.WindowsServices.Jobs.Settings.Impl
+namespace Simplify.Scheduler.Jobs.Settings.Impl
 {
 	/// <summary>
 	/// Provides service job settings based on IConfiguration

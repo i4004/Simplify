@@ -1,7 +1,7 @@
-﻿using System.Reflection;
-using Simplify.System;
+﻿using Simplify.System;
+using System.Reflection;
 
-namespace Simplify.WindowsServices
+namespace Simplify.Scheduler
 {
 	// ReSharper disable once CommentTypo
 

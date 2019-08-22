@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Simplify.WindowsServices.IntegrationTester
+namespace Simplify.Scheduler.IntegrationTester
 {
 	public class BasicTaskProcessor : IDisposable
 	{

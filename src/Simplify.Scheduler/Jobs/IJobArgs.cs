@@ -1,4 +1,4 @@
-﻿namespace Simplify.WindowsServices.Jobs
+﻿namespace Simplify.Scheduler.Jobs
 {
 	/// <summary>
 	/// Represents an executing job args

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 
-namespace Simplify.WindowsServices.Jobs
+namespace Simplify.Scheduler.Jobs
 {
 	/// <summary>
 	/// Provides basic service job

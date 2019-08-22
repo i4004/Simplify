@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Simplify.Scheduler.Jobs.Settings;
+using System;
 using System.Threading;
-using Simplify.WindowsServices.Jobs.Settings;
 
-namespace Simplify.WindowsServices.Jobs.Crontab
+namespace Simplify.Scheduler.Jobs.Crontab
 {
 	/// <summary>
 	/// Provides crontab service job

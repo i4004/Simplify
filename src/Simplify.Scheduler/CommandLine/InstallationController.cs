@@ -1,7 +1,7 @@
 ﻿using System.Configuration.Install;
 using System.Reflection;
 
-namespace Simplify.WindowsServices.CommandLine
+namespace Simplify.Scheduler.CommandLine
 {
 	/// <summary>
 	/// Provides windows-service installation controller

@@ -1,4 +1,4 @@
-﻿namespace Simplify.WindowsServices.CommandLine
+﻿namespace Simplify.Scheduler.CommandLine
 {
 	/// <summary>
 	/// List of possible action from command line

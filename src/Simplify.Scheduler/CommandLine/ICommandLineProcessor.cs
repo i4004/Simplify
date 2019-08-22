@@ -1,4 +1,4 @@
-﻿namespace Simplify.WindowsServices.CommandLine
+﻿namespace Simplify.Scheduler.CommandLine
 {
 	/// <summary>
 	/// Represent windows-service command line processor

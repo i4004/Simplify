@@ -1,9 +1,9 @@
-﻿using System;
-using Microsoft.Extensions.Configuration;
-using Simplify.WindowsServices.Jobs.Crontab;
-using Simplify.WindowsServices.Jobs.Settings.Impl;
+﻿using Microsoft.Extensions.Configuration;
+using Simplify.Scheduler.Jobs.Crontab;
+using Simplify.Scheduler.Jobs.Settings.Impl;
+using System;
 
-namespace Simplify.WindowsServices.Jobs
+namespace Simplify.Scheduler.Jobs
 {
 	/// <summary>
 	/// Provides service jobs factory

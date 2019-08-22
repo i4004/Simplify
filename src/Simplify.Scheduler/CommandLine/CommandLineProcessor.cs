@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace Simplify.WindowsServices.CommandLine
+namespace Simplify.Scheduler.CommandLine
 {
 	/// <summary>
 	/// Provides windows-service command line processor
 	/// </summary>
-	/// <seealso cref="Simplify.WindowsServices.CommandLine.ICommandLineProcessor" />
+	/// <seealso cref="ICommandLineProcessor" />
 	public class CommandLineProcessor : ICommandLineProcessor
 	{
 		private IInstallationController _installationController;

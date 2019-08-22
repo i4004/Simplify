@@ -1,4 +1,4 @@
-﻿namespace Simplify.WindowsServices.Jobs
+﻿namespace Simplify.Scheduler.Jobs
 {
 	/// <summary>
 	/// Provides a job invoke method parameter type
