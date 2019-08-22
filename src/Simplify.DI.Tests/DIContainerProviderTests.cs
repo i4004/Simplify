@@ -24,7 +24,8 @@ namespace Simplify.DI.Tests
 			// Act & Assert
 
 			var ex = Assert.Throws<ContainerException>(() => _provider.Resolve<NonDepFoo>());
-			Assert.That(ex.Message, Does.StartWith("Unable to resolve NonDepFoo IsResolutionCall"));
+			Assert.That(ex.Message, Does.StartWith("Unable to resolve"));
+			Assert.That(ex.Message, Does.Contain("NonDepFoo IsResolutionCall"));
 		}
 
 		[Test]
@@ -34,7 +35,8 @@ namespace Simplify.DI.Tests
 			using (var scope = _provider.BeginLifetimeScope())
 			{
 				var ex = Assert.Throws<ContainerException>(() => scope.Resolver.Resolve<NonDepFoo>());
-				Assert.That(ex.Message, Does.StartWith("Unable to resolve NonDepFoo IsResolutionCall"));
+				Assert.That(ex.Message, Does.StartWith("Unable to resolve"));
+				Assert.That(ex.Message, Does.Contain("NonDepFoo IsResolutionCall"));
 			}
 		}
 
@@ -563,7 +565,7 @@ namespace Simplify.DI.Tests
 				// Act && Assert
 
 				var ex = Assert.Throws<ContainerException>(() => scope.Resolver.Resolve<IFoo>());
-				Assert.That(ex.Message, Does.StartWith("Dependency IBar as parameter \"bar\" IsSingletonOrDependencyOfSingleton reuse Scoped {Lifespan=100} lifespan shorter than its parent's: singleton Foo"));
+				Assert.That(ex.Message, Does.Contain("IBar as parameter \"bar\" IsSingletonOrDependencyOfSingleton reuse Scoped {Lifespan=100} lifespan shorter than its parent's: singleton"));
 			}
 		}
 
@@ -796,7 +798,8 @@ namespace Simplify.DI.Tests
 			// Act && Assert
 
 			var ex = Assert.Throws<ContainerException>(() => _provider.Verify());
-			Assert.That(ex.Message, Does.StartWith("Unable to resolve IBar as parameter \"bar\""));
+			Assert.That(ex.Message, Does.StartWith("Unable to resolve"));
+			Assert.That(ex.Message, Does.Contain("IBar as parameter \"bar\""));
 		}
 
 		// Note: this behavior check is not available
@@ -847,7 +850,7 @@ namespace Simplify.DI.Tests
 			// Act && Assert
 
 			var ex = Assert.Throws<ContainerException>(() => _provider.Verify());
-			Assert.That(ex.Message, Does.StartWith("Dependency IBar as parameter \"bar\" IsSingletonOrDependencyOfSingleton reuse Scoped {Lifespan=100} lifespan shorter than its parent's: singleton Foo"));
+			Assert.That(ex.Message, Does.Contain("IBar as parameter \"bar\" IsSingletonOrDependencyOfSingleton reuse Scoped {Lifespan=100} lifespan shorter than its parent's: singleton"));
 		}
 
 		// Note: this behavior check is not available
