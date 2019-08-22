@@ -40,7 +40,7 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 		}
 
 		[Test]
-		public void Resolve_ScopeRegisteredAndRequesterOutsideOfTheScope_ActivationException()
+		public void Resolve_ScopeRegisteredAndRequestedOutsideOfTheScope_ActivationException()
 		{
 			// Assign
 			_provider.Register<NonDepFoo>();
@@ -457,19 +457,50 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 			}
 		}
 
+		// Note: this behavior check is not available
+		//[Test]
+		//public void ScopedResolve_ScopedDelegateDependsOnTransient_DiagnosticVerificationException()
+		//{
+		//	// Assign
+
+		//	_provider.Register<IBar, Bar>(LifetimeType.Transient);
+		//	_provider.Register<IFoo>(r => new Foo(r.Resolve<IBar>()));
+
+		//	using (var scope = _provider.BeginLifetimeScope())
+		//	{
+		//		// Act && Assert
+		//		Assert.Throws<DiagnosticVerificationException>(() => scope.Resolver.Resolve<IFoo>());
+		//	}
+		//}
+
 		[Test]
-		public void ScopedResolve_ScopedDelegateDependsOnTransient_DiagnosticVerificationException()
+		public void ScopedResolve_ScopedDelegateDependsOnTransient_TransientReusedAsScoped()
 		{
 			// Assign
 
-			_provider.Register<IBar, Bar>(LifetimeType.Transient);
+			_provider.Register<IBar, Bar>();
 			_provider.Register<IFoo>(r => new Foo(r.Resolve<IBar>()));
+
+			IFoo foo;
+			IFoo fooSecond;
+			IFoo fooThird;
 
 			using (var scope = _provider.BeginLifetimeScope())
 			{
-				// Act && Assert
-				Assert.Throws<DiagnosticVerificationException>(() => scope.Resolver.Resolve<IFoo>());
+				foo = scope.Resolver.Resolve<IFoo>();
+				fooSecond = scope.Resolver.Resolve<IFoo>();
 			}
+
+			using (var scope = _provider.BeginLifetimeScope())
+				fooThird = scope.Resolver.Resolve<IFoo>();
+
+			Assert.IsNotNull(foo);
+
+			Assert.AreEqual(foo, fooSecond);
+			Assert.AreNotEqual(foo, fooThird);
+
+			Assert.AreEqual(foo.Bar, fooSecond.Bar);
+			Assert.AreNotEqual(foo.Bar, fooThird.Bar);
 		}
 
 		[Test]
@@ -540,19 +571,50 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 			}
 		}
 
+		// Note: this behavior check is not available
+		//[Test]
+		//public void ScopedResolve_SingletonDelegateDependsOnScoped_DiagnosticVerificationException()
+		//{
+		//	// Assign
+
+		//	_provider.Register<IBar, Bar>();
+		//	_provider.Register<IFoo>(r => new Foo(r.Resolve<IBar>()), LifetimeType.Singleton);
+
+		//	using (var scope = _provider.BeginLifetimeScope())
+		//	{
+		//		// Act && Assert
+		//		Assert.Throws<DiagnosticVerificationException>(() => scope.Resolver.Resolve<IFoo>());
+		//	}
+		//}
+
 		[Test]
-		public void ScopedResolve_SingletonDelegateDependsOnScoped_DiagnosticVerificationException()
+		public void ScopedResolve_SingletonDelegateDependsOnScoped_ScopedReusedAsSingleton()
 		{
 			// Assign
 
 			_provider.Register<IBar, Bar>();
 			_provider.Register<IFoo>(r => new Foo(r.Resolve<IBar>()), LifetimeType.Singleton);
 
+			IFoo foo;
+			IFoo fooSecond;
+			IFoo fooThird;
+
 			using (var scope = _provider.BeginLifetimeScope())
 			{
-				// Act && Assert
-				Assert.Throws<DiagnosticVerificationException>(() => scope.Resolver.Resolve<IFoo>());
+				foo = scope.Resolver.Resolve<IFoo>();
+				fooSecond = scope.Resolver.Resolve<IFoo>();
 			}
+
+			using (var scope = _provider.BeginLifetimeScope())
+				fooThird = scope.Resolver.Resolve<IFoo>();
+
+			Assert.IsNotNull(foo);
+
+			Assert.AreEqual(foo, fooSecond);
+			Assert.AreEqual(foo, fooThird);
+
+			Assert.AreEqual(foo.Bar, fooSecond.Bar);
+			Assert.AreEqual(foo.Bar, fooThird.Bar);
 		}
 
 		[Test]
@@ -573,19 +635,50 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 			}
 		}
 
+		// Note: this behavior check is not available
+		//[Test]
+		//public void ScopedResolve_SingletonDelegateDependsOnTransient_ContainerException()
+		//{
+		//	// Assign
+
+		//	_provider.Register<IBar, Bar>(LifetimeType.Transient);
+		//	_provider.Register<IFoo>(r => new Foo(r.Resolve<IBar>()), LifetimeType.Singleton);
+
+		//	using (var scope = _provider.BeginLifetimeScope())
+		//	{
+		//		// Act && Assert
+		//		Assert.Throws<DiagnosticVerificationException>(() => scope.Resolver.Resolve<IFoo>());
+		//	}
+		//}
+
 		[Test]
-		public void ScopedResolve_SingletonDelegateDependsOnTransient_ContainerException()
+		public void ScopedResolve_SingletonDelegateDependsOnTransient_TransientReusedAsSingleton()
 		{
 			// Assign
 
 			_provider.Register<IBar, Bar>(LifetimeType.Transient);
 			_provider.Register<IFoo>(r => new Foo(r.Resolve<IBar>()), LifetimeType.Singleton);
 
+			IFoo foo;
+			IFoo fooSecond;
+			IFoo fooThird;
+
 			using (var scope = _provider.BeginLifetimeScope())
 			{
-				// Act && Assert
-				Assert.Throws<DiagnosticVerificationException>(() => scope.Resolver.Resolve<IFoo>());
+				foo = scope.Resolver.Resolve<IFoo>();
+				fooSecond = scope.Resolver.Resolve<IFoo>();
 			}
+
+			using (var scope = _provider.BeginLifetimeScope())
+				fooThird = scope.Resolver.Resolve<IFoo>();
+
+			Assert.IsNotNull(foo);
+
+			Assert.AreEqual(foo, fooSecond);
+			Assert.AreEqual(foo, fooThird);
+
+			Assert.AreEqual(foo.Bar, fooSecond.Bar);
+			Assert.AreEqual(foo.Bar, fooThird.Bar);
 		}
 
 		[Test]
@@ -727,6 +820,22 @@ namespace Simplify.DI.Provider.SimpleInjector.Tests
 			Assert.That(ex.Message, Does.Contain("The configuration is invalid. The following diagnostic warnings were reported:"));
 			Assert.That(ex.Message, Does.Contain("-[Lifestyle Mismatch] Foo (Async Scoped) depends on IBar implemented by Bar (Transient)."));
 		}
+
+		// Note: this behavior check is not available
+		//[Test]
+		//public void Verify_ScopedDelegateDependsOnTransient_DiagnosticVerificationException()
+		//{
+		//	// Assign
+
+		//	_provider.Register<IBar, Bar>(LifetimeType.Transient);
+		//	_provider.Register<IFoo>(r => new Foo(r.Resolve<IBar>()));
+
+		//	// Act && Assert
+
+		//	var ex = Assert.Throws<DiagnosticVerificationException>(() => _provider.Verify());
+		//	Assert.That(ex.Message, Does.Contain("The configuration is invalid. The following diagnostic warnings were reported:"));
+		//	Assert.That(ex.Message, Does.Contain("-[Lifestyle Mismatch] Foo (Async Scoped) depends on IBar implemented by Bar (Transient)."));
+		//}
 
 		[Test]
 		public void Verify_ScopedDependsOnSingleton_NoExceptions()

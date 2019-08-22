@@ -1,5 +1,7 @@
-﻿using NUnit.Framework;
+﻿using Castle.MicroKernel;
+using NUnit.Framework;
 using Simplify.DI.TestsTypes;
+using System;
 
 namespace Simplify.DI.Provider.CastleWindsor.Tests
 {
@@ -17,28 +19,39 @@ namespace Simplify.DI.Provider.CastleWindsor.Tests
 		#region Existance tests
 
 		[Test]
-		public void Resolve_NotRegistered_MisconfiguredComponentException()
+		public void Resolve_NotRegistered_ComponentNotFoundException()
 		{
 			// Act & Assert
-			Assert.Throws<MisconfiguredComponentException>(() => _provider.Resolve<NonDepFoo>());
+
+			var ex = Assert.Throws<ComponentNotFoundException>(() => _provider.Resolve<NonDepFoo>());
+			Assert.That(ex.Message,
+				Does.StartWith("No component for supporting the service Simplify.DI.TestsTypes.NonDepFoo was found"));
 		}
 
 		[Test]
-		public void ScopedResolve_NotRegistered_MisconfiguredComponentException()
+		public void ScopedResolve_NotRegistered_ComponentNotFoundException()
 		{
 			// Act & Assert
+
 			using (var scope = _provider.BeginLifetimeScope())
-				Assert.Throws<MisconfiguredComponentException>(() => scope.Resolver.Resolve<NonDepFoo>());
+			{
+				var ex = Assert.Throws<ComponentNotFoundException>(() => scope.Resolver.Resolve<NonDepFoo>());
+				Assert.That(ex.Message,
+					Does.StartWith("No component for supporting the service Simplify.DI.TestsTypes.NonDepFoo was found"));
+			}
 		}
 
 		[Test]
-		public void Resolve_ScopeRegistered_MisconfiguredComponentException()
+		public void Resolve_ScopeRegisteredAndRequestedOutsideOfTheScope_InvalidOperationException()
 		{
 			// Assign
 			_provider.Register<NonDepFoo>();
 
 			// Act & Assert
-			Assert.Throws<MisconfiguredComponentException>(() => _provider.Resolve<NonDepFoo>());
+
+			var ex = Assert.Throws<InvalidOperationException>(() => _provider.Resolve<NonDepFoo>());
+			Assert.That(ex.Message,
+				Does.StartWith("Scope was not available. Did you forget to call container.BeginScope()?"));
 		}
 
 		[Test]
@@ -429,34 +442,96 @@ namespace Simplify.DI.Provider.CastleWindsor.Tests
 			Assert.AreEqual(foo.Bar, fooSecond.Bar);
 		}
 
+		// Note: this behavior check is not available
+		//[Test]
+		//public void ScopedResolve_ScopedDependsOnTransient_MisconfiguredComponentException()
+		//{
+		//	// Assign
+
+		//	_provider.Register<IBar, Bar>(LifetimeType.Transient);
+		//	_provider.Register<IFoo, Foo>();
+
+		//	using (var scope = _provider.BeginLifetimeScope())
+		//	{
+		//		// Act && Assert
+		//		Assert.Throws<MisconfiguredComponentException>(() => scope.Resolver.Resolve<IFoo>());
+		//	}
+		//}
+
 		[Test]
-		public void ScopedResolve_ScopedDependsOnTransient_MisconfiguredComponentException()
+		public void ScopedResolve_ScopedDependsOnTransient_TransientReusedAsScoped()
 		{
 			// Assign
 
 			_provider.Register<IBar, Bar>(LifetimeType.Transient);
 			_provider.Register<IFoo, Foo>();
 
+			IFoo foo;
+			IFoo fooSecond;
+			IFoo fooThird;
+
 			using (var scope = _provider.BeginLifetimeScope())
 			{
-				// Act && Assert
-				Assert.Throws<MisconfiguredComponentException>(() => scope.Resolver.Resolve<IFoo>());
+				foo = scope.Resolver.Resolve<IFoo>();
+				fooSecond = scope.Resolver.Resolve<IFoo>();
 			}
+
+			using (var scope = _provider.BeginLifetimeScope())
+				fooThird = scope.Resolver.Resolve<IFoo>();
+
+			Assert.IsNotNull(foo);
+
+			Assert.AreEqual(foo, fooSecond);
+			Assert.AreNotEqual(foo, fooThird);
+
+			Assert.AreEqual(foo.Bar, fooSecond.Bar);
+			Assert.AreNotEqual(foo.Bar, fooThird.Bar);
 		}
 
+		// Note: this behavior check is not available
+		//[Test]
+		//public void ScopedResolve_ScopedDelegateDependsOnTransient_MisconfiguredComponentException()
+		//{
+		//	// Assign
+
+		//	_provider.Register<IBar, Bar>(LifetimeType.Transient);
+		//	_provider.Register<IFoo>(r => new Foo(r.Resolve<IBar>()));
+
+		//	using (var scope = _provider.BeginLifetimeScope())
+		//	{
+		//		// Act && Assert
+		//		Assert.Throws<MisconfiguredComponentException>(() => scope.Resolver.Resolve<IFoo>());
+		//	}
+		//}
+
 		[Test]
-		public void ScopedResolve_ScopedDelegateDependsOnTransient_MisconfiguredComponentException()
+		public void ScopedResolve_ScopedDelegateDependsOnTransient_TransientReusedAsScoped()
 		{
 			// Assign
 
-			_provider.Register<IBar, Bar>(LifetimeType.Transient);
+			_provider.Register<IBar, Bar>();
 			_provider.Register<IFoo>(r => new Foo(r.Resolve<IBar>()));
+
+			IFoo foo;
+			IFoo fooSecond;
+			IFoo fooThird;
 
 			using (var scope = _provider.BeginLifetimeScope())
 			{
-				// Act && Assert
-				Assert.Throws<MisconfiguredComponentException>(() => scope.Resolver.Resolve<IFoo>());
+				foo = scope.Resolver.Resolve<IFoo>();
+				fooSecond = scope.Resolver.Resolve<IFoo>();
 			}
+
+			using (var scope = _provider.BeginLifetimeScope())
+				fooThird = scope.Resolver.Resolve<IFoo>();
+
+			Assert.IsNotNull(foo);
+
+			Assert.AreEqual(foo, fooSecond);
+			Assert.AreNotEqual(foo, fooThird);
+
+			Assert.AreEqual(foo.Bar, fooSecond.Bar);
+			Assert.AreNotEqual(foo.Bar, fooThird.Bar);
 		}
 
 		[Test]
@@ -509,64 +584,188 @@ namespace Simplify.DI.Provider.CastleWindsor.Tests
 			Assert.AreEqual(bar, barSecond);
 		}
 
+		// Note: this behavior check is not available
+		//[Test]
+		//public void ScopedResolve_SingletonDependsOnScoped_MisconfiguredComponentException()
+		//{
+		//	// Assign
+
+		//	_provider.Register<IBar, Bar>();
+		//	_provider.Register<IFoo, Foo>(LifetimeType.Singleton);
+
+		//	using (var scope = _provider.BeginLifetimeScope())
+		//	{
+		//		// Act && Assert
+		//		Assert.Throws<MisconfiguredComponentException>(() => scope.Resolver.Resolve<IFoo>());
+		//	}
+		//}
+
 		[Test]
-		public void ScopedResolve_SingletonDependsOnScoped_MisconfiguredComponentException()
+		public void ScopedResolve_SingletonDependsOnScoped_ScopedReusedAsSingleton()
 		{
 			// Assign
 
 			_provider.Register<IBar, Bar>();
 			_provider.Register<IFoo, Foo>(LifetimeType.Singleton);
 
+			IFoo foo;
+			IFoo fooSecond;
+			IFoo fooThird;
+
 			using (var scope = _provider.BeginLifetimeScope())
 			{
-				// Act && Assert
-				Assert.Throws<MisconfiguredComponentException>(() => scope.Resolver.Resolve<IFoo>());
+				foo = scope.Resolver.Resolve<IFoo>();
+				fooSecond = scope.Resolver.Resolve<IFoo>();
 			}
+
+			using (var scope = _provider.BeginLifetimeScope())
+				fooThird = scope.Resolver.Resolve<IFoo>();
+
+			Assert.IsNotNull(foo);
+
+			Assert.AreEqual(foo, fooSecond);
+			Assert.AreEqual(foo, fooThird);
+
+			Assert.AreEqual(foo.Bar, fooSecond.Bar);
+			Assert.AreEqual(foo.Bar, fooThird.Bar);
 		}
 
+		// Note: this behavior check is not available
+		//[Test]
+		//public void ScopedResolve_SingletonDelegateDependsOnScoped_MisconfiguredComponentException()
+		//{
+		//	// Assign
+
+		//	_provider.Register<IBar, Bar>();
+		//	_provider.Register<IFoo>(r => new Foo(r.Resolve<IBar>()), LifetimeType.Singleton);
+
+		//	using (var scope = _provider.BeginLifetimeScope())
+		//	{
+		//		// Act && Assert
+		//		Assert.Throws<MisconfiguredComponentException>(() => scope.Resolver.Resolve<IFoo>());
+		//	}
+		//}
+
 		[Test]
-		public void ScopedResolve_SingletonDelegateDependsOnScoped_MisconfiguredComponentException()
+		public void ScopedResolve_SingletonDelegateDependsOnScoped_ScopedReusedAsSingleton()
 		{
 			// Assign
 
 			_provider.Register<IBar, Bar>();
 			_provider.Register<IFoo>(r => new Foo(r.Resolve<IBar>()), LifetimeType.Singleton);
 
+			IFoo foo;
+			IFoo fooSecond;
+			IFoo fooThird;
+
 			using (var scope = _provider.BeginLifetimeScope())
 			{
-				// Act && Assert
-				Assert.Throws<MisconfiguredComponentException>(() => scope.Resolver.Resolve<IFoo>());
+				foo = scope.Resolver.Resolve<IFoo>();
+				fooSecond = scope.Resolver.Resolve<IFoo>();
 			}
+
+			using (var scope = _provider.BeginLifetimeScope())
+				fooThird = scope.Resolver.Resolve<IFoo>();
+
+			Assert.IsNotNull(foo);
+
+			Assert.AreEqual(foo, fooSecond);
+			Assert.AreEqual(foo, fooThird);
+
+			Assert.AreEqual(foo.Bar, fooSecond.Bar);
+			Assert.AreEqual(foo.Bar, fooThird.Bar);
 		}
 
+		// Note: this behavior check is not available
+		//[Test]
+		//public void ScopedResolve_SingletonDependsOnTransient_MisconfiguredComponentException()
+		//{
+		//	// Assign
+
+		//	_provider.Register<IBar, Bar>(LifetimeType.Transient);
+		//	_provider.Register<IFoo, Foo>(LifetimeType.Singleton);
+
+		//	using (var scope = _provider.BeginLifetimeScope())
+		//	{
+		//		// Act && Assert
+		//		Assert.Throws<MisconfiguredComponentException>(() => scope.Resolver.Resolve<IFoo>());
+		//	}
+		//}
+
 		[Test]
-		public void ScopedResolve_SingletonDependsOnTransient_MisconfiguredComponentException()
+		public void ScopedResolve_SingletonDependsOnTransient_TransientReusedAsSingleton()
 		{
 			// Assign
 
 			_provider.Register<IBar, Bar>(LifetimeType.Transient);
 			_provider.Register<IFoo, Foo>(LifetimeType.Singleton);
 
+			IFoo foo;
+			IFoo fooSecond;
+			IFoo fooThird;
+
 			using (var scope = _provider.BeginLifetimeScope())
 			{
-				// Act && Assert
-				Assert.Throws<MisconfiguredComponentException>(() => scope.Resolver.Resolve<IFoo>());
+				foo = scope.Resolver.Resolve<IFoo>();
+				fooSecond = scope.Resolver.Resolve<IFoo>();
 			}
+
+			using (var scope = _provider.BeginLifetimeScope())
+				fooThird = scope.Resolver.Resolve<IFoo>();
+
+			Assert.IsNotNull(foo);
+
+			Assert.AreEqual(foo, fooSecond);
+			Assert.AreEqual(foo, fooThird);
+
+			Assert.AreEqual(foo.Bar, fooSecond.Bar);
+			Assert.AreEqual(foo.Bar, fooThird.Bar);
 		}
 
+		// Note: this behavior check is not available
+		//[Test]
+		//public void ScopedResolve_SingletonDelegateDependsOnTransient_MisconfiguredComponentException()
+		//{
+		//	// Assign
+
+		//	_provider.Register<IBar, Bar>(LifetimeType.Transient);
+		//	_provider.Register<IFoo>(r => new Foo(r.Resolve<IBar>()), LifetimeType.Singleton);
+
+		//	using (var scope = _provider.BeginLifetimeScope())
+		//	{
+		//		// Act && Assert
+		//		Assert.Throws<MisconfiguredComponentException>(() => scope.Resolver.Resolve<IFoo>());
+		//	}
+		//}
+
 		[Test]
-		public void ScopedResolve_SingletonDelegateDependsOnTransient_MisconfiguredComponentException()
+		public void ScopedResolve_SingletonDelegateDependsOnTransient_TransientReusedAsSingleton()
 		{
 			// Assign
 
 			_provider.Register<IBar, Bar>(LifetimeType.Transient);
 			_provider.Register<IFoo>(r => new Foo(r.Resolve<IBar>()), LifetimeType.Singleton);
 
+			IFoo foo;
+			IFoo fooSecond;
+			IFoo fooThird;
+
 			using (var scope = _provider.BeginLifetimeScope())
 			{
-				// Act && Assert
-				Assert.Throws<MisconfiguredComponentException>(() => scope.Resolver.Resolve<IFoo>());
+				foo = scope.Resolver.Resolve<IFoo>();
+				fooSecond = scope.Resolver.Resolve<IFoo>();
 			}
+
+			using (var scope = _provider.BeginLifetimeScope())
+				fooThird = scope.Resolver.Resolve<IFoo>();
+
+			Assert.IsNotNull(foo);
+
+			Assert.AreEqual(foo, fooSecond);
+			Assert.AreEqual(foo, fooThird);
+
+			Assert.AreEqual(foo.Bar, fooSecond.Bar);
+			Assert.AreEqual(foo.Bar, fooThird.Bar);
 		}
 
 		[Test]
@@ -688,20 +887,24 @@ namespace Simplify.DI.Provider.CastleWindsor.Tests
 			_provider.Register<Foo>();
 
 			// Act && Assert
-			Assert.Throws<MisconfiguredComponentException>(() => _provider.Verify());
+
+			var ex = Assert.Throws<MisconfiguredComponentException>(() => _provider.Verify());
+			Assert.That(ex.Message, Does.Contain("'Simplify.DI.TestsTypes.Foo' is waiting for the following dependencies:"));
+			Assert.That(ex.Message, Does.Contain("Service 'Simplify.DI.TestsTypes.IBar' which was not registered."));
 		}
 
-		[Test]
-		public void Verify_ScopedDependsOnTransient_MisconfiguredComponentException()
-		{
-			// Assign
+		// Note: this behavior check is not available
+		//[Test]
+		//public void Verify_ScopedDependsOnTransient_MisconfiguredComponentException()
+		//{
+		//	// Assign
 
-			_provider.Register<IBar, Bar>(LifetimeType.Transient);
-			_provider.Register<IFoo, Foo>();
+		//	_provider.Register<IBar, Bar>(LifetimeType.Transient);
+		//	_provider.Register<IFoo, Foo>();
 
-			// Act && Assert
-			Assert.Throws<MisconfiguredComponentException>(() => _provider.Verify());
-		}
+		//	// Act && Assert
+		//	Assert.Throws<MisconfiguredComponentException>(() => _provider.Verify());
+		//}
 
 		[Test]
 		public void Verify_ScopedDependsOnSingleton_NoExceptions()
@@ -727,17 +930,18 @@ namespace Simplify.DI.Provider.CastleWindsor.Tests
 			Assert.DoesNotThrow(() => _provider.Verify());
 		}
 
-		[Test]
-		public void Verify_SingletonDependsOnScoped_MisconfiguredComponentException()
-		{
-			// Assign
+		// Note: this behavior check is not available
+		//[Test]
+		//public void Verify_SingletonDependsOnScoped_MisconfiguredComponentException()
+		//{
+		//	// Assign
 
-			_provider.Register<IBar, Bar>();
-			_provider.Register<IFoo, Foo>(LifetimeType.Singleton);
+		//	_provider.Register<IBar, Bar>();
+		//	_provider.Register<IFoo, Foo>(LifetimeType.Singleton);
 
-			// Act && Assert
-			Assert.Throws<MisconfiguredComponentException>(() => _provider.Verify());
-		}
+		//	// Act && Assert
+		//	Assert.Throws<MisconfiguredComponentException>(() => _provider.Verify());
+		//}
 
 		[Test]
 		public void Verify_SingletonDependsOnTransient_MisconfiguredComponentException()
@@ -748,7 +952,10 @@ namespace Simplify.DI.Provider.CastleWindsor.Tests
 			_provider.Register<IFoo, Foo>(LifetimeType.Singleton);
 
 			// Act && Assert
-			Assert.Throws<MisconfiguredComponentException>(() => _provider.Verify());
+
+			var ex = Assert.Throws<MisconfiguredComponentException>(() => _provider.Verify());
+			Assert.That(ex.Message,
+				Does.StartWith("Component 'Foo / IFoo' with lifestyle Singleton depends on 'Bar / IBar' with lifestyle Transient"));
 		}
 
 		[Test]

@@ -39,7 +39,7 @@ namespace Simplify.DI.Tests
 		}
 
 		[Test]
-		public void Resolve_ScopeRegistered_ContainerException()
+		public void Resolve_ScopeRegisteredAndRequestedOutsideOfTheScope_ContainerException()
 		{
 			// Assign
 			_provider.Register<NonDepFoo>();
@@ -438,34 +438,66 @@ namespace Simplify.DI.Tests
 			Assert.AreEqual(foo.Bar, fooSecond.Bar);
 		}
 
+		// Note: this behavior check is not available
+		//[Test]
+		//public void ScopedResolve_ScopedDependsOnTransient_ContainerException()
+		//{
+		//	// Assign
+
+		//	_provider.Register<IBar, Bar>(LifetimeType.Transient);
+		//	_provider.Register<IFoo, Foo>();
+
+		//	using (var scope = _provider.BeginLifetimeScope())
+		//	{
+		//		// Act && Assert
+		//		Assert.Throws<ContainerException>(() => scope.Resolver.Resolve<IFoo>());
+		//	}
+		//}
+
+		// Note: this behavior check is not available
+		//[Test]
+		//public void ScopedResolve_ScopedDelegateDependsOnTransient_ContainerException()
+		//{
+		//	// Assign
+
+		//	_provider.Register<IBar, Bar>(LifetimeType.Transient);
+		//	_provider.Register<IFoo>(r => new Foo(r.Resolve<IBar>()));
+
+		//	using (var scope = _provider.BeginLifetimeScope())
+		//	{
+		//		// Act && Assert
+		//		Assert.Throws<ContainerException>(() => scope.Resolver.Resolve<IFoo>());
+		//	}
+		//}
+
 		[Test]
-		public void ScopedResolve_ScopedDependsOnTransient_ContainerException()
+		public void ScopedResolve_ScopedDelegateDependsOnTransient_TransientReusedAsScoped()
 		{
 			// Assign
 
-			_provider.Register<IBar, Bar>(LifetimeType.Transient);
-			_provider.Register<IFoo, Foo>();
-
-			using (var scope = _provider.BeginLifetimeScope())
-			{
-				// Act && Assert
-				Assert.Throws<ContainerException>(() => scope.Resolver.Resolve<IFoo>());
-			}
-		}
-
-		[Test]
-		public void ScopedResolve_ScopedDelegateDependsOnTransient_ContainerException()
-		{
-			// Assign
-
-			_provider.Register<IBar, Bar>(LifetimeType.Transient);
+			_provider.Register<IBar, Bar>();
 			_provider.Register<IFoo>(r => new Foo(r.Resolve<IBar>()));
 
+			IFoo foo;
+			IFoo fooSecond;
+			IFoo fooThird;
+
 			using (var scope = _provider.BeginLifetimeScope())
 			{
-				// Act && Assert
-				Assert.Throws<ContainerException>(() => scope.Resolver.Resolve<IFoo>());
+				foo = scope.Resolver.Resolve<IFoo>();
+				fooSecond = scope.Resolver.Resolve<IFoo>();
 			}
+
+			using (var scope = _provider.BeginLifetimeScope())
+				fooThird = scope.Resolver.Resolve<IFoo>();
+
+			Assert.IsNotNull(foo);
+
+			Assert.AreEqual(foo, fooSecond);
+			Assert.AreNotEqual(foo, fooThird);
+
+			Assert.AreEqual(foo.Bar, fooSecond.Bar);
+			Assert.AreNotEqual(foo.Bar, fooThird.Bar);
 		}
 
 		[Test]
@@ -535,50 +567,113 @@ namespace Simplify.DI.Tests
 			}
 		}
 
+		// Note: this behavior check is not available
+		//[Test]
+		//public void ScopedResolve_SingletonDelegateDependsOnScoped_ContainerException()
+		//{
+		//	// Assign
+
+		//	_provider.Register<IBar, Bar>();
+		//	_provider.Register<IFoo>(r => new Foo(r.Resolve<IBar>()), LifetimeType.Singleton);
+
+		//	using (var scope = _provider.BeginLifetimeScope())
+		//	{
+		//		// Act && Assert
+		//		Assert.Throws<ContainerException>(() => scope.Resolver.Resolve<IFoo>());
+		//	}
+		//}
+
 		[Test]
-		public void ScopedResolve_SingletonDelegateDependsOnScoped_ContainerException()
+		public void ScopedResolve_SingletonDelegateDependsOnScoped_ScopedReusedAsSingleton()
 		{
 			// Assign
 
 			_provider.Register<IBar, Bar>();
 			_provider.Register<IFoo>(r => new Foo(r.Resolve<IBar>()), LifetimeType.Singleton);
 
+			IFoo foo;
+			IFoo fooSecond;
+			IFoo fooThird;
+
 			using (var scope = _provider.BeginLifetimeScope())
 			{
-				// Act && Assert
-				Assert.Throws<ContainerException>(() => scope.Resolver.Resolve<IFoo>());
+				foo = scope.Resolver.Resolve<IFoo>();
+				fooSecond = scope.Resolver.Resolve<IFoo>();
 			}
+
+			using (var scope = _provider.BeginLifetimeScope())
+				fooThird = scope.Resolver.Resolve<IFoo>();
+
+			Assert.IsNotNull(foo);
+
+			Assert.AreEqual(foo, fooSecond);
+			Assert.AreEqual(foo, fooThird);
+
+			Assert.AreEqual(foo.Bar, fooSecond.Bar);
+			Assert.AreEqual(foo.Bar, fooThird.Bar);
 		}
 
+		// Note: this behavior check is not available
+		//[Test]
+		//public void ScopedResolve_SingletonDependsOnTransient_ContainerException()
+		//{
+		//	// Assign
+
+		//	_provider.Register<IBar, Bar>(LifetimeType.Transient);
+		//	_provider.Register<IFoo, Foo>(LifetimeType.Singleton);
+
+		//	using (var scope = _provider.BeginLifetimeScope())
+		//	{
+		//		// Act && Assert
+		//		Assert.Throws<ContainerException>(() => scope.Resolver.Resolve<IFoo>());
+		//	}
+		//}
+
 		[Test]
-		public void ScopedResolve_SingletonDependsOnTransient_ContainerException()
+		public void ScopedResolve_SingletonDependsOnTransient_TransientReusedAsSingleton()
 		{
 			// Assign
 
 			_provider.Register<IBar, Bar>(LifetimeType.Transient);
 			_provider.Register<IFoo, Foo>(LifetimeType.Singleton);
 
-			using (var scope = _provider.BeginLifetimeScope())
-			{
-				// Act && Assert
-				Assert.Throws<ContainerException>(() => scope.Resolver.Resolve<IFoo>());
-			}
-		}
-
-		[Test]
-		public void ScopedResolve_SingletonDelegateDependsOnTransient_ContainerException()
-		{
-			// Assign
-
-			_provider.Register<IBar, Bar>(LifetimeType.Transient);
-			_provider.Register<IFoo>(r => new Foo(r.Resolve<IBar>()), LifetimeType.Singleton);
+			IFoo foo;
+			IFoo fooSecond;
+			IFoo fooThird;
 
 			using (var scope = _provider.BeginLifetimeScope())
 			{
-				// Act && Assert
-				Assert.Throws<ContainerException>(() => scope.Resolver.Resolve<IFoo>());
+				foo = scope.Resolver.Resolve<IFoo>();
+				fooSecond = scope.Resolver.Resolve<IFoo>();
 			}
+
+			using (var scope = _provider.BeginLifetimeScope())
+				fooThird = scope.Resolver.Resolve<IFoo>();
+
+			Assert.IsNotNull(foo);
+
+			Assert.AreEqual(foo, fooSecond);
+			Assert.AreEqual(foo, fooThird);
+
+			Assert.AreEqual(foo.Bar, fooSecond.Bar);
+			Assert.AreEqual(foo.Bar, fooThird.Bar);
 		}
+
+		// Note: this behavior check is not available
+		//[Test]
+		//public void ScopedResolve_SingletonDelegateDependsOnTransient_ContainerException()
+		//{
+		//	// Assign
+
+		//	_provider.Register<IBar, Bar>(LifetimeType.Transient);
+		//	_provider.Register<IFoo>(r => new Foo(r.Resolve<IBar>()), LifetimeType.Singleton);
+
+		//	using (var scope = _provider.BeginLifetimeScope())
+		//	{
+		//		// Act && Assert
+		//		Assert.Throws<ContainerException>(() => scope.Resolver.Resolve<IFoo>());
+		//	}
+		//}
 
 		[Test]
 		public void ScopedResolve_TransientType_NotReusedInsideScope()
@@ -704,17 +799,18 @@ namespace Simplify.DI.Tests
 			Assert.That(ex.Message, Does.StartWith("Unable to resolve IBar as parameter \"bar\""));
 		}
 
-		[Test]
-		public void Verify_ScopedDependsOnTransient_ContainerException()
-		{
-			// Assign
+		// Note: this behavior check is not available
+		//[Test]
+		//public void Verify_ScopedDependsOnTransient_ContainerException()
+		//{
+		//	// Assign
 
-			_provider.Register<IBar, Bar>(LifetimeType.Transient);
-			_provider.Register<IFoo, Foo>();
+		//	_provider.Register<IBar, Bar>(LifetimeType.Transient);
+		//	_provider.Register<IFoo, Foo>();
 
-			// Act && Assert
-			Assert.Throws<ContainerException>(() => _provider.Verify());
-		}
+		//	// Act && Assert
+		//	Assert.Throws<ContainerException>(() => _provider.Verify());
+		//}
 
 		[Test]
 		public void Verify_ScopedDependsOnSingleton_NoExceptions()
@@ -754,17 +850,18 @@ namespace Simplify.DI.Tests
 			Assert.That(ex.Message, Does.StartWith("Dependency IBar as parameter \"bar\" IsSingletonOrDependencyOfSingleton reuse Scoped {Lifespan=100} lifespan shorter than its parent's: singleton Foo"));
 		}
 
-		[Test]
-		public void Verify_SingletonDependsOnTransient_ContainerException()
-		{
-			// Assign
+		// Note: this behavior check is not available
+		//[Test]
+		//public void Verify_SingletonDependsOnTransient_ContainerException()
+		//{
+		//	// Assign
 
-			_provider.Register<IBar, Bar>(LifetimeType.Transient);
-			_provider.Register<IFoo, Foo>(LifetimeType.Singleton);
+		//	_provider.Register<IBar, Bar>(LifetimeType.Transient);
+		//	_provider.Register<IFoo, Foo>(LifetimeType.Singleton);
 
-			// Act && Assert
-			Assert.Throws<ContainerException>(() => _provider.Verify());
-		}
+		//	// Act && Assert
+		//	Assert.Throws<ContainerException>(() => _provider.Verify());
+		//}
 
 		[Test]
 		public void Verify_TransientDependsOnSingleton_NoExceptions()
