@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net462</TargetFrameworks>
+		<TargetFrameworks>netcoreapp2.2</TargetFrameworks>
 		<Authors>Alexander Krylkov</Authors>
 		<Product>Simplify</Product>
 		<Description>Simplify.Scheduler integration tester</Description>
@@ -11,9 +11,6 @@
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 	<ItemGroup>
-		<Reference Include="System.Configuration" />
-		<Reference Include="System.Configuration.Install" />
-		<Reference Include="System.ServiceProcess" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
 		<ProjectReference Include="..\Simplify.Scheduler\Simplify.Scheduler.csproj" />
 	</ItemGroup>

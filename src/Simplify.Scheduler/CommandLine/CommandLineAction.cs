@@ -11,16 +11,6 @@
 		UndefinedAction,
 
 		/// <summary>
-		/// The install service action from command line
-		/// </summary>
-		InstallService,
-
-		/// <summary>
-		/// The uninstall service action from command line
-		/// </summary>
-		UninstallService,
-
-		/// <summary>
 		/// The run as console application action from command line
 		/// </summary>
 		RunAsConsole

@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.ServiceProcess;
 using System.Threading.Tasks;
 
 namespace Simplify.Scheduler
@@ -16,7 +15,7 @@ namespace Simplify.Scheduler
 	/// <summary>
 	/// Provides class which runs as a windows service and periodically creates a class instances specified in added jobs and launches them in separated thread
 	/// </summary>
-	public class MultitaskServiceHandler : ServiceBase
+	public class MultitaskServiceHandler
 	{
 		private readonly IList<IServiceJob> _jobs = new List<IServiceJob>();
 		private readonly IList<ICrontabServiceJobTask> _workingJobsTasks = new List<ICrontabServiceJobTask>();
@@ -41,6 +40,14 @@ namespace Simplify.Scheduler
 		/// Occurs when exception thrown.
 		/// </summary>
 		public event ServiceExceptionEventHandler OnException;
+
+		/// <summary>
+		/// Gets the name of the service.
+		/// </summary>
+		/// <value>
+		/// The name of the service.
+		/// </value>
+		public string ServiceName { get; protected set; }
 
 		/// <summary>
 		/// Gets or sets the service job factory.
@@ -69,28 +76,6 @@ namespace Simplify.Scheduler
 		/// Adds the job.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
-		/// <param name="configurationSectionName">Name of the configuration section.</param>
-		/// <param name="invokeMethodName">Name of the invoke method.</param>
-		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
-		/// <param name="startupArgs">The startup arguments.</param>
-		public void AddJob<T>(string configurationSectionName = null,
-			string invokeMethodName = "Run",
-			bool automaticallyRegisterUserType = false,
-			object startupArgs = null)
-			where T : class
-		{
-			if (automaticallyRegisterUserType)
-				DIContainer.Current.Register<T>(LifetimeType.Transient);
-
-			var job = ServiceJobFactory.CreateCrontabServiceJob<T>(configurationSectionName, invokeMethodName, startupArgs);
-
-			InitializeJob(job);
-		}
-
-		/// <summary>
-		/// Adds the job.
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
 		/// <param name="configuration">The configuration.</param>
 		/// <param name="configurationSectionName">Name of the configuration section.</param>
 		/// <param name="invokeMethodName">Name of the invoke method.</param>
@@ -109,17 +94,6 @@ namespace Simplify.Scheduler
 			var job = ServiceJobFactory.CreateCrontabServiceJob<T>(configuration, configurationSectionName, invokeMethodName, startupArgs);
 
 			InitializeJob(job);
-		}
-
-		/// <summary>
-		/// Adds the service job.
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
-		public void AddJob<T>(bool automaticallyRegisterUserType)
-			where T : class
-		{
-			AddJob<T>(null, "Run", automaticallyRegisterUserType);
 		}
 
 		/// <summary>
@@ -169,7 +143,8 @@ namespace Simplify.Scheduler
 					return false;
 
 				case ProcessCommandLineResult.NoArguments:
-					ServiceBase.Run(this);
+					// TODO
+					//ServiceBase.Run(this);
 					break;
 			}
 
@@ -180,20 +155,19 @@ namespace Simplify.Scheduler
 		/// Disposes of the resources (other than memory) used by the <see cref="T:System.ServiceProcess.ServiceBase" />.
 		/// </summary>
 		/// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
-		protected override void Dispose(bool disposing)
+		protected virtual void Dispose(bool disposing)
 		{
 			if (disposing)
 				foreach (var jobObject in _workingBasicJobs.Select(item => item.Key as IDisposable))
 					jobObject?.Dispose();
-
-			base.Dispose(disposing);
 		}
 
+		// TODO
 		/// <summary>
 		/// When implemented in a derived class, executes when a Start command is sent to the service by the Service Control Manager (SCM) or when the operating system starts (for a service that starts automatically). Specifies actions to take when the service starts.
 		/// </summary>
 		/// <param name="args">Data passed by the start command.</param>
-		protected override void OnStart(string[] args)
+		protected void OnStart(string[] args)
 		{
 			foreach (var job in _jobs)
 			{
@@ -203,13 +177,14 @@ namespace Simplify.Scheduler
 					RunBasicJob(job);
 			}
 
-			base.OnStart(args);
+			// base.OnStart(args);
 		}
 
+		// TODO
 		/// <summary>
 		/// When implemented in a derived class, executes when a Stop command is sent to the service by the Service Control Manager (SCM). Specifies actions to take when a service stops running.
 		/// </summary>
-		protected override void OnStop()
+		protected void OnStop()
 		{
 			_shutdownInProcess = true;
 			Task[] itemsToWait;
@@ -219,7 +194,7 @@ namespace Simplify.Scheduler
 
 			Task.WaitAll(itemsToWait);
 
-			base.OnStop();
+			// base.OnStop();
 		}
 
 		private void InitializeJob(ICrontabServiceJob job)

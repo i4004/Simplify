@@ -40,25 +40,6 @@ namespace Simplify.Scheduler.Jobs
 		/// Creates the service job.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
-		/// <param name="configurationSectionName">Name of the configuration section.</param>
-		/// <param name="invokeMethodName">Name of the invoke method.</param>
-		/// <param name="startupArgs">The startup arguments.</param>
-		/// <returns></returns>
-		public ICrontabServiceJob CreateCrontabServiceJob<T>(string configurationSectionName,
-			string invokeMethodName,
-			object startupArgs)
-		{
-			return new CrontabServiceJob<T>(
-				new ConfigurationManagerBasedServiceJobSettings(FormatConfigurationSectionName<T>(configurationSectionName)),
-				new CrontabProcessorFactory(),
-				invokeMethodName,
-				CreateJobArgs(startupArgs));
-		}
-
-		/// <summary>
-		/// Creates the service job.
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
 		/// <param name="configuration">The configuration.</param>
 		/// <param name="configurationSectionName">Name of the configuration section.</param>
 		/// <param name="invokeMethodName">Name of the invoke method.</param>

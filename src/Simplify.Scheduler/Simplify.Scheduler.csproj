@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net462</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0</TargetFrameworks>
 		<Authors>Alexander Krylkov</Authors>
 		<Product>Simplify</Product>
 		<Description>Scheduler framework with DI</Description>
@@ -21,8 +21,5 @@
 		<PackageReference Include="Simplify.DI" Version="2.1.0" />
 		<PackageReference Include="Simplify.System" Version="1.1.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
-		<Reference Include="System.Configuration" />
-		<Reference Include="System.Configuration.Install" />
-		<Reference Include="System.ServiceProcess" />
 	</ItemGroup>
 </Project>

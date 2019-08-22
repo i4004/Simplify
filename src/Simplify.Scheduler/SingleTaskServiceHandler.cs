@@ -14,24 +14,6 @@ namespace Simplify.Scheduler
 		/// <summary>
 		/// Initializes a new instance of the <see cref="SingleTaskServiceHandler{T}" /> class.
 		/// </summary>
-		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
-		/// <param name="configurationSectionName">Name of the configuration section.</param>
-		/// <param name="invokeMethodName">Name of the invoke method.</param>
-		/// <param name="startupArgs">The startup arguments.</param>
-		public SingleTaskServiceHandler(bool automaticallyRegisterUserType = false,
-			string configurationSectionName = "ServiceSettings",
-			string invokeMethodName = "Run",
-			object startupArgs = null)
-		{
-			var assemblyInfo = new AssemblyInfo(Assembly.GetCallingAssembly());
-			ServiceName = assemblyInfo.Title;
-
-			AddJob<T>(configurationSectionName, invokeMethodName, automaticallyRegisterUserType, startupArgs);
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="SingleTaskServiceHandler{T}" /> class.
-		/// </summary>
 		/// <param name="configuration">The configuration.</param>
 		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
 		/// <param name="configurationSectionName">Name of the configuration section.</param>
