@@ -83,51 +83,28 @@ namespace Simplify.Scheduler
 		/// <param name="configuration">The configuration.</param>
 		/// <param name="configurationSectionName">Name of the configuration section.</param>
 		/// <param name="invokeMethodName">Name of the invoke method.</param>
-		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
 		/// <param name="startupArgs">The startup arguments.</param>
 		public void AddJob<T>(IConfiguration configuration,
 			string configurationSectionName = null,
 			string invokeMethodName = "Run",
-			bool automaticallyRegisterUserType = false,
 			object startupArgs = null)
 			where T : class
 		{
-			if (automaticallyRegisterUserType)
-				DIContainer.Current.Register<T>(LifetimeType.Transient);
-
 			var job = ServiceJobFactory.CreateCrontabServiceJob<T>(configuration, configurationSectionName, invokeMethodName, startupArgs);
 
 			InitializeJob(job);
 		}
 
 		/// <summary>
-		/// Adds the service job.
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="configuration">The configuration.</param>
-		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
-		public void AddJob<T>(IConfiguration configuration,
-			bool automaticallyRegisterUserType)
-			where T : class
-		{
-			AddJob<T>(configuration, null, "Run", automaticallyRegisterUserType);
-		}
-
-		/// <summary>
 		/// Adds the basic service job.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
-		/// <param name="automaticallyRegisterUserType">if set to <c>true</c> then user type T will be registered in DIContainer with transient lifetime.</param>
 		/// <param name="invokeMethodName">Name of the invoke method.</param>
 		/// <param name="startupArgs">The startup arguments.</param>
-		public void AddBasicJob<T>(bool automaticallyRegisterUserType = false,
-			string invokeMethodName = "Run",
+		public void AddBasicJob<T>(string invokeMethodName = "Run",
 			object startupArgs = null)
 			where T : class
 		{
-			if (automaticallyRegisterUserType)
-				DIContainer.Current.Register<T>(LifetimeType.Transient);
-
 			var job = ServiceJobFactory.CreateServiceJob<T>(invokeMethodName, startupArgs);
 
 			_jobs.Add(job);
@@ -206,6 +183,7 @@ namespace Simplify.Scheduler
 		/// Disposes of the resources (other than memory) used by the <see cref="T:System.ServiceProcess.ServiceBase" />.
 		/// </summary>
 		/// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+		// ReSharper disable once FlagArgument
 		protected virtual void Dispose(bool disposing)
 		{
 			if (disposing)
