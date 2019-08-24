@@ -21,8 +21,8 @@
 		CommandLineActionExecuted,
 
 		/// <summary>
-		/// The skip service start
+		/// The skip scheduler start
 		/// </summary>
-		SkipServiceStart
+		SkipSchedulerStart
 	}
 }

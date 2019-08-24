@@ -143,7 +143,7 @@ namespace Simplify.Scheduler
 
 			switch (commandLineProcessResult)
 			{
-				case ProcessCommandLineResult.SkipServiceStart:
+				case ProcessCommandLineResult.SkipSchedulerStart:
 					return false;
 
 				case ProcessCommandLineResult.NoArguments:

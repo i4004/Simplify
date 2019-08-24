@@ -22,8 +22,8 @@ namespace Simplify.Scheduler.CommandLine
 
 			switch (action)
 			{
-				case CommandLineAction.RunAsConsole:
-					return ProcessCommandLineResult.SkipServiceStart;
+				case CommandLineAction.SkipScheduler:
+					return ProcessCommandLineResult.SkipSchedulerStart;
 			}
 
 			Console.WriteLine($"Undefined service parameters: '{string.Concat(args)}'");
@@ -41,7 +41,7 @@ namespace Simplify.Scheduler.CommandLine
 		public virtual CommandLineAction ParseCommandLineArguments(string[] args)
 		{
 			if (args[0] == "console")
-				return CommandLineAction.RunAsConsole;
+				return CommandLineAction.SkipScheduler;
 
 			return CommandLineAction.UndefinedAction;
 		}

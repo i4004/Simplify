@@ -11,8 +11,8 @@
 		UndefinedAction,
 
 		/// <summary>
-		/// The run as console application action from command line
+		/// The skip scheduler launch action from command line
 		/// </summary>
-		RunAsConsole
+		SkipScheduler
 	}
 }
