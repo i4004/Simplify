@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Simplify.Scheduler
@@ -15,8 +16,10 @@ namespace Simplify.Scheduler
 	/// <summary>
 	/// Provides class which runs as a windows service and periodically creates a class instances specified in added jobs and launches them in separated thread
 	/// </summary>
-	public class MultitaskServiceHandler
+	public class MultitaskServiceHandler : IDisposable
 	{
+		private readonly AutoResetEvent _closing = new AutoResetEvent(false);
+
 		private readonly IList<IServiceJob> _jobs = new List<IServiceJob>();
 		private readonly IList<ICrontabServiceJobTask> _workingJobsTasks = new List<ICrontabServiceJobTask>();
 		private readonly IDictionary<object, ILifetimeScope> _workingBasicJobs = new Dictionary<object, ILifetimeScope>();
@@ -34,6 +37,7 @@ namespace Simplify.Scheduler
 		{
 			var assemblyInfo = new AssemblyInfo(Assembly.GetCallingAssembly());
 			ServiceName = assemblyInfo.Title;
+			Console.CancelKeyPress += OnStop;
 		}
 
 		/// <summary>
@@ -143,12 +147,59 @@ namespace Simplify.Scheduler
 					return false;
 
 				case ProcessCommandLineResult.NoArguments:
-					// TODO
-					//ServiceBase.Run(this);
+					ConsoleStart();
 					break;
 			}
 
 			return true;
+		}
+
+		/// <summary>
+		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+		/// </summary>
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		/// <summary>
+		/// Called when scheduler is started, main execution starting point.
+		/// </summary>
+		protected void OnStart()
+		{
+			Console.WriteLine("Starting Scheduler jobs...");
+
+			foreach (var job in _jobs)
+			{
+				job.Start();
+
+				if (!(job is ICrontabServiceJob))
+					RunBasicJob(job);
+			}
+
+			Console.WriteLine("Scheduler jobs started.");
+		}
+
+		/// <summary>
+		/// Called when scheduler is about to stop, main stopping point
+		/// </summary>
+		protected void OnStop(object sender, ConsoleCancelEventArgs args)
+		{
+			Console.WriteLine("Scheduler stopping, waiting for jobs to finish...");
+
+			_shutdownInProcess = true;
+			Task[] itemsToWait;
+
+			lock (_workingJobsTasks)
+				itemsToWait = _workingJobsTasks.Select(x => x.Task).ToArray();
+
+			Task.WaitAll(itemsToWait);
+
+			Console.WriteLine("All jobs finished.");
+
+			args.Cancel = true;
+			_closing.Set();
 		}
 
 		/// <summary>
@@ -162,39 +213,13 @@ namespace Simplify.Scheduler
 					jobObject?.Dispose();
 		}
 
-		// TODO
-		/// <summary>
-		/// When implemented in a derived class, executes when a Start command is sent to the service by the Service Control Manager (SCM) or when the operating system starts (for a service that starts automatically). Specifies actions to take when the service starts.
-		/// </summary>
-		/// <param name="args">Data passed by the start command.</param>
-		protected void OnStart(string[] args)
+		private void ConsoleStart()
 		{
-			foreach (var job in _jobs)
-			{
-				job.Start();
+			OnStart();
 
-				if (!(job is ICrontabServiceJob))
-					RunBasicJob(job);
-			}
+			Console.WriteLine("Scheduler started. Press Ctrl + C to shut down.");
 
-			// base.OnStart(args);
-		}
-
-		// TODO
-		/// <summary>
-		/// When implemented in a derived class, executes when a Stop command is sent to the service by the Service Control Manager (SCM). Specifies actions to take when a service stops running.
-		/// </summary>
-		protected void OnStop()
-		{
-			_shutdownInProcess = true;
-			Task[] itemsToWait;
-
-			lock (_workingJobsTasks)
-				itemsToWait = _workingJobsTasks.Select(x => x.Task).ToArray();
-
-			Task.WaitAll(itemsToWait);
-
-			// base.OnStop();
+			_closing.WaitOne();
 		}
 
 		private void InitializeJob(ICrontabServiceJob job)

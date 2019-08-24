@@ -3,8 +3,6 @@ using System.Reflection;
 
 namespace Simplify.Scheduler
 {
-	// ReSharper disable once CommentTypo
-
 	/// <summary>
 	/// Provides class which runs as non-timer windows service (for constant async operations, like TCP/IP server) and launches specified type instance once
 	/// </summary>
