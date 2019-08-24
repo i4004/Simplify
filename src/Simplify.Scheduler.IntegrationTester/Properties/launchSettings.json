@@ -1,8 +1,9 @@
 {
-	"profiles": {
-		"Simplify.WindowsServices.IntegrationTests": {
+	"profiles":
+	{
+		"Simplify.WindowsServices.IntegrationTests":
+		{
 			"commandName": "Project",
-			"commandLineArgs": "console"
 		}
 	}
 }
