@@ -5,9 +5,9 @@ using System.Threading;
 namespace Simplify.Scheduler.Jobs.Crontab
 {
 	/// <summary>
-	/// Represent crontab service job
+	/// Represent crontab based scheduler job
 	/// </summary>
-	public interface ICrontabServiceJob : IServiceJob, IDisposable
+	public interface ICrontabSchedulerJob : ISchedulerJob, IDisposable
 	{
 		/// <summary>
 		/// Occurs on cron timer tick.
@@ -25,7 +25,7 @@ namespace Simplify.Scheduler.Jobs.Crontab
 		/// <value>
 		/// The settings.
 		/// </value>
-		IServiceJobSettings Settings { get; }
+		ISchedulerJobSettings Settings { get; }
 
 		/// <summary>
 		/// Gets the crontab processor.

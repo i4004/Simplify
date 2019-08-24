@@ -1,7 +1,7 @@
 ﻿namespace Simplify.Scheduler.CommandLine
 {
 	/// <summary>
-	/// Represent windows-service command line processor
+	/// Represent scheduler command line processor
 	/// </summary>
 	public interface ICommandLineProcessor
 	{

@@ -3,7 +3,7 @@
 namespace Simplify.Scheduler.CommandLine
 {
 	/// <summary>
-	/// Provides windows-service command line processor
+	/// Provides scheduler command line processor
 	/// </summary>
 	/// <seealso cref="ICommandLineProcessor" />
 	public class CommandLineProcessor : ICommandLineProcessor
@@ -26,9 +26,7 @@ namespace Simplify.Scheduler.CommandLine
 					return ProcessCommandLineResult.SkipSchedulerStart;
 			}
 
-			Console.WriteLine($"Undefined service parameters: '{string.Concat(args)}'");
-			Console.WriteLine("To install service use 'install' command");
-			Console.WriteLine("To uninstall service use 'uninstall' command");
+			Console.WriteLine($"Undefined scheduler parameters: '{string.Concat(args)}'");
 
 			return ProcessCommandLineResult.UndefinedParameters;
 		}
@@ -40,7 +38,7 @@ namespace Simplify.Scheduler.CommandLine
 		/// <returns></returns>
 		public virtual CommandLineAction ParseCommandLineArguments(string[] args)
 		{
-			if (args[0] == "console")
+			if (args[0] == "skip")
 				return CommandLineAction.SkipScheduler;
 
 			return CommandLineAction.UndefinedAction;

@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 namespace Simplify.Scheduler.Jobs.Crontab
 {
 	/// <summary>
-	/// Represent crontab service job task
+	/// Represent crontab scheduler job task
 	/// </summary>
-	public interface ICrontabServiceJobTask
+	public interface ICrontabSchedulerJobTask
 	{
 		/// <summary>
 		/// Gets the task identifier.
@@ -15,7 +15,7 @@ namespace Simplify.Scheduler.Jobs.Crontab
 		/// <summary>
 		/// Gets the job.
 		/// </summary>
-		ICrontabServiceJob Job { get; }
+		ICrontabSchedulerJob Job { get; }
 
 		/// <summary>
 		/// Gets the task.

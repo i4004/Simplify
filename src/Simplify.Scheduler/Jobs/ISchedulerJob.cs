@@ -4,9 +4,9 @@ using System.Reflection;
 namespace Simplify.Scheduler.Jobs
 {
 	/// <summary>
-	/// Represent basic service job
+	/// Represent basic scheduler job
 	/// </summary>
-	public interface IServiceJob
+	public interface ISchedulerJob
 	{
 		/// <summary>
 		/// Gets the type of the job class.

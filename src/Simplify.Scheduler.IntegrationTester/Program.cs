@@ -7,25 +7,26 @@ namespace Simplify.Scheduler.IntegrationTester
 	{
 		private static void Main(string[] args)
 		{
-#if DEBUG
-			// Run debugger
-			global::System.Diagnostics.Debugger.Launch();
-#endif
+			// IOC container setup
 
 			IocRegistrations.Register();
 			DIContainer.Current.Verify();
 
-			var handler = new MultitaskServiceHandler();
+			// Using scheduler
 
-			handler.AddJob<TaskProcessor1>(IocRegistrations.Configuration, "TaskProcessor1Settings");
-			handler.AddJob<TaskProcessor2>(IocRegistrations.Configuration, "TaskProcessor2Settings", startupArgs: "Hello world!!!");
-			handler.AddJob<TaskProcessor3>(IocRegistrations.Configuration, "TaskProcessor3Settings", automaticallyRegisterUserType: true);
-			handler.AddJob<TaskProcessor4>(IocRegistrations.Configuration, "TaskProcessor4Settings", "Execute");
-			handler.AddBasicJob<BasicTaskProcessor>();
+			using (var scheduler = new MultitaskScheduler())
+			{
+				scheduler.AddJob<TaskProcessor1>(IocRegistrations.Configuration, "TaskProcessor1Settings");
+				scheduler.AddJob<TaskProcessor2>(IocRegistrations.Configuration, "TaskProcessor2Settings", startupArgs: "Hello world!!!");
+				scheduler.AddJob<TaskProcessor3>(IocRegistrations.Configuration, "TaskProcessor3Settings");
+				scheduler.AddJob<TaskProcessor4>(IocRegistrations.Configuration, "TaskProcessor4Settings", "Execute");
+				scheduler.AddBasicJob<BasicTaskProcessor>();
 
-			if (handler.Start(args))
-				return;
+				if (scheduler.Start(args))
+					return;
+			}
 
+			// Testing some processors without scheduler
 			using (var scope = DIContainer.Current.BeginLifetimeScope())
 				scope.Resolver.Resolve<BasicTaskProcessor>().Run();
 		}

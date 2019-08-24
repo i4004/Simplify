@@ -6,38 +6,38 @@ using System;
 namespace Simplify.Scheduler.Jobs
 {
 	/// <summary>
-	/// Provides service jobs factory
+	/// Provides scheduler jobs factory
 	/// </summary>
-	public class ServiceJobFactory : IServiceJobFactory
+	public class SchedulerJobFactory : ISchedulerJobFactory
 	{
-		private readonly string _serviceName;
+		private readonly string _appName;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="ServiceJobFactory"/> class.
+		/// Initializes a new instance of the <see cref="SchedulerJobFactory"/> class.
 		/// </summary>
-		/// <param name="serviceName">Name of the service.</param>
-		public ServiceJobFactory(string serviceName)
+		/// <param name="appName">Name of the application.</param>
+		public SchedulerJobFactory(string appName)
 		{
-			if (string.IsNullOrEmpty(serviceName)) throw new ArgumentException("Value cannot be null or empty.", nameof(serviceName));
+			if (string.IsNullOrEmpty(appName)) throw new ArgumentException("Value cannot be null or empty.", nameof(appName));
 
-			_serviceName = serviceName;
+			_appName = appName;
 		}
 
 		/// <summary>
-		/// Creates the basic service job.
+		/// Creates the basic scheduler job.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="invokeMethodName">Name of the invoke method.</param>
 		/// <param name="startupArgs">The startup arguments.</param>
 		/// <returns></returns>
-		public IServiceJob CreateServiceJob<T>(string invokeMethodName,
+		public ISchedulerJob CreateJob<T>(string invokeMethodName,
 			object startupArgs)
 		{
-			return new ServiceJob<T>(invokeMethodName, CreateJobArgs(startupArgs));
+			return new SchedulerJob<T>(invokeMethodName, CreateJobArgs(startupArgs));
 		}
 
 		/// <summary>
-		/// Creates the service job.
+		/// Creates the crontab-based scheduler job.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="configuration">The configuration.</param>
@@ -45,13 +45,13 @@ namespace Simplify.Scheduler.Jobs
 		/// <param name="invokeMethodName">Name of the invoke method.</param>
 		/// <param name="startupArgs">The startup arguments.</param>
 		/// <returns></returns>
-		public ICrontabServiceJob CreateCrontabServiceJob<T>(IConfiguration configuration,
+		public ICrontabSchedulerJob CreateCrontabJob<T>(IConfiguration configuration,
 			string configurationSectionName,
 			string invokeMethodName,
 			object startupArgs)
 		{
-			return new CrontabServiceJob<T>(
-				new ConfigurationBasedServiceJobSetting(configuration, FormatConfigurationSectionName<T>(configurationSectionName)),
+			return new CrontabSchedulerJob<T>(
+				new ConfigurationBasedSchedulerJobSetting(configuration, FormatConfigurationSectionName<T>(configurationSectionName)),
 				new CrontabProcessorFactory(),
 				invokeMethodName,
 				CreateJobArgs(startupArgs));
@@ -68,7 +68,7 @@ namespace Simplify.Scheduler.Jobs
 
 		private IJobArgs CreateJobArgs(object startupArgs)
 		{
-			return new JobArgs(_serviceName, startupArgs);
+			return new JobArgs(_appName, startupArgs);
 		}
 	}
 }

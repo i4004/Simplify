@@ -11,13 +11,13 @@ namespace Simplify.Scheduler.IntegrationTester
 		public void Run(IJobArgs args)
 		{
 			if (_isRunning)
-				throw new SimplifyWindowsServicesException("TaskProcessor2 is running a duplicate!");
+				throw new SimplifySchedulerException("TaskProcessor2 is running a duplicate!");
 
 			_isRunning = true;
 
 			Trace.WriteLine("TaskProcessor2 launched");
 			Trace.WriteLine($"TaskProcessor2 args startup args is: {args.StartupArgs}");
-			Trace.WriteLine($"TaskProcessor2 args service name is: {args.ServiceName}");
+			Trace.WriteLine($"TaskProcessor2 args service name is: {args.AppName}");
 
 			Thread.Sleep(3670);
 

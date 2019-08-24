@@ -15,6 +15,7 @@ namespace Simplify.Scheduler.IntegrationTester.Setup
 
 			DIContainer.Current.Register<TaskProcessor1>();
 			DIContainer.Current.Register<TaskProcessor2>();
+			DIContainer.Current.Register<TaskProcessor3>();
 			DIContainer.Current.Register<TaskProcessor4>();
 			DIContainer.Current.Register<BasicTaskProcessor>();
 		}

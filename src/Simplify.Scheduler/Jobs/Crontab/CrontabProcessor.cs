@@ -16,7 +16,7 @@ namespace Simplify.Scheduler.Jobs.Crontab
 		/// </summary>
 		/// <param name="crontabExpression">The crontab expression.</param>
 		/// <exception cref="ArgumentNullException"></exception>
-		/// <exception cref="ServiceInitializationException"></exception>
+		/// <exception cref="SchedulerInitializationException"></exception>
 		public CrontabProcessor(string crontabExpression)
 		{
 			if (string.IsNullOrEmpty(crontabExpression))
@@ -32,7 +32,7 @@ namespace Simplify.Scheduler.Jobs.Crontab
 				var schedule = CrontabSchedule.TryParse(expression);
 
 				if (schedule == null)
-					throw new ServiceInitializationException(
+					throw new SchedulerInitializationException(
 						$"Crontab expression parsing failed, expression: '{expression}', full: '{crontabExpression}'");
 
 				Schedules.Add(schedule);

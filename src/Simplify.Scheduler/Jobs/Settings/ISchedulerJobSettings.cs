@@ -1,9 +1,9 @@
 ﻿namespace Simplify.Scheduler.Jobs.Settings
 {
 	/// <summary>
-	/// Represent service job settings
+	/// Represent scheduler job settings
 	/// </summary>
-	public interface IServiceJobSettings
+	public interface ISchedulerJobSettings
 	{
 		/// <summary>
 		/// Gets the crontab expression.
@@ -14,10 +14,10 @@
 		string CrontabExpression { get; }
 
 		/// <summary>
-		/// Gets the service processing interval (sec).
+		/// Gets the jobs processing interval (sec).
 		/// </summary>
 		/// <value>
-		/// The service processing interval (sec).
+		/// The job processing interval (sec).
 		/// </value>
 		int ProcessingInterval { get; }
 

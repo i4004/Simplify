@@ -5,19 +5,19 @@ using System.Reflection;
 namespace Simplify.Scheduler.Jobs
 {
 	/// <summary>
-	/// Provides basic service job
+	/// Provides basic scheduler job
 	/// </summary>
-	/// <seealso cref="IServiceJob" />
-	public class ServiceJob<T> : IServiceJob
+	/// <seealso cref="ISchedulerJob" />
+	public class SchedulerJob<T> : ISchedulerJob
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="ServiceJob{T}" /> class.
+		/// Initializes a new instance of the <see cref="SchedulerJob{T}" /> class.
 		/// </summary>
 		/// <param name="invokeMethodName">Name of the invoke method.</param>
 		/// <param name="args">The arguments.</param>
 		/// <exception cref="ArgumentNullException">invokeMethodName</exception>
-		/// <exception cref="ServiceInitializationException"></exception>
-		public ServiceJob(string invokeMethodName, IJobArgs args)
+		/// <exception cref="SchedulerInitializationException"></exception>
+		public SchedulerJob(string invokeMethodName, IJobArgs args)
 		{
 			if (invokeMethodName == null) throw new ArgumentNullException(nameof(invokeMethodName));
 
@@ -62,7 +62,7 @@ namespace Simplify.Scheduler.Jobs
 		/// <summary>
 		/// Starts this job timer.
 		/// </summary>
-		/// <exception cref="ServiceInitializationException"></exception>
+		/// <exception cref="SchedulerInitializationException"></exception>
 		public virtual void Start()
 		{
 		}
@@ -79,7 +79,7 @@ namespace Simplify.Scheduler.Jobs
 			InvokeMethodInfo = JobClassType.GetMethod(invokeMethodName);
 
 			if (InvokeMethodInfo == null)
-				throw new ServiceInitializationException($"Method {invokeMethodName} not found in class {JobClassType.Name}");
+				throw new SchedulerInitializationException($"Method {invokeMethodName} not found in class {JobClassType.Name}");
 
 			var methodParameters = InvokeMethodInfo.GetParameters();
 
@@ -90,7 +90,7 @@ namespace Simplify.Scheduler.Jobs
 			}
 
 			if (methodParameters[0].ParameterType == typeof(string))
-				InvokeMethodParameterType = InvokeMethodParameterType.ServiceName;
+				InvokeMethodParameterType = InvokeMethodParameterType.AppName;
 
 			if (methodParameters[0].ParameterType == typeof(IJobArgs))
 				InvokeMethodParameterType = InvokeMethodParameterType.Args;

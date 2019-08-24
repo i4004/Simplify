@@ -14,56 +14,56 @@ using System.Threading.Tasks;
 namespace Simplify.Scheduler
 {
 	/// <summary>
-	/// Provides class which runs as a windows service and periodically creates a class instances specified in added jobs and launches them in separated thread
+	/// Provides class which periodically creates a class instances specified in added jobs and launches them in separated thread, optimized to work as a console application
 	/// </summary>
-	public class MultitaskServiceHandler : IDisposable
+	public class MultitaskScheduler : IDisposable
 	{
 		private readonly AutoResetEvent _closing = new AutoResetEvent(false);
 
-		private readonly IList<IServiceJob> _jobs = new List<IServiceJob>();
-		private readonly IList<ICrontabServiceJobTask> _workingJobsTasks = new List<ICrontabServiceJobTask>();
+		private readonly IList<ISchedulerJob> _jobs = new List<ISchedulerJob>();
+		private readonly IList<ICrontabSchedulerJobTask> _workingJobsTasks = new List<ICrontabSchedulerJobTask>();
 		private readonly IDictionary<object, ILifetimeScope> _workingBasicJobs = new Dictionary<object, ILifetimeScope>();
 
 		private long _jobTaskID;
 		private bool _shutdownInProcess;
 
-		private IServiceJobFactory _serviceJobFactory;
+		private ISchedulerJobFactory _schedulerJobFactory;
 		private ICommandLineProcessor _commandLineProcessor;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="MultitaskServiceHandler" /> class.
+		/// Initializes a new instance of the <see cref="MultitaskScheduler" /> class.
 		/// </summary>
-		public MultitaskServiceHandler()
+		public MultitaskScheduler()
 		{
 			var assemblyInfo = new AssemblyInfo(Assembly.GetCallingAssembly());
-			ServiceName = assemblyInfo.Title;
-			Console.CancelKeyPress += OnStop;
+			AppName = assemblyInfo.Title;
+			Console.CancelKeyPress += StopJobs;
 		}
 
 		/// <summary>
 		/// Occurs when exception thrown.
 		/// </summary>
-		public event ServiceExceptionEventHandler OnException;
+		public event SchedulerExceptionEventHandler OnException;
 
 		/// <summary>
-		/// Gets the name of the service.
+		/// Gets the name of the application.
 		/// </summary>
 		/// <value>
-		/// The name of the service.
+		/// The name of the application.
 		/// </value>
-		public string ServiceName { get; protected set; }
+		public string AppName { get; protected set; }
 
 		/// <summary>
-		/// Gets or sets the service job factory.
+		/// Gets or sets the scheduler job factory.
 		/// </summary>
 		/// <value>
-		/// The service job factory.
+		/// The scheduler job factory.
 		/// </value>
 		/// <exception cref="ArgumentNullException">value</exception>
-		public IServiceJobFactory ServiceJobFactory
+		public ISchedulerJobFactory SchedulerJobFactory
 		{
-			get => _serviceJobFactory ?? (_serviceJobFactory = new ServiceJobFactory(ServiceName));
-			set => _serviceJobFactory = value ?? throw new ArgumentNullException(nameof(value));
+			get => _schedulerJobFactory ?? (_schedulerJobFactory = new SchedulerJobFactory(AppName));
+			set => _schedulerJobFactory = value ?? throw new ArgumentNullException(nameof(value));
 		}
 
 		/// <summary>
@@ -90,13 +90,13 @@ namespace Simplify.Scheduler
 			object startupArgs = null)
 			where T : class
 		{
-			var job = ServiceJobFactory.CreateCrontabServiceJob<T>(configuration, configurationSectionName, invokeMethodName, startupArgs);
+			var job = SchedulerJobFactory.CreateCrontabJob<T>(configuration, configurationSectionName, invokeMethodName, startupArgs);
 
 			InitializeJob(job);
 		}
 
 		/// <summary>
-		/// Adds the basic service job.
+		/// Adds the basic scheduler job.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="invokeMethodName">Name of the invoke method.</param>
@@ -105,13 +105,13 @@ namespace Simplify.Scheduler
 			object startupArgs = null)
 			where T : class
 		{
-			var job = ServiceJobFactory.CreateServiceJob<T>(invokeMethodName, startupArgs);
+			var job = SchedulerJobFactory.CreateJob<T>(invokeMethodName, startupArgs);
 
 			_jobs.Add(job);
 		}
 
 		/// <summary>
-		/// Starts the windows-service.
+		/// Starts the scheduler
 		/// </summary>
 		/// <param name="args">The arguments.</param>
 		public bool Start(string[] args = null)
@@ -124,7 +124,7 @@ namespace Simplify.Scheduler
 					return false;
 
 				case ProcessCommandLineResult.NoArguments:
-					ConsoleStart();
+					StartAndWait();
 					break;
 			}
 
@@ -143,7 +143,7 @@ namespace Simplify.Scheduler
 		/// <summary>
 		/// Called when scheduler is started, main execution starting point.
 		/// </summary>
-		protected void OnStart()
+		protected void StartJobs()
 		{
 			Console.WriteLine("Starting Scheduler jobs...");
 
@@ -151,7 +151,7 @@ namespace Simplify.Scheduler
 			{
 				job.Start();
 
-				if (!(job is ICrontabServiceJob))
+				if (!(job is ICrontabSchedulerJob))
 					RunBasicJob(job);
 			}
 
@@ -161,7 +161,7 @@ namespace Simplify.Scheduler
 		/// <summary>
 		/// Called when scheduler is about to stop, main stopping point
 		/// </summary>
-		protected void OnStop(object sender, ConsoleCancelEventArgs args)
+		protected void StopJobs(object sender, ConsoleCancelEventArgs args)
 		{
 			Console.WriteLine("Scheduler stopping, waiting for jobs to finish...");
 
@@ -180,10 +180,9 @@ namespace Simplify.Scheduler
 		}
 
 		/// <summary>
-		/// Disposes of the resources (other than memory) used by the <see cref="T:System.ServiceProcess.ServiceBase" />.
+		/// Releases unmanaged and - optionally - managed resources.
 		/// </summary>
-		/// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
-		// ReSharper disable once FlagArgument
+		/// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
 		protected virtual void Dispose(bool disposing)
 		{
 			if (disposing)
@@ -191,16 +190,16 @@ namespace Simplify.Scheduler
 					jobObject?.Dispose();
 		}
 
-		private void ConsoleStart()
+		private void StartAndWait()
 		{
-			OnStart();
+			StartJobs();
 
 			Console.WriteLine("Scheduler started. Press Ctrl + C to shut down.");
 
 			_closing.WaitOne();
 		}
 
-		private void InitializeJob(ICrontabServiceJob job)
+		private void InitializeJob(ICrontabSchedulerJob job)
 		{
 			job.OnCronTimerTick += OnCronTimerTick;
 			job.OnStartWork += OnStartWork;
@@ -210,7 +209,7 @@ namespace Simplify.Scheduler
 
 		private void OnCronTimerTick(object state)
 		{
-			var job = (ICrontabServiceJob)state;
+			var job = (ICrontabSchedulerJob)state;
 
 			if (!job.CrontabProcessor.IsMatching())
 				return;
@@ -222,7 +221,7 @@ namespace Simplify.Scheduler
 
 		private void OnStartWork(object state)
 		{
-			var job = (ICrontabServiceJob)state;
+			var job = (ICrontabSchedulerJob)state;
 
 			lock (_workingJobsTasks)
 			{
@@ -231,14 +230,14 @@ namespace Simplify.Scheduler
 
 				_jobTaskID++;
 
-				_workingJobsTasks.Add(new CrontabServiceJobTask(_jobTaskID, job,
-					Task.Factory.StartNew(Run, new Tuple<long, ICrontabServiceJob>(_jobTaskID, job))));
+				_workingJobsTasks.Add(new CrontabSchedulerJobTask(_jobTaskID, job,
+					Task.Factory.StartNew(Run, new Tuple<long, ICrontabSchedulerJob>(_jobTaskID, job))));
 			}
 		}
 
 		private void Run(object state)
 		{
-			var (jobTaskID, job) = (Tuple<long, ICrontabServiceJob>)state;
+			var (jobTaskID, job) = (Tuple<long, ICrontabSchedulerJob>)state;
 
 			try
 			{
@@ -252,7 +251,7 @@ namespace Simplify.Scheduler
 			catch (Exception e)
 			{
 				if (OnException != null)
-					OnException(new ServiceExceptionArgs(ServiceName, e));
+					OnException(new SchedulerExceptionArgs(AppName, e));
 				else
 					throw;
 			}
@@ -266,7 +265,7 @@ namespace Simplify.Scheduler
 			}
 		}
 
-		private void RunBasicJob(IServiceJob job)
+		private void RunBasicJob(ISchedulerJob job)
 		{
 			try
 			{
@@ -281,13 +280,13 @@ namespace Simplify.Scheduler
 			catch (Exception e)
 			{
 				if (OnException != null)
-					OnException(new ServiceExceptionArgs(ServiceName, e));
+					OnException(new SchedulerExceptionArgs(AppName, e));
 				else
 					throw;
 			}
 		}
 
-		private void InvokeJobMethod(IServiceJob job, object jobObject)
+		private void InvokeJobMethod(ISchedulerJob job, object jobObject)
 		{
 			switch (job.InvokeMethodParameterType)
 			{
@@ -295,8 +294,8 @@ namespace Simplify.Scheduler
 					job.InvokeMethodInfo.Invoke(jobObject, null);
 					break;
 
-				case InvokeMethodParameterType.ServiceName:
-					job.InvokeMethodInfo.Invoke(jobObject, new object[] { ServiceName });
+				case InvokeMethodParameterType.AppName:
+					job.InvokeMethodInfo.Invoke(jobObject, new object[] { AppName });
 					break;
 
 				case InvokeMethodParameterType.Args:

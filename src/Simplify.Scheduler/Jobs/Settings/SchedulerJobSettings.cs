@@ -1,14 +1,14 @@
 ﻿namespace Simplify.Scheduler.Jobs.Settings
 {
 	/// <summary>
-	/// Provides service job settings
+	/// Provides scheduler job settings
 	/// </summary>
-	public class ServiceJobSettings : IServiceJobSettings
+	public class SchedulerJobSettings : ISchedulerJobSettings
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="ServiceJobSettings"/> class.
+		/// Initializes a new instance of the <see cref="SchedulerJobSettings"/> class.
 		/// </summary>
-		protected ServiceJobSettings()
+		protected SchedulerJobSettings()
 		{
 		}
 
@@ -21,10 +21,10 @@
 		public string CrontabExpression { get; protected set; }
 
 		/// <summary>
-		/// Gets the service processing interval (sec).
+		/// Gets the scheduler processing interval (sec).
 		/// </summary>
 		/// <value>
-		/// The service processing interval (sec).
+		/// The scheduler processing interval (sec).
 		/// </value>
 		public int ProcessingInterval { get; protected set; } = 60;
 

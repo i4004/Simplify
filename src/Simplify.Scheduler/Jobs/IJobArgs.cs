@@ -6,12 +6,12 @@
 	public interface IJobArgs
 	{
 		/// <summary>
-		/// Gets the name of the current service.
+		/// Gets the name of the current application.
 		/// </summary>
 		/// <value>
-		/// The name of the current service.
+		/// The name of the current application.
 		/// </value>
-		string ServiceName { get; }
+		string AppName { get; }
 
 		/// <summary>
 		/// Gets the job startup arguments.

@@ -5,16 +5,16 @@ using System.Threading;
 namespace Simplify.Scheduler.Jobs.Crontab
 {
 	/// <summary>
-	/// Provides crontab service job
+	/// Provides crontab based scheduler job
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
-	public class CrontabServiceJob<T> : ServiceJob<T>, ICrontabServiceJob
+	public class CrontabSchedulerJob<T> : SchedulerJob<T>, ICrontabSchedulerJob
 	{
 		private readonly ICrontabProcessorFactory _crontabProcessorFactory;
 		private Timer _timer;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="CrontabServiceJob{T}" /> class.
+		/// Initializes a new instance of the <see cref="CrontabSchedulerJob{T}" /> class.
 		/// </summary>
 		/// <param name="settings">The settings.</param>
 		/// <param name="crontabProcessorFactory">The crontab processor factory.</param>
@@ -23,11 +23,11 @@ namespace Simplify.Scheduler.Jobs.Crontab
 		/// <exception cref="ArgumentNullException">settings
 		/// or
 		/// invokeMethodName</exception>
-		/// <exception cref="ServiceInitializationException"></exception>
+		/// <exception cref="SchedulerInitializationException"></exception>
 		/// <exception cref="ArgumentNullException">settings
 		/// or
 		/// invokeMethodName</exception>
-		public CrontabServiceJob(IServiceJobSettings settings,
+		public CrontabSchedulerJob(ISchedulerJobSettings settings,
 			ICrontabProcessorFactory crontabProcessorFactory,
 			string invokeMethodName,
 			IJobArgs args)
@@ -55,7 +55,7 @@ namespace Simplify.Scheduler.Jobs.Crontab
 		/// <value>
 		/// The settings.
 		/// </value>
-		public IServiceJobSettings Settings { get; }
+		public ISchedulerJobSettings Settings { get; }
 
 		/// <summary>
 		/// Gets the crontab processor.
@@ -68,7 +68,7 @@ namespace Simplify.Scheduler.Jobs.Crontab
 		/// <summary>
 		/// Starts this job timer.
 		/// </summary>
-		/// <exception cref="ServiceInitializationException"></exception>
+		/// <exception cref="SchedulerInitializationException"></exception>
 		public override void Start()
 		{
 			if (!string.IsNullOrEmpty(Settings.CrontabExpression))

@@ -10,7 +10,7 @@ namespace Simplify.Scheduler.IntegrationTester
 		public void Run()
 		{
 			if (_isRunning)
-				throw new SimplifyWindowsServicesException("TaskProcessor3 is running a duplicate!");
+				throw new SimplifySchedulerException("TaskProcessor3 is running a duplicate!");
 
 			_isRunning = true;
 

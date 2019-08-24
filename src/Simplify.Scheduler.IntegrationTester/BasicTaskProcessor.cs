@@ -17,7 +17,7 @@ namespace Simplify.Scheduler.IntegrationTester
 		public void Run()
 		{
 			if (_isRunning)
-				throw new SimplifyWindowsServicesException("BasicTaskProcessor is running a duplicate!");
+				throw new SimplifySchedulerException("BasicTaskProcessor is running a duplicate!");
 
 			_isRunning = true;
 

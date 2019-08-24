@@ -4,14 +4,14 @@ using System.Linq;
 namespace Simplify.Scheduler.Jobs.Settings.Impl
 {
 	/// <summary>
-	/// Provides service job settings based on IConfiguration
+	/// Provides scheduler job settings based on IConfiguration
 	/// </summary>
-	public class ConfigurationBasedServiceJobSetting : ServiceJobSettings
+	public class ConfigurationBasedSchedulerJobSetting : SchedulerJobSettings
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="ConfigurationBasedServiceJobSetting"/> class.
+		/// Initializes a new instance of the <see cref="ConfigurationBasedSchedulerJobSetting"/> class.
 		/// </summary>
-		public ConfigurationBasedServiceJobSetting(IConfiguration configuration, string configSectionName = "ServiceSettings")
+		public ConfigurationBasedSchedulerJobSetting(IConfiguration configuration, string configSectionName = "JobSettings")
 		{
 			var config = configuration.GetSection(configSectionName);
 

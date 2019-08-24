@@ -10,23 +10,23 @@ namespace Simplify.Scheduler.Jobs
 		/// <summary>
 		/// Initializes a new instance of the <see cref="JobArgs"/> class.
 		/// </summary>
-		/// <param name="serviceName">Name of the service.</param>
+		/// <param name="appName">Name of the application.</param>
 		/// <param name="startupArgs">The startup arguments.</param>
-		public JobArgs(string serviceName, object startupArgs)
+		public JobArgs(string appName, object startupArgs)
 		{
-			if (string.IsNullOrEmpty(serviceName)) throw new ArgumentException("Value cannot be null or empty.", nameof(serviceName));
+			if (string.IsNullOrEmpty(appName)) throw new ArgumentException("Value cannot be null or empty.", nameof(appName));
 
-			ServiceName = serviceName;
+			AppName = appName;
 			StartupArgs = startupArgs;
 		}
 
 		/// <summary>
-		/// Gets the name of the current service.
+		/// Gets the name of the current application.
 		/// </summary>
 		/// <value>
-		/// The name of the current service.
+		/// The name of the current application.
 		/// </value>
-		public string ServiceName { get; }
+		public string AppName { get; }
 
 		/// <summary>
 		/// Gets the job startup arguments.
