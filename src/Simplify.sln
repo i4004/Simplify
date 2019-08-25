@@ -31,12 +31,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.FluentNHibernate.E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.FluentNHibernate.Examples.Domain", "Examples\Simplify.FluentNHibernate.Examples.Domain\Simplify.FluentNHibernate.Examples.Domain.csproj", "{959DF948-6208-4EA2-BBB8-BA87E6FDCAB7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{21CDC14F-3620-4C15-B4BB-EBE5CBB96579}"
-	ProjectSection(SolutionItems) = preProject
-		Images\Icon.png = Images\Icon.png
-		Images\Logo.xcf = Images\Logo.xcf
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.Resources", "Simplify.Resources\Simplify.Resources.csproj", "{C197714E-8EBA-4A27-8370-A6F8D1648762}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.Windows.Forms", "Simplify.Windows.Forms\Simplify.Windows.Forms.csproj", "{95BAF8DC-B67D-4C65-82EF-7097199B256A}"
