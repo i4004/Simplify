@@ -2,14 +2,14 @@
 
 namespace Simplify.FluentNHibernate.Examples.Domain.Location
 {
-	public class CitiesAgent : ICitiesAgent
+	public class TransactCitiesService : ICitiesService
 	{
-		private readonly ICitiesService _service;
+		private readonly ICitiesService _baseService;
 		private readonly IExampleUnitOfWork _unitOfWork;
 
-		public CitiesAgent(ICitiesService service, IExampleUnitOfWork unitOfWork)
+		public TransactCitiesService(ICitiesService baseService, IExampleUnitOfWork unitOfWork)
 		{
-			_service = service;
+			_baseService = baseService;
 			_unitOfWork = unitOfWork;
 		}
 
@@ -17,7 +17,7 @@ namespace Simplify.FluentNHibernate.Examples.Domain.Location
 		{
 			_unitOfWork.BeginTransaction(IsolationLevel.ReadUncommitted);
 
-			var item = _service.GetCity(cityName);
+			var item = _baseService.GetCity(cityName);
 
 			_unitOfWork.Commit();
 
