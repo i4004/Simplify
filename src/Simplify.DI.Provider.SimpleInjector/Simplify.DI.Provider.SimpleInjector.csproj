@@ -5,15 +5,14 @@
 		<Product>Simplify</Product>
 		<Description>Simplify.DI SimpleInjector provider</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>1.5</Version>
+		<Version>1.5.1</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.DI</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.DI.Provider.SimpleInjector</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET DI IOC-container-provider</PackageTags>
 		<PackageReleaseNotes>
-			* Upgrade to SimpleInjector 4.6
-			* Upgrade to Simplify.DI 2.1 (Container verification implemented)
+			* ResolveUnregisteredConcreteTypes set to false by default
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.DI.Provider.SimpleInjector.xml</DocumentationFile>
