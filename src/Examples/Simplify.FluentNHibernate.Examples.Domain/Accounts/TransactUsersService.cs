@@ -2,14 +2,14 @@
 
 namespace Simplify.FluentNHibernate.Examples.Domain.Accounts
 {
-	public class UsersAgent : IUsersAgent
+	public class TransactUsersService : IUsersService
 	{
-		private readonly IUsersService _service;
+		private readonly IUsersService _baseService;
 		private readonly IExampleUnitOfWork _unitOfWork;
 
-		public UsersAgent(IUsersService service, IExampleUnitOfWork unitOfWork)
+		public TransactUsersService(IUsersService baseService, IExampleUnitOfWork unitOfWork)
 		{
-			_service = service;
+			_baseService = baseService;
 			_unitOfWork = unitOfWork;
 		}
 
@@ -17,7 +17,7 @@ namespace Simplify.FluentNHibernate.Examples.Domain.Accounts
 		{
 			_unitOfWork.BeginTransaction(IsolationLevel.ReadUncommitted);
 
-			var item = _service.GetUser(userName);
+			var item = _baseService.GetUser(userName);
 
 			_unitOfWork.Commit();
 
@@ -28,7 +28,7 @@ namespace Simplify.FluentNHibernate.Examples.Domain.Accounts
 		{
 			_unitOfWork.BeginTransaction();
 
-			_service.SetUserCity(userID, cityID);
+			_baseService.SetUserCity(userID, cityID);
 
 			_unitOfWork.Commit();
 		}
