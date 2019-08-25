@@ -1,0 +1,9 @@
+{
+	"profiles":
+	{
+		"Simplify.WindowsServices.IntegrationTests":
+		{
+			"commandName": "Project",
+		}
+	}
+}

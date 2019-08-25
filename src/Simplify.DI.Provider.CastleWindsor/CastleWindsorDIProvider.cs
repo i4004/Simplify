@@ -36,7 +36,7 @@ namespace Simplify.DI.Provider.CastleWindsor
 		/// <param name="serviceType">Service type.</param>
 		/// <param name="implementationType">Implementation type.</param>
 		/// <param name="lifetimeType">Lifetime type of the registering services type.</param>
-		public void Register(Type serviceType, Type implementationType, LifetimeType lifetimeType = LifetimeType.Singleton)
+		public void Register(Type serviceType, Type implementationType, LifetimeType lifetimeType)
 		{
 			switch (lifetimeType)
 			{
@@ -60,7 +60,7 @@ namespace Simplify.DI.Provider.CastleWindsor
 		/// <typeparam name="TService">Concrete type.</typeparam>
 		/// <param name="instanceCreator">The instance creator.</param>
 		/// <param name="lifetimeType">Lifetime type of the registering concrete type.</param>
-		public void Register<TService>(Func<IDIResolver, TService> instanceCreator, LifetimeType lifetimeType = LifetimeType.Singleton)
+		public void Register<TService>(Func<IDIResolver, TService> instanceCreator, LifetimeType lifetimeType)
 			where TService : class
 		{
 			switch (lifetimeType)

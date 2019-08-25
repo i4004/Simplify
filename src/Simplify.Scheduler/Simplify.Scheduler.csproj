@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0</TargetFrameworks>
+		<Authors>Alexander Krylkov</Authors>
+		<Product>Simplify</Product>
+		<Description>Scheduler framework with DI</Description>
+		<Copyright>Licensed under LGPL</Copyright>
+		<Version>1.0-pre01</Version>
+		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.Scheduler</PackageProjectUrl>
+		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
+		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.Scheduler</RepositoryUrl>
+		<RepositoryType>GIT</RepositoryType>
+		<PackageTags>.NET Scheduler DI</PackageTags>
+		<PackageReleaseNotes>
+		</PackageReleaseNotes>
+		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
+		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.Scheduler.xml</DocumentationFile>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="ncrontab" Version="3.3.1" />
+		<PackageReference Include="Simplify.DI" Version="2.1.0" />
+		<PackageReference Include="Simplify.System" Version="1.1.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+	</ItemGroup>
+</Project>

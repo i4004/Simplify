@@ -9,9 +9,10 @@ configuration: Release
 platform: Any CPU
 
 before_build:
- - cmd: '"src/.nuget/NuGet.exe" restore src/Simplify.sln'
- 
+  - nuget restore src/Simplify.sln
+
 build:
+  project: src/Simplify.sln
   publish_nuget: true
   parallel: true
   verbosity: minimal
