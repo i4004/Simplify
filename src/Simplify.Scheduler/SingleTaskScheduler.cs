@@ -19,7 +19,7 @@ namespace Simplify.Scheduler
 		/// <param name="invokeMethodName">Name of the invoke method.</param>
 		/// <param name="startupArgs">The startup arguments.</param>
 		public SingleTaskScheduler(IConfiguration configuration,
-			string configurationSectionName = "JobsSettings",
+			string configurationSectionName = "JobSettings",
 			string invokeMethodName = "Run",
 			object startupArgs = null)
 		{
