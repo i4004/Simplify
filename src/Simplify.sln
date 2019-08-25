@@ -121,6 +121,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.Scheduler", "Simpl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.Scheduler.IntegrationTester", "Simplify.Scheduler.IntegrationTester\Simplify.Scheduler.IntegrationTester.csproj", "{3AD1BBA1-20FC-4453-BEAD-B4541AFF67D9}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplify.DI.AspNetCore", "Simplify.DI.AspNetCore\Simplify.DI.AspNetCore.csproj", "{86C777B4-8912-4427-BB33-46E7419F0DE0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -295,6 +297,10 @@ Global
 		{3AD1BBA1-20FC-4453-BEAD-B4541AFF67D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AD1BBA1-20FC-4453-BEAD-B4541AFF67D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AD1BBA1-20FC-4453-BEAD-B4541AFF67D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86C777B4-8912-4427-BB33-46E7419F0DE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86C777B4-8912-4427-BB33-46E7419F0DE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86C777B4-8912-4427-BB33-46E7419F0DE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86C777B4-8912-4427-BB33-46E7419F0DE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -337,6 +343,7 @@ Global
 		{07305782-627F-4264-937A-96D2CAC2D02E} = {2D619A98-03A6-434F-B8CA-4473D4F8C52A}
 		{621710A3-6FC9-40E4-B8AF-9FB636762889} = {9AC740E3-564E-45B4-B2BE-F471E3BBA81F}
 		{3AD1BBA1-20FC-4453-BEAD-B4541AFF67D9} = {9AC740E3-564E-45B4-B2BE-F471E3BBA81F}
+		{86C777B4-8912-4427-BB33-46E7419F0DE0} = {2D619A98-03A6-434F-B8CA-4473D4F8C52A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {466E8FF6-456A-4262-A9ED-5E88DB8DCB08}
