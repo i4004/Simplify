@@ -11,11 +11,11 @@ namespace Simplify.WindowsServices.IntegrationTester.Setup
 		{
 			RegisterConfiguration();
 
-			DIContainer.Current.Register<Dependency1>();
+			DIContainer.Current.Register<DisposableDependency>();
 
-			DIContainer.Current.Register<TaskProcessor1>();
-			DIContainer.Current.Register<TaskProcessor2>();
-			DIContainer.Current.Register<TaskProcessor4>();
+			DIContainer.Current.Register<OneSecondStepProcessor>();
+			DIContainer.Current.Register<TwoSecondStepProcessor>();
+			DIContainer.Current.Register<TwoParallelTasksProcessor>();
 			DIContainer.Current.Register<BasicTaskProcessor>();
 		}
 

@@ -3,11 +3,11 @@ using System.Threading;
 
 namespace Simplify.WindowsServices.IntegrationTester
 {
-	public class TaskProcessor4
+	public class TwoParallelTasksProcessor
 	{
 		public void Execute()
 		{
-			Trace.WriteLine("--- TaskProcessor4 launched");
+			Trace.WriteLine("--- TwoParallelTasksProcessor launched");
 
 			Thread.Sleep(5000);
 		}

@@ -17,10 +17,10 @@ namespace Simplify.WindowsServices.IntegrationTester
 
 			var handler = new MultitaskServiceHandler();
 
-			handler.AddJob<TaskProcessor1>("TaskProcessor1Settings");
-			handler.AddJob<TaskProcessor2>(IocRegistrations.Configuration, "TaskProcessor2Settings", startupArgs: "Hello world!!!");
-			handler.AddJob<TaskProcessor3>(IocRegistrations.Configuration, "TaskProcessor3Settings", automaticallyRegisterUserType: true);
-			handler.AddJob<TaskProcessor4>("TaskProcessor4Settings", "Execute");
+			handler.AddJob<OneSecondStepProcessor>("OneSecondStepProcessor");
+			handler.AddJob<TwoSecondStepProcessor>(IocRegistrations.Configuration, startupArgs: "Hello world!!!");
+			handler.AddJob<OneMinuteStepCrontabProcessor>(IocRegistrations.Configuration, "OneMinuteStepCrontabProcessor", automaticallyRegisterUserType: true);
+			handler.AddJob<TwoParallelTasksProcessor>(invokeMethodName: "Execute");
 			handler.AddBasicJob<BasicTaskProcessor>();
 
 			if (handler.Start(args))
