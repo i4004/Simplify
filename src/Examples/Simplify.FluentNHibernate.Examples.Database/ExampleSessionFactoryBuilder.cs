@@ -4,16 +4,16 @@ using Simplify.FluentNHibernate.Examples.Database.Mappings;
 
 namespace Simplify.FluentNHibernate.Examples.Database
 {
-	public class ExampleFactoryManager
+	public class ExampleSessionFactoryBuilder
 	{
-		public ISessionFactory Instance { get; }
-
-		public ExampleFactoryManager(string configSectionName = "ExampleDatabaseConnectionSettings")
+		public ExampleSessionFactoryBuilder(string configSectionName = "ExampleDatabaseConnectionSettings")
 		{
 			var configuration = Fluently.Configure();
 			configuration.InitializeFromConfigMsSql(configSectionName);
 			configuration.AddMappingsFromAssemblyOf<UserMap>();
 			Instance = configuration.BuildSessionFactory();
 		}
+
+		public ISessionFactory Instance { get; }
 	}
 }
