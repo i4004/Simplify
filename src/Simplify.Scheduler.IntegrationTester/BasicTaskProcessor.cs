@@ -7,11 +7,11 @@ namespace Simplify.Scheduler.IntegrationTester
 	{
 		private static bool _isRunning;
 
-		private readonly Dependency1 _dependency1;
+		private readonly DisposableDependency _dependency;
 
-		public BasicTaskProcessor(Dependency1 dependency1)
+		public BasicTaskProcessor(DisposableDependency dependency)
 		{
-			_dependency1 = dependency1;
+			_dependency = dependency;
 		}
 
 		public void Run()

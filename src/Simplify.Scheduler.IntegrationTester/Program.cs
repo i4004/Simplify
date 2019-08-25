@@ -16,10 +16,10 @@ namespace Simplify.Scheduler.IntegrationTester
 
 			using (var scheduler = new MultitaskScheduler())
 			{
-				scheduler.AddJob<TaskProcessor1>(IocRegistrations.Configuration, "TaskProcessor1Settings");
-				scheduler.AddJob<TaskProcessor2>(IocRegistrations.Configuration, "TaskProcessor2Settings", startupArgs: "Hello world!!!");
-				scheduler.AddJob<TaskProcessor3>(IocRegistrations.Configuration, "TaskProcessor3Settings");
-				scheduler.AddJob<TaskProcessor4>(IocRegistrations.Configuration, "TaskProcessor4Settings", "Execute");
+				scheduler.AddJob<OneSecondStepProcessor>(IocRegistrations.Configuration);
+				scheduler.AddJob<TwoSecondStepProcessor>(IocRegistrations.Configuration, startupArgs: "Hello world!!!");
+				scheduler.AddJob<OneMinuteStepCrontabProcessor>(IocRegistrations.Configuration);
+				scheduler.AddJob<TwoParallelTasksProcessor>(IocRegistrations.Configuration, invokeMethodName: "Execute");
 				scheduler.AddBasicJob<BasicTaskProcessor>();
 
 				if (scheduler.Start(args))

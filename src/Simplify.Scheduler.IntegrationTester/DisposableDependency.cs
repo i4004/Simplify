@@ -3,11 +3,11 @@ using System.Diagnostics;
 
 namespace Simplify.Scheduler.IntegrationTester
 {
-	public class Dependency1 : IDisposable
+	public class DisposableDependency : IDisposable
 	{
 		public void Dispose()
 		{
-			Trace.WriteLine("Dependency1 disposed");
+			Trace.WriteLine("Disposable dependency disposed");
 		}
 	}
 }

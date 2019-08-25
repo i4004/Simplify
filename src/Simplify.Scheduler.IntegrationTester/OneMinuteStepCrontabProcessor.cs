@@ -3,18 +3,18 @@ using System.Threading;
 
 namespace Simplify.Scheduler.IntegrationTester
 {
-	public class TaskProcessor3
+	public class OneMinuteStepCrontabProcessor
 	{
 		private static bool _isRunning;
 
 		public void Run()
 		{
 			if (_isRunning)
-				throw new SimplifySchedulerException("TaskProcessor3 is running a duplicate!");
+				throw new SimplifySchedulerException("OneMinuteStepCrontabProcessor is running a duplicate!");
 
 			_isRunning = true;
 
-			Trace.WriteLine("--- TaskProcessor3 launched");
+			Trace.WriteLine("--- OneMinuteStepCrontabProcessor launched");
 
 			Thread.Sleep(3218);
 

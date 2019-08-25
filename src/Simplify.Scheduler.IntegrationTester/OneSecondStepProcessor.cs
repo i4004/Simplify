@@ -4,22 +4,22 @@ using System.Threading;
 
 namespace Simplify.Scheduler.IntegrationTester
 {
-	public class TaskProcessor1 : IDisposable
+	public class OneSecondStepProcessor : IDisposable
 	{
 		private static bool _isRunning;
 
-		public TaskProcessor1(Dependency1 dependency1)
+		public OneSecondStepProcessor(DisposableDependency dependency)
 		{
 		}
 
 		public void Run()
 		{
 			if (_isRunning)
-				throw new SimplifySchedulerException("TaskProcessor1 is running a duplicate!");
+				throw new SimplifySchedulerException("EverySecondProcessor is running a duplicate!");
 
 			_isRunning = true;
 
-			Trace.WriteLine("TaskProcessor1 launched");
+			Trace.WriteLine("EverySecondProcessor launched");
 
 			Thread.Sleep(5120);
 
@@ -28,7 +28,7 @@ namespace Simplify.Scheduler.IntegrationTester
 
 		public void Dispose()
 		{
-			Trace.WriteLine("TaskProcessor1 disposed");
+			Trace.WriteLine("EverySecondProcessor disposed");
 		}
 	}
 }
