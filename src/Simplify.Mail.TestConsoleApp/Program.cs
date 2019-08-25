@@ -8,6 +8,7 @@ namespace Simplify.Mail.TestConsoleApp
 		private static void Main()
 		{
 			IocRegistrations.Register();
+			DIContainer.Current.Verify();
 
 			using (var scope = DIContainer.Current.BeginLifetimeScope())
 			{
