@@ -12,14 +12,14 @@ namespace Simplify.DI.AspNetCore
 		/// Registers the types from IServiceCollection inside IDIRegistrator (IDIContainerProvider).
 		/// </summary>
 		/// <param name="registrator">The registrator.</param>
-		/// <param name="collection">The collection.</param>
+		/// <param name="services">The services collection.</param>
 		/// <exception cref="ArgumentNullException">collection</exception>
-		public static void RegisterFromServiceCollection(this IDIRegistrator registrator, IServiceCollection collection)
+		public static void RegisterFromServiceCollection(this IDIRegistrator registrator, IServiceCollection services)
 		{
 			if (registrator == null) throw new ArgumentNullException(nameof(registrator));
-			if (collection == null) throw new ArgumentNullException(nameof(collection));
+			if (services == null) throw new ArgumentNullException(nameof(services));
 
-			foreach (var item in collection)
+			foreach (var item in services)
 			{
 				// TODO
 				//registrator.Register(item.ServiceType);
