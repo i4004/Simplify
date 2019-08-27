@@ -1,5 +1,5 @@
-﻿using System;
-using DryIoc;
+﻿using DryIoc;
+using System;
 
 namespace Simplify.DI.Provider.DryIoc
 {
@@ -35,6 +35,7 @@ namespace Simplify.DI.Provider.DryIoc
 		/// <param name="serviceType">Service type.</param>
 		/// <param name="implementationType">Implementation type.</param>
 		/// <param name="lifetimeType">Lifetime type of the registering services type.</param>
+		/// <exception cref="ArgumentOutOfRangeException">lifetimeType - null</exception>
 		public void Register(Type serviceType, Type implementationType, LifetimeType lifetimeType)
 		{
 			switch (lifetimeType)
@@ -50,32 +51,37 @@ namespace Simplify.DI.Provider.DryIoc
 				case LifetimeType.Transient:
 					Container.Register(serviceType, implementationType, Reuse.Transient);
 					break;
+
+				default:
+					throw new ArgumentOutOfRangeException(nameof(lifetimeType), lifetimeType, null);
 			}
 		}
 
 		/// <summary>
-		/// Registers the specified concrete type for resolve with delegate for concrete implementation instance creation.
+		/// Registers the specified service type.
 		/// </summary>
-		/// <typeparam name="TService">Service type.</typeparam>
+		/// <param name="serviceType">Type of the service.</param>
 		/// <param name="instanceCreator">The instance creator.</param>
-		/// <param name="lifetimeType">Lifetime type of the registering concrete type.</param>
-		public void Register<TService>(Func<IDIResolver, TService> instanceCreator,
-			LifetimeType lifetimeType)
-			where TService : class
+		/// <param name="lifetimeType">Type of the lifetime.</param>
+		/// <exception cref="ArgumentOutOfRangeException">lifetimeType - null</exception>
+		public void Register(Type serviceType, Func<IDIResolver, object> instanceCreator, LifetimeType lifetimeType = LifetimeType.PerLifetimeScope)
 		{
 			switch (lifetimeType)
 			{
 				case LifetimeType.PerLifetimeScope:
-					Container.RegisterDelegate(c => instanceCreator(new DryIocDIResolver(c)), Reuse.InCurrentScope);
+					Container.RegisterDelegate(serviceType, c => instanceCreator(new DryIocDIResolver(c)), Reuse.InCurrentScope);
 					break;
 
 				case LifetimeType.Singleton:
-					Container.RegisterDelegate(c => instanceCreator(new DryIocDIResolver(c)), Reuse.Singleton);
+					Container.RegisterDelegate(serviceType, c => instanceCreator(new DryIocDIResolver(c)), Reuse.Singleton);
 					break;
 
 				case LifetimeType.Transient:
-					Container.RegisterDelegate(c => instanceCreator(new DryIocDIResolver(c)), Reuse.Transient);
+					Container.RegisterDelegate(serviceType, c => instanceCreator(new DryIocDIResolver(c)), Reuse.Transient);
 					break;
+
+				default:
+					throw new ArgumentOutOfRangeException(nameof(lifetimeType), lifetimeType, null);
 			}
 		}
 

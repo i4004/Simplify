@@ -18,11 +18,10 @@ namespace Simplify.DI
 		/// <summary>
 		/// Registers the specified service type for resolve with delegate for service implementation instance creation.
 		/// </summary>
-		/// <typeparam name="TService">Service type.</typeparam>
+		/// <param name="serviceType">Type of the service.</param>
 		/// <param name="instanceCreator">The instance creator.</param>
 		/// <param name="lifetimeType">Lifetime type of the registering concrete type.</param>
-		void Register<TService>(Func<IDIResolver, TService> instanceCreator,
-			LifetimeType lifetimeType = LifetimeType.PerLifetimeScope)
-			where TService : class;
+		void Register(Type serviceType, Func<IDIResolver, object> instanceCreator,
+			LifetimeType lifetimeType = LifetimeType.PerLifetimeScope);
 	}
 }
