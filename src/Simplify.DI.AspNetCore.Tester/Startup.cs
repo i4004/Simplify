@@ -13,8 +13,6 @@ namespace Simplify.DI.AspNetCore.Tester
 	{
 		public IServiceProvider ConfigureServices(IServiceCollection services)
 		{
-			// Registrations using `services` here
-
 			// DryIoc specific workaround
 
 			var container = new DryIocDIProvider
@@ -25,7 +23,10 @@ namespace Simplify.DI.AspNetCore.Tester
 
 			DIContainer.Current = container;
 
-			// Registrations using `DIContainer.Current` here
+			// Registrations using `services`
+			services.Register();
+
+			// Registrations using `DIContainer.Current`
 			IocRegistrations.Register();
 
 			return DIContainer.Current.IntegrateWithMicrosoftDependencyInjectionAndVerify(services);
