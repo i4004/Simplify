@@ -138,26 +138,23 @@ namespace Simplify.DI.AspNetCore
 
 		private static void RegisterServiceWithDelegate(IDIRegistrator registrator, ServiceDescriptor item)
 		{
-			// TODO not available
-			//switch (item.Lifetime)
-			//{
-			//	case ServiceLifetime.Scoped:
-			//		registrator.Register(item.ServiceType, x => item.ImplementationFactory(new DIServiceProvider(x)));
-			//		break;
+			switch (item.Lifetime)
+			{
+				case ServiceLifetime.Scoped:
+					registrator.Register(item.ServiceType, x => item.ImplementationFactory(new DIServiceProvider(x)));
+					break;
 
-			//	case ServiceLifetime.Singleton:
-			//		registrator.Register(item.ServiceType, x => item.ImplementationFactory(new DIServiceProvider(x)), LifetimeType.Singleton);
-			//		break;
+				case ServiceLifetime.Singleton:
+					registrator.Register(item.ServiceType, x => item.ImplementationFactory(new DIServiceProvider(x)), LifetimeType.Singleton);
+					break;
 
-			//	case ServiceLifetime.Transient:
-			//		registrator.Register(item.ServiceType, x => item.ImplementationFactory(new DIServiceProvider(x)), LifetimeType.Transient);
-			//		break;
+				case ServiceLifetime.Transient:
+					registrator.Register(item.ServiceType, x => item.ImplementationFactory(new DIServiceProvider(x)), LifetimeType.Transient);
+					break;
 
-			//	default:
-			//		throw new ArgumentOutOfRangeException();
-			//}
-
-			throw new NotImplementedException();
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
 		}
 
 		private static void RegisterInstance(IDIRegistrator registrator, ServiceDescriptor item)
@@ -183,26 +180,23 @@ namespace Simplify.DI.AspNetCore
 
 		private static void RegisterServiceWithInstance(IDIRegistrator registrator, ServiceDescriptor item)
 		{
-			// TODO not available
-			//switch (item.Lifetime)
-			//{
-			//	case ServiceLifetime.Scoped:
-			//		registrator.Register(item.ServiceType, x => item.ImplementationInstance);
-			//		break;
+			switch (item.Lifetime)
+			{
+				case ServiceLifetime.Scoped:
+					registrator.Register(item.ServiceType, x => item.ImplementationInstance);
+					break;
 
-			//	case ServiceLifetime.Singleton:
-			//		registrator.Register(item.ServiceType, x => item.ImplementationInstance, LifetimeType.Singleton);
-			//		break;
+				case ServiceLifetime.Singleton:
+					registrator.Register(item.ServiceType, x => item.ImplementationInstance, LifetimeType.Singleton);
+					break;
 
-			//	case ServiceLifetime.Transient:
-			//		registrator.Register(item.ServiceType, x => item.ImplementationInstance, LifetimeType.Transient);
-			//		break;
+				case ServiceLifetime.Transient:
+					registrator.Register(item.ServiceType, x => item.ImplementationInstance, LifetimeType.Transient);
+					break;
 
-			//	default:
-			//		throw new ArgumentOutOfRangeException();
-			//}
-
-			throw new NotImplementedException();
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
 		}
 	}
 }
