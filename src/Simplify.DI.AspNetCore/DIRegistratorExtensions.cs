@@ -84,7 +84,7 @@ namespace Simplify.DI.AspNetCore
 		{
 			if (item.ImplementationType == null)
 			{
-				registrator.Register(x => item.ImplementationInstance, lifetime);
+				registrator.Register(item.ImplementationInstance.GetType(), x => item.ImplementationInstance, lifetime);
 				return;
 			}
 
