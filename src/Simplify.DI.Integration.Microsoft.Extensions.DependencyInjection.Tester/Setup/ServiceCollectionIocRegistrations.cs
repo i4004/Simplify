@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Simplify.DI.AspNetCore.Tester.Setup
+namespace Simplify.DI.Integration.Microsoft.Extensions.DependencyInjection.Tester.Setup
 {
 	public static class ServiceCollectionIocRegistrations
 	{

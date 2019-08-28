@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Simplify.DI.AspNetCore.Tester.Setup;
+using Simplify.DI.Integration.Microsoft.Extensions.DependencyInjection.Tester.Setup;
 using Simplify.DI.Provider.DryIoc;
 using System;
 
-namespace Simplify.DI.AspNetCore.Tester
+namespace Simplify.DI.Integration.Microsoft.Extensions.DependencyInjection.Tester
 {
 	public class Startup
 	{

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Simplify.DI.AspNetCore
+namespace Simplify.DI.Integration.Microsoft.Extensions.DependencyInjection
 {
 	/// <summary>
 	/// Simplify.DI based service scope factory for Microsoft.Extensions.DependencyInjection

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace Simplify.DI.AspNetCore
+namespace Simplify.DI.Integration.Microsoft.Extensions.DependencyInjection
 {
 	/// <summary>
 	/// Provides IDIContainerProvider extensions for Microsoft.Extensions.DependencyInjection integration

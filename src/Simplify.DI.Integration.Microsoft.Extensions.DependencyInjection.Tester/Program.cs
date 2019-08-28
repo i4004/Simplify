@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Simplify.DI.AspNetCore.Tester
+namespace Simplify.DI.Integration.Microsoft.Extensions.DependencyInjection.Tester
 {
 	public class Program
 	{
