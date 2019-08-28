@@ -7,6 +7,6 @@
 		<PackageReference Include="Microsoft.AspNetCore.Routing" Version="2.2.2" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\Simplify.DI.AspNetCore\Simplify.DI.AspNetCore.csproj" />
+		<ProjectReference Include="..\Simplify.DI.Integration.Microsoft.Extensions.DependencyInjection\Simplify.DI.Integration.Microsoft.Extensions.DependencyInjection.csproj" />
 	</ItemGroup>
 </Project>
