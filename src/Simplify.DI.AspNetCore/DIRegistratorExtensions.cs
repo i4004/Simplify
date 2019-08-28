@@ -71,18 +71,19 @@ namespace Simplify.DI.AspNetCore
 
 		private static void RegisterDelegateDescriptors(IDIRegistrator registrator, ServiceDescriptor item, LifetimeType lifetime)
 		{
-			if (item.ImplementationType == null)
-			{
-				registrator.Register(x => item.ImplementationFactory(new DIServiceProvider(x)), lifetime);
-				return;
-			}
+			// NOTE: This registration is meaningless cause it registers `object` types
+			//if (item.ServiceType == null)
+			//{
+			//	registrator.Register(x => item.ImplementationFactory(new DIServiceProvider(x)), lifetime);
+			//	return;
+			//}
 
 			registrator.Register(item.ServiceType, x => item.ImplementationFactory(new DIServiceProvider(x)), lifetime);
 		}
 
 		private static void RegisterInstanceDescriptors(IDIRegistrator registrator, ServiceDescriptor item, LifetimeType lifetime)
 		{
-			if (item.ImplementationType == null)
+			if (item.ServiceType == null)
 			{
 				registrator.Register(item.ImplementationInstance.GetType(), x => item.ImplementationInstance, lifetime);
 				return;

@@ -20,7 +20,10 @@ namespace Simplify.DI.AspNetCore
 
 			var serviceProvider = new DIServiceProvider(provider);
 
+			// Registering required IOC container types wrappers in itself
+
 			provider.Register<IServiceProvider>(x => serviceProvider, LifetimeType.Singleton);
+			provider.Register<IServiceScopeFactory>(x => new DIServiceScopeFactory(provider), LifetimeType.Singleton);
 
 			return serviceProvider;
 		}
