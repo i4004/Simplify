@@ -20,183 +20,75 @@ namespace Simplify.DI.AspNetCore
 			if (services == null) throw new ArgumentNullException(nameof(services));
 
 			foreach (var item in services)
-				RegisterServiceDescriptor(registrator, item);
+				RegisterServiceDescriptor(registrator, item, GetLifetime(item.Lifetime));
 		}
 
-		private static void RegisterServiceDescriptor(IDIRegistrator registrator, ServiceDescriptor item)
+		private static LifetimeType GetLifetime(ServiceLifetime lifetime)
+		{
+			switch (lifetime)
+			{
+				case ServiceLifetime.Scoped:
+					return LifetimeType.PerLifetimeScope;
+
+				case ServiceLifetime.Singleton:
+					return LifetimeType.Singleton;
+
+				case ServiceLifetime.Transient:
+					return LifetimeType.Transient;
+
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
+		}
+
+		private static void RegisterServiceDescriptor(IDIRegistrator registrator, ServiceDescriptor item, LifetimeType lifetime)
 		{
 			if (item.ImplementationInstance != null)
 			{
-				RegisterInstanceDescriptors(registrator, item);
+				RegisterInstanceDescriptors(registrator, item, lifetime);
 				return;
 			}
 
 			if (item.ImplementationFactory != null)
 			{
-				RegisterDelegateDescriptors(registrator, item);
+				RegisterDelegateDescriptors(registrator, item, lifetime);
 				return;
 			}
 
-			RegisterStandardDescriptors(registrator, item);
+			RegisterStandardDescriptors(registrator, item, lifetime);
 		}
 
-		private static void RegisterStandardDescriptors(IDIRegistrator registrator, ServiceDescriptor item)
+		private static void RegisterStandardDescriptors(IDIRegistrator registrator, ServiceDescriptor item, LifetimeType lifetime)
 		{
 			if (item.ImplementationType == null)
 			{
-				RegisterOnlyService(registrator, item);
+				registrator.Register(item.ServiceType, lifetime);
 				return;
 			}
 
-			RegisterServiceWithImplementation(registrator, item);
+			registrator.Register(item.ServiceType, item.ImplementationType, lifetime);
 		}
 
-		private static void RegisterDelegateDescriptors(IDIRegistrator registrator, ServiceDescriptor item)
+		private static void RegisterDelegateDescriptors(IDIRegistrator registrator, ServiceDescriptor item, LifetimeType lifetime)
 		{
 			if (item.ImplementationType == null)
 			{
-				RegisterDelegate(registrator, item);
+				registrator.Register(x => item.ImplementationFactory(new DIServiceProvider(x)), lifetime);
 				return;
 			}
 
-			RegisterServiceWithDelegate(registrator, item);
+			registrator.Register(item.ServiceType, x => item.ImplementationFactory(new DIServiceProvider(x)), lifetime);
 		}
 
-		private static void RegisterInstanceDescriptors(IDIRegistrator registrator, ServiceDescriptor item)
+		private static void RegisterInstanceDescriptors(IDIRegistrator registrator, ServiceDescriptor item, LifetimeType lifetime)
 		{
 			if (item.ImplementationType == null)
 			{
-				RegisterInstance(registrator, item);
+				registrator.Register(x => item.ImplementationInstance, lifetime);
 				return;
 			}
 
-			RegisterServiceWithInstance(registrator, item);
-		}
-
-		private static void RegisterOnlyService(IDIRegistrator registrator, ServiceDescriptor item)
-		{
-			switch (item.Lifetime)
-			{
-				case ServiceLifetime.Scoped:
-					registrator.Register(item.ServiceType);
-					break;
-
-				case ServiceLifetime.Singleton:
-					registrator.Register(item.ServiceType, LifetimeType.Singleton);
-					break;
-
-				case ServiceLifetime.Transient:
-					registrator.Register(item.ServiceType, LifetimeType.Transient);
-					break;
-
-				default:
-					throw new ArgumentOutOfRangeException();
-			}
-		}
-
-		private static void RegisterServiceWithImplementation(IDIRegistrator registrator, ServiceDescriptor item)
-		{
-			switch (item.Lifetime)
-			{
-				case ServiceLifetime.Scoped:
-					registrator.Register(item.ServiceType, item.ImplementationType);
-					break;
-
-				case ServiceLifetime.Singleton:
-					registrator.Register(item.ServiceType, item.ImplementationType, LifetimeType.Singleton);
-					break;
-
-				case ServiceLifetime.Transient:
-					registrator.Register(item.ServiceType, item.ImplementationType, LifetimeType.Transient);
-					break;
-
-				default:
-					throw new ArgumentOutOfRangeException();
-			}
-		}
-
-		private static void RegisterDelegate(IDIRegistrator registrator, ServiceDescriptor item)
-		{
-			switch (item.Lifetime)
-			{
-				case ServiceLifetime.Scoped:
-					registrator.Register(x => item.ImplementationFactory(new DIServiceProvider(x)));
-					break;
-
-				case ServiceLifetime.Singleton:
-					registrator.Register(x => item.ImplementationFactory(new DIServiceProvider(x)), LifetimeType.Singleton);
-					break;
-
-				case ServiceLifetime.Transient:
-					registrator.Register(x => item.ImplementationFactory(new DIServiceProvider(x)), LifetimeType.Transient);
-					break;
-
-				default:
-					throw new ArgumentOutOfRangeException();
-			}
-		}
-
-		private static void RegisterServiceWithDelegate(IDIRegistrator registrator, ServiceDescriptor item)
-		{
-			switch (item.Lifetime)
-			{
-				case ServiceLifetime.Scoped:
-					registrator.Register(item.ServiceType, x => item.ImplementationFactory(new DIServiceProvider(x)));
-					break;
-
-				case ServiceLifetime.Singleton:
-					registrator.Register(item.ServiceType, x => item.ImplementationFactory(new DIServiceProvider(x)), LifetimeType.Singleton);
-					break;
-
-				case ServiceLifetime.Transient:
-					registrator.Register(item.ServiceType, x => item.ImplementationFactory(new DIServiceProvider(x)), LifetimeType.Transient);
-					break;
-
-				default:
-					throw new ArgumentOutOfRangeException();
-			}
-		}
-
-		private static void RegisterInstance(IDIRegistrator registrator, ServiceDescriptor item)
-		{
-			switch (item.Lifetime)
-			{
-				case ServiceLifetime.Scoped:
-					registrator.Register(x => item.ImplementationInstance);
-					break;
-
-				case ServiceLifetime.Singleton:
-					registrator.Register(x => item.ImplementationInstance, LifetimeType.Singleton);
-					break;
-
-				case ServiceLifetime.Transient:
-					registrator.Register(x => item.ImplementationInstance, LifetimeType.Transient);
-					break;
-
-				default:
-					throw new ArgumentOutOfRangeException();
-			}
-		}
-
-		private static void RegisterServiceWithInstance(IDIRegistrator registrator, ServiceDescriptor item)
-		{
-			switch (item.Lifetime)
-			{
-				case ServiceLifetime.Scoped:
-					registrator.Register(item.ServiceType, x => item.ImplementationInstance);
-					break;
-
-				case ServiceLifetime.Singleton:
-					registrator.Register(item.ServiceType, x => item.ImplementationInstance, LifetimeType.Singleton);
-					break;
-
-				case ServiceLifetime.Transient:
-					registrator.Register(item.ServiceType, x => item.ImplementationInstance, LifetimeType.Transient);
-					break;
-
-				default:
-					throw new ArgumentOutOfRangeException();
-			}
+			registrator.Register(item.ServiceType, x => item.ImplementationInstance, lifetime);
 		}
 	}
 }
