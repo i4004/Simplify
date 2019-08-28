@@ -9,7 +9,7 @@ namespace Simplify.DI.Integration.Microsoft.Extensions.DependencyInjection
 	public static class DIContainerProviderExtensions
 	{
 		/// <summary>
-		/// Creates  Simplify.DI wrapper service provider for Microsoft.Extensions.DependencyInjection
+		/// Creates Simplify.DI wrapper service provider for Microsoft.Extensions.DependencyInjection
 		/// </summary>
 		/// <param name="provider">The resolver.</param>
 		/// <returns></returns>
