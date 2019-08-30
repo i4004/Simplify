@@ -64,26 +64,25 @@ namespace Simplify.DI.Provider.SimpleInjector
 		}
 
 		/// <summary>
-		/// Registers the specified provider.
+		/// Registers the specified service type using instance creation delegate.
 		/// </summary>
-		/// <typeparam name="TService">Concrete type.</typeparam>
+		/// <param name="serviceType">Type of the service.</param>
 		/// <param name="instanceCreator">The instance creator.</param>
-		/// <param name="lifetimeType">Lifetime type of the registering concrete type.</param>
-		public void Register<TService>(Func<IDIResolver, TService> instanceCreator, LifetimeType lifetimeType)
-			where TService : class
+		/// <param name="lifetimeType">Lifetime type of the registering type.</param>
+		public void Register(Type serviceType, Func<IDIResolver, object> instanceCreator, LifetimeType lifetimeType = LifetimeType.PerLifetimeScope)
 		{
 			switch (lifetimeType)
 			{
 				case LifetimeType.PerLifetimeScope:
-					Container.Register(() => instanceCreator(this), Lifestyle.Scoped);
+					Container.Register(serviceType, () => instanceCreator(this), Lifestyle.Scoped);
 					break;
 
 				case LifetimeType.Singleton:
-					Container.Register(() => instanceCreator(this), Lifestyle.Singleton);
+					Container.Register(serviceType, () => instanceCreator(this), Lifestyle.Singleton);
 					break;
 
 				case LifetimeType.Transient:
-					Container.Register(() => instanceCreator(this), Lifestyle.Transient);
+					Container.Register(serviceType, () => instanceCreator(this), Lifestyle.Transient);
 					break;
 			}
 		}
