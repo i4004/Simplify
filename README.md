@@ -25,7 +25,7 @@
 
 | Package | Dependencies | Target Framework | Documentation |
 | :------ | :------: | :------: | :------: |
-| [![Simplify.DI](https://img.shields.io/badge/Simplify.DI-v2.2-blue.svg)](https://www.nuget.org/packages/Simplify.DI/) | [![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/nuget/Simplify.DI.svg)](https://libraries.io/nuget/Simplify.DI) | 4.5.2, Standard 1.0 | [![Documentation](https://img.shields.io/badge/docs-green.svg)](https://github.com/i4004/Simplify/wiki/Simplify.DI) |
+| [![Simplify.DI](https://img.shields.io/badge/Simplify.DI-v3.0-blue.svg)](https://www.nuget.org/packages/Simplify.DI/) | [![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/nuget/Simplify.DI.svg)](https://libraries.io/nuget/Simplify.DI) | 4.5.2, Standard 1.0 | [![Documentation](https://img.shields.io/badge/docs-green.svg)](https://github.com/i4004/Simplify/wiki/Simplify.DI) |
 
 #### Simplify.DI Providers
 
