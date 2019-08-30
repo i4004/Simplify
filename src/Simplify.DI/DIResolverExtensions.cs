@@ -6,7 +6,7 @@
 	public static class DIResolverExtensions
 	{
 		/// <summary>
-		/// Resolves the specifed type.
+		/// Resolves the specified type.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="resolver">The DI resolver.</param>

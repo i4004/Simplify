@@ -16,7 +16,7 @@ namespace Simplify.DI.Tests
 			_provider = new DryIocDIProvider();
 		}
 
-		#region Existance tests
+		#region Existence tests
 
 		[Test]
 		public void Resolve_NotRegistered_ContainerException()
@@ -32,7 +32,7 @@ namespace Simplify.DI.Tests
 		public void ScopedResolve_NotRegistered_ContainerException()
 		{
 			// Act & Assert
-			using (var scope = _provider.BeginLifetimeScope())
+			using(var scope = _provider.BeginLifetimeScope())
 			{
 				var ex = Assert.Throws<ContainerException>(() => scope.Resolver.Resolve<NonDepFoo>());
 				Assert.That(ex.Message, Does.StartWith("Unable to resolve"));
@@ -62,8 +62,8 @@ namespace Simplify.DI.Tests
 			NonDepFoo foo;
 
 			// Act
-			using (var scope = _provider.BeginLifetimeScope())
-				foo = scope.Resolver.Resolve<NonDepFoo>();
+			using(var scope = _provider.BeginLifetimeScope())
+			foo = scope.Resolver.Resolve<NonDepFoo>();
 
 			// Assert
 			Assert.IsNotNull(foo);
@@ -79,8 +79,8 @@ namespace Simplify.DI.Tests
 			NonDepFoo foo;
 
 			// Act
-			using (var scope = _provider.BeginLifetimeScope())
-				foo = scope.Resolver.Resolve<NonDepFoo>();
+			using(var scope = _provider.BeginLifetimeScope())
+			foo = scope.Resolver.Resolve<NonDepFoo>();
 
 			// Assert
 			Assert.IsNotNull(foo);
@@ -122,8 +122,8 @@ namespace Simplify.DI.Tests
 			NonDepFoo foo;
 
 			// Act
-			using (var scope = _provider.BeginLifetimeScope())
-				foo = scope.Resolver.Resolve<NonDepFoo>();
+			using(var scope = _provider.BeginLifetimeScope())
+			foo = scope.Resolver.Resolve<NonDepFoo>();
 
 			// Assert
 			Assert.IsNotNull(foo);
@@ -165,8 +165,8 @@ namespace Simplify.DI.Tests
 			NonDepFoo foo;
 
 			// Act
-			using (var scope = _provider.BeginLifetimeScope())
-				foo = scope.Resolver.Resolve<NonDepFoo>();
+			using(var scope = _provider.BeginLifetimeScope())
+			foo = scope.Resolver.Resolve<NonDepFoo>();
 
 			// Assert
 			Assert.IsNotNull(foo);
@@ -195,8 +195,8 @@ namespace Simplify.DI.Tests
 			IBar bar;
 
 			// Act
-			using (var scope = _provider.BeginLifetimeScope())
-				bar = scope.Resolver.Resolve<IBar>();
+			using(var scope = _provider.BeginLifetimeScope())
+			bar = scope.Resolver.Resolve<IBar>();
 
 			// Assert
 			Assert.IsNotNull(bar);
@@ -225,8 +225,8 @@ namespace Simplify.DI.Tests
 			IBar bar;
 
 			// Act
-			using (var scope = _provider.BeginLifetimeScope())
-				bar = scope.Resolver.Resolve<IBar>();
+			using(var scope = _provider.BeginLifetimeScope())
+			bar = scope.Resolver.Resolve<IBar>();
 
 			// Assert
 			Assert.IsNotNull(bar);
@@ -248,7 +248,7 @@ namespace Simplify.DI.Tests
 
 			// Act
 
-			using (var scope = _provider.BeginLifetimeScope())
+			using(var scope = _provider.BeginLifetimeScope())
 			{
 				bar = scope.Resolver.Resolve<IBar>();
 				barSecond = scope.Resolver.Resolve<IBar>();
@@ -274,11 +274,11 @@ namespace Simplify.DI.Tests
 
 			// Act
 
-			using (var scope = _provider.BeginLifetimeScope())
-				bar = scope.Resolver.Resolve<IBar>();
+			using(var scope = _provider.BeginLifetimeScope())
+			bar = scope.Resolver.Resolve<IBar>();
 
-			using (var scope = _provider.BeginLifetimeScope())
-				barSecond = scope.Resolver.Resolve<IBar>();
+			using(var scope = _provider.BeginLifetimeScope())
+			barSecond = scope.Resolver.Resolve<IBar>();
 
 			// Assert
 
@@ -301,7 +301,7 @@ namespace Simplify.DI.Tests
 
 			// Act
 
-			using (var scope = _provider.BeginLifetimeScope())
+			using(var scope = _provider.BeginLifetimeScope())
 			{
 				foo = scope.Resolver.Resolve<IFoo>();
 				fooSecond = scope.Resolver.Resolve<IFoo>();
@@ -327,7 +327,7 @@ namespace Simplify.DI.Tests
 
 			// Act
 
-			using (var scope = _provider.BeginLifetimeScope())
+			using(var scope = _provider.BeginLifetimeScope())
 			{
 				foo = scope.Resolver.Resolve<IFoo>();
 				fooSecond = scope.Resolver.Resolve<IFoo>();
@@ -353,11 +353,11 @@ namespace Simplify.DI.Tests
 
 			// Act
 
-			using (var scope = _provider.BeginLifetimeScope())
-				foo = scope.Resolver.Resolve<IFoo>();
+			using(var scope = _provider.BeginLifetimeScope())
+			foo = scope.Resolver.Resolve<IFoo>();
 
-			using (var scope = _provider.BeginLifetimeScope())
-				fooSecond = scope.Resolver.Resolve<IFoo>();
+			using(var scope = _provider.BeginLifetimeScope())
+			fooSecond = scope.Resolver.Resolve<IFoo>();
 
 			// Assert
 
@@ -379,11 +379,11 @@ namespace Simplify.DI.Tests
 
 			// Act
 
-			using (var scope = _provider.BeginLifetimeScope())
-				foo = scope.Resolver.Resolve<IFoo>();
+			using(var scope = _provider.BeginLifetimeScope())
+			foo = scope.Resolver.Resolve<IFoo>();
 
-			using (var scope = _provider.BeginLifetimeScope())
-				fooSecond = scope.Resolver.Resolve<IFoo>();
+			using(var scope = _provider.BeginLifetimeScope())
+			fooSecond = scope.Resolver.Resolve<IFoo>();
 
 			// Assert
 
@@ -405,11 +405,11 @@ namespace Simplify.DI.Tests
 
 			// Act
 
-			using (var scope = _provider.BeginLifetimeScope())
-				foo = scope.Resolver.Resolve<IFoo>();
+			using(var scope = _provider.BeginLifetimeScope())
+			foo = scope.Resolver.Resolve<IFoo>();
 
-			using (var scope = _provider.BeginLifetimeScope())
-				fooSecond = scope.Resolver.Resolve<IFoo>();
+			using(var scope = _provider.BeginLifetimeScope())
+			fooSecond = scope.Resolver.Resolve<IFoo>();
 
 			// Assert
 
@@ -429,11 +429,11 @@ namespace Simplify.DI.Tests
 
 			// Act
 
-			using (var scope = _provider.BeginLifetimeScope())
-				foo = scope.Resolver.Resolve<IFoo>();
+			using(var scope = _provider.BeginLifetimeScope())
+			foo = scope.Resolver.Resolve<IFoo>();
 
-			using (var scope = _provider.BeginLifetimeScope())
-				fooSecond = scope.Resolver.Resolve<IFoo>();
+			using(var scope = _provider.BeginLifetimeScope())
+			fooSecond = scope.Resolver.Resolve<IFoo>();
 
 			// Assert
 
@@ -484,14 +484,14 @@ namespace Simplify.DI.Tests
 			IFoo fooSecond;
 			IFoo fooThird;
 
-			using (var scope = _provider.BeginLifetimeScope())
+			using(var scope = _provider.BeginLifetimeScope())
 			{
 				foo = scope.Resolver.Resolve<IFoo>();
 				fooSecond = scope.Resolver.Resolve<IFoo>();
 			}
 
-			using (var scope = _provider.BeginLifetimeScope())
-				fooThird = scope.Resolver.Resolve<IFoo>();
+			using(var scope = _provider.BeginLifetimeScope())
+			fooThird = scope.Resolver.Resolve<IFoo>();
 
 			Assert.IsNotNull(foo);
 
@@ -514,7 +514,7 @@ namespace Simplify.DI.Tests
 
 			// Act
 
-			using (var scope = _provider.BeginLifetimeScope())
+			using(var scope = _provider.BeginLifetimeScope())
 			{
 				bar = scope.Resolver.Resolve<IBar>();
 				barSecond = scope.Resolver.Resolve<IBar>();
@@ -539,11 +539,11 @@ namespace Simplify.DI.Tests
 
 			// Act
 
-			using (var scope = _provider.BeginLifetimeScope())
-				bar = scope.Resolver.Resolve<IBar>();
+			using(var scope = _provider.BeginLifetimeScope())
+			bar = scope.Resolver.Resolve<IBar>();
 
-			using (var scope = _provider.BeginLifetimeScope())
-				barSecond = scope.Resolver.Resolve<IBar>();
+			using(var scope = _provider.BeginLifetimeScope())
+			barSecond = scope.Resolver.Resolve<IBar>();
 
 			// Assert
 
@@ -560,7 +560,7 @@ namespace Simplify.DI.Tests
 			_provider.Register<IBar, Bar>();
 			_provider.Register<IFoo, Foo>(LifetimeType.Singleton);
 
-			using (var scope = _provider.BeginLifetimeScope())
+			using(var scope = _provider.BeginLifetimeScope())
 			{
 				// Act && Assert
 
@@ -597,14 +597,14 @@ namespace Simplify.DI.Tests
 			IFoo fooSecond;
 			IFoo fooThird;
 
-			using (var scope = _provider.BeginLifetimeScope())
+			using(var scope = _provider.BeginLifetimeScope())
 			{
 				foo = scope.Resolver.Resolve<IFoo>();
 				fooSecond = scope.Resolver.Resolve<IFoo>();
 			}
 
-			using (var scope = _provider.BeginLifetimeScope())
-				fooThird = scope.Resolver.Resolve<IFoo>();
+			using(var scope = _provider.BeginLifetimeScope())
+			fooThird = scope.Resolver.Resolve<IFoo>();
 
 			Assert.IsNotNull(foo);
 
@@ -643,14 +643,14 @@ namespace Simplify.DI.Tests
 			IFoo fooSecond;
 			IFoo fooThird;
 
-			using (var scope = _provider.BeginLifetimeScope())
+			using(var scope = _provider.BeginLifetimeScope())
 			{
 				foo = scope.Resolver.Resolve<IFoo>();
 				fooSecond = scope.Resolver.Resolve<IFoo>();
 			}
 
-			using (var scope = _provider.BeginLifetimeScope())
-				fooThird = scope.Resolver.Resolve<IFoo>();
+			using(var scope = _provider.BeginLifetimeScope())
+			fooThird = scope.Resolver.Resolve<IFoo>();
 
 			Assert.IsNotNull(foo);
 
@@ -689,7 +689,7 @@ namespace Simplify.DI.Tests
 
 			// Act
 
-			using (var scope = _provider.BeginLifetimeScope())
+			using(var scope = _provider.BeginLifetimeScope())
 			{
 				bar = scope.Resolver.Resolve<IBar>();
 				barSecond = scope.Resolver.Resolve<IBar>();
@@ -715,11 +715,11 @@ namespace Simplify.DI.Tests
 
 			// Act
 
-			using (var scope = _provider.BeginLifetimeScope())
-				bar = scope.Resolver.Resolve<IBar>();
+			using(var scope = _provider.BeginLifetimeScope())
+			bar = scope.Resolver.Resolve<IBar>();
 
-			using (var scope = _provider.BeginLifetimeScope())
-				barSecond = scope.Resolver.Resolve<IBar>();
+			using(var scope = _provider.BeginLifetimeScope())
+			barSecond = scope.Resolver.Resolve<IBar>();
 
 			// Assert
 
@@ -742,7 +742,7 @@ namespace Simplify.DI.Tests
 
 			// Act
 
-			using (var scope = _provider.BeginLifetimeScope())
+			using(var scope = _provider.BeginLifetimeScope())
 			{
 				foo = scope.Resolver.Resolve<IFoo>();
 				fooSecond = scope.Resolver.Resolve<IFoo>();
@@ -770,11 +770,11 @@ namespace Simplify.DI.Tests
 
 			// Act
 
-			using (var scope = _provider.BeginLifetimeScope())
-				foo = scope.Resolver.Resolve<IFoo>();
+			using(var scope = _provider.BeginLifetimeScope())
+			foo = scope.Resolver.Resolve<IFoo>();
 
-			using (var scope = _provider.BeginLifetimeScope())
-				fooSecond = scope.Resolver.Resolve<IFoo>();
+			using(var scope = _provider.BeginLifetimeScope())
+			fooSecond = scope.Resolver.Resolve<IFoo>();
 
 			// Assert
 
