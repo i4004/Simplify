@@ -5,6 +5,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.App" />
 		<PackageReference Include="Microsoft.AspNetCore.Routing" Version="2.2.2" />
+		<PackageReference Include="Simplify.DI.Provider.SimpleInjector" Version="1.7.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Simplify.DI.Integration.Microsoft.Extensions.DependencyInjection\Simplify.DI.Integration.Microsoft.Extensions.DependencyInjection.csproj" />
