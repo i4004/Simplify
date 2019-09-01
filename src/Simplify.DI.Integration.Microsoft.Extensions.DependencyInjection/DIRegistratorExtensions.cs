@@ -20,7 +20,29 @@ namespace Simplify.DI.Integration.Microsoft.Extensions.DependencyInjection
 			if (services == null) throw new ArgumentNullException(nameof(services));
 
 			foreach (var item in services)
-				RegisterServiceDescriptor(registrator, item, GetLifetime(item.Lifetime));
+			{
+				var lifetime = GetLifetime(item.Lifetime);
+
+				if (!AspNetCoreAppFixer.CompatibilityResolver(registrator, item, lifetime))
+					RegisterServiceDescriptor(registrator, item, lifetime);
+			}
+		}
+
+		internal static void RegisterServiceDescriptor(IDIRegistrator registrator, ServiceDescriptor item, LifetimeType lifetime)
+		{
+			if (item.ImplementationInstance != null)
+			{
+				RegisterInstanceDescriptors(registrator, item, lifetime);
+				return;
+			}
+
+			if (item.ImplementationFactory != null)
+			{
+				RegisterDelegateDescriptors(registrator, item, lifetime);
+				return;
+			}
+
+			RegisterStandardDescriptors(registrator, item, lifetime);
 		}
 
 		private static LifetimeType GetLifetime(ServiceLifetime lifetime)
@@ -39,23 +61,6 @@ namespace Simplify.DI.Integration.Microsoft.Extensions.DependencyInjection
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
-		}
-
-		private static void RegisterServiceDescriptor(IDIRegistrator registrator, ServiceDescriptor item, LifetimeType lifetime)
-		{
-			if (item.ImplementationInstance != null)
-			{
-				RegisterInstanceDescriptors(registrator, item, lifetime);
-				return;
-			}
-
-			if (item.ImplementationFactory != null)
-			{
-				RegisterDelegateDescriptors(registrator, item, lifetime);
-				return;
-			}
-
-			RegisterStandardDescriptors(registrator, item, lifetime);
 		}
 
 		private static void RegisterStandardDescriptors(IDIRegistrator registrator, ServiceDescriptor item, LifetimeType lifetime)
