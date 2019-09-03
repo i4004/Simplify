@@ -5,14 +5,13 @@
 		<Product>Simplify</Product>
 		<Description>Simplify.DI CastleWindsor provider</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>1.4</Version>
+		<Version>1.5</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.DI</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.DI.Provider.CastleWindsor</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET DI IOC-container-provider</PackageTags>
 		<PackageReleaseNotes>
-			* Upgrade to Castle.Windsor 5.0.0
 			* Upgrade to Simplify.DI 3.0
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
