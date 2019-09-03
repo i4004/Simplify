@@ -13,13 +13,13 @@
 		<PackageTags>.NET DI IOC-container-provider</PackageTags>
 		<PackageReleaseNotes>
 			* Upgrade to Castle.Windsor 5.0.0
-			* Upgrade to Simplify.DI 2.1 (Container verification implemented)
+			* Upgrade to Simplify.DI 3.0
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.DI.Provider.CastleWindsor.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Castle.Windsor" Version="5.0.0" />
-		<PackageReference Include="Simplify.DI" Version="2.1.0" />
+		<PackageReference Include="Simplify.DI" Version="3.0.0" />
 	</ItemGroup>
 </Project>

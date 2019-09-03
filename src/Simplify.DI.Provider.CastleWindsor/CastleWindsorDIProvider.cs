@@ -1,6 +1,6 @@
-﻿using System;
-using Castle.MicroKernel.Registration;
+﻿using Castle.MicroKernel.Registration;
 using Castle.Windsor;
+using System;
 
 namespace Simplify.DI.Provider.CastleWindsor
 {
@@ -55,26 +55,25 @@ namespace Simplify.DI.Provider.CastleWindsor
 		}
 
 		/// <summary>
-		/// Registers the specified provider.
+		/// Registers the specified service type.
 		/// </summary>
-		/// <typeparam name="TService">Concrete type.</typeparam>
+		/// <param name="serviceType">Type of the service.</param>
 		/// <param name="instanceCreator">The instance creator.</param>
-		/// <param name="lifetimeType">Lifetime type of the registering concrete type.</param>
-		public void Register<TService>(Func<IDIResolver, TService> instanceCreator, LifetimeType lifetimeType)
-			where TService : class
+		/// <param name="lifetimeType">Type of the lifetime.</param>
+		public void Register(Type serviceType, Func<IDIResolver, object> instanceCreator, LifetimeType lifetimeType = LifetimeType.PerLifetimeScope)
 		{
 			switch (lifetimeType)
 			{
 				case LifetimeType.PerLifetimeScope:
-					Container.Register(Component.For<TService>().UsingFactoryMethod(c => instanceCreator(this)).LifestyleScoped());
+					Container.Register(Component.For(serviceType).UsingFactoryMethod(c => instanceCreator(this)).LifestyleScoped());
 					break;
 
 				case LifetimeType.Singleton:
-					Container.Register(Component.For<TService>().UsingFactoryMethod(c => instanceCreator(this)).LifestyleSingleton());
+					Container.Register(Component.For(serviceType).UsingFactoryMethod(c => instanceCreator(this)).LifestyleSingleton());
 					break;
 
 				case LifetimeType.Transient:
-					Container.Register(Component.For<TService>().UsingFactoryMethod(c => instanceCreator(this)).LifestyleTransient());
+					Container.Register(Component.For(serviceType).UsingFactoryMethod(c => instanceCreator(this)).LifestyleTransient());
 					break;
 			}
 		}
