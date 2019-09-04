@@ -73,26 +73,25 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection
 		}
 
 		/// <summary>
-		/// Registers the specified provider.
+		/// Registers the specified service type.
 		/// </summary>
-		/// <typeparam name="TService">Concrete type.</typeparam>
+		/// <param name="serviceType">Type of the service.</param>
 		/// <param name="instanceCreator">The instance creator.</param>
-		/// <param name="lifetimeType">Lifetime type of the registering concrete type.</param>
-		public void Register<TService>(Func<IDIResolver, TService> instanceCreator, LifetimeType lifetimeType = LifetimeType.Singleton)
-			where TService : class
+		/// <param name="lifetimeType">Type of the lifetime.</param>
+		public void Register(Type serviceType, Func<IDIResolver, object> instanceCreator, LifetimeType lifetimeType = LifetimeType.PerLifetimeScope)
 		{
 			switch (lifetimeType)
 			{
 				case LifetimeType.PerLifetimeScope:
-					Services.AddScoped(c => instanceCreator(new MicrosoftDependencyInjectionDIResolver(c)));
+					Services.AddScoped(serviceType, c => instanceCreator(new MicrosoftDependencyInjectionDIResolver(c)));
 					break;
 
 				case LifetimeType.Singleton:
-					Services.AddSingleton(c => instanceCreator(new MicrosoftDependencyInjectionDIResolver(c)));
+					Services.AddSingleton(serviceType, c => instanceCreator(new MicrosoftDependencyInjectionDIResolver(c)));
 					break;
 
 				case LifetimeType.Transient:
-					Services.AddTransient(c => instanceCreator(new MicrosoftDependencyInjectionDIResolver(c)));
+					Services.AddTransient(serviceType, c => instanceCreator(new MicrosoftDependencyInjectionDIResolver(c)));
 					break;
 			}
 		}
@@ -111,6 +110,14 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection
 		/// </summary>
 		public void Dispose()
 		{
+		}
+
+		/// <summary>
+		/// Performs container objects graph verification
+		/// </summary>
+		public void Verify()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }
