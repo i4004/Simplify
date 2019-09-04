@@ -30,7 +30,7 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 		public void ScopedResolve_NotRegistered_InvalidOperationException()
 		{
 			// Act & Assert
-			using(var scope = _provider.BeginLifetimeScope())
+			using (var scope = _provider.BeginLifetimeScope())
 			{
 				var ex = Assert.Throws<InvalidOperationException>(() => scope.Resolver.Resolve<NonDepFoo>());
 				Assert.That(ex.Message, Does.StartWith("No service for type 'Simplify.DI.TestsTypes.NonDepFoo' has been registered."));
@@ -59,8 +59,8 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 			NonDepFoo foo;
 
 			// Act
-			using(var scope = _provider.BeginLifetimeScope())
-			foo = scope.Resolver.Resolve<NonDepFoo>();
+			using (var scope = _provider.BeginLifetimeScope())
+				foo = scope.Resolver.Resolve<NonDepFoo>();
 
 			// Assert
 			Assert.IsNotNull(foo);
@@ -76,8 +76,8 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 			NonDepFoo foo;
 
 			// Act
-			using(var scope = _provider.BeginLifetimeScope())
-			foo = scope.Resolver.Resolve<NonDepFoo>();
+			using (var scope = _provider.BeginLifetimeScope())
+				foo = scope.Resolver.Resolve<NonDepFoo>();
 
 			// Assert
 			Assert.IsNotNull(foo);
@@ -119,8 +119,8 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 			NonDepFoo foo;
 
 			// Act
-			using(var scope = _provider.BeginLifetimeScope())
-			foo = scope.Resolver.Resolve<NonDepFoo>();
+			using (var scope = _provider.BeginLifetimeScope())
+				foo = scope.Resolver.Resolve<NonDepFoo>();
 
 			// Assert
 			Assert.IsNotNull(foo);
@@ -162,8 +162,8 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 			NonDepFoo foo;
 
 			// Act
-			using(var scope = _provider.BeginLifetimeScope())
-			foo = scope.Resolver.Resolve<NonDepFoo>();
+			using (var scope = _provider.BeginLifetimeScope())
+				foo = scope.Resolver.Resolve<NonDepFoo>();
 
 			// Assert
 			Assert.IsNotNull(foo);
@@ -192,8 +192,8 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 			IBar bar;
 
 			// Act
-			using(var scope = _provider.BeginLifetimeScope())
-			bar = scope.Resolver.Resolve<IBar>();
+			using (var scope = _provider.BeginLifetimeScope())
+				bar = scope.Resolver.Resolve<IBar>();
 
 			// Assert
 			Assert.IsNotNull(bar);
@@ -222,14 +222,14 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 			IBar bar;
 
 			// Act
-			using(var scope = _provider.BeginLifetimeScope())
-			bar = scope.Resolver.Resolve<IBar>();
+			using (var scope = _provider.BeginLifetimeScope())
+				bar = scope.Resolver.Resolve<IBar>();
 
 			// Assert
 			Assert.IsNotNull(bar);
 		}
 
-		#endregion Existance tests
+		#endregion Existence tests
 
 		#region Reuse tests
 
@@ -245,7 +245,7 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 
 			// Act
 
-			using(var scope = _provider.BeginLifetimeScope())
+			using (var scope = _provider.BeginLifetimeScope())
 			{
 				bar = scope.Resolver.Resolve<IBar>();
 				barSecond = scope.Resolver.Resolve<IBar>();
@@ -271,11 +271,11 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 
 			// Act
 
-			using(var scope = _provider.BeginLifetimeScope())
-			bar = scope.Resolver.Resolve<IBar>();
+			using (var scope = _provider.BeginLifetimeScope())
+				bar = scope.Resolver.Resolve<IBar>();
 
-			using(var scope = _provider.BeginLifetimeScope())
-			barSecond = scope.Resolver.Resolve<IBar>();
+			using (var scope = _provider.BeginLifetimeScope())
+				barSecond = scope.Resolver.Resolve<IBar>();
 
 			// Assert
 
@@ -298,7 +298,7 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 
 			// Act
 
-			using(var scope = _provider.BeginLifetimeScope())
+			using (var scope = _provider.BeginLifetimeScope())
 			{
 				foo = scope.Resolver.Resolve<IFoo>();
 				fooSecond = scope.Resolver.Resolve<IFoo>();
@@ -324,7 +324,7 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 
 			// Act
 
-			using(var scope = _provider.BeginLifetimeScope())
+			using (var scope = _provider.BeginLifetimeScope())
 			{
 				foo = scope.Resolver.Resolve<IFoo>();
 				fooSecond = scope.Resolver.Resolve<IFoo>();
@@ -350,11 +350,11 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 
 			// Act
 
-			using(var scope = _provider.BeginLifetimeScope())
-			foo = scope.Resolver.Resolve<IFoo>();
+			using (var scope = _provider.BeginLifetimeScope())
+				foo = scope.Resolver.Resolve<IFoo>();
 
-			using(var scope = _provider.BeginLifetimeScope())
-			fooSecond = scope.Resolver.Resolve<IFoo>();
+			using (var scope = _provider.BeginLifetimeScope())
+				fooSecond = scope.Resolver.Resolve<IFoo>();
 
 			// Assert
 
@@ -376,11 +376,11 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 
 			// Act
 
-			using(var scope = _provider.BeginLifetimeScope())
-			foo = scope.Resolver.Resolve<IFoo>();
+			using (var scope = _provider.BeginLifetimeScope())
+				foo = scope.Resolver.Resolve<IFoo>();
 
-			using(var scope = _provider.BeginLifetimeScope())
-			fooSecond = scope.Resolver.Resolve<IFoo>();
+			using (var scope = _provider.BeginLifetimeScope())
+				fooSecond = scope.Resolver.Resolve<IFoo>();
 
 			// Assert
 
@@ -402,11 +402,11 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 
 			// Act
 
-			using(var scope = _provider.BeginLifetimeScope())
-			foo = scope.Resolver.Resolve<IFoo>();
+			using (var scope = _provider.BeginLifetimeScope())
+				foo = scope.Resolver.Resolve<IFoo>();
 
-			using(var scope = _provider.BeginLifetimeScope())
-			fooSecond = scope.Resolver.Resolve<IFoo>();
+			using (var scope = _provider.BeginLifetimeScope())
+				fooSecond = scope.Resolver.Resolve<IFoo>();
 
 			// Assert
 
@@ -426,11 +426,11 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 
 			// Act
 
-			using(var scope = _provider.BeginLifetimeScope())
-			foo = scope.Resolver.Resolve<IFoo>();
+			using (var scope = _provider.BeginLifetimeScope())
+				foo = scope.Resolver.Resolve<IFoo>();
 
-			using(var scope = _provider.BeginLifetimeScope())
-			fooSecond = scope.Resolver.Resolve<IFoo>();
+			using (var scope = _provider.BeginLifetimeScope())
+				fooSecond = scope.Resolver.Resolve<IFoo>();
 
 			// Assert
 
@@ -465,14 +465,14 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 			IFoo fooSecond;
 			IFoo fooThird;
 
-			using(var scope = _provider.BeginLifetimeScope())
+			using (var scope = _provider.BeginLifetimeScope())
 			{
 				foo = scope.Resolver.Resolve<IFoo>();
 				fooSecond = scope.Resolver.Resolve<IFoo>();
 			}
 
-			using(var scope = _provider.BeginLifetimeScope())
-			fooThird = scope.Resolver.Resolve<IFoo>();
+			using (var scope = _provider.BeginLifetimeScope())
+				fooThird = scope.Resolver.Resolve<IFoo>();
 
 			Assert.IsNotNull(foo);
 
@@ -511,14 +511,14 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 			IFoo fooSecond;
 			IFoo fooThird;
 
-			using(var scope = _provider.BeginLifetimeScope())
+			using (var scope = _provider.BeginLifetimeScope())
 			{
 				foo = scope.Resolver.Resolve<IFoo>();
 				fooSecond = scope.Resolver.Resolve<IFoo>();
 			}
 
-			using(var scope = _provider.BeginLifetimeScope())
-			fooThird = scope.Resolver.Resolve<IFoo>();
+			using (var scope = _provider.BeginLifetimeScope())
+				fooThird = scope.Resolver.Resolve<IFoo>();
 
 			Assert.IsNotNull(foo);
 
@@ -541,7 +541,7 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 
 			// Act
 
-			using(var scope = _provider.BeginLifetimeScope())
+			using (var scope = _provider.BeginLifetimeScope())
 			{
 				bar = scope.Resolver.Resolve<IBar>();
 				barSecond = scope.Resolver.Resolve<IBar>();
@@ -566,11 +566,11 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 
 			// Act
 
-			using(var scope = _provider.BeginLifetimeScope())
-			bar = scope.Resolver.Resolve<IBar>();
+			using (var scope = _provider.BeginLifetimeScope())
+				bar = scope.Resolver.Resolve<IBar>();
 
-			using(var scope = _provider.BeginLifetimeScope())
-			barSecond = scope.Resolver.Resolve<IBar>();
+			using (var scope = _provider.BeginLifetimeScope())
+				barSecond = scope.Resolver.Resolve<IBar>();
 
 			// Assert
 
@@ -587,7 +587,7 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 			_provider.Register<IBar, Bar>();
 			_provider.Register<IFoo, Foo>(LifetimeType.Singleton);
 
-			using(var scope = _provider.BeginLifetimeScope())
+			using (var scope = _provider.BeginLifetimeScope())
 			{
 				// Act && Assert
 				var ex = Assert.Throws<InvalidOperationException>(() => scope.Resolver.Resolve<IFoo>());
@@ -603,7 +603,7 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 			_provider.Register<IBar, Bar>();
 			_provider.Register<IFoo>(r => new Foo(r.Resolve<IBar>()), LifetimeType.Singleton);
 
-			using(var scope = _provider.BeginLifetimeScope())
+			using (var scope = _provider.BeginLifetimeScope())
 			{
 				// Act && Assert
 				var ex = Assert.Throws<InvalidOperationException>(() => scope.Resolver.Resolve<IFoo>());
@@ -639,14 +639,14 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 			IFoo fooSecond;
 			IFoo fooThird;
 
-			using(var scope = _provider.BeginLifetimeScope())
+			using (var scope = _provider.BeginLifetimeScope())
 			{
 				foo = scope.Resolver.Resolve<IFoo>();
 				fooSecond = scope.Resolver.Resolve<IFoo>();
 			}
 
-			using(var scope = _provider.BeginLifetimeScope())
-			fooThird = scope.Resolver.Resolve<IFoo>();
+			using (var scope = _provider.BeginLifetimeScope())
+				fooThird = scope.Resolver.Resolve<IFoo>();
 
 			Assert.IsNotNull(foo);
 
@@ -685,14 +685,14 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 			IFoo fooSecond;
 			IFoo fooThird;
 
-			using(var scope = _provider.BeginLifetimeScope())
+			using (var scope = _provider.BeginLifetimeScope())
 			{
 				foo = scope.Resolver.Resolve<IFoo>();
 				fooSecond = scope.Resolver.Resolve<IFoo>();
 			}
 
-			using(var scope = _provider.BeginLifetimeScope())
-			fooThird = scope.Resolver.Resolve<IFoo>();
+			using (var scope = _provider.BeginLifetimeScope())
+				fooThird = scope.Resolver.Resolve<IFoo>();
 
 			Assert.IsNotNull(foo);
 
@@ -715,7 +715,7 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 
 			// Act
 
-			using(var scope = _provider.BeginLifetimeScope())
+			using (var scope = _provider.BeginLifetimeScope())
 			{
 				bar = scope.Resolver.Resolve<IBar>();
 				barSecond = scope.Resolver.Resolve<IBar>();
@@ -741,11 +741,11 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 
 			// Act
 
-			using(var scope = _provider.BeginLifetimeScope())
-			bar = scope.Resolver.Resolve<IBar>();
+			using (var scope = _provider.BeginLifetimeScope())
+				bar = scope.Resolver.Resolve<IBar>();
 
-			using(var scope = _provider.BeginLifetimeScope())
-			barSecond = scope.Resolver.Resolve<IBar>();
+			using (var scope = _provider.BeginLifetimeScope())
+				barSecond = scope.Resolver.Resolve<IBar>();
 
 			// Assert
 
@@ -768,7 +768,7 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 
 			// Act
 
-			using(var scope = _provider.BeginLifetimeScope())
+			using (var scope = _provider.BeginLifetimeScope())
 			{
 				foo = scope.Resolver.Resolve<IFoo>();
 				fooSecond = scope.Resolver.Resolve<IFoo>();
@@ -796,11 +796,11 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 
 			// Act
 
-			using(var scope = _provider.BeginLifetimeScope())
-			foo = scope.Resolver.Resolve<IFoo>();
+			using (var scope = _provider.BeginLifetimeScope())
+				foo = scope.Resolver.Resolve<IFoo>();
 
-			using(var scope = _provider.BeginLifetimeScope())
-			fooSecond = scope.Resolver.Resolve<IFoo>();
+			using (var scope = _provider.BeginLifetimeScope())
+				fooSecond = scope.Resolver.Resolve<IFoo>();
 
 			// Assert
 
@@ -812,5 +812,120 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.Tests
 		}
 
 		#endregion Reuse tests
+
+		#region Verification
+
+		[Test]
+		public void Verify_MissingDependencyRegistration_InvalidOperationException()
+		{
+			// Assign
+			_provider.Register<Foo>();
+
+			// Act && Assert
+
+			var ex = Assert.Throws<InvalidOperationException>(() => _provider.Verify());
+			Assert.That(ex.Message,
+				Does.StartWith("Unable to resolve service for type 'Simplify.DI.TestsTypes.IBar' while attempting to activate 'Simplify.DI.TestsTypes.Foo'."));
+		}
+
+		// Note: this behavior check is not available
+		//[Test]
+		//public void Verify_ScopedDependsOnTransient_DiagnosticVerificationException()
+		//{
+		//	// Assign
+
+		//	_provider.Register<IBar, Bar>(LifetimeType.Transient);
+		//	_provider.Register<IFoo, Foo>();
+
+		//	// Act && Assert
+
+		//	var ex = Assert.Throws<Exception>(() => _provider.Verify());
+		//	Assert.That(ex.Message, Does.Contain("The configuration is invalid. The following diagnostic warnings were reported:"));
+		//	Assert.That(ex.Message, Does.Contain("-[Lifestyle Mismatch] Foo (Async Scoped) depends on IBar implemented by Bar (Transient)."));
+		//}
+
+		// Note: this behavior check is not available
+		//[Test]
+		//public void Verify_ScopedDelegateDependsOnTransient_DiagnosticVerificationException()
+		//{
+		//	// Assign
+
+		//	_provider.Register<IBar, Bar>(LifetimeType.Transient);
+		//	_provider.Register<IFoo>(r => new Foo(r.Resolve<IBar>()));
+
+		//	// Act && Assert
+
+		//	var ex = Assert.Throws<DiagnosticVerificationException>(() => _provider.Verify());
+		//	Assert.That(ex.Message, Does.Contain("The configuration is invalid. The following diagnostic warnings were reported:"));
+		//	Assert.That(ex.Message, Does.Contain("-[Lifestyle Mismatch] Foo (Async Scoped) depends on IBar implemented by Bar (Transient)."));
+		//}
+
+		[Test]
+		public void Verify_ScopedDependsOnSingleton_NoExceptions()
+		{
+			// Assign
+
+			_provider.Register<IBar, Bar>(LifetimeType.Singleton);
+			_provider.Register<IFoo, Foo>();
+
+			// Act && Assert
+			Assert.DoesNotThrow(() => _provider.Verify());
+		}
+
+		[Test]
+		public void Verify_ScopedDependsOnScoped_NoExceptions()
+		{
+			// Assign
+
+			_provider.Register<IBar, Bar>();
+			_provider.Register<IFoo, Foo>();
+
+			// Act && Assert
+			Assert.DoesNotThrow(() => _provider.Verify());
+		}
+
+		[Test]
+		public void Verify_SingletonDependsOnScoped_DiagnosticVerificationException()
+		{
+			// Assign
+
+			_provider.Register<IBar, Bar>();
+			_provider.Register<IFoo, Foo>(LifetimeType.Singleton);
+
+			// Act && Assert
+
+			var ex = Assert.Throws<InvalidOperationException>(() => _provider.Verify());
+			Assert.That(ex.Message, Does.StartWith("Cannot consume scoped service 'Simplify.DI.TestsTypes.IBar' from singleton 'Simplify.DI.TestsTypes.IFoo'."));
+		}
+
+		// Note: this behavior check is not available
+		//[Test]
+		//public void Verify_SingletonDependsOnTransient_ContainerException()
+		//{
+		//	// Assign
+
+		//	_provider.Register<IBar, Bar>(LifetimeType.Transient);
+		//	_provider.Register<IFoo, Foo>(LifetimeType.Singleton);
+
+		//	// Act && Assert
+
+		//	var ex = Assert.Throws<Exception>(() => _provider.Verify());
+		//	Assert.That(ex.Message, Does.Contain("The configuration is invalid. The following diagnostic warnings were reported:"));
+		//	Assert.That(ex.Message, Does.Contain("-[Lifestyle Mismatch] Foo (Singleton) depends on IBar implemented by Bar (Transient)."));
+		//}
+
+		[Test]
+		public void Verify_TransientDependsOnSingleton_NoExceptions()
+		{
+			// Assign
+
+			_provider.Register<IBar, Bar>(LifetimeType.Singleton);
+			_provider.Register<IFoo, Foo>(LifetimeType.Transient);
+
+			// Act && Assert
+			Assert.DoesNotThrow(() => _provider.Verify());
+		}
+
+		#endregion Verification
 	}
 }

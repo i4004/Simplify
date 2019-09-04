@@ -117,7 +117,11 @@ namespace Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection
 		/// </summary>
 		public void Verify()
 		{
-			throw new NotImplementedException();
+			using (var scope = BeginLifetimeScope())
+			{
+				foreach (var service in Services)
+					scope.Resolver.Resolve(service.ServiceType);
+			}
 		}
 	}
 }
