@@ -54,8 +54,8 @@
 
 | Package | Dependencies | Target Framework | Documentation |
 | :------ | :------: | :------: | :------: |
-| [![Simplify.Scheduler](http://img.shields.io/badge/Simplify.Scheduler-v1.0-pre01-blue.svg)](https://www.nuget.org/packages/Simplify.Scheduler/) | [![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/nuget/Simplify.Scheduler.svg)](https://libraries.io/nuget/Simplify.Scheduler) | Standard 2.0 | [![Documentation](https://img.shields.io/badge/docs-green.svg)](https://github.com/i4004/Simplify/wiki/Simplify.Scheduler) |
-| [![Simplify.WindowsServices](http://img.shields.io/badge/Simplify.WindowsServices-v2.9-blue.svg)](https://www.nuget.org/packages/Simplify.WindowsServices/) | [![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/nuget/Simplify.WindowsServices.svg)](https://libraries.io/nuget/Simplify.WindowsServices) | 4.6.2 | [![Documentation](https://img.shields.io/badge/docs-green.svg)](https://github.com/i4004/Simplify/wiki/Simplify.WindowsServices) |
+| [![Simplify.Scheduler](http://img.shields.io/badge/Simplify.Scheduler-v1.0-pre02-blue.svg)](https://www.nuget.org/packages/Simplify.Scheduler/) | [![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/nuget/Simplify.Scheduler.svg)](https://libraries.io/nuget/Simplify.Scheduler) | Standard 2.0 | [![Documentation](https://img.shields.io/badge/docs-green.svg)](https://github.com/i4004/Simplify/wiki/Simplify.Scheduler) |
+| [![Simplify.WindowsServices](http://img.shields.io/badge/Simplify.WindowsServices-v2.9.1-blue.svg)](https://www.nuget.org/packages/Simplify.WindowsServices/) | [![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/nuget/Simplify.WindowsServices.svg)](https://libraries.io/nuget/Simplify.WindowsServices) | 4.6.2 | [![Documentation](https://img.shields.io/badge/docs-green.svg)](https://github.com/i4004/Simplify/wiki/Simplify.WindowsServices) |
 
 ### Main
 
