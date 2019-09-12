@@ -5,20 +5,20 @@
 		<Product>Simplify</Product>
 		<Description>Provides ability to use Simplify.DI as IOC container in WCF services</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>1.2.1</Version>
+		<Version>1.3</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.DI.Wcf</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.DI.Wcf</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET DI IOC-container</PackageTags>
 		<PackageReleaseNotes>
-			* Upgrade to Simplify.DI 2.1
+			* Upgrade to Simplify.DI 3.0
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.DI.Wcf.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Simplify.DI" Version="2.1.0" />
+		<PackageReference Include="Simplify.DI" Version="3.0.0" />
 		<Reference Include="System.ServiceModel" />
 		<Reference Include="System.ServiceModel.Activation" />
 	</ItemGroup>

@@ -40,7 +40,7 @@
 | Package | Dependencies | Target Framework | Documentation |
 | :------ | :------: | :------: | :------: |
 | [![Simplify.DI.Integration.Microsoft.Extensions.DependencyInjection](http://img.shields.io/badge/Simplify.DI.Integration.Microsoft.Extensions.DependencyInjection-v1.0-pre01-blue.svg)](https://www.nuget.org/packages/Simplify.DI.Integration.Microsoft.Extensions.DependencyInjection/) | [![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/nuget/Simplify.DI.Integration.Microsoft.Extensions.DependencyInjection.svg)](https://libraries.io/nuget/Simplify.DI.Integration.Microsoft.Extensions.DependencyInjection) | Standard 2.0 | |
-| [![Simplify.DI.Wcf](http://img.shields.io/badge/Simplify.DI.Wcf-v1.2.1-blue.svg)](https://www.nuget.org/packages/Simplify.DI.Wcf/) | [![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/nuget/Simplify.DI.Wcf.svg)](https://libraries.io/nuget/Simplify.DI.Wcf)  | 4.5.2 | [![Documentation](https://img.shields.io/badge/docs-green.svg)](https://github.com/i4004/Simplify/wiki/Simplify.DI.Wcf) |
+| [![Simplify.DI.Wcf](http://img.shields.io/badge/Simplify.DI.Wcf-v1.3-blue.svg)](https://www.nuget.org/packages/Simplify.DI.Wcf/) | [![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/nuget/Simplify.DI.Wcf.svg)](https://libraries.io/nuget/Simplify.DI.Wcf)  | 4.5.2 | [![Documentation](https://img.shields.io/badge/docs-green.svg)](https://github.com/i4004/Simplify/wiki/Simplify.DI.Wcf) |
 
 ### Repositories & Databases
 
