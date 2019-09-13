@@ -5,22 +5,21 @@
 		<Product>Simplify</Product>
 		<Description>Windows services framework with DI</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>2.9</Version>
+		<Version>2.9.1</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.WindowsServices</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.WindowsServices</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET windows-service DI</PackageTags>
 		<PackageReleaseNotes>
-			New Features
-			* Possibility to pass custom object parameter to a service job
+			* Upgrade to Simplify.DI 3.0
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.WindowsServices.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="ncrontab" Version="3.3.1" />
-		<PackageReference Include="Simplify.DI" Version="2.1.0" />
+		<PackageReference Include="Simplify.DI" Version="3.0.0" />
 		<PackageReference Include="Simplify.System" Version="1.1.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
 		<Reference Include="System.Configuration" />
