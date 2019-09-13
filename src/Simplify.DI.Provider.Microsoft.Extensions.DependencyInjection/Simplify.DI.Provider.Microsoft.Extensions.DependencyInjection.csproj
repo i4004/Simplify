@@ -5,13 +5,14 @@
 		<Product>Simplify</Product>
 		<Description>Simplify.DI Microsoft.Extensions.DependencyInjection provider</Description>
 		<Copyright>Licensed under LGPL</Copyright>
-		<Version>1.0</Version>
+		<Version>1.1</Version>
 		<PackageProjectUrl>https://github.com/i4004/Simplify/wiki/Simplify.DI</PackageProjectUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/i4004/Simplify/master/Images/Icon.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/i4004/Simplify/tree/master/src/Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>.NET DI IOC-container-provider</PackageTags>
 		<PackageReleaseNotes>
+			* Upgrade to Simplify.DI 3 with respective API implementations
 		</PackageReleaseNotes>
 		<OutputPath>bin\Any CPU\$(Configuration)\</OutputPath>
 		<DocumentationFile>bin\Any CPU\$(Configuration)\$(TargetFramework)\Simplify.DI.Provider.Microsoft.Extensions.DependencyInjection.xml</DocumentationFile>
