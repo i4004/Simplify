@@ -1,3 +1,5 @@
+# This project is and moved to https://github.com/SimplifyNet/Simplify
+
 # Simplify
 
 ![Simplify](https://raw.github.com/i4004/Simplify/master/Images/Icon128x128.png)
