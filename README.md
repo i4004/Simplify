@@ -1,4 +1,4 @@
-# This project is and moved to https://github.com/SimplifyNet/Simplify
+# This project is moved to https://github.com/SimplifyNet/Simplify
 
 # Simplify
 
